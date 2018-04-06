@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <title>Telefila 1.1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900%7CRobotoDraft:400,100,300,500,700,900">
+    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <!-- Form Mixin-->
+    <!-- Input Mixin-->
+    <!-- Button Mixin-->
+    <!-- Pen Title-->
+    <div class="pen-title">
+      <h1>Bienvenidos a la suite</h1>
+      <span><img style="width: 268px; height: 67px;" title="logo" alt="logo" src="file:///D:/Rolando/Clientes/2017/Telefila/administrador/images/logo_alpha.png"><a
+          href="http://www.avtiva.com"></a></span></div>
+    <!-- Form Module-->
+    <div style="width: 700px;" class="module form-module">
+      <div class="toggle"></div>
+      <div class="form">
+        <h2>Hola, Rolando Ancajima</h2>
+        <p>Hospital de Apoyo Red Salud Chepén</p>
+        <p>Acceso: Personal</p>
+        <hr style="width: 100%; height: 1px; color: white;">
+        <p><br>
+        </p>
+        <h2 style="text-align: center;" type="button">Agenda Médica</h2>
+        <p style="width: 362px;"></p>
+        <div style="text-align: center;">
+          <select id="especialidad" name="Medico">
+            <option value="1">Dr. Carlos Peralta Basurco, Consultorio 2</option>
+            <option value="3">Dr. Pedro Aquino, Consultorio 3</option>
+            <option value="2">Dr. Juan Carlos machuca, Consultorio 3</option>
+          </select>
+          <br>
+          <br>
+          <div style="text-align: left;">Fecha de Inicio de atención:<br>
+            <br>
+            <input value="inicio" name="inicio" type="date">Fecha de Termino de
+            atención<br>
+            <br>
+            <input value="termino" name="termino" type="date"><br>
+          </div>
+        </div>
+        <button>GUARDAR</button> </div>
+      <br>
+      <div class="cta"><a href="#">¿Necesitas ayuda? T. 943798335<br>
+        </a></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,353 @@
+ %% NO MODIFIQUE NI ELIMINE ESTE ARCHIVO. %% 
+ %% Este archivo contiene información acerca de la instalación de una aplicación. %% 
+ %% Se utilizará para quitar automáticamente de su PC todos los componentes de la aplicación, si elige hacerlo. %% 
+
+
+NOTE: Inicio de la sección bootstrapper
+
+*** ERROR: No se puede crear un directorio llamado 'C:'
+*** DURANTE ESTA ACCIÓN: CreateDir: "C:"
+
+CONFIG: Title: "Sub Sistema Estadístico de Salud 2.5 SQL Server"
+
+*** ERROR: No se puede crear un directorio llamado 'C:'
+*** DURANTE ESTA ACCIÓN: CreateDir: "C:"
+
+*** ERROR: No se puede crear un directorio llamado 'C:'
+*** DURANTE ESTA ACCIÓN: CreateDir: "C:"
+
+ACTION: RegKey: "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion", "SharedDLLs"
+
+ACTION: SystemFile: "C:\Windows\System32\VB6STKIT.DLL"
+(No se puede encontrar el archivo o es de una versión antigua; se ha copiado el archivo nuevo)
+
+ACTION: SystemFile: "C:\WINDOWS\SYSTEM32\COMCAT.DLL"
+(El archivo en disco ya estaba actualizado)
+
+*** ERROR: No se puede crear un directorio llamado 'C:'
+*** DURANTE ESTA ACCIÓN: CreateDir: "C:"
+
+*** ERROR: No se puede crear un directorio llamado 'C:'
+*** DURANTE ESTA ACCIÓN: CreateDir: "C:"
+
+ACTION: SystemFile: "C:\Windows\System32\VB6ES.DLL"
+(No se puede encontrar el archivo o es de una versión antigua; se ha copiado el archivo nuevo)
+
+ACTION: SystemFile: "C:\WINDOWS\SYSTEM32\STDOLE2.TLB"
+(El archivo en disco ya estaba actualizado)
+
+ACTION: SystemFile: "C:\WINDOWS\SYSTEM32\ASYCFILT.DLL"
+(El archivo en disco ya estaba actualizado)
+
+ACTION: SystemFile: "C:\WINDOWS\SYSTEM32\OLEPRO32.DLL"
+(El archivo en disco ya estaba actualizado)
+
+ACTION: SystemFile: "C:\WINDOWS\SYSTEM32\OLEAUT32.DLL"
+(El archivo en disco ya estaba actualizado)
+
+ACTION: SystemFile: "C:\WINDOWS\SYSTEM32\msvbvm60.dll"
+(El archivo en disco ya estaba actualizado)
+
+ACTION: DllSelfRegister: "C:\WINDOWS\SYSTEM32\COMCAT.DLL"
+
+ACTION: TLBRegister: "C:\WINDOWS\SYSTEM32\STDOLE2.TLB"
+
+ACTION: DllSelfRegister: "C:\WINDOWS\SYSTEM32\OLEPRO32.DLL"
+
+ACTION: DllSelfRegister: "C:\WINDOWS\SYSTEM32\OLEAUT32.DLL"
+
+ACTION: DllSelfRegister: "C:\WINDOWS\SYSTEM32\msvbvm60.dll"
+
+NOTE: Final de la sección bootstrapper
+
+NOTE: Inicializando el programa principal de instalación 'Setup1.exe'....
+
+ACTION: CreateDir: "C:\Program Files\sses"
+
+ACTION: CreateDir: "C:\Users\PcVentanilla\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Minsa"
+
+ACTION: CreateDir: "C:\Program Files\sses\Plantilla"
+
+ACTION: PrivateFile: "C:\Program Files\sses\Plantilla\Paciente97.mdb"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "C:\Program Files\sses\Plantilla\epicrisis97.mdb"
+(File was not found or was an older version -- new file copied)
+
+ACTION: CreateDir: "C:\Program Files\sses\DatosEnviados"
+
+ACTION: PrivateFile: "C:\Program Files\sses\DatosEnviados\readme.txt"
+(File was not found or was an older version -- new file copied)
+
+ACTION: CreateDir: "C:\Program Files\sses\Reportes"
+
+ACTION: PrivateFile: "C:\Program Files\sses\Reportes\readme2.txt"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "C:\Program Files\sses\Plantilla\Poblacion.xls"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "C:\Program Files\sses\Plantilla\Plantilla.xls"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "C:\Program Files\sses\Plantilla\Copia de Poblacion.xls"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\TABCTES.DLL"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\TABCTL32.OCX"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\FLXGDES.DLL"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\msflxgrd.ocx"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\CMDLGES.DLL"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\COMDLG32.OCX"
+(File currently on disk was already up to date)
+
+ACTION: SharedFile: "C:\Windows\System32\MSHFGES.DLL"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\STDFTES.DLL"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\MSSTDFMT.DLL"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\MSHFLXGD.OCX"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\DATRPES.DLL"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\MSBIND.DLL"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\MSDATREP.OCX"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\DBGRDES.DLL"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\DBGRID32.OCX"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\DATLSES.DLL"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\MSDATLST.OCX"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\MSCMCES.DLL"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\MSCOMCTL.OCX"
+(File currently on disk was already up to date)
+
+ACTION: SharedFile: "C:\Windows\System32\MSMSKES.DLL"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\MSMASK32.OCX"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\DATGDES.DLL"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\MSDATGRD.OCX"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\ADODCES.DLL"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\MSADODC.OCX"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\sesEstablecimiento25.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\oeiServicioTree25.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\sesReportes25.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\oeiResponsable25.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\sesPeriodo25.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\DZSTACTX.DLL"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\DUZACTX.DLL"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\DZACTX.DLL"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\MSOUTL9.OLB"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\sesAuditoria25.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\sesEpicrisis25.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\sesTools25.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\sesEnvioData25.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\sesDiasPaciente25.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\sesConfiguracion25.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\sesExportacion25.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\oeiTools25.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\oeiSeguridad25.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\oeiPaciente25.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\oeiNeoplasiaTree25.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\oeiIntervencionTree25.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\oeiIntervencion25.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\oeiDiagnosticoTree25.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\oeiDiagnostico25.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\oeiBaseDeDatos25.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\MSWORD9.OLB"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\msado25.tlb"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\DBRPRES.DLL"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\MSDBRPTR.DLL"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Windows\System32\EXCEL9.OLB"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Program Files\Common Files\DESIGNER\MSDERUN.DLL"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "C:\Program Files\sses\sses.exe"
+(File was not found or was an older version -- new file copied)
+
+ACTION: DllSelfRegister: "C:\Windows\System32\TABCTL32.OCX"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\msflxgrd.ocx"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\COMDLG32.OCX"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\MSSTDFMT.DLL"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\MSHFLXGD.OCX"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\MSBIND.DLL"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\MSDATREP.OCX"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\DBGRID32.OCX"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\MSDATLST.OCX"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\MSCOMCTL.OCX"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\MSMASK32.OCX"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\MSDATGRD.OCX"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\MSADODC.OCX"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\sesEstablecimiento25.dll"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\oeiServicioTree25.dll"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\sesReportes25.dll"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\oeiResponsable25.dll"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\sesPeriodo25.dll"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\DZSTACTX.DLL"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\DUZACTX.DLL"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\DZACTX.DLL"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\sesAuditoria25.dll"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\sesEpicrisis25.dll"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\sesTools25.dll"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\sesEnvioData25.dll"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\sesDiasPaciente25.dll"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\sesConfiguracion25.dll"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\sesExportacion25.dll"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\oeiTools25.dll"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\oeiSeguridad25.dll"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\oeiPaciente25.dll"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\oeiNeoplasiaTree25.dll"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\oeiIntervencionTree25.dll"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\oeiIntervencion25.dll"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\oeiDiagnosticoTree25.dll"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\oeiDiagnostico25.dll"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\oeiBaseDeDatos25.dll"
+
+*** ERROR: No entrypoint for DllRegisterServer() was found in 'C:\Windows\System32\msado25.tlb'
+*** DURING THIS ACTION: DllSelfRegister: "C:\Windows\System32\msado25.tlb"
+
+ACTION: DllSelfRegister: "C:\Windows\System32\MSDBRPTR.DLL"
+
+ACTION: DllSelfRegister: "C:\Program Files\Common Files\DESIGNER\MSDERUN.DLL"
+
+ACTION: ShellLink: "Minsa", "Sub Sistema Estadístico de Salud 2.5"
+
+ACTION: RegKey: "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion", "App Paths\sses.exe"
+
+ACTION: RegValue: "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\sses.exe", ""
+
