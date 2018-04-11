@@ -13,6 +13,7 @@ class CrearTablaMedicoHospital extends Migration
      */
     public function up()
     {
+        //Tabla apunta a tabla medico y hospital, por lo que estas dos tablas deben crearse antes que esta, por lo que se debe cambiar de nombre
         Schema::create('medico_hospital', function (Blueprint $table) {
             $table->increments('id');
             //$table->timestamps(); No es necesario en una tabla de muchos a muchos

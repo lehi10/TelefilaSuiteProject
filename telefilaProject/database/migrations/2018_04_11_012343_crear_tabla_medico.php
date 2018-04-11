@@ -13,6 +13,7 @@ class CrearTablaMedico extends Migration
      */
     public function up()
     {
+        //Tabla no referenceada
         Schema::create('medico', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
