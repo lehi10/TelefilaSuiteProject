@@ -16,7 +16,9 @@ class CrearTablaMedicoHospital extends Migration
         Schema::create('medico_hospital', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            
+            $table->foreign('id_medico')->references('id')->on('medico');
+            $table->foreign('id_hospital')->references('id')->on('hospital');
+
         });
     }
 

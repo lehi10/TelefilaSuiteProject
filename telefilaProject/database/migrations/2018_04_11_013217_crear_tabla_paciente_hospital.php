@@ -16,6 +16,8 @@ class CrearTablaPacienteHospital extends Migration
         Schema::create('paciente_hospital', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->foreign('id_paciente')->references('id')->on("paciente");
+            $table->foreign('id_hospital')->references('id')->on("hospital");
         });
     }
 

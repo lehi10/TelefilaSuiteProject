@@ -16,6 +16,8 @@ class CrearTablaEspecialidadHospital extends Migration
         Schema::create('especialidad_hospital', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->foreign('id_especialidad')->references('id')->on('especialidad');
+            $table->foreign('id_hospital')->references('id')->on('hospital');
         });
     }
 

@@ -16,6 +16,7 @@ class CrearTablaControlPago extends Migration
         Schema::create('control_pago', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->foreign('id_hospital')->references('id')->on("hospital");
         });
     }
 
