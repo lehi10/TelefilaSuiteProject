@@ -17,7 +17,6 @@ class CrearTablaAgenda extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->unsignedInteger('id_medico');
-            $table->unsignedInteger('id_medico');
             $table->foreign('id_medico')->references('id')->on('medico');
             $table->dateTime('horaInicio_agenda');
             $table->dateTime('horaFinal_agenda');
