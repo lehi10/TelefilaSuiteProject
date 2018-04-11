@@ -15,7 +15,6 @@ class CrearTablaMedicoEspecialidad extends Migration
     {
         Schema::create('medico_especialidad', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
             $table->unsignedInteger('id_medico');
             $table->unsignedInteger('id_especialidad');
             $table->foreign('id_medico')->references('id')->on("medico");

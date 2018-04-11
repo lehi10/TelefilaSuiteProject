@@ -16,11 +16,11 @@ class CrearTablaMedico extends Migration
         //Tabla no referenceada
         Schema::create('medico', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
             $table->string("nombre_medico");
             $table->string("apellidos_medico");
             $table->char("sexo_medico",2);
             $table->char("telefono_medico",9);
+            $table->timestamps();
         });
     }
 

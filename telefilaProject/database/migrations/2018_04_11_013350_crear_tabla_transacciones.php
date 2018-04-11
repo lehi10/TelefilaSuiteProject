@@ -15,7 +15,6 @@ class CrearTablaTransacciones extends Migration
     {
         Schema::create('transacciones', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
             $table->unsignedInteger('id_cita');
             $table->unsignedInteger('id_agenda');
             $table->unsignedInteger('id_tarifaTelefila');
@@ -24,6 +23,7 @@ class CrearTablaTransacciones extends Migration
             $table->foreign('id_agenda')->references('id')->on("agenda");
             $table->foreign('id_tarifaTelefila')->references('id')->on("tarifa_telefila");
             $table->foreign('id_hospital')->references('id')->on("hospital");
+            $table->timestamps();
             
         });
     }

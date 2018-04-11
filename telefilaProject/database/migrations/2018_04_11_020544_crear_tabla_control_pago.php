@@ -17,6 +17,8 @@ class CrearTablaControlPago extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->unsignedInteger('id_hospital');
+            $table->unsignedInteger('id_tarifa');
+            $table->foreign('id_tarifa')->references('id')->on('tarifa_telefila');
             $table->foreign('id_hospital')->references('id')->on("hospital");
         });
     }

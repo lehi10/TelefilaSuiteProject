@@ -15,10 +15,10 @@ class CrearTablaHospital extends Migration
     {
         Schema::create('hospital', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
             $table->string('nombre_hospital');
             $table->char("telefono_hospital",6);
             $table->string("direccion_hospital");
+            $table->timestamps();
         });
     }
 
