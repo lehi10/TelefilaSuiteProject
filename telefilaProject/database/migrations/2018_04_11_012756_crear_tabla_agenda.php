@@ -16,7 +16,7 @@ class CrearTablaAgenda extends Migration
         Schema::create('agenda', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->foreing('id_medico')->references('id')->on('medico');
+            $table->foreign('id_medico')->references('id')->on('medico');
             
             $table->char("dia_agenda",2);
             $table->boolean("disponibilidad");
