@@ -17,6 +17,7 @@ class CrearTablaTarifaTelefila extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->int("monto_telefila");
+            $table->unsignedInteger('id_hospital');
             $table->foreign('id_hospital')->references('id')->on("hospital");
             
         });
