@@ -11,6 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::get('main', function(){
+    return view('main');
+});
+Route::get('index', function(){
+    return view('/super_user/index');
+});
+
+Route::get('cliente', function(){
+    return view('/super_user/cliente');
+});
+Route::get('nuevo_cliente', function(){
+    return view('/super_user/nuevo_cliente');
+});
+Route::get('nuevo-usuario', function(){
+    return view('/super_user/nuevo-usuario');
 });
