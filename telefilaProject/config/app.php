@@ -79,6 +79,7 @@ return [
     */
 
     'locale' => 'es',
+    'faker_locale'=>'es_PE',
 
     /*
     |--------------------------------------------------------------------------
@@ -173,6 +174,7 @@ return [
          */
         telefilaSuite\Providers\AppServiceProvider::class,
         telefilaSuite\Providers\AuthServiceProvider::class,
+        Mpociot\LaravelTestFactoryHelper\TestFactoryHelperServiceProvider::class,
         // telefilaSuite\Providers\BroadcastServiceProvider::class,
         telefilaSuite\Providers\EventServiceProvider::class,
         telefilaSuite\Providers\RouteServiceProvider::class,
