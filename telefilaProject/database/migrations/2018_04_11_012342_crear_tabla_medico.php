@@ -31,6 +31,6 @@ class CrearTablaMedico extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('medico');
+        Schema::dropIfExists('medicos');
     }
 }

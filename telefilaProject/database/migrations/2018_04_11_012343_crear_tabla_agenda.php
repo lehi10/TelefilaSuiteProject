@@ -17,9 +17,9 @@ class CrearTablaAgenda extends Migration
             $table->increments('id');
             $table->unsignedInteger('medico_id');
             $table->foreign('medico_id')->references('id')->on('medicos');
-            $table->dateTime('horaInicio_agenda');
-            $table->dateTime('horaFinal_agenda');
-            $table->char("dia_agenda",2);
+            $table->time('horaInicio_agenda');
+            $table->time('horaFinal_agenda');
+            $table->tinyInteger("dia_agenda");
             $table->boolean("disponibilidad");
             $table->timestamps();
         });
@@ -32,6 +32,6 @@ class CrearTablaAgenda extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('agenda');
+        Schema::dropIfExists('agendas');
     }
 }

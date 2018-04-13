@@ -36,6 +36,6 @@ class CrearTablaCita extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cita');
+        Schema::dropIfExists('citas');
     }
 }

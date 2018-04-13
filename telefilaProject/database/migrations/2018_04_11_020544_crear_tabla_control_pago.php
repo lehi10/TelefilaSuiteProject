@@ -13,7 +13,7 @@ class CrearTablaControlPago extends Migration
      */
     public function up()
     {
-        Schema::create('controlpagos', function (Blueprint $table) {
+        Schema::create('control_pagos', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->unsignedInteger('hospital_id');
@@ -30,6 +30,6 @@ class CrearTablaControlPago extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('controlpagos');
+        Schema::dropIfExists('control_pagos');
     }
 }

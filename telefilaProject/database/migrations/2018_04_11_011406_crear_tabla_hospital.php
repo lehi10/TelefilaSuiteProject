@@ -29,6 +29,6 @@ class CrearTablaHospital extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hospital');
+        Schema::dropIfExists('hospitals');
     }
 }
