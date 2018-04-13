@@ -13,12 +13,12 @@ class CrearTablaPacienteHospital extends Migration
      */
     public function up()
     {
-        Schema::create('paciente_hospital', function (Blueprint $table) {
+        Schema::create('hospital_paciente', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('id_paciente');
-            $table->unsignedInteger('id_hospital');
-            $table->foreign('id_paciente')->references('id')->on("paciente");
-            $table->foreign('id_hospital')->references('id')->on("hospital");
+            $table->unsignedInteger('paciente_id');
+            $table->unsignedInteger('hospital_id');
+            $table->foreign('paciente_id')->references('id')->on("pacientes");
+            $table->foreign('hospital_id')->references('id')->on("hospitals");
         });
     }
 
@@ -29,6 +29,6 @@ class CrearTablaPacienteHospital extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('paciente_hospital');
+        Schema::dropIfExists('hospital_paciente');
     }
 }

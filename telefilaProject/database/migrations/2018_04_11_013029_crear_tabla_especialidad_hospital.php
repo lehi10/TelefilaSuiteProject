@@ -16,10 +16,10 @@ class CrearTablaEspecialidadHospital extends Migration
         Schema::create('especialidad_hospital', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->unsignedInteger('id_especialidad');
-            $table->unsignedInteger('id_hospital');
-            $table->foreign('id_especialidad')->references('id')->on('especialidad');
-            $table->foreign('id_hospital')->references('id')->on('hospital');
+            $table->unsignedInteger('especialidad_id');
+            $table->unsignedInteger('hospital_id');
+            $table->foreign('especialidad_id')->references('id')->on('especialidads');
+            $table->foreign('hospital_id')->references('id')->on('hospitals');
         });
     }
 

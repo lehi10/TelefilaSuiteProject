@@ -13,16 +13,16 @@ class CrearTablaCita extends Migration
      */
     public function up()
     {
-        Schema::create('cita', function (Blueprint $table) {
+        Schema::create('citas', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('id_paciente');
-            $table->foreign('id_paciente')->references('id')->on("paciente");
+            $table->unsignedInteger('paciente_id');
+            $table->foreign('paciente_id')->references('id')->on("pacientes");
             $table->dateTime('fecha_cita');
             $table->boolean('confirmada_cita');
             $table->boolean('reservada_cita');
             $table->boolean('pagada_cita');
-            $table->unsignedInteger('id_hospital');
-            $table->foreign('id_hospital')->references('id')->on("hospital");
+            $table->unsignedInteger('hospital_id');
+            $table->foreign('hospital_id')->references('id')->on("hospitals");
             $table->timestamps();
             
 
@@ -36,6 +36,6 @@ class CrearTablaCita extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cita');
+        Schema::dropIfExists('citas');
     }
 }

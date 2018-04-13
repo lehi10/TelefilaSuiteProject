@@ -13,13 +13,13 @@ class CrearTablaControlPago extends Migration
      */
     public function up()
     {
-        Schema::create('control_pago', function (Blueprint $table) {
+        Schema::create('control_pagos', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->unsignedInteger('id_hospital');
-            $table->unsignedInteger('id_tarifa');
-            $table->foreign('id_tarifa')->references('id')->on('tarifa_telefila');
-            $table->foreign('id_hospital')->references('id')->on("hospital");
+            $table->unsignedInteger('hospital_id');
+            $table->unsignedInteger('telefila_tarifa_id');
+            $table->foreign('telefila_tarifa_id')->references('id')->on('telefila_tarifas');
+            $table->foreign('hospital_id')->references('id')->on("hospitals");
         });
     }
 
@@ -30,6 +30,6 @@ class CrearTablaControlPago extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('control_pago');
+        Schema::dropIfExists('control_pagos');
     }
 }
