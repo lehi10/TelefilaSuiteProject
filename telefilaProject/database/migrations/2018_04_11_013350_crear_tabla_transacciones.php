@@ -13,16 +13,16 @@ class CrearTablaTransacciones extends Migration
      */
     public function up()
     {
-        Schema::create('transacciones', function (Blueprint $table) {
+        Schema::create('transaccions', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('id_cita');
-            $table->unsignedInteger('id_agenda');
-            $table->unsignedInteger('id_tarifaTelefila');
-            $table->unsignedInteger('id_hospital');
-            $table->foreign('id_cita')->references('id')->on("cita");
-            $table->foreign('id_agenda')->references('id')->on("agenda");
-            $table->foreign('id_tarifaTelefila')->references('id')->on("tarifa_telefila");
-            $table->foreign('id_hospital')->references('id')->on("hospital");
+            $table->unsignedInteger('cita_id');
+            $table->unsignedInteger('agenda_id');
+            $table->unsignedInteger('telefila_tarifa_id');
+            $table->unsignedInteger('hospital_id');
+            $table->foreign('cita_id')->references('id')->on("citas");
+            $table->foreign('agenda_id')->references('id')->on("agendas");
+            $table->foreign('telefila_tarifa_id')->references('id')->on("telefila_tarifas");
+            $table->foreign('hospital_id')->references('id')->on("hospitals");
             $table->timestamps();
             
         });
@@ -35,6 +35,6 @@ class CrearTablaTransacciones extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transacciones');
+        Schema::dropIfExists('transaccions');
     }
 }

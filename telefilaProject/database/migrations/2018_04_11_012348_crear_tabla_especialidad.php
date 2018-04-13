@@ -13,7 +13,7 @@ class CrearTablaEspecialidad extends Migration
      */
     public function up()
     {
-        Schema::create('especialidad', function (Blueprint $table) {
+        Schema::create('especialidads', function (Blueprint $table) {
             $table->increments('id');
             $table->string("nombre_especialidad");
             $table->integer("tarifa_especialidad");

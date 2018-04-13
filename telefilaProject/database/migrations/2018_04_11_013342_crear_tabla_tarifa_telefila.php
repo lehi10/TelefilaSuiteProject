@@ -13,11 +13,11 @@ class CrearTablaTarifaTelefila extends Migration
      */
     public function up()
     {
-        Schema::create('tarifa_telefila', function (Blueprint $table) {
+        Schema::create('telefila_tarifas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer("monto_telefila");
-            $table->unsignedInteger('id_hospital');
-            $table->foreign('id_hospital')->references('id')->on("hospital");
+            $table->unsignedInteger('hospital_id');
+            $table->foreign('hospital_id')->references('id')->on("hospitals");
             $table->timestamps();
             
         });
@@ -30,6 +30,6 @@ class CrearTablaTarifaTelefila extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tarifa_telefila');
+        Schema::dropIfExists('telefila_tarifas');
     }
 }

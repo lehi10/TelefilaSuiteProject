@@ -13,10 +13,10 @@ class CrearTablaAgenda extends Migration
      */
     public function up()
     {
-        Schema::create('agenda', function (Blueprint $table) {
+        Schema::create('agendas', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('id_medico');
-            $table->foreign('id_medico')->references('id')->on('medico');
+            $table->unsignedInteger('medico_id');
+            $table->foreign('medico_id')->references('id')->on('medicos');
             $table->dateTime('horaInicio_agenda');
             $table->dateTime('horaFinal_agenda');
             $table->char("dia_agenda",2);

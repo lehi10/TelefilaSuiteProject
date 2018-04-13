@@ -14,7 +14,7 @@ class CrearTablaMedico extends Migration
     public function up()
     {
         //Tabla no referenceada
-        Schema::create('medico', function (Blueprint $table) {
+        Schema::create('medicos', function (Blueprint $table) {
             $table->increments('id');
             $table->string("nombre_medico");
             $table->string("apellidos_medico");

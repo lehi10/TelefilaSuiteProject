@@ -14,13 +14,13 @@ class CrearTablaMedicoHospital extends Migration
     public function up()
     {
         //Tabla apunta a tabla medico y hospital, por lo que estas dos tablas deben crearse antes que esta, por lo que se debe cambiar de nombre
-        Schema::create('medico_hospital', function (Blueprint $table) {
+        Schema::create('hospital_medico', function (Blueprint $table) {
             $table->increments('id');
             //$table->timestamps(); No es necesario en una tabla de muchos a muchos
-            $table->unsignedInteger('id_medico'); //Primero tienes que declarar el atributo sin foreign
-            $table->unsignedInteger('id_hospital'); //Lo mismo
-            $table->foreign('id_medico')->references('id')->on('medico');
-            $table->foreign('id_hospital')->references('id')->on('hospital');
+            $table->unsignedInteger('medico_id'); //Primero tienes que declarar el atributo sin foreign
+            $table->unsignedInteger('hospital_id'); //Lo mismo
+            $table->foreign('medico_id')->references('id')->on('medicos');
+            $table->foreign('hospital_id')->references('id')->on('hospitals');
 
         });
     }
@@ -32,6 +32,6 @@ class CrearTablaMedicoHospital extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('medico_hospital');
+        Schema::dropIfExists('hospital_medico');
     }
 }

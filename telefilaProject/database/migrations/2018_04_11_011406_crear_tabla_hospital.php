@@ -13,7 +13,7 @@ class CrearTablaHospital extends Migration
      */
     public function up()
     {
-        Schema::create('hospital', function (Blueprint $table) {
+        Schema::create('hospitals', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre_hospital');
             $table->char("telefono_hospital",6);

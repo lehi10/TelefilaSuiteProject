@@ -13,12 +13,12 @@ class CrearTablaMedicoEspecialidad extends Migration
      */
     public function up()
     {
-        Schema::create('medico_especialidad', function (Blueprint $table) {
+        Schema::create('especialidad_medico', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('id_medico');
-            $table->unsignedInteger('id_especialidad');
-            $table->foreign('id_medico')->references('id')->on("medico");
-            $table->foreign('id_especialidad')->references('id')->on("especialidad");
+            $table->unsignedInteger('medico_id');
+            $table->unsignedInteger('especialidad_id');
+            $table->foreign('medico_id')->references('id')->on("medicos");
+            $table->foreign('especialidad_id')->references('id')->on("especialidads");
         });
     }
 
@@ -29,6 +29,6 @@ class CrearTablaMedicoEspecialidad extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('medico_especialidad');
+        Schema::dropIfExists('especialidad_medico');
     }
 }
