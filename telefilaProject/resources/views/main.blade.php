@@ -11,13 +11,9 @@
 document.documentElement.className = document.documentElement.className.replace(/\bnojs\b/g, 'js');
 
 // Check that all required assets are uploaded and up-to-date
-if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required":["museutils.js", "museconfig.js", "jquery.watch.js", "require.js", "index.css"], "outOfDate":[]};
-</script>
-  
-  <title>telefila</title>
-  <!-- CSS -->
+@yield('enlaces')  
+
   <link rel="stylesheet" type="text/css" href="css/site_global.css?crc=443350757"/>
-  <link rel="stylesheet" type="text/css" href="css/index.css?crc=177440677" id="pagesheet"/>
   <!-- Other scripts -->
   <script type="text/javascript">
    var __adobewebfontsappname__ = "muse";
@@ -28,8 +24,20 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
 </script>
    </head>
  <body>
- @yield('content')
-  
+
+  <div class="clearfix borderbox" id="page"><!-- column -->
+
+@yield('header')
+
+@yield('content')
+   <div class="verticalspacer" data-offset-top="466" data-content-above-spacer="466" data-content-below-spacer="116"></div>
+   <div class="colelem" id="u218"><!-- simple frame --></div>
+   <div class="clearfix colelem" id="u135-8"><!-- content -->
+    <p>TELEFILA SAC © Todos los derechos reservados</p>
+    <p>Av. Joaquín Madrid 277 piso 2, San Borja T. 014750467</p>
+    <p>info@avtiva.com</p>
+   </div>
+  </div>
   <!-- Other scripts -->
   <script type="text/javascript">
    window.Muse.assets.check=function(d){if(!window.Muse.assets.checked){window.Muse.assets.checked=!0;var b={},c=function(a,b){if(window.getComputedStyle){var c=window.getComputedStyle(a,null);return c&&c.getPropertyValue(b)||c&&c[b]||""}if(document.documentElement.currentStyle)return(c=a.currentStyle)&&c[b]||a.style&&a.style[b]||"";return""},a=function(a){if(a.match(/^rgb/))return a=a.replace(/\s+/g,"").match(/([\d\,]+)/gi)[0].split(","),(parseInt(a[0])<<16)+(parseInt(a[1])<<8)+parseInt(a[2]);if(a.match(/^\#/))return parseInt(a.substr(1),

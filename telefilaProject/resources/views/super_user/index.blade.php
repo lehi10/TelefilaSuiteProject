@@ -1,16 +1,28 @@
 @extends('main')
 
-@section('content')
-<div class="clearfix borderbox" id="page"><!-- column -->
-   <div class="browser_width colelem" id="u97-bw">
+@section('enlaces')
+if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required":["museutils.js", "museconfig.js", "jquery.watch.js", "require.js", "index.css"], "outOfDate":[]};
+</script>
+  
+  <title>telefila</title>
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="css/index.css?crc=177440677" id="pagesheet"/>
+@endsection
+
+@section('header')
+<div class="browser_width colelem" id="u97-bw">
     <div id="u97"><!-- group -->
      <div class="clearfix" id="u97_align_to_page">
       <div class="clip_frame grpelem" id="u119"><!-- image -->
-       <img class="block" id="u119_img" src="imagenes/logo_alpha.png?crc=4023370297" alt="" data-image-width="141" data-image-height="35"/>
+       <img class="block" id="u119_img" src="images/logo_alpha.png?crc=4023370297" alt="" data-image-width="141" data-image-height="35"/>
       </div>
      </div>
     </div>
-   </div>
+</div>
+@endsection
+
+@section('content')
+
    <div class="browser_width" id="u611-bw">
     <div class="pinned-colelem" id="u611"><!-- simple frame --></div>
    </div>
@@ -45,12 +57,4 @@
      </div>
     </div>
    </div>
-   <div class="verticalspacer" data-offset-top="466" data-content-above-spacer="466" data-content-below-spacer="116"></div>
-   <div class="colelem" id="u218"><!-- simple frame --></div>
-   <div class="clearfix colelem" id="u135-8"><!-- content -->
-    <p>TELEFILA SAC © Todos los derechos reservados</p>
-    <p>Av. Joaquín Madrid 277 piso 2, San Borja T. 014750467</p>
-    <p>info@avtiva.com</p>
-   </div>
-  </div>
-@stop
+@endsection

@@ -12,6 +12,7 @@
 */
 
 
+/* llamadas para  interfaces de super_user*/
 Route::get('main', function(){
     return view('main');
 });
@@ -25,6 +26,20 @@ Route::get('cliente', function(){
 Route::get('nuevo_cliente', function(){
     return view('/super_user/nuevo_cliente');
 });
-Route::get('nuevo-usuario', function(){
+Route::get('nuevo_usuario', function(){
     return view('/super_user/nuevo-usuario');
 });
+
+/* llamadas para  interfaces de agenda*/
+
+Route::get('admision', function(){
+    return view('/agenda/Admision');
+});
+
+Route::get('agenda', function(){
+    return view('/agenda/agenda');
+});
+Route::get('login', function(){
+    return view('/agenda/login');
+});
+
