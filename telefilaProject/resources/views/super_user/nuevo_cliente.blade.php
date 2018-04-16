@@ -1,4 +1,4 @@
-@extends('main')
+@extends('super_user.main')
 
 @section('enlaces')
 if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required":["museutils.js", "museconfig.js", "jquery.watch.js", "require.js", "nuevo_cliente.css"], "outOfDate":[]};
@@ -6,7 +6,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
   
   <title>nuevo_cliente</title>
   <!-- CSS -->
-  <link rel="stylesheet" type="text/css" href="css/nuevo_cliente.css?crc=4038161940" id="pagesheet"/>
+  <link rel="stylesheet" type="text/css" href="css/nuevo_cliente.css" id="pagesheet"/>
 @endsection
 
 

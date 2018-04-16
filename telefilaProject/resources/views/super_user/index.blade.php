@@ -6,7 +6,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
   
   <title>telefila</title>
   <!-- CSS -->
-  <link rel="stylesheet" type="text/css" href="css/index.css?crc=177440677" id="pagesheet"/>
+  <link rel="stylesheet" type="text/css" href="css/index.css" id="pagesheet"/>
 @endsection
 
 @section('header')

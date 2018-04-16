@@ -14,29 +14,28 @@
 
 /* llamadas para  interfaces de super_user*/
 Route::get('main', function(){
-    return view('main');
+    return view('super_user.main');
 });
 Route::get('index', function(){
-    return view('/super_user/index');
+    return view('super_user.index');
 });
 
 Route::get('cliente', function(){
-    return view('/super_user/cliente');
+    return view('super_user.cliente');
 });
 Route::get('nuevo_cliente', function(){
-    return view('/super_user/nuevo_cliente');
+    return view('super_user.nuevo_cliente');
 });
 Route::get('nuevo_usuario', function(){
-    return view('/super_user/nuevo-usuario');
+    return view('super_user.nuevo-usuario');
 });
 
-<<<<<<< HEAD
 /* llamadas para  interfaces de usuarios*/
 
 Route::get('admision', function(){
     return view('/usuario/Admision');
 });
-
+    
 Route::get('agenda', function(){
     return view('/usuario/agenda');
 });
@@ -64,7 +63,6 @@ Route::get('imprime', function(){
 Route::get('imprimiendo', function(){
     return view('/paciente/imprimiendo');
 });
-=======
 /* llamadas para  interfaces de agenda*/
 
 Route::get('admision', function(){
@@ -78,4 +76,3 @@ Route::get('login', function(){
     return view('/agenda/login');
 });
 
->>>>>>> master
