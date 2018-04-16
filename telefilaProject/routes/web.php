@@ -30,6 +30,7 @@ Route::get('nuevo_usuario', function(){
     return view('/super_user/nuevo-usuario');
 });
 
+<<<<<<< HEAD
 /* llamadas para  interfaces de usuarios*/
 
 Route::get('admision', function(){
@@ -63,3 +64,18 @@ Route::get('imprime', function(){
 Route::get('imprimiendo', function(){
     return view('/paciente/imprimiendo');
 });
+=======
+/* llamadas para  interfaces de agenda*/
+
+Route::get('admision', function(){
+    return view('/agenda/Admision');
+});
+
+Route::get('agenda', function(){
+    return view('/agenda/agenda');
+});
+Route::get('login', function(){
+    return view('/agenda/login');
+});
+
+>>>>>>> master
