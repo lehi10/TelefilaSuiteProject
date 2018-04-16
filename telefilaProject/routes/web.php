@@ -30,16 +30,36 @@ Route::get('nuevo_usuario', function(){
     return view('/super_user/nuevo-usuario');
 });
 
-/* llamadas para  interfaces de agenda*/
+/* llamadas para  interfaces de usuarios*/
 
 Route::get('admision', function(){
-    return view('/agenda/Admision');
+    return view('/usuario/Admision');
 });
 
 Route::get('agenda', function(){
-    return view('/agenda/agenda');
+    return view('/usuario/agenda');
 });
 Route::get('login', function(){
-    return view('/agenda/login');
+    return view('/usuario/login');
 });
 
+/*llamadas para interfaces de pacientes */
+Route::get('main_paciente', function(){
+    return view('/paciente/main_paciente');
+});
+
+Route::get('index_paciente', function(){
+    return view('/paciente/index');
+});
+Route::get('especialidad', function(){
+    return view('/paciente/especialidad');
+});
+Route::get('fecha', function(){
+    return view('/paciente/fecha');
+});
+Route::get('imprime', function(){
+    return view('/paciente/imprime');
+});
+Route::get('imprimiendo', function(){
+    return view('/paciente/imprimiendo');
+});

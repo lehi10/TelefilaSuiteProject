@@ -1,4 +1,4 @@
-@extends('main')
+@extends('super_user.main')
 
 @section('enlaces')
 if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required":["museutils.js", "museconfig.js", "jquery.watch.js", "require.js", "nuevo_cliente.css"], "outOfDate":[]};
