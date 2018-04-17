@@ -32,7 +32,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
      <p>Bienvenido:</p>
     </div>
     <div class="clearfix grpelem" id="u270-4"><!-- content -->
-     <p>Hospital de Apoyo Huaral</p>
+     <p>{{$cliente[0]->nombre_hospital}}</p>
     </div>
     <div class="clearfix grpelem" id="pu375"><!-- column -->
      <div class="rounded-corners colelem" id="u375"><!-- simple frame --></div>
@@ -68,7 +68,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
       <div class="clearfix colelem" id="u239"><!-- group -->
        <div class="pointer_cursor clearfix grpelem" id="u240"><!-- group -->
         <a class="block" href="nuevo-usuario.html"><!-- Block link tag --></a>
-        <a class="nonblock nontext clearfix grpelem" id="u241-4" href="nuevo-usuario.html"><!-- content --><p>AGREGAR</p></a>
+        <a class="nonblock nontext clearfix grpelem" id="u241-4" href="/superUsuario/{{$cliente[0]->id}}/nuevoUsuario"><!-- content --><p>AGREGAR</p></a>
        </div>
       </div>
      </div>

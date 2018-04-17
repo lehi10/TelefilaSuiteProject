@@ -19,10 +19,14 @@ Route::get('', function(){
 
 Route::get('superUsuario', 'SuperUsuarioController@index' );
 Route::get('superUsuario/nuevoCliente', 'SuperUsuarioController@nuevoCliente' );
-Route::get('superUsuario/nuevoUsuario', 'SuperUsuarioController@nuevoUsuario' );
-Route::get('superUsuario/cliente', 'SuperUsuarioController@cliente' );
+Route::get('superUsuario/{idCliente}/nuevoUsuario', 'SuperUsuarioController@nuevoUsuario' );
+Route::get('superUsuario/cliente/{idCliente}', 'SuperUsuarioController@cliente');
+Route::get('superUsuario/listaClientes', 'SuperUsuarioController@listarClientes' );
+
+
 
 Route::post('superUsuario/store','SuperUsuarioController@store');
+Route::post('superUsuario/storeUsuario','SuperUsuarioController@storeUsuario');
 
 
 

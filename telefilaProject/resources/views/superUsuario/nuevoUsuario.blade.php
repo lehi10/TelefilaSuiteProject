@@ -34,9 +34,11 @@
      <p>Bienvenido:</p>
     </div>
     <div class="clearfix grpelem" id="u818-4"><!-- content -->
-     <p>Hospital de Apoyo Huaral</p>
+     <p>{{$cliente[0]->nombre_hospital}}</p>
     </div>
    </div>
+   
+  {!!Form::open(['action'=>'SuperUsuarioController@storeUsuario','method'=>'POST'])!!}
    <div class="clearfix colelem" id="pu925"><!-- group -->
     <a class="nonblock nontext clip_frame grpelem" id="u925" href="cliente.html"><!-- svg --><img class="svg" id="u926" src="/images/pasted-svg-50691x50.svg?crc=3973562438" alt="" data-mu-svgfallback="/images/pasted%20svg%2050691x50_poster_.png?crc=495545644" data-image-width="20" data-image-height="20"/></a>
     <div class="clearfix grpelem" id="u817"><!-- column -->
@@ -47,11 +49,12 @@
       <div class="clearfix grpelem" id="u832-4"><!-- content -->
        <p>Nombres:</p>
       </div>
-      <div class="grpelem" id="u843"><!-- simple frame --></div>
+      {!!Form::text('nombre',null,['class'=>'grpelem','id'=>'u843'])!!}
       <div class="clearfix grpelem" id="u828-4"><!-- content -->
        <p>Apellidos:</p>
       </div>
-      <div class="grpelem" id="u839"><!-- simple frame --></div>
+      {!!Form::text('apellidos',null,['class'=>'grpelem','id'=>'u839'])!!}
+      
      </div>
      <div class="clearfix colelem" id="pu831-4"><!-- group -->
       <div class="clearfix grpelem" id="u831-4"><!-- content -->
@@ -60,19 +63,20 @@
       <div class="clearfix grpelem" id="u837-4"><!-- content -->
        <p>DNI:</p>
       </div>
-      <div class="grpelem" id="u842"><!-- simple frame --></div>
-      <div class="grpelem" id="u846"><!-- simple frame --></div>
+      {!!Form::text('celular',null,['class'=>'grpelem','id'=>'u842'])!!}
+      {!!Form::text('dni',null,['class'=>'grpelem','id'=>'u846'])!!}
+      
      </div>
      <div class="clearfix colelem" id="pu834-4"><!-- group -->
       <div class="clearfix grpelem" id="u834-4"><!-- content -->
        <p>Rol:</p>
       </div>
-      <div class="clearfix grpelem" id="u888"><!-- group -->
-       <div class="clearfix grpelem" id="u889"><!-- column -->
-        <div class="colelem" id="u890" data-mu-ie-matrix="progid:DXImageTransform.Microsoft.Matrix(M11=0.7771,M12=-0.6293,M21=0.6293,M22=0.7771,SizingMethod='auto expand')" data-mu-ie-matrix-dx="-2" data-mu-ie-matrix-dy="-2"><!-- simple frame --></div>
-        <div class="colelem" id="u891" data-mu-ie-matrix="progid:DXImageTransform.Microsoft.Matrix(M11=0.7771,M12=-0.6293,M21=0.6293,M22=0.7771,SizingMethod='auto expand')" data-mu-ie-matrix-dx="0" data-mu-ie-matrix-dy="-3"><!-- simple frame --></div>
-       </div>
-      </div>
+      
+       
+       {!!Form::text('usuario',null,['class'=>'grpelem','id'=>'u888'])!!}
+       
+       
+      
      </div>
      <div class="clearfix colelem" id="pu900"><!-- group -->
       <div class="clearfix grpelem" id="u900"><!-- group -->
@@ -92,17 +96,21 @@
        </div>
       </div>
       <div class="clearfix grpelem" id="pu845"><!-- column -->
-       <div class="colelem" id="u845"><!-- simple frame --></div>
-       <div class="colelem" id="u841"><!-- simple frame --></div>
+
+       {!!Form::text('usuario',null,['class'=>'grpelem','id'=>'u845'])!!}
+       {!!Form::password('clave',['class'=>'grpelem','id'=>'u841'])!!}
+       
+       
+
        <div class="clearfix colelem" id="u801"><!-- group -->
         <div class="clearfix grpelem" id="u802"><!-- group -->
-         <div class="clearfix grpelem" id="u803-4"><!-- content -->
-          <p>AGREGAR</p>
-         </div>
+        {!!Form::submit('AGREGAR',['class'=>'clearfix grpelem','id'=>'u803-4'])!!}
+         
         </div>
        </div>
       </div>
      </div>
     </div>
    </div>
+   {!!Form::close()!!}
 @endsection

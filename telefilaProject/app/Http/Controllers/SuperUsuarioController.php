@@ -22,19 +22,41 @@ class SuperUsuarioController extends Controller
         return view('superUsuario.nuevoCliente');
     }
 
-    public function nuevoUsuario()
+    public function nuevoUsuario($idCliente)
     {
-        return view('superUsuario.nuevoUsuario');
+        $countRes =\telefilaSuite\Hospital::where('id',$idCliente);
+        if($countRes->count() == 1 )
+        {
+            $cliente=$countRes->get();
+            return view('superUsuario.nuevoUsuario',compact('cliente') );
+        }
+            
+        if($countRes->count() == 0 )
+            return redirect('superUsuario/');//->with('message','store');
+        else
+            return "Error : Overflow of Results.";
     }
 
-    public function cliente(Request $request)
+    public function cliente($idCliente)
     {
-        $clienteEntrada = $request->input('clienteEntrada');
-
-
-        return view('superUsuario.cliente');
+        $cliente =\telefilaSuite\Hospital::where('id',$idCliente)->get();   
+        return view('superUsuario.cliente',compact('cliente'));
     }
 
+    public function listarClientes(Request $request)
+    {
+        if($request['clienteEntrada'])
+        {
+            $clientes =\telefilaSuite\Hospital::where('nombre_hospital','LIKE' ,'%'.$request['clienteEntrada'].'%')->get(); 
+            return view('superUsuario.listaClientes',compact('clientes'));
+        }
+        else
+        {
+            $clientes =\telefilaSuite\Hospital::All();        
+            return view('superUsuario.listaClientes',compact('clientes'));
+        }
+        
+    }
 
 
     /**
@@ -67,7 +89,14 @@ class SuperUsuarioController extends Controller
             'clave'=>$request['clave'],
             'usuario'=>$request['usuario']
         ]);
-        return redirect('superUsuario/');
+        return redirect('superUsuario/');//->with('message','store');
+    }
+
+    public function storeUsuario(Request $request)
+    {
+        
+        echo "DNi : ".$request['dni']."<br>";
+        return "Store Usuario";
     }
 
     /**

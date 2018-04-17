@@ -1,5 +1,6 @@
 @extends('superUsuario.main')
 
+
 @section('enlaces')
 if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required":["museutils.js", "museconfig.js", "jquery.watch.js", "require.js", "index.css"], "outOfDate":[]};
 </script>
@@ -31,7 +32,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
    </div>
    <div class="clearfix colelem" id="pu129-4"><!-- group -->
     
-   <form action="superUsuario/cliente" method="get" >
+   <form action="superUsuario/listaClientes" method="get" >
       <div class="clearfix grpelem" id="u129-4"><!-- content -->
         <p>Clientes: </p>
       </div>
