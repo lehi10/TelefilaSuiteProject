@@ -1,12 +1,13 @@
-@extends('super_user.main')
+@extends('superUsuario.main')
 
 @section('enlaces')
-if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required":["museutils.js", "museconfig.js", "jquery.watch.js", "require.js", "cliente.css"], "outOfDate":[]};
+<script>
+if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required":["/scripts/museutils.js", "/scripts/museconfig.js", "/scripts/jquery.watch.js", "/scripts/require.js", "/css/cliente.css"], "outOfDate":[]};
 </script>
   
   <title>cliente</title>
   <!-- CSS -->
-  <link rel="stylesheet" type="text/css" href="css/cliente.css?crc=381638368" id="pagesheet"/>
+  <link rel="stylesheet" type="text/css" href="/css/cliente.css?crc=381638368" id="pagesheet"/>
 
 @endsection
 
@@ -18,7 +19,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
        <p>SUITE CENTRO DE SALUD</p>
       </div>
       <div class="clip_frame grpelem" id="u232"><!-- image -->
-       <img class="block" id="u232_img" src="images/logo_alpha.png?crc=4023370297" alt="" data-image-width="141" data-image-height="35"/>
+       <img class="block" id="u232_img" src="/images/logo_alpha.png?crc=4023370297" alt="" data-image-width="141" data-image-height="35"/>
       </div>
      </div>
     </div>
@@ -46,7 +47,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
    </div>
    <div class="clearfix colelem" id="pu917"><!-- group -->
     <div class="clip_frame grpelem" id="u917"><!-- svg -->
-     <img class="svg" id="u915" src="images/pasted-svg-50691x50.svg?crc=3973562438" alt="" data-mu-svgfallback="images/pasted%20svg%2050691x50_poster_.png?crc=495545644" data-image-width="20" data-image-height="20"/>
+     <img class="svg" id="u915" src="/images/pasted-svg-50691x50.svg?crc=3973562438" alt="" data-mu-svgfallback="images/pasted%20svg%2050691x50_poster_.png?crc=495545644" data-image-width="20" data-image-height="20"/>
     </div>
     <div class="clearfix grpelem" id="u276"><!-- group -->
      <div class="clearfix grpelem" id="pu234-4"><!-- column -->

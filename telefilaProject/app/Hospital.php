@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Hospital extends Model
 {
+    protected $fillable = ['id', 'nombre_hospital','ruc', 'director','direccion', 'cuidad','pais','telefono_hospital','personaContacto','clave','usuario','create_at','update_at'];
+
     //
     public function telefilaTarifa()
     {

@@ -11,24 +11,20 @@
 |
 */
 
-
 /* llamadas para  interfaces de super_user*/
-Route::get('main', function(){
-    return view('super_user.main');
-});
-Route::get('index', function(){
-    return view('super_user.index');
+
+Route::get('', function(){
+    return view('index');
 });
 
-Route::get('cliente', function(){
-    return view('super_user.cliente');
-});
-Route::get('nuevo_cliente', function(){
-    return view('super_user.nuevo_cliente');
-});
-Route::get('nuevo_usuario', function(){
-    return view('super_user.nuevo-usuario');
-});
+Route::get('superUsuario', 'SuperUsuarioController@index' );
+Route::get('superUsuario/nuevoCliente', 'SuperUsuarioController@nuevoCliente' );
+Route::get('superUsuario/nuevoUsuario', 'SuperUsuarioController@nuevoUsuario' );
+Route::get('superUsuario/cliente', 'SuperUsuarioController@cliente' );
+
+Route::post('superUsuario/store','SuperUsuarioController@store');
+
+
 
 /* llamadas para  interfaces de usuarios*/
 
