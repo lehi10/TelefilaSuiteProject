@@ -21,10 +21,8 @@ class CrearTablaHospital extends Migration
             $table->string('direccion');
             $table->string('cuidad');
             $table->string('pais');
-            $table->char("telefono_hospital",6);
+            $table->string("telefono_hospital",9);
             $table->string('personaContacto');
-            $table->string('clave');
-            $table->string('usuario');
             $table->timestamps();
         });
     }
