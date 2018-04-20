@@ -1,0 +1,30 @@
+<manifest alg="2" build="2017.0.0.363" opt="false" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster" exportTarget="other" domain="telefila.com" resolutions="1x" timestamp="1523319124165">
+  <folder name="css">
+    <file name="site_global.css" crc="443350757"/>
+    <file name="index.css" crc="177440677" ref="index"/>
+    <file name="cliente.css" crc="381638368" ref="cliente"/>
+    <file name="nuevo-usuario.css" crc="127623343" ref="nuevo-usuario"/>
+    <file name="nuevo_cliente.css" crc="4038161940" ref="nuevo_cliente"/>
+  </folder>
+  <folder name="scripts">
+    <file name="jquery-1.8.3.min.js" crc="209076791" ref="index:cliente:nuevo_cliente:nuevo-usuario"/>
+    <file name="museutils.js" crc="163421577" ref="index:cliente:nuevo_cliente:nuevo-usuario"/>
+    <file name="whatinput.js" crc="86476730" ref="index:cliente:nuevo_cliente:nuevo-usuario"/>
+    <file name="museconfig.js" crc="168988563" ref="index:cliente:nuevo_cliente:nuevo-usuario"/>
+    <file name="jquery.watch.js" crc="104486786" ref="index:cliente:nuevo_cliente:nuevo-usuario"/>
+    <file name="require.js" crc="244322403" ref="index:cliente:nuevo_cliente:nuevo-usuario"/>
+  </folder>
+  <folder name="images">
+    <file name="logo_alpha.png" crc="4023370297" seo="true" ref="index:cliente:nuevo_cliente:nuevo-usuario"/>
+    <file name="back_admin.jpg" crc="114687435" ref="index"/>
+    <file name="pasted-svg-50691x50.svg" crc="3973562438" seo="true" ref="cliente:nuevo_cliente:nuevo-usuario"/>
+    <file name="pasted svg 50691x50_poster_.png" crc="495545644" ref="cliente:nuevo-usuario"/>
+    <file name="pasted-svg-287179x246.svg" crc="213937591" seo="true" ref="nuevo_cliente:nuevo-usuario"/>
+    <file name="pasted svg 287179x246_poster_.png" crc="320079953" ref="nuevo_cliente:nuevo-usuario"/>
+    <file name="nuevo-usuario-favicon.ico" crc="3940202540" ref="nuevo-usuario"/>
+  </folder>
+  <file name="index.html" crc="264738217" seo="true" mt="1523317768982" redirect="true"/>
+  <file name="cliente.html" crc="161633831" seo="true" mt="1523318773985" redirect="true"/>
+  <file name="nuevo_cliente.html" crc="4217165543" seo="true" mt="1523318806926" redirect="true"/>
+  <file name="nuevo-usuario.html" crc="445572778" seo="true" mt="1523319091783" redirect="true"/>
+</manifest>

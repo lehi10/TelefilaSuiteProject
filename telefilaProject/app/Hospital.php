@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Hospital extends Model
 {
+    protected $fillable = ['id', 'nombre_hospital','ruc', 'director','direccion', 'cuidad','pais','telefono_hospital','personaContacto','clave','usuario','create_at','update_at'];
+
     //
     public function telefilaTarifa()
     {
@@ -37,5 +39,9 @@ class Hospital extends Model
     public function especialidads()
     {
         return $this->belongsTo(Especialidad::class);
+    }
+    public function administrador()
+    {
+        return $this->hasOne(Administrador::class);
     }
 }

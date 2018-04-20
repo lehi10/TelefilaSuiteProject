@@ -16,8 +16,13 @@ class CrearTablaHospital extends Migration
         Schema::create('hospitals', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre_hospital');
-            $table->char("telefono_hospital",6);
-            $table->string("direccion_hospital");
+            $table->string('ruc');
+            $table->string('director');
+            $table->string('direccion');
+            $table->string('cuidad');
+            $table->string('pais');
+            $table->string("telefono_hospital",9);
+            $table->string('personaContacto');
             $table->timestamps();
         });
     }
