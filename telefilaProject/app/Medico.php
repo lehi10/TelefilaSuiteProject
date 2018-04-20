@@ -19,6 +19,11 @@ class Medico extends Model
     {
         return $this->belongsTo(Hospital::class);
     }
+
+    public function persona()
+    {
+        return $this->belongsTo(Persona::class);
+    }
     //Observar
     //Espacio para referenciar a citas o usar agendas
 }

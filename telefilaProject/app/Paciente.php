@@ -15,4 +15,9 @@ class Paciente extends Model
     {
         return $this->belongsTo(Hospital::class);
     }
+
+    public function persona()
+    {
+        return $this->belongsTo(Persona::class);
+    }
 }

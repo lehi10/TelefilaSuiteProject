@@ -40,4 +40,8 @@ class Hospital extends Model
     {
         return $this->belongsTo(Especialidad::class);
     }
+    public function administrador()
+    {
+        return $this->hasOne(Administrador::class);
+    }
 }

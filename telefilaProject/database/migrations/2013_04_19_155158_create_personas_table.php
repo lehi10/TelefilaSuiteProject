@@ -19,7 +19,7 @@ class CreatePersonasTable extends Migration
             $table->string("apellido");
             $table->string("dni",8);
             $table->string("telefono",9);
-            $table->tinyInteger("sexo");
+            $table->boolean("sexo");
             $table->tinyInteger("edad");
             $table->string("direccion");
             $table->timestamps();
