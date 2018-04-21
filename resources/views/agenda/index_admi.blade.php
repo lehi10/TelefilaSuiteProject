@@ -22,10 +22,13 @@
     <div style="width: 700px;" class="module form-module">
       <div class="toggle"></div>
       <div class="form">
+        <!--
         <h2>Hola, Rolando Ancajima</h2>
         <p>Hospital de Apoyo Red Salud Chepén</p>
         <p>Acceso: Admisión</p>
         <hr style="width: 100%; height: 1px; color: white;">
+        -->
+
         <p><br>
         </p>
         @yield('content') 

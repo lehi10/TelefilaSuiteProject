@@ -58,6 +58,22 @@ class SuperUsuarioController extends Controller
         
     }
 
+    public function listarUsuarios(Request $request)
+    {
+        
+        if($request['nombreUsuario'])
+        {
+            $usuarios =\telefilaSuite\User::where('username','LIKE' ,'%'.$request['nombreUsuario'].'%')->get(); 
+            return view('superUsuario.listarUsuarios',compact('usuarios'));
+        }
+        else
+        {
+            $usuarios =\telefilaSuite\User::All();        
+            return view('superUsuario.listarUsuarios',compact('usuarios'));
+        }
+        
+    }
+
 
     /**
      * Show the form for creating a new resource.

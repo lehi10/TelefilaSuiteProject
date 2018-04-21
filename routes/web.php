@@ -24,7 +24,7 @@ Route::get('superUsuario/cliente/{idCliente}', 'SuperUsuarioController@cliente')
 Route::get('superUsuario/listaClientes', 'SuperUsuarioController@listarClientes' );
 
 
-
+Route::post('superUsuario/listaUsuarios', 'SuperUsuarioController@listarUsuarios' );
 Route::post('superUsuario/store','SuperUsuarioController@store');
 Route::post('superUsuario/storeUsuario','SuperUsuarioController@storeUsuario');
 

@@ -58,25 +58,23 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
        <p>Nuevo Usuario:</p>
       </div>
      </div>
-     <div class="clearfix grpelem" id="pu235"><!-- column -->
-      <div class="clearfix colelem" id="u235"><!-- group -->
-       <div class="clearfix grpelem" id="u228"><!-- column -->
-        <div class="colelem" id="u230" data-mu-ie-matrix="progid:DXImageTransform.Microsoft.Matrix(M11=0.7771,M12=-0.6293,M21=0.6293,M22=0.7771,SizingMethod='auto expand')" data-mu-ie-matrix-dx="-2" data-mu-ie-matrix-dy="-2"><!-- simple frame --></div>
-        <div class="colelem" id="u229" data-mu-ie-matrix="progid:DXImageTransform.Microsoft.Matrix(M11=0.7771,M12=-0.6293,M21=0.6293,M22=0.7771,SizingMethod='auto expand')" data-mu-ie-matrix-dx="0" data-mu-ie-matrix-dy="-3"><!-- simple frame --></div>
-       </div>
-      </div>
+     {!!Form::open(['action'=>'SuperUsuarioController@listarUsuarios','method'=>'POST'])!!}
+      <div class="clearfix grpelem" id="pu235"><!-- column -->
+                
+          {!!Form::text('nombreUsuario',null,['class'=>'grpelem','id'=>'u235'])!!}       
+
       <div class="clearfix colelem" id="u239"><!-- group -->
        <div class="pointer_cursor clearfix grpelem" id="u240"><!-- group -->
         <a class="block" href="nuevo-usuario.html"><!-- Block link tag --></a>
+        
         <a class="nonblock nontext clearfix grpelem" id="u241-4" href="/superUsuario/{{$cliente[0]->id}}/nuevoUsuario"><!-- content --><p>AGREGAR</p></a>
        </div>
       </div>
+      
      </div>
      <div class="clearfix grpelem" id="u236"><!-- group -->
       <div class="clearfix grpelem" id="u238"><!-- group -->
-       <div class="clearfix grpelem" id="u237-4"><!-- content -->
-        <p>CARGAR</p>
-       </div>
+        {!!Form::submit('CARGAR',["class"=>"clearfix grpelem", "id"=>"u237-4"])!!}       
       </div>
      </div>
     </div>
