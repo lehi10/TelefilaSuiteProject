@@ -112,7 +112,7 @@ class SuperUsuarioController extends Controller
         ]);
             
         $persona =\telefilaSuite\Persona::where('dni',$request['dni'])->get();   
-
+        $p_id=$persona[0]['id'];
         \telefilaSuite\User::create([
             'email'=> $request['usuario'],
             'username'=>$request['usuario'],
@@ -126,7 +126,7 @@ class SuperUsuarioController extends Controller
 
         echo "DNI  : ".$request['hospital_id']."<br>";
         echo $request;
-        return redirect("/superUsuario/cliente/1");
+        return redirect("/superUsuario/cliente/".$request['hospital_id']);
     }
 
     /**

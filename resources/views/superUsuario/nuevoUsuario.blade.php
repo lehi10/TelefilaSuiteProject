@@ -42,7 +42,7 @@
   <input type="hidden" name="hospital_id" value="{{$cliente[0]->id}}" >
 
    <div class="clearfix colelem" id="pu925"><!-- group -->
-    <a class="nonblock nontext clip_frame grpelem" id="u925" href="cliente.html"><!-- svg --><img class="svg" id="u926" src="/images/pasted-svg-50691x50.svg?crc=3973562438" alt="" data-mu-svgfallback="/images/pasted%20svg%2050691x50_poster_.png?crc=495545644" data-image-width="20" data-image-height="20"/></a>
+    <a class="nonblock nontext clip_frame grpelem" id="u925" href="{{url()->previous()}}"><!-- svg --><img class="svg" id="u926" src="/images/pasted-svg-50691x50.svg?crc=3973562438" alt="" data-mu-svgfallback="/images/pasted%20svg%2050691x50_poster_.png?crc=495545644" data-image-width="20" data-image-height="20"/></a>
     <div class="clearfix grpelem" id="u817"><!-- column -->
      <div class="clearfix colelem" id="u816-4"><!-- content -->
       <p>- NUEVO USUARIO -</p>

@@ -47,7 +47,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
    </div>
    <div class="clearfix colelem" id="pu917"><!-- group -->
     <div class="clip_frame grpelem" id="u917"><!-- svg -->
-     <img class="svg" id="u915" src="/images/pasted-svg-50691x50.svg?crc=3973562438" alt="" data-mu-svgfallback="images/pasted%20svg%2050691x50_poster_.png?crc=495545644" data-image-width="20" data-image-height="20"/>
+     <a href="{{url()->previous()}}"><img class="svg" id="u915" src="/images/pasted-svg-50691x50.svg?crc=3973562438" alt="" data-mu-svgfallback="images/pasted%20svg%2050691x50_poster_.png?crc=495545644" data-image-width="20" data-image-height="20"/></a>
     </div>
     <div class="clearfix grpelem" id="u276"><!-- group -->
      <div class="clearfix grpelem" id="pu234-4"><!-- column -->

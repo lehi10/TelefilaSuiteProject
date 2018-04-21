@@ -46,7 +46,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
   {!!Form::open(['action'=>'SuperUsuarioController@store','method'=>'POST'])!!}
 
     <div class="clearfix colelem" id="pu934"><!-- group -->
-      <a class="nonblock nontext clip_frame grpelem" id="u934" href="index.html"><!-- svg --><img class="svg" id="u935" src="/images/pasted-svg-50691x50.svg?crc=3973562438" alt="" data-mu-svgfallback="/images/pasted%20svg%2050691x50_poster_.png?crc=495545644" data-image-width="20" data-image-height="20"/></a>
+      <a class="nonblock nontext clip_frame grpelem" id="u934" href="{{url()->previous()}}"><!-- svg --><img class="svg" id="u935" src="/images/pasted-svg-50691x50.svg?crc=3973562438" alt="" data-mu-svgfallback="/images/pasted%20svg%2050691x50_poster_.png?crc=495545644" data-image-width="20" data-image-height="20"/></a>
     
       <div class="clearfix grpelem" id="u350"><!-- column -->
         <div class="clearfix colelem" id="pu353-4"><!-- group -->
