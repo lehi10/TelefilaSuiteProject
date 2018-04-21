@@ -58,7 +58,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
        <p>Nuevo Usuario:</p>
       </div>
      </div>
-     {!!Form::open(['action'=>'SuperUsuarioController@listarUsuarios','method'=>'POST'])!!}
+     {!!Form::open(['action'=>'SuperUsuarioController@listarUsuarios','method'=>'GET'])!!}
       <div class="clearfix grpelem" id="pu235"><!-- column -->
                 
           {!!Form::text('nombreUsuario',null,['class'=>'grpelem','id'=>'u235'])!!}       

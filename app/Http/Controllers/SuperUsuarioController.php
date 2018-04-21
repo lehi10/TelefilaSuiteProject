@@ -45,17 +45,22 @@ class SuperUsuarioController extends Controller
 
     public function listarClientes(Request $request)
     {
-        if($request['clienteEntrada'])
-        {
-            $clientes =\telefilaSuite\Hospital::where('nombre_hospital','LIKE' ,'%'.$request['clienteEntrada'].'%')->get(); 
-            return view('superUsuario.listaClientes',compact('clientes'));
+        try{
+            if($request['clienteEntrada'])
+            {
+                $clientes =\telefilaSuite\Hospital::where('nombre_hospital','LIKE' ,'%'.$request['clienteEntrada'].'%')->get(); 
+                return view('superUsuario.listaClientes',compact('clientes'));
+            }
+            else
+            {
+                $clientes =\telefilaSuite\Hospital::All();        
+                return view('superUsuario.listaClientes',compact('clientes'));
+            }
         }
-        else
+        catch(Exception $e)
         {
-            $clientes =\telefilaSuite\Hospital::All();        
-            return view('superUsuario.listaClientes',compact('clientes'));
+            return redirect('superUsuario/');//->with('message','store');
         }
-        
     }
 
     public function listarUsuarios(Request $request)
