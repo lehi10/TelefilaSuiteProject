@@ -93,7 +93,7 @@ class SuperUsuarioController extends Controller
 
         \telefilaSuite\Administrador::create([
             'usuario'=>$request['usuario'],
-            'password'=>$request['clave'],
+            'password'=>bcrypt($request['clave']),
             'hospital_id'=>$hospital[0]['id']
         ]);
         return redirect('superUsuario/');//->with('message','store');
@@ -102,10 +102,10 @@ class SuperUsuarioController extends Controller
     public function storeUsuario(Request $request)
     {
         \telefilaSuite\Persona::create([
-            'nombre'=>$request['usuario'],
-            'apellido'=>$request['clave'],
-            'dni'=>$request['clave'],
-            'telefono'=>$request['clave'],
+            'nombre'=>$request['nombre'],
+            'apellido'=>$request['apellidos'],
+            'dni'=>$request['dni'],
+            'telefono'=>$request['celular'],
             'sexo'=>0,
             'edad'=>0,
             'direccion'=>"-"
@@ -114,7 +114,7 @@ class SuperUsuarioController extends Controller
         $persona =\telefilaSuite\Persona::where('dni',$request['dni'])->get();   
 
         \telefilaSuite\User::create([
-            'email'=> "",
+            'email'=> $request['usuario'],
             'username'=>$request['usuario'],
             'password'=>$request['clave'],
             //'hospital_id'=>$hospital[0]['id'],
@@ -126,7 +126,7 @@ class SuperUsuarioController extends Controller
 
         echo "DNI  : ".$request['hospital_id']."<br>";
         echo $request;
-        return "Store Usuario";
+        return redirect("/superUsuario/cliente/1");
     }
 
     /**
