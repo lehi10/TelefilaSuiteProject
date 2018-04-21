@@ -18,7 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('username')->unique();
             $table->string('password');
-            //$table->boolean('sexo');
+            //Agregar id hospital !!
+            //Agregar el roll
             $table->unsignedInteger('persona_id');
             $table->foreign('persona_id')->references('id')->on('personas');
             $table->rememberToken();

@@ -85,17 +85,46 @@ class SuperUsuarioController extends Controller
             'cuidad'=>$request['cuidad'],
             'pais'=>$request['pais'],
             'telefono_hospital'=>$request['celular'],
-            'personaContacto'=>$request['personaContacto'],
-            'clave'=>$request['clave'],
-            'usuario'=>$request['usuario']
+            'personaContacto'=>$request['personaContacto']
+        ]);
+        
+        $hospital =\telefilaSuite\Hospital::where('ruc',$request['ruc'])->get();   
+
+        \telefilaSuite\Administrador::create([
+            'usuario'=>$request['usuario'],
+            'password'=>$request['clave'],
+            'hospital_id'=>$hospital[0]['id']
         ]);
         return redirect('superUsuario/');//->with('message','store');
     }
 
     public function storeUsuario(Request $request)
     {
-        
-        echo "DNi : ".$request['dni']."<br>";
+        \telefilaSuite\Persona::create([
+            'nombre'=>$request['usuario'],
+            'apellido'=>$request['clave'],
+            'dni'=>$request['clave'],
+            'telefono'=>$request['clave'],
+            'sexo'=>0,
+            'edad'=>0,
+            'direccion'=>"-"
+        ]);
+            
+        $persona =\telefilaSuite\Persona::where('dni',$request['dni'])->get();   
+
+        \telefilaSuite\User::create([
+            'email'=> "",
+            'username'=>$request['usuario'],
+            'password'=>$request['clave'],
+            //'hospital_id'=>$hospital[0]['id'],
+            //'rol'=>$request['rol'],
+            'persona_id'=>$persona[0]['id'],
+            'remember_token'=>NULL
+
+        ]);
+
+        echo "DNI  : ".$request['hospital_id']."<br>";
+        echo $request;
         return "Store Usuario";
     }
 

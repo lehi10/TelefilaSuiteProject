@@ -39,6 +39,8 @@
    </div>
    
   {!!Form::open(['action'=>'SuperUsuarioController@storeUsuario','method'=>'POST'])!!}
+  <input type="hidden" name="hospital_id" value="{{$cliente[0]->id}}" >
+
    <div class="clearfix colelem" id="pu925"><!-- group -->
     <a class="nonblock nontext clip_frame grpelem" id="u925" href="cliente.html"><!-- svg --><img class="svg" id="u926" src="/images/pasted-svg-50691x50.svg?crc=3973562438" alt="" data-mu-svgfallback="/images/pasted%20svg%2050691x50_poster_.png?crc=495545644" data-image-width="20" data-image-height="20"/></a>
     <div class="clearfix grpelem" id="u817"><!-- column -->
@@ -71,12 +73,9 @@
       <div class="clearfix grpelem" id="u834-4"><!-- content -->
        <p>Rol:</p>
       </div>
-      
        
-       {!!Form::text('usuario',null,['class'=>'grpelem','id'=>'u888'])!!}
-       
-       
-      
+       {!!Form::text('rol',null,['class'=>'grpelem','id'=>'u888'])!!}
+        
      </div>
      <div class="clearfix colelem" id="pu900"><!-- group -->
       <div class="clearfix grpelem" id="u900"><!-- group -->
@@ -100,8 +99,6 @@
        {!!Form::text('usuario',null,['class'=>'grpelem','id'=>'u845'])!!}
        {!!Form::password('clave',['class'=>'grpelem','id'=>'u841'])!!}
        
-       
-
        <div class="clearfix colelem" id="u801"><!-- group -->
         <div class="clearfix grpelem" id="u802"><!-- group -->
         {!!Form::submit('AGREGAR',['class'=>'clearfix grpelem','id'=>'u803-4'])!!}
