@@ -36,13 +36,12 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
           <tr>
           
             <th width="8%"></th>
-            <th>Nombre </th>
-            <th>Dirección</th> 
-            <th>RUC</th>
+            <th>Username </th>
           </tr>
           @foreach($usuarios as $usuario)
             <tr>
               <td>{{$usuario->username}}</td>
+              <td>{{$usuario->update_at}}</td>
             </tr>
           @endforeach
           
