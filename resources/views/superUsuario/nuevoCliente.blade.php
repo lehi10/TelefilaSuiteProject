@@ -1,7 +1,7 @@
 @extends('superUsuario.main')
 
 
-  <title>nuevo_cliente</title>
+  <title>Nuevo Cliente</title>
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="/css/nuevo_cliente.css" id="pagesheet"/>
 
@@ -9,6 +9,15 @@
 <script>
 if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required":["/scripts/museutils.js", "/scripts/museconfig.js", "/scripts/jquery.watch.js", "/scripts/require.js", "/css/nuevo_cliente.css"], "outOfDate":[]};
 </script>  
+
+<style>
+.bt_uploadFile {
+    background:url(/images/pasted-svg-287179x246.svg?crc=213937591) no-repeat;
+    width: 88px;
+    height: 75px;
+    border: none;
+}
+</style>
 
 @endsection
 
@@ -135,35 +144,38 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
           <div class="clearfix grpelem" id="pu564"><!-- group -->
             <div class="clip_frame grpelem" id="u564"><!-- svg -->
               <img class="svg" id="u565" src="/images/pasted-svg-287179x246.svg?crc=213937591" alt="" data-mu-svgfallback="/images/pasted%20svg%20287179x246_poster_.png?crc=320079953" data-image-width="88" data-image-height="75"/>
+              
             </div>
             <div class="clearfix grpelem" id="u563-4"><!-- content -->
               <p>Cargar</p>
             </div>
           </div>
           <div class="clearfix grpelem" id="pu592"><!-- group -->
+          
             <div class="clip_frame grpelem" id="u592"><!-- svg -->
               <img class="svg" id="u593" src="/images/pasted-svg-287179x246.svg?crc=213937591" alt="" data-mu-svgfallback="/images/pasted%20svg%20287179x246_poster_.png?crc=320079953" data-image-width="88" data-image-height="75"/>
             </div>
             <div class="clearfix grpelem" id="u589-4"><!-- content -->
               <p>Cargar</p>
+              {{ Form::file('archivo_1') }}
             </div>
           </div>
         </div>
-
-
-        <div class="clip_frame grpelem" id="u492"><!-- svg -->
+        <div class="clip_frame grpelem" id="u492"><!-- svg -->        
           <img class="svg" id="u493" src="/images/pasted-svg-287179x246.svg?crc=213937591" alt="" data-mu-svgfallback="/images/pasted%20svg%20287179x246_poster_.png?crc=320079953" data-image-width="88" data-image-height="75"/>
         </div>
-        
         <div class="clearfix grpelem" id="u491-4"><!-- content -->
           <p>Cargar</p>
         </div>
       </div>
+      
     
-      <div class="clearfix colelem" id="u334"><!-- group -->
+      <div class="clearfix colelem" id="u334"><!-- group -->      
         <div class="pointer_cursor clearfix grpelem" id="u335"><!-- group -->
           {!!Form::submit('AGREGAR',['class'=>'nonblock nontext clearfix grpelem','id'=>'u336-4'])!!}
+          
         </div>
+        
       </div>
     {!!Form::close()!!}
     

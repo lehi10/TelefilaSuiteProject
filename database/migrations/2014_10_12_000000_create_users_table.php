@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             //Agregar el roll
             $table->unsignedInteger('persona_id');
             $table->foreign('persona_id')->references('id')->on('personas');
+            $table->string('archivo')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

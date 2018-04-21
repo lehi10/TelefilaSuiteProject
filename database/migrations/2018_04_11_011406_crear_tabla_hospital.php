@@ -23,6 +23,12 @@ class CrearTablaHospital extends Migration
             $table->string('pais');
             $table->string("telefono_hospital",9);
             $table->string('personaContacto');
+            $table->string('archivo_1')->nullable();
+            $table->string('archivo_2')->nullable();
+            $table->string('archivo_3')->nullable();
+            $table->string('archivo_4')->nullable();
+            $table->string('archivo_5')->nullable();
+            $table->string('archivo_6')->nullable();
             $table->timestamps();
         });
     }

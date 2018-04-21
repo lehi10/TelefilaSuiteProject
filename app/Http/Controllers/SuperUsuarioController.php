@@ -70,6 +70,7 @@ class SuperUsuarioController extends Controller
     }
 
     /**
+     * Save a New Cliente (Hospital)
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
