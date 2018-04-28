@@ -28,11 +28,11 @@ class SuperUsuarioController extends Controller
 
     public function nuevoUsuario($idCliente)
     {
-        $countRes =\telefilaSuite\Hospital::where('id',$idCliente);
+        $countRes =Hospital::where('id',$idCliente);
         if($countRes->count() == 1 )
         {
-            $cliente=$countRes->get();
-            return view('superUsuario.nuevoUsuario',compact('cliente') );
+            $cliente=$countRes->first();
+            return view('superUsuario.nuevoUsuario',["id"=>$cliente->id,"nombre"=>$cliente->nombre] );
         }
             
         if($countRes->count() == 0 )
@@ -151,6 +151,7 @@ class SuperUsuarioController extends Controller
 
     public function storeUsuario(Request $request)
     {
+        /*
         \telefilaSuite\Persona::create([
             'nombre'=>$request['nombre'],
             'apellido'=>$request['apellidos'],
@@ -160,10 +161,17 @@ class SuperUsuarioController extends Controller
             'edad'=>0,
             'direccion'=>"-"
         ]);
-
+        */
         $per= new Persona;
         $per->nombre=$request->nombre;
-            
+        $per->apellido=$request->apellidos;
+        $per->dni=$request->dni;
+        $per->telefono=$request->celular;
+        $per->sexo=0;
+        $per->edad=0;
+        $per->direccion="-";
+        $per->save();
+        /*    
         $persona =\telefilaSuite\Persona::where('dni',$request['dni'])->get();   
         $p_id=$persona[0]['id'];
         \telefilaSuite\User::create([
@@ -176,6 +184,15 @@ class SuperUsuarioController extends Controller
             'remember_token'=>NULL
 
         ]);
+        */
+        $user= new User;
+        $user->email=$request->usuario;
+        $user->username=$request->usuario;
+        $user->password=bcrypt($request->password);
+        $user->hospital_id=$request->hospital_id;
+        $user->rol=0;
+        $user->persona_id=$per->id;
+        $user->save();
 
         echo "DNI  : ".$request['hospital_id']."<br>";
         echo $request;

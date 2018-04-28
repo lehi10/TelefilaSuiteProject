@@ -34,12 +34,12 @@
      <p>Bienvenido:</p>
     </div>
     <div class="clearfix grpelem" id="u818-4"><!-- content -->
-     <p>{{$cliente[0]->nombre_hospital}}</p>
+     <p>{{$nombre}}</p>
     </div>
    </div>
    
   {!!Form::open(['action'=>'SuperUsuarioController@storeUsuario','method'=>'POST'])!!}
-  <input type="hidden" name="hospital_id" value="{{$cliente[0]->id}}" >
+  <input type="hidden" name="hospital_id" value="{{$id}}" >
 
    <div class="clearfix colelem" id="pu925"><!-- group -->
     <a class="nonblock nontext clip_frame grpelem" id="u925" href="{{url()->previous()}}"><!-- svg --><img class="svg" id="u926" src="/images/pasted-svg-50691x50.svg?crc=3973562438" alt="" data-mu-svgfallback="/images/pasted%20svg%2050691x50_poster_.png?crc=495545644" data-image-width="20" data-image-height="20"/></a>
