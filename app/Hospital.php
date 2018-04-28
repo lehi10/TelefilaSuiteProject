@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Hospital extends Model
 {
-    protected $fillable = ['id', 'nombre_hospital','ruc', 'director','direccion', 'cuidad','pais','telefono_hospital','personaContacto','clave','usuario','create_at','update_at'];
-
+    //protected $fillable = ['id', 'nombre','ruc', 'director','direccion', 'ciudad','pais','telefono','personaContacto','clave','usuario','create_at','update_at'];
+    protected $guarded=[]; //Solo se escriben las excepciones y ya no hayq ue poner todos los campos en fillable
     //
     public function telefilaTarifa()
     {

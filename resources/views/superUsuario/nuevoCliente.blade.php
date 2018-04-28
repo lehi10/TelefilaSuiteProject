@@ -53,7 +53,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
           <div class="clearfix grpelem" id="u353-4"><!-- content -->
             <p>Nombre del establecimiento:</p>
           </div>
-          {!!Form::text('nombreEst',null,['class'=>'grpelem','id'=>'u348'])!!}
+          {!!Form::text('nombre',null,['class'=>'grpelem','id'=>'u348'])!!}
           
         </div>
       
@@ -79,7 +79,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
           <div class="clearfix grpelem" id="u384-4"><!-- content -->
           <p>Ciudad:</p>
           </div>
-          {!!Form::text('cuidad',null,['class'=>'grpelem','id'=>'u387'])!!}
+          {!!Form::text('ciudad',null,['class'=>'grpelem','id'=>'u387'])!!}
           <div class="clearfix grpelem" id="u390-4"><!-- content -->
             <p>País:</p>
           </div>
@@ -93,7 +93,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
           <div class="clearfix grpelem" id="u396-4"><!-- content -->
             <p>Persona de contacto:</p>
           </div>
-          {!!Form::text('celular',null,['class'=>'grpelem','id'=>'u405'])!!}
+          {!!Form::text('telefono',null,['class'=>'grpelem','id'=>'u405'])!!}
           {!!Form::text('personaContacto',null,['class'=>'grpelem','id'=>'u399'])!!}
         </div>
 

@@ -115,15 +115,21 @@ class SuperUsuarioController extends Controller
             'personaContacto'=>$request['personaContacto']
         ]);
         */
-        $hos= new Hospital;
-        $hos->nombre=$request->nombreEst;
-        $hos->ruc=$request->ruc;
-        $hos->director=$request->director;
-        $hos->direccion=$request->direccion;
-        $hos->ciudad=$request->cuidad;
-        $hos->pais=$request->pais;
-        $hos->telefono=$request->celular;
-        $hos->personaContacto=$request->personaContacto;
+        //return $request->except(["_token","clave","usuario"]);
+        $hos= new Hospital();
+        $hos->fill($request->except(["_token","clave","usuario"]));  
+        /* ^ En el form deben tener el mismo nombre que los atributos de la base de datos para que funcione, 
+            En el except ponen los campos del form que no quieren que se incluyan
+        */
+
+        //$hos->nombre=$request->nombreEst;
+        //$hos->ruc=$request->ruc;
+        //$hos->director=$request->director;
+        //$hos->direccion=$request->direccion;
+        //$hos->ciudad=$request->ciudad;
+        //$hos->pais=$request->pais;
+        //$hos->telefono=$request->celular;
+        //$hos->personaContacto=$request->personaContacto;
 
         $hos->save();  //Ya no necesitas hacer la consulta de abajo por que ya esta en $hos;
         
@@ -135,7 +141,7 @@ class SuperUsuarioController extends Controller
             'hospital_id'=>$hospital[0]['id']
         ]);
     */
-        $admin= new Administrador;
+        $admin= new Administrador();
         $admin->usuario=$request->usuario;
         $admin->password=bcrypt($request->password);  // No se olviden de encriptarlo, si no el login no funciona
         $admin->hospital_id=$hos->id;   // Se llama el id del hospital que se creó arriba
@@ -154,6 +160,9 @@ class SuperUsuarioController extends Controller
             'edad'=>0,
             'direccion'=>"-"
         ]);
+
+        $per= new Persona;
+        $per->nombre=$request->nombre;
             
         $persona =\telefilaSuite\Persona::where('dni',$request['dni'])->get();   
         $p_id=$persona[0]['id'];
