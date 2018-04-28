@@ -2,6 +2,10 @@
 
 namespace telefilaSuite\Http\Controllers;
 
+use telefilaSuite\Hospital;
+use telefilaSuite\Persona;
+use telefilaSuite\Administrador;
+use telefilaSuite\User;
 use Illuminate\Http\Request;
 
 class SuperUsuarioController extends Controller
@@ -99,6 +103,7 @@ class SuperUsuarioController extends Controller
      */
     public function store(Request $request)
     {
+        /*
         \telefilaSuite\Hospital::create([
             'nombre_hospital'=>$request['nombreEst'],
             'ruc'=>$request['ruc'],
@@ -109,14 +114,32 @@ class SuperUsuarioController extends Controller
             'telefono_hospital'=>$request['celular'],
             'personaContacto'=>$request['personaContacto']
         ]);
-        
-        $hospital =\telefilaSuite\Hospital::where('ruc',$request['ruc'])->get();   
+        */
+        $hos= new Hospital;
+        $hos->nombre=$request->nombreEst;
+        $hos->ruc=$request->ruc;
+        $hos->director=$request->director;
+        $hos->direccion=$request->direccion;
+        $hos->ciudad=$request->cuidad;
+        $hos->pais=$request->pais;
+        $hos->telefono=$request->celular;
+        $hos->personaContacto=$request->personaContacto;
 
+        $hos->save();  //Ya no necesitas hacer la consulta de abajo por que ya esta en $hos;
+        
+        //$hospital =\telefilaSuite\Hospital::where('ruc',$request['ruc'])->get();   
+    /*
         \telefilaSuite\Administrador::create([
             'usuario'=>$request['usuario'],
             'password'=>bcrypt($request['clave']),
             'hospital_id'=>$hospital[0]['id']
         ]);
+    */
+        $admin= new Administrador;
+        $admin->usuario=$request->usuario;
+        $admin->password=bcrypt($request->password);  // No se olviden de encriptarlo, si no el login no funciona
+        $admin->hospital_id=$hos->id;   // Se llama el id del hospital que se creó arriba
+        $admin->save();
         return redirect('superUsuario/');//->with('message','store');
     }
 

@@ -15,13 +15,13 @@ class CrearTablaHospital extends Migration
     {
         Schema::create('hospitals', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre_hospital');
+            $table->string('nombre');
             $table->string('ruc');
             $table->string('director');
             $table->string('direccion');
-            $table->string('cuidad');
+            $table->string('ciudad');
             $table->string('pais');
-            $table->string("telefono_hospital",9);
+            $table->string("telefono",9);
             $table->string('personaContacto');
             $table->string('archivo_1')->nullable();
             $table->string('archivo_2')->nullable();

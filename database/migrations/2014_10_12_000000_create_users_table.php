@@ -19,7 +19,11 @@ class CreateUsersTable extends Migration
             $table->string('username')->unique();
             $table->string('password');
             //Agregar id hospital !!
+            $table->integer('hospital_id')->unsigned();
+            $table->foreign('hospital_id')->references('id')->on('hospitals');
             //Agregar el roll
+            $table->tinyInteger('rol');
+
             $table->unsignedInteger('persona_id');
             $table->foreign('persona_id')->references('id')->on('personas');
             $table->string('archivo')->nullable();
