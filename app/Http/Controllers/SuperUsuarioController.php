@@ -18,6 +18,20 @@ class SuperUsuarioController extends Controller
     public function __construct(){
         //$this->middleware('auth');
     }
+    
+    
+    public function login(Request $request)
+    {
+        return view('login');
+    }
+    
+    public function validarLogin(Request $request)
+    {
+        return redirect('superUsuario/');
+    }
+
+
+
     public function index(Request $request)
     {
         $hos=Hospital::all();

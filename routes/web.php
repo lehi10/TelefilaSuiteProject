@@ -17,7 +17,6 @@ Route::get('', function(){
     return view('index');
 });
 Route::get('login','SuperUsuarioController@login');
-
 Route::post('validarLogin','SuperUsuarioController@validarLogin');
 
 /** 
