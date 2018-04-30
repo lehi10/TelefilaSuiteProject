@@ -1,5 +1,5 @@
 <?php
-
+use telefilaSuite\Http\Middleware\superUsuario;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,13 +18,19 @@ Route::get('', function(){
 });
 Auth::routes();
 //login
-Route::get('login','SuperUsuarioController@login');
-Route::post('validarLogin','SuperUsuarioController@validarLogin');
+//Route::get('login','SuperUsuarioController@login');
+//Route::post('validarLogin','SuperUsuarioController@validarLogin');
 
 //Route::post('/index', ['as' => '/index','uses' =>'Auth\OurLoginController@login'])->name('login.submit');
-Route::post('/index', 'Auth\OurLoginController@login')->name('login');
+//Route::post('superUsuario', 'Auth\OurLoginController@login')->name('login');
+Route::post('auth', 'Auth\OurLoginController@login')->name('login');
+Route::group(['middleware' => 'superUsuario'],function()
+{
+   
+    Route::get('superUsuario', 'SuperUsuarioController@index' );
+});
 //superuser
-Route::get('superUsuario', 'SuperUsuarioController@index' );
+
 /** 
  * Rutas para Modulo Super Usuario
  */
