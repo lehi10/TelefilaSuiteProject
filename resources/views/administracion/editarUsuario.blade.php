@@ -1,15 +1,10 @@
 @extends('layouts.base')
 
-
-
 @section('title')
 <title>Editar Usuarios</title>
 @endsection
 
 @section('header')
-<div class="page">
-  <div class="page-main">  
-
     <div class="header py-4">
       <div class="container">
         <div class="d-flex"> 
@@ -55,117 +50,111 @@
     </div>  
 @endsection
   
-      @section('body')
-        <div class="my-3 my-md-5">
-          <!--<div class="container">-->
-          <!--<nav class="breadcrumb breadcrumb-content">-->
-          <!--<a class="breadcrumb-item" href="javascript:void(0)">Library</a>-->
-          <!--<span class="breadcrumb-item active">Cards</span>-->
-          <!--</nav>-->&nbsp;
-          <div class="container">
-            <div class="row row-cards"><br>
-              <div class="col-12">
-                <div class="card">
-                  <div class="card-header">
-                    <h3 class="card-title"><br>
-                    </h3>
-                    <p><br>
-                    </p>
-                    <div class="row">
-                      <div class="col-md-5">
-                        <div class="form-group"> <label class="form-label">Editar
-                            Usuario</label></div>
-                        <br>
-                        <div class="form-group"><input class="form-control" disabled="disabled"
+@section('body')
+  <div class="my-3 my-md-5">
+    <!--</nav>-->&nbsp;
+    <div class="container">
+      <div class="row row-cards"><br>
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><br>
+              </h3>
+              <p><br>
+              </p>
+              <div class="row">
+                <div class="col-md-5">
+                  <div class="form-group"> <label class="form-label">Editar
+                      Usuario</label></div>
+                  <br>
+                  <div class="form-group"><input class="form-control" disabled="disabled"
 
-                            placeholder="Company" value="Jamila Morey Perez" type="text"><br>
-                        </div>
-                        <div class="form-group">Cambiar ROL</div>
-                        <div class="form-group"> <label class="custom-switch">
-                            <input name="option" value="1" class="custom-switch-input"
+                      placeholder="Company" value="Jamila Morey Perez" type="text"><br>
+                  </div>
+                  <div class="form-group">Cambiar ROL</div>
+                  <div class="form-group"> <label class="custom-switch">
+                      <input name="option" value="1" class="custom-switch-input"
 
-                              checked="checked" type="radio"> <span class="custom-switch-indicator"></span>
-                            <span class="custom-switch-description">Control de
-                              Caja</span></label></div>
-                        <div class="form-group"> <label class="custom-switch">
-                            <input name="option" value="2" class="custom-switch-input"
+                        checked="checked" type="radio"> <span class="custom-switch-indicator"></span>
+                      <span class="custom-switch-description">Control de
+                        Caja</span></label></div>
+                  <div class="form-group"> <label class="custom-switch">
+                      <input name="option" value="2" class="custom-switch-input"
 
-                              type="radio"> <span class="custom-switch-indicator"></span>
-                            &nbsp;&nbsp;&nbsp; <span class="Rolando Ancajima Calle">Admisión</span>
-                          </label></div>
-                        <div class="form-group"> <label class="custom-switch">
-                            <input name="option" value="2" class="custom-switch-input"
+                        type="radio"> <span class="custom-switch-indicator"></span>
+                      &nbsp;&nbsp;&nbsp; <span class="Rolando Ancajima Calle">Admisión</span>
+                    </label></div>
+                  <div class="form-group"> <label class="custom-switch">
+                      <input name="option" value="2" class="custom-switch-input"
 
-                              type="radio"> <span class="custom-switch-indicator"></span><span
+                        type="radio"> <span class="custom-switch-indicator"></span><span
 
-                              class="custom-switch-description">Recursos Humanos</span>
-                          </label> <input name="option" value="3" class="custom-switch-input"
+                        class="custom-switch-description">Recursos Humanos</span>
+                    </label> <input name="option" value="3" class="custom-switch-input"
 
-                            type="radio">&nbsp;</div>
-                        <div class="form-group"><span class="custom-switch-indicator"></span>
-                          <span class="custom-switch-description">Histórias
-                            Clínicas</span></div>
-                      </div>
-                      <div class="col-sm-6 col-md-3">
-                        <div class="form-group"><br>
-                        </div>
-                        <div class="form-group"><br>
-                          <input class="form-control" disabled="disabled" placeholder="Company"
-
-                            value="Usuario Autogenerado" type="text"></div>
-                        <div class="form-group">&nbsp;<br>
-                        </div>
-                      </div>
-                      <div class="col-sm-6 col-md-4">
-                        <div class="form-group"><br>
-                        </div>
-                        Cambiar clave<input class="form-control" placeholder="Username"
-
-                          value="*********" type="text"> </div>
-                      <br>
-                      <div class="card-footer text-right">
-                        <div class="d-flex" style="text-align: center;">
-                          <dl>
-                            <dt> <a href="javascript:void(0)" class="btn btn-link">Eliminar
-                                usuario</a><button type="submit" class="btn btn-primary ml-auto">Guardar
-                                cambios</button> </dt>
-                          </dl>
-                        </div>
-                      </div>
-                      <div class="col-md-12"> </div>
-                    </div>
+                      type="radio">&nbsp;</div>
+                  <div class="form-group"><span class="custom-switch-indicator"></span>
+                    <span class="custom-switch-description">Histórias
+                      Clínicas</span></div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                  <div class="form-group"><br>
+                  </div>
+                  <div class="form-group"><br>
+                    <input class="form-control" disabled="disabled" placeholder="Company" value="Usuario Autogenerado" type="text">
+                  </div>
+                  <div class="form-group">&nbsp;<br>
                   </div>
                 </div>
+                <div class="col-sm-6 col-md-4">
+                  <div class="form-group"><br>
+                  </div>
+                  Cambiar clave<input class="form-control" placeholder="Username" value="*********" type="text"> </div>
+                <br>
+                <div class="card-footer text-right">
+                  <div class="d-flex" style="text-align: center;">
+                    <dl>
+                      <dt> <a href="javascript:void(0)" class="btn btn-link">Eliminar usuario</a>
+                          <button type="submit" class="btn btn-primary ml-auto">Guardar cambios</button> 
+                      </dt>
+                    </dl>
+                  </div>
+                </div>
+                <div class="col-md-12"> </div>
               </div>
-            </div>
-            <div class="table-responsive"><br>
             </div>
           </div>
         </div>
+      </div>
+      <div class="table-responsive"><br>
+      </div>
+    </div>
+  </div>
+@endsection
 
-        @endsection
-        @section('footer')
-        <footer class="footer">
-          <div class="container">
-            <div class="row align-items-center flex-row-reverse">
-              <div class="col-auto ml-lg-auto">
-                <div class="row align-items-center">
-                  <div class="col-auto">
-                    <ul class="list-inline list-inline-dots mb-0">
-                      <li class="list-inline-item"><a href="./faq.html">Manual
-                          de usuario</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
-                <p style="margin: 0px; padding: 0px; border-width: 0px; border-style: solid; border-color: transparent; transform-origin: left top 0px; background-repeat: no-repeat; max-height: 1e+06px; color: rgb(127, 127, 127); font-family: droid-sans, sans-serif; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">TELEFILA
-                  SAC © Todos los derechos reservados</p>
-                <p style="margin: 0px; padding: 0px; border-width: 0px; border-style: solid; border-color: transparent; transform-origin: left top 0px; background-repeat: no-repeat; max-height: 1e+06px; color: rgb(127, 127, 127); font-family: droid-sans, sans-serif; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">Av.
-                  Joaquín Madrid 277 piso 2, San Borja T. 014750467</p>
-                <p style="margin: 0px; padding: 0px; border-width: 0px; border-style: solid; border-color: transparent; transform-origin: left top 0px; background-repeat: no-repeat; max-height: 1e+06px; color: rgb(127, 127, 127); font-family: droid-sans, sans-serif; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">info@avtiva.com</p>
-              </div>
-            </div>
+@section('footer')
+<footer class="footer">
+  <div class="container">
+    <div class="row align-items-center flex-row-reverse">
+      <div class="col-auto ml-lg-auto">
+        <div class="row align-items-center">
+          <div class="col-auto">
+            <ul class="list-inline list-inline-dots mb-0">
+              <li class="list-inline-item"><a href="./faq.html">Manual de usuario</a></li>
+            </ul>
           </div>
-        </footer>
-        @endsection    
+        </div>
+      </div>
+      <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
+        <p style="margin: 0px; padding: 0px; border-width: 0px; border-style: solid; border-color: transparent; transform-origin: left top 0px; background-repeat: no-repeat; max-height: 1e+06px; color: rgb(127, 127, 127); font-family: droid-sans, sans-serif; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">TELEFILA
+          SAC © Todos los derechos reservados
+        </p>
+        <p style="margin: 0px; padding: 0px; border-width: 0px; border-style: solid; border-color: transparent; transform-origin: left top 0px; background-repeat: no-repeat; max-height: 1e+06px; color: rgb(127, 127, 127); font-family: droid-sans, sans-serif; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">
+          Av. Joaquín Madrid 277 piso 2, San Borja T. 014750467
+        </p>
+        <p style="margin: 0px; padding: 0px; border-width: 0px; border-style: solid; border-color: transparent; transform-origin: left top 0px; background-repeat: no-repeat; max-height: 1e+06px; color: rgb(127, 127, 127); font-family: droid-sans, sans-serif; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">info@avtiva.com</p>
+      </div>
+    </div>
+  </div>
+</footer>
+@endsection    

@@ -42,11 +42,9 @@
         <div class="container">
           <div class="row">
             <div class="col col-login mx-auto">
-              <div class="text-center mb-6"> <img src="/images/logo_alpha.png"
-
-                  alt="logo" title="logo" longdesc="logo"></div>
-              <form class="card" action="/login" method="post">
-              {{csrf_field()}}
+              <div class="text-center mb-6"> <img src="/images/logo_alpha.png" alt="logo" title="logo" longdesc="logo"></div>
+              {!!Form::open(['action'=>'SuperUsuarioController@validarLogin','method'=>'POST'])!!}
+              <form class="card" action="/validarLogin" method="post">
                 <div class="card-body p-6">
                   <div class="card-title">Bienvenido, por favor ingrese sus
                     datos:</div>
@@ -54,10 +52,10 @@
 
                       aria-describedby="emailHelp" placeholder="Usuario" required="required"
 
-                      type="email" name="email"> </div>
+                      type="email"> </div>
                   <label class="form-label"> </label><input class="form-control"
 
-                    id="exampleInputPassword1" placeholder="Clave" required="required" name="password"
+                    id="exampleInputPassword1" placeholder="Clave" required="required"
 
                     type="password">
                   <div class="form-group"> <label class="custom-control custom-checkbox">
@@ -68,9 +66,9 @@
                   <div class="form-footer"> <button type="submit" class="btn btn-primary btn-block">Entrar</button>
                   </div>
                 </div>
-                <div class="text-center text-muted" style="font-weight: normal;">
-                    Contactanos +51 925125386 
-                </div>
+              {!!Form::close()!!}
+              <div class="text-center text-muted" style="font-weight: normal;">
+                ¿Tienes problemas? T. 925125386 </div>
             </div>
           </div>
         </div>

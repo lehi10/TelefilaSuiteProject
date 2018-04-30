@@ -15,8 +15,7 @@ class SuperUsuarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
+    public function __construct(){
         //$this->middleware('auth');
     }
     public function index(Request $request)
@@ -30,29 +29,26 @@ class SuperUsuarioController extends Controller
         return view('superUsuario.nuevoCliente');
     }
 
-    public function nuevoUsuario($idCliente)
-    {
+    public function nuevoUsuario($idCliente){
         $countRes =Hospital::where('id',$idCliente);
         if($countRes->count() == 1 )
         {
             $cliente=$countRes->first();
             return view('superUsuario.nuevoUsuario',["id"=>$cliente->id,"nombre"=>$cliente->nombre] );
-        }
-            
+        }        
         if($countRes->count() == 0 )
             return redirect('superUsuario/');//->with('message','store');
+
         else
             return "Error : Overflow of Results.";
     }
 
-    public function cliente($idCliente)
-    {
+    public function cliente($idCliente){
         $cliente =\telefilaSuite\Hospital::where('id',$idCliente)->get();   
         return view('superUsuario.cliente',compact('cliente'));
     }
 
-    public function listarClientes(Request $request)
-    {
+    public function listarClientes(Request $request){
         try{
             if($request['clienteEntrada'])
             {
@@ -71,9 +67,7 @@ class SuperUsuarioController extends Controller
         }
     }
 
-    public function listarUsuarios(Request $request)
-    {
-        
+    public function listarUsuarios(Request $request){
         if($request['nombreUsuario'])
         {
             $usuarios =\telefilaSuite\User::where('username','LIKE' ,'%'.$request['nombreUsuario'].'%')->get(); 
@@ -137,15 +131,7 @@ class SuperUsuarioController extends Controller
         //$hos->personaContacto=$request->personaContacto;
 
         $hos->save();  //Ya no necesitas hacer la consulta de abajo por que ya esta en $hos;
-        
-        //$hospital =\telefilaSuite\Hospital::where('ruc',$request['ruc'])->get();   
-    /*
-        \telefilaSuite\Administrador::create([
-            'usuario'=>$request['usuario'],
-            'password'=>bcrypt($request['clave']),
-            'hospital_id'=>$hospital[0]['id']
-        ]);
-    */
+      
         $admin= new Administrador();
         $admin->usuario=$request->usuario;
         $admin->password=bcrypt($request->password);  // No se olviden de encriptarlo, si no el login no funciona
@@ -154,19 +140,7 @@ class SuperUsuarioController extends Controller
         return redirect('superUsuario/');//->with('message','store');
     }
 
-    public function storeUsuario(Request $request)
-    {
-        /*
-        \telefilaSuite\Persona::create([
-            'nombre'=>$request['nombre'],
-            'apellido'=>$request['apellidos'],
-            'dni'=>$request['dni'],
-            'telefono'=>$request['celular'],
-            'sexo'=>0,
-            'edad'=>0,
-            'direccion'=>"-"
-        ]);
-        */
+    public function guardarUsuario(Request $request){
         $per= new Persona;
         $per->nombre=$request->nombre;
         $per->apellido=$request->apellidos;
@@ -176,20 +150,7 @@ class SuperUsuarioController extends Controller
         $per->edad=0;
         $per->direccion="-";
         $per->save();
-        /*    
-        $persona =\telefilaSuite\Persona::where('dni',$request['dni'])->get();   
-        $p_id=$persona[0]['id'];
-        \telefilaSuite\User::create([
-            'email'=> $request['usuario'],
-            'username'=>$request['usuario'],
-            'password'=>$request['clave'],
-            //'hospital_id'=>$hospital[0]['id'],
-            //'rol'=>$request['rol'],
-            'persona_id'=>$persona[0]['id'],
-            'remember_token'=>NULL
-
-        ]);
-        */
+     
         $user= new User;
         $user->email=$request->usuario;
         $user->username=$request->usuario;
@@ -202,50 +163,5 @@ class SuperUsuarioController extends Controller
         echo "DNI  : ".$request['hospital_id']."<br>";
         echo $request;
         return redirect("/superUsuario/cliente/".$request['hospital_id']);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
