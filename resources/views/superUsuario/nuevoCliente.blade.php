@@ -1,185 +1,411 @@
 @extends('superUsuario.main')
 
-
+@section('title')
   <title>Nuevo Cliente</title>
-  <!-- CSS -->
-  <link rel="stylesheet" type="text/css" href="/css/nuevo_cliente.css" id="pagesheet"/>
-
-@section('enlaces')
-<script>
-if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required":["/scripts/museutils.js", "/scripts/museconfig.js", "/scripts/jquery.watch.js", "/scripts/require.js", "/css/nuevo_cliente.css"], "outOfDate":[]};
-</script>  
-
-<style>
-.bt_uploadFile {
-    background:url(/images/pasted-svg-287179x246.svg?crc=213937591) no-repeat;
-    width: 88px;
-    height: 75px;
-    border: none;
-}
-</style>
-
 @endsection
 
+@section('header')
+<div class="page-main">
+        <div class="header py-4">
+          <div class="container">
+            <div class="d-flex"> <a class="header-brand" href="/index.html"> <img
+
+                  src="/demo/photos/logo_alpha.png"
+
+                  alt="logo" title="logo" style="width: 144px; height: 36px;"> </a>
+              <div class="d-flex order-lg-2 ml-auto">
+                <div class="dropdown"> <a href="#" class="nav-link pr-0 leading-none"
+
+                    data-toggle="dropdown"> <span class="avatar" style="background-image: url(/demo/faces/female/25.jpg)"></span>
+                    <span class="ml-2 d-none d-lg-block"> <span class="text-default">Rolando
+                        Ancajima</span> <small class="text-muted d-block mt-1">Administrator</small>
+                    </span> </a>
+                  <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                    <a class="dropdown-item" href="#"> <i class="dropdown-icon fe fe-user"></i>
+                      Editar perfil </a> <a class="dropdown-item" href="#"> <i
+
+                        class="dropdown-icon fe fe-settings"></i> <i class="dropdown-icon fe fe-log-out"></i>
+                      Salir </a> </div>
+                </div>
+              </div>
+              <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse"
+
+                data-target="#headerMenuCollapse"> <span class="header-toggler-icon"></span>
+              </a> </div>
+          </div>
+        </div>
+        <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-3 ml-auto">
+                <form class="input-icon my-3 my-lg-0"> <input class="form-control header-search"
+
+                    placeholder="Buscar cliente…" tabindex="1" type="search">
+                  <div class="input-icon-addon"> <i class="fe fe-search"></i> </div>
+                </form>
+              </div>
+              <div class="col-lg order-lg-first">
+                <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
+                  <li class="nav-item"> <a href="inicio_admin.html" class="nav-link"><i
+
+                        class="fe fe-home"></i> Incio</a> </li>
+                  <li class="nav-item"> <a href="#" class="nav-link" data-toggle="dropdown"><i
+
+                        class="fe fe-box"></i> Reportes</a> </li>
+                  <li class="nav-item dropdown"> <br>
+                  </li>
+                  <li class="nav-item"> <br>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+@endsection
 
   
-@section('header')
-  <div class="browser_width colelem" id="u352-bw">
-    <div id="u352"><!-- group -->
-     <div class="clearfix" id="u352_align_to_page">
-      <div class="clearfix grpelem" id="u347-4"><!-- content -->
-       <p>SUITE ADMINISTRADOR</p>
+@section('body')
+<div class="my-3 my-md-5">
+          <div class="container">
+            <div class="row row-cards"><br>
+              <div class="col-12">
+                <div class="card">
+                  <div class="table-responsive">&nbsp;&nbsp;&nbsp; <br>
+                    <div class="my-3 my-md-5">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-12">
+                            <form action="https://httpbin.org/post" method="post"
+
+                              class="card">
+                              <div class="card-header">
+                                <h3 class="card-title">Agregar Nuevo Cliente</h3>
+                              </div>
+                              <div class="card-body">
+                                <div class="row">
+                                  <div class="col-md-6 col-lg-4">
+                                    <div class="form-group"> <label class="form-label">Usuario</label>
+                                      <div class="input-group"><span class="input-group-prepend"
+
+                                          id="basic-addon1"><span class="input-group-text">@</span>
+                                        </span> <input class="form-control" placeholder="Usuario"
+
+                                          type="text"> </div>
+                                      &nbsp; <input class="form-control" name="example-password-input"
+
+                                        placeholder="Clave" type="password"><br>
+                                      <b>Nombre Comercial </b><input class="form-control"
+
+                                        name="example-text-input" placeholder="Nombre del Hospital / Clinica "
+
+                                        type="text"> <br>
+                                      <div class="form-group"><input class="form-control"
+
+                                          name="example-text-input" placeholder="RUC"
+
+                                          type="text"> </div>
+                                      <div class="form-group"><b>PERSONA DE
+                                          CONTÁCTO</b><br>
+                                        <input class="form-control" name="example-text-input"
+
+                                          placeholder="Nombres y Apellidos" type="text"><span
+
+                                          class="col-auto align-self-center"></span><br>
+                                        <input class="form-control" name="example-text-input"
+
+                                          placeholder="Correo electrónico" type="text"><br>
+                                        <input class="form-control" name="example-text-input"
+
+                                          placeholder="Celular" type="text"></div>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6 col-lg-4">
+                                    <div class="form-group"><b>UBICACIÓN
+                                        GEOGRÁFICA</b><br>
+                                      <input class="form-control" name="example-text-input"
+
+                                        placeholder="Dirección Completa" type="text"><span
+
+                                        class="col-auto align-self-center"></span><span
+
+                                        class="col-auto align-self-center"></span><input
+
+                                        class="form-control" name="example-text-input"
+
+                                        placeholder="Ciudad" type="text"></div>
+                                    <input class="form-control" name="example-text-input"
+
+                                      placeholder="Referencia" type="text">
+                                    <div class="form-group">&nbsp;
+                                      <select class="form-control custom-select">
+                                        <option value="">Amazonas</option>
+                                        <option value="">Áncash</option>
+                                        <option value="">Apurímac</option>
+                                        <option value="">Arequipa</option>
+                                        <option value="">Ayacucho</option>
+                                        <option value="">Cajamarca</option>
+                                        <option value="">Callao</option>
+                                        <option value="">Cuzco</option>
+                                        <option value="">Huancavelica</option>
+                                        <option value="">Huánuco</option>
+                                        <option value="">Ica</option>
+                                        <option value="">Junín</option>
+                                        <option value="">La Libertad</option>
+                                        <option value="">Loreto</option>
+                                        <option value="">Lambayeque</option>
+                                        <option value="">La Libertad</option>
+                                        <option value="">Lima metropolitana</option>
+                                        <option value="">Lima Región</option>
+                                        <option value="">Loreto</option>
+                                        <option value="">Madre de Dios</option>
+                                        <option value="">Moquegua</option>
+                                        <option value="">Pasco</option>
+                                        <option value="">Piura</option>
+                                        <option value="">Puno</option>
+                                        <option value="">San Martín</option>
+                                        <option value="">Tacna</option>
+                                        <option value="">Tumbes</option>
+                                        <option value="">Ucayali</option>
+                                      </select>
+                                      <label class="selectgroup-item"><br>
+                                      </label></div>
+                                    <div class="form-group"><b>Foto / logotipo<br>
+                                      </b>
+                                      <div class="form-group">
+                                        <div class="custom-file"> <input class="custom-file-input"
+
+                                            name="example-file-input-custom" type="file">
+                                          <label class="custom-file-label">Cargar
+                                            imagen</label> </div>
+                                      </div>
+                                      <br>
+                                      <label class="selectgroup-item"></label></div>
+                                  </div>
+                                  <div class="col-md-6 col-lg-4"><b> Contratos</b>
+                                    <div class="form-group">
+                                      <div class="custom-file"> <input class="custom-file-input"
+
+                                          name="example-file-input-custom" type="file">
+                                        <label class="custom-file-label">Cargar
+                                          archivo</label> </div>
+                                    </div>
+                                    <div class="form-group"> <label class="form-label">Fecha
+                                        de inicio de operaciones</label>
+                                      <div class="row gutters-xs">
+                                        <div class="col-5">
+                                          <select name="user[month]" class="form-control custom-select">
+                                            <option value="">Mes</option>
+                                            <option value="1">Enero</option>
+                                            <option value="2">Febrero</option>
+                                            <option value="3">Marzo</option>
+                                            <option value="4">Abril</option>
+                                            <option value="5">Mayo</option>
+                                            <option selected="selected" value="6">Junio</option>
+                                            <option value="7">Julio</option>
+                                            <option value="8">Augosto</option>
+                                            <option value="9">Setiembre</option>
+                                            <option value="10">Octubre</option>
+                                            <option value="11">Noviembre</option>
+                                            <option value="12">Diciembre</option>
+                                          </select>
+                                        </div>
+                                        <div class="col-3">
+                                          <select name="user[day]" class="form-control custom-select">
+                                            <option value="">Day</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                            <option value="13">13</option>
+                                            <option value="14">14</option>
+                                            <option value="15">15</option>
+                                            <option value="16">16</option>
+                                            <option value="17">17</option>
+                                            <option value="18">18</option>
+                                            <option value="19">19</option>
+                                            <option selected="selected" value="20">20</option>
+                                            <option value="21">21</option>
+                                            <option value="22">22</option>
+                                            <option value="23">23</option>
+                                            <option value="24">24</option>
+                                            <option value="25">25</option>
+                                            <option value="26">26</option>
+                                            <option value="27">27</option>
+                                            <option value="28">28</option>
+                                            <option value="29">29</option>
+                                            <option value="30">30</option>
+                                            <option value="31">31</option>
+                                          </select>
+                                        </div>
+                                        <div class="col-4">
+                                          <select name="user[year]" class="form-control custom-select">
+                                            <option value="">Año</option>
+                                            <option value="2009">2019</option>
+                                            <option value="2008">2018</option>
+                                            <option value="2007">2017</option>
+                                          </select>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="form-group"> <label class="form-label">Tarifa
+                                        por operación</label>
+                                      <div class="input-group"> <span class="input-group-prepend">
+                                          <span class="input-group-text">S/.</span>
+                                        </span> <input class="form-control text-right"
+
+                                          aria-label="Amount (to the nearest dollar)"
+
+                                          type="text"> <span class="input-group-append">
+                                          <span class="input-group-text">PE</span>
+                                        </span> </div>
+                                    </div>
+                                    <div class="form-group">Estado
+                                      <div class="custom-switches-stacked"> <label
+
+                                          class="custom-switch"> <input name="option"
+
+                                            value="1" class="custom-switch-input"
+
+                                            checked="checked" type="radio"> <span
+
+                                            class="custom-switch-indicator"></span>
+                                          <span class="custom-switch-description">En
+                                            implementación</span> </label> <label
+
+                                          class="custom-switch"> <input name="option"
+
+                                            value="2" class="custom-switch-input"
+
+                                            type="radio"> <span class="custom-switch-indicator"></span>
+                                          <span class="custom-switch-description">Operando</span>
+                                        </label> <label class="custom-switch">
+                                          <input name="option" value="3" class="custom-switch-input"
+
+                                            type="radio"> <span class="custom-switch-indicator"></span>
+                                          <span class="custom-switch-description">Suspención
+                                            temporal</span> </label> </div>
+                                    </div>
+                                    Licenciamiento <label class="custom-switch">
+                                      <input name="custom-switch-checkbox" class="custom-switch-input"
+
+                                        type="checkbox"> <span class="custom-switch-indicator"></span>
+                                      <span class="custom-switch-description">Ha
+                                        adquirido una licencia anual ó similar.</span></label></div>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                          <div class="card-footer text-right">
+                            <div class="d-flex" style="text-align: center;">
+                              <dl>
+                                <dt> <a href="javascript:void(0)" class="btn btn-link">Cancelar</a><button
+
+                                    type="submit" class="btn btn-primary ml-auto">Crear
+                                    Perfil</button> </dt>
+                              </dl>
+                            </div>
+                          </div>
+                          <script>
+                require(['jquery', 'selectize'], function ($, selectize) {
+                    $(document).ready(function () {
+                        $('#input-tags').selectize({
+                            delimiter: ',',
+                            persist: false,
+                            create: function (input) {
+                                return {
+                                    value: input,
+                                    text: input
+                                }
+                            }
+                        });
+                
+                        $('#select-beast').selectize({});
+                
+                        $('#select-users').selectize({
+                            render: {
+                                option: function (data, escape) {
+                                    return '<div>' +
+                                        '<span class="image"><img src="' + data.image + '" alt=""></span>' +
+                                        '<span class="title">' + escape(data.text) + '</span>' +
+                                        '</div>';
+                                },
+                                item: function (data, escape) {
+                                    return '<div>' +
+                                        '<span class="image"><img src="' + data.image + '" alt=""></span>' +
+                                        escape(data.text) +
+                                        '</div>';
+                                }
+                            }
+                        });
+                
+                        $('#select-countries').selectize({
+                            render: {
+                                option: function (data, escape) {
+                                    return '<div>' +
+                                        '<span class="image"><img src="' + data.image + '" alt=""></span>' +
+                                        '<span class="title">' + escape(data.text) + '</span>' +
+                                        '</div>';
+                                },
+                                item: function (data, escape) {
+                                    return '<div>' +
+                                        '<span class="image"><img src="' + data.image + '" alt=""></span>' +
+                                        escape(data.text) +
+                                        '</div>';
+                                }
+                            }
+                        });
+                    });
+                });
+              </script> </div>
+                        <div class="col-lg-4">
+                          <script>require(['input-mask']</script></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="clip_frame grpelem" id="u332"><!-- image -->
-       <img class="block" id="u332_img" src="/images/logo_alpha.png?crc=4023370297" alt="" data-image-width="141" data-image-height="35"/>
-      </div>
-     </div>
     </div>
-   </div>
+  
 @endsection
 
-@section('content')
-   <div class="clearfix colelem" id="u351-4"><!-- content -->
-    <p>Dar de alta a NUEVO CLIENTE</p>
-   </div>
-    
-  {!!Form::open(['action'=>'SuperUsuarioController@store','method'=>'POST'])!!}
+@section('footer')
 
-    <div class="clearfix colelem" id="pu934"><!-- group -->
-      <a class="nonblock nontext clip_frame grpelem" id="u934" href="{{url()->previous()}}"><!-- svg --><img class="svg" id="u935" src="/images/pasted-svg-50691x50.svg?crc=3973562438" alt="" data-mu-svgfallback="/images/pasted%20svg%2050691x50_poster_.png?crc=495545644" data-image-width="20" data-image-height="20"/></a>
-    
-      <div class="clearfix grpelem" id="u350"><!-- column -->
-        <div class="clearfix colelem" id="pu353-4"><!-- group -->
-          <div class="clearfix grpelem" id="u353-4"><!-- content -->
-            <p>Nombre del establecimiento:</p>
-          </div>
-          {!!Form::text('nombre',null,['class'=>'grpelem','id'=>'u348'])!!}
-          
-        </div>
-      
-        <div class="clearfix colelem" id="pu349-4"><!-- group -->
-          <div class="clearfix grpelem" id="u349-4"><!-- content -->
-            <p>RUC:</p>
-          </div>
-          {!!Form::text('ruc',null,['class'=>'grpelem','id'=>'u360'])!!}
-          <div class="clearfix grpelem" id="u338-4"><!-- content -->
-            <p>Director:</p>
-          </div>
-          {!!Form::text('director',null,['class'=>'grpelem','id'=>'u357'])!!}
-        </div>
-
-        <div class="clearfix colelem" id="pu378-4"><!-- group -->
-          <div class="clearfix grpelem" id="u378-4"><!-- content -->
-            <p>Dirección:</p>
-          </div>
-          {!!Form::text('direccion',null,['class'=>'grpelem','id'=>'u381'])!!}
-        </div>
-
-        <div class="clearfix colelem" id="pu384-4"><!-- group -->
-          <div class="clearfix grpelem" id="u384-4"><!-- content -->
-          <p>Ciudad:</p>
-          </div>
-          {!!Form::text('ciudad',null,['class'=>'grpelem','id'=>'u387'])!!}
-          <div class="clearfix grpelem" id="u390-4"><!-- content -->
-            <p>País:</p>
-          </div>
-          {!!Form::text('pais',null,['class'=>'grpelem','id'=>'u393'])!!}
-        </div>
-
-        <div class="clearfix colelem" id="pu402-4"><!-- group -->
-          <div class="clearfix grpelem" id="u402-4"><!-- content -->
-            <p>Celular:</p>
-          </div>
-          <div class="clearfix grpelem" id="u396-4"><!-- content -->
-            <p>Persona de contacto:</p>
-          </div>
-          {!!Form::text('telefono',null,['class'=>'grpelem','id'=>'u405'])!!}
-          {!!Form::text('personaContacto',null,['class'=>'grpelem','id'=>'u399'])!!}
-        </div>
-
-        <div class="clearfix colelem" id="pu426-4"><!-- group -->
-          <div class="clearfix grpelem" id="u426-4"><!-- content -->
-            <p>Clave:</p>
-          </div>
-          <div class="clearfix grpelem" id="u420-4"><!-- content -->
-            <p>Usuario:</p>
-          </div>
-          {!!Form::password('clave',['class'=>'grpelem','id'=>'u429'])!!}
-          {!!Form::text('usuario',null,['class'=>'grpelem','id'=>'u423'])!!}
-        </div>
-
-        <div class="clearfix colelem" id="u432-4"><!-- content -->
-          <p>Documentos adjuntos:</p>
-        </div>
-
-        <div class="clearfix colelem" id="pu457"><!-- group -->
-          <div class="clearfix grpelem" id="u457"><!-- group -->
-          <div class="clip_frame grpelem" id="u447"><!-- svg -->
-            <img class="svg" id="u445" src="/images/pasted-svg-287179x246.svg?crc=213937591" alt="" data-mu-svgfallback="/images/pasted%20svg%20287179x246_poster_.png?crc=320079953" data-image-width="88" data-image-height="75"/>
-          </div>
-          <div class="clearfix grpelem" id="u454-4"><!-- content -->
-            <p>Cargar</p>
-          </div>
-        </div>
-
-        <div class="clearfix grpelem" id="u460"><!-- group -->
-          <div class="clip_frame grpelem" id="u462"><!-- svg -->
-            <img class="svg" id="u463" src="/images/pasted-svg-287179x246.svg?crc=213937591" alt="" data-mu-svgfallback="/images/pasted%20svg%20287179x246_poster_.png?crc=320079953" data-image-width="88" data-image-height="75"/>
-          </div>
-          <div class="clearfix grpelem" id="u461-4"><!-- content -->
-            <p>Cargar</p>
-          </div>
-        </div>
-        
-        <div class="clearfix grpelem" id="u475"><!-- group -->
-          <div class="clip_frame grpelem" id="u477"><!-- svg -->
-            <img class="svg" id="u478" src="/images/pasted-svg-287179x246.svg?crc=213937591" alt="" data-mu-svgfallback="/images/pasted%20svg%20287179x246_poster_.png?crc=320079953" data-image-width="88" data-image-height="75"/>
-          </div>
-          <div class="clearfix grpelem" id="u476-4"><!-- content -->
-            <p>Cargar</p>
-          </div>
-        </div>
-
-        <div class="clearfix grpelem" id="u562"><!-- group -->
-          <div class="clearfix grpelem" id="pu564"><!-- group -->
-            <div class="clip_frame grpelem" id="u564"><!-- svg -->
-              <img class="svg" id="u565" src="/images/pasted-svg-287179x246.svg?crc=213937591" alt="" data-mu-svgfallback="/images/pasted%20svg%20287179x246_poster_.png?crc=320079953" data-image-width="88" data-image-height="75"/>
-              
-            </div>
-            <div class="clearfix grpelem" id="u563-4"><!-- content -->
-              <p>Cargar</p>
+<footer class="footer">
+      <div class="container">
+        <div class="row align-items-center flex-row-reverse">
+          <div class="col-auto ml-lg-auto">
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <ul class="list-inline list-inline-dots mb-0">
+                  <li class="list-inline-item"><a href="./docs/index.html">Documentation</a></li>
+                  <li class="list-inline-item"><a href="./faq.html">FA</a></li>
+                </ul>
+              </div>
             </div>
           </div>
-          <div class="clearfix grpelem" id="pu592"><!-- group -->
-          
-            <div class="clip_frame grpelem" id="u592"><!-- svg -->
-              <img class="svg" id="u593" src="/images/pasted-svg-287179x246.svg?crc=213937591" alt="" data-mu-svgfallback="/images/pasted%20svg%20287179x246_poster_.png?crc=320079953" data-image-width="88" data-image-height="75"/>
-            </div>
-            <div class="clearfix grpelem" id="u589-4"><!-- content -->
-              <p>Cargar</p>
-              {{ Form::file('archivo_1') }}
-            </div>
+          <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
+            <p style="margin: 0px; padding: 0px; border-width: 0px; border-style: solid; border-color: transparent; transform-origin: left top 0px; background-repeat: no-repeat; max-height: 1e+06px; color: rgb(127, 127, 127); font-family: droid-sans, sans-serif; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">TELEFILA
+              SAC © Todos los derechos reservados</p>
+            <p style="margin: 0px; padding: 0px; border-width: 0px; border-style: solid; border-color: transparent; transform-origin: left top 0px; background-repeat: no-repeat; max-height: 1e+06px; color: rgb(127, 127, 127); font-family: droid-sans, sans-serif; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">Av.
+              Joaquín Madrid 277 piso 2, San Borja T. 014750467</p>
+            <p style="margin: 0px; padding: 0px; border-width: 0px; border-style: solid; border-color: transparent; transform-origin: left top 0px; background-repeat: no-repeat; max-height: 1e+06px; color: rgb(127, 127, 127); font-family: droid-sans, sans-serif; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">info@avtiva.com</p>
           </div>
-        </div>
-        <div class="clip_frame grpelem" id="u492"><!-- svg -->        
-          <img class="svg" id="u493" src="/images/pasted-svg-287179x246.svg?crc=213937591" alt="" data-mu-svgfallback="/images/pasted%20svg%20287179x246_poster_.png?crc=320079953" data-image-width="88" data-image-height="75"/>
-        </div>
-        <div class="clearfix grpelem" id="u491-4"><!-- content -->
-          <p>Cargar</p>
         </div>
       </div>
-      
-    
-      <div class="clearfix colelem" id="u334"><!-- group -->      
-        <div class="pointer_cursor clearfix grpelem" id="u335"><!-- group -->
-          {!!Form::submit('AGREGAR',['class'=>'nonblock nontext clearfix grpelem','id'=>'u336-4'])!!}
-          
-        </div>
-        
-      </div>
-    {!!Form::close()!!}
-    
-    </div>
-  </div>
+    </footer>
+  
 @endsection
    
