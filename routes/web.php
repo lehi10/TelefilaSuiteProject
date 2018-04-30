@@ -16,9 +16,12 @@
 Route::get('', function(){
     return view('index');
 });
+Auth::routes();
+//login
 
-
-
+//Route::post('/index', ['as' => '/index','uses' =>'Auth\OurLoginController@login'])->name('login.submit');
+Route::post('/index', 'Auth\OurLoginController@login')->name('login');
+//superuser
 Route::get('superUsuario', 'SuperUsuarioController@index' );
 Route::get('superUsuario/nuevoCliente', 'SuperUsuarioController@nuevoCliente' );
 //Route::get('superUsuario/nuevoUsuario', 'SuperUsuarioController@nuevoUsuario' );

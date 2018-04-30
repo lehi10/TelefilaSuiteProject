@@ -10,38 +10,40 @@ class OurLoginController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('guest:auth');
+        $this->middleware('auth');
     }
     public function login($request)
     {
         //valido
         $this->validate($request,[
-            'username' => 'required',
+            'email' => 'required',
             'password' => 'required'
         ]);
+        echo "asd";
         //lo busca en la bd
-        if(Auth::attempt(['username' => $request->username, 'password' => $request->password],$request->remember))
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password],$request->remember))
         {
+            echo "dsa";
             //busco que rol tiene y lo direcciona a su respectiva view
             if($request->rol == 1)
             {
-                return redirect()->intended(route('superuser.index'));
+                return redirect()->intended(route('superUsuario/index'));
             }
             if($request->rol == 2)
             {
-                return redirect()->intended(route('admin.index'));
+                return redirect()->intended(route('administracion/'));
             }
             if($request->rol == 3)
             {
-                return redirect()->intended(route('caja.index'));
+                return redirect()->intended(route('caja/'));
             }
             if($request->rol == 1)
             {
-                return redirect()->intended(route('admision.index'));
+                return redirect()->intended(route('admision/'));
             }           
         }
         //si no entra es que se equivoco o no existe
         //lo regreso al login recordando solo el username mas no el password
-        return  redirect()->back()->withInput($request->only('username','remember'));
+        return  redirect()->back()->withInput($request->only('email','remember'));
     }
 }

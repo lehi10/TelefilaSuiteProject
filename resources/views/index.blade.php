@@ -45,7 +45,8 @@
               <div class="text-center mb-6"> <img src="/images/logo_alpha.png"
 
                   alt="logo" title="logo" longdesc="logo"></div>
-              <form class="card" action="/superUsuario" method="post">
+              <form class="card" method="POST" action="{{ route('login') }}">
+                  {{csrf_field() }}
                 <div class="card-body p-6">
                   <div class="card-title">Bienvenido, por favor ingrese sus
                     datos:</div>
