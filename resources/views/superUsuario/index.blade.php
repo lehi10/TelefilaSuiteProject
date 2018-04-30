@@ -14,7 +14,7 @@
 
                   alt="logo" title="logo" style="width: 144px; height: 36px;"> </a>
               <div class="d-flex order-lg-2 ml-auto">
-                <div class="nav-item d-none d-md-flex"> <a href="nuevo_usuario.html"
+                <div class="nav-item d-none d-md-flex"> <a href="{{url('/superUsuario/nuevoCliente')}}"
 
                     class="btn btn-sm btn-outline-primary" target="_blank">Agregar
                     usuario</a></div>

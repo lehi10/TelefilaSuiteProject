@@ -26,8 +26,7 @@ class SuperUsuarioController extends Controller
     }
 
     public function nuevoCliente(Request $request)
-    {
-        
+    {   
         return view('superUsuario.nuevoCliente');
     }
 
