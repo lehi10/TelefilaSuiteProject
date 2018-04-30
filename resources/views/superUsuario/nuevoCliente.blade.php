@@ -373,7 +373,7 @@
                 });
               </script> </div>
                         <div class="col-lg-4">
-                          <script>require(['input-mask']</script></div>
+                          <script>require(['input-mask'])</script></div>
                       </div>
                     </div>
                   </div>
