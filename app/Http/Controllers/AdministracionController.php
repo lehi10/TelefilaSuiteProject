@@ -2,6 +2,8 @@
 
 namespace telefilaSuite\Http\Controllers;
 
+use telefilaSuite\Persona;
+use telefilaSuite\User;
 use Illuminate\Http\Request;
 
 class AdministracionController extends Controller
@@ -14,7 +16,16 @@ class AdministracionController extends Controller
 
     public function index(Request $request, $idCliente)
     {
-        return "inicio" ;
+        if($request['nombreUsuario'])
+        {            
+            $usuarios =\telefilaSuite\User::where('username','LIKE' ,'%'.$request['nombreUsuario'].'%')->where('hospital_id',$request['idCliente'])->get(); 
+            return view('administracion.index',compact('usuarios'));
+        }
+        else
+        {
+            $usuarios =\telefilaSuite\User::join('personas', 'users.persona_id', '=', 'personas.id')->where('hospital_id',$request['idCliente'])->get(); ;        
+            return view('administracion.index',compact('usuarios'));
+        }
     }
 
     public function nuevoUsuario(Request $request, $idCliente)
@@ -27,7 +38,7 @@ class AdministracionController extends Controller
         return view('administracion.editarUsuario');
     }
 
-    public function guardarUsuario( Request $request, $idCliente)
+    public function guardarUsuario( Request $request)
     {
         $per= new Persona;
         $per->nombre=$request->nombre;
@@ -43,14 +54,14 @@ class AdministracionController extends Controller
         $user->email=$request->email;
         $user->username=$request->usuario;
         $user->password=bcrypt($request->password);
-        $user->hospital_id=$request->hospital_id;
-        $user->rol=0;
+        $user->hospital_id=1;
+        $user->rol=$request->optRol;
         $user->persona_id=$per->id;
         $user->save();
 
         echo "DNI  : ".$request['hospital_id']."<br>";
         echo $request;
 
-        return "guardar Usuario";
+        return redirect('/');
     }
 }
