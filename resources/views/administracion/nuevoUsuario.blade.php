@@ -55,7 +55,7 @@
                     <input name="apellidos" class="form-control" placeholder="Apellidos" type="text"><br> 
                     <input name="dni" class="form-control" placeholder="DNI" type="text"><br> 
                     <input name="email" class="form-control" placeholder="e-mail" type="text"><br> 
-                    <input name="usuario"  class="form-control" name="example-disabled-input" placeholder="usuario" value="usuario autogenerado" type="text"> 
+                    <input name="usuario"  class="form-control" name="example-disabled-input" placeholder="usuario" type="text"> 
                   </div>
 
                   <div class="form-group">
