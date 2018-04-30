@@ -12,7 +12,7 @@ class OurLoginController extends Controller
     {
         $this->middleware('auth');
     }*/
-    public function login($request)
+    public function login(Request $request)
     {
         //valido
         $this->validate($request,[
@@ -24,7 +24,7 @@ class OurLoginController extends Controller
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password],$request->remember))
         {
             
-               redirect()->intended(route('superUsuario'));
+               return redirect()->intended('/superUsuario');
                        
         }
         //si no entra es que se equivoco o no existe

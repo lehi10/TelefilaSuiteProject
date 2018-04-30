@@ -45,7 +45,7 @@
               <div class="text-center mb-6"> 
                 <img src="/images/logo_alpha.png" alt="logo" title="logo" longdesc="logo">
               </div>
-              {!!Form::open(['action'=>'Auth\OurLoginController@login','method'=>'POST'])!!}
+              <form action="/login" method="post">
               {{csrf_field()}}
                 <div class="card-body p-6">
                   <div class="card-title">Bienvenido, por favor ingrese sus

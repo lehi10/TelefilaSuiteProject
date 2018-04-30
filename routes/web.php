@@ -1,5 +1,4 @@
 <?php
-use telefilaSuite\Http\Middleware\superUsuario;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,7 +22,10 @@ Auth::routes();
 
 //Route::post('/index', ['as' => '/index','uses' =>'Auth\OurLoginController@login'])->name('login.submit');
 //Route::post('superUsuario', 'Auth\OurLoginController@login')->name('login');
-Route::post('auth', 'Auth\OurLoginController@login')->name('login');
+Route::post('login', 'Auth\OurLoginController@login')->name('login');
+Route::get('/logout',function(){
+    Auth::logout();
+});
 Route::group(['middleware' => 'superUsuario'],function()
 {
    
