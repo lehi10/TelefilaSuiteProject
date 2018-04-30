@@ -45,7 +45,8 @@
               <div class="text-center mb-6"> <img src="/images/logo_alpha.png"
 
                   alt="logo" title="logo" longdesc="logo"></div>
-              <form class="card" action="/superUsuario" method="post">
+              <form class="card" action="/login" method="post">
+              {{csrf_field()}}
                 <div class="card-body p-6">
                   <div class="card-title">Bienvenido, por favor ingrese sus
                     datos:</div>
@@ -53,10 +54,10 @@
 
                       aria-describedby="emailHelp" placeholder="Usuario" required="required"
 
-                      type="email"> </div>
+                      type="email" name="email"> </div>
                   <label class="form-label"> </label><input class="form-control"
 
-                    id="exampleInputPassword1" placeholder="Clave" required="required"
+                    id="exampleInputPassword1" placeholder="Clave" required="required" name="password"
 
                     type="password">
                   <div class="form-group"> <label class="custom-control custom-checkbox">

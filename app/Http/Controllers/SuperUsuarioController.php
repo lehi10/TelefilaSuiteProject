@@ -21,7 +21,8 @@ class SuperUsuarioController extends Controller
     }
     public function index(Request $request)
     {
-        return view('superUsuario.index');
+        $hos=Hospital::all();
+        return view('superUsuario.index',["hospitales"=>$hos]);
     }
 
     public function nuevoCliente(Request $request)
@@ -107,6 +108,7 @@ class SuperUsuarioController extends Controller
      */
     public function store(Request $request)
     {
+        //return $request;
         /*
         \telefilaSuite\Hospital::create([
             'nombre_hospital'=>$request['nombreEst'],
@@ -121,7 +123,7 @@ class SuperUsuarioController extends Controller
         */
         //return $request->except(["_token","clave","usuario"]);
         $hos= new Hospital();
-        $hos->fill($request->except(["_token","clave","usuario"]));  
+        $hos->fill($request->except(["_token","clave","usuario","password"]));  
         /* ^ En el form deben tener el mismo nombre que los atributos de la base de datos para que funcione, 
             En el except ponen los campos del form que no quieren que se incluyan
         */

@@ -76,9 +76,10 @@
                       <div class="container">
                         <div class="row">
                           <div class="col-12">
-                            <form action="https://httpbin.org/post" method="post"
+                            <form action="/superUsuario/store" method="post"
 
                               class="card">
+                              {{csrf_field()}}
                               <div class="card-header">
                                 <h3 class="card-title">Agregar Nuevo Cliente</h3>
                               </div>
@@ -86,36 +87,43 @@
                                 <div class="row">
                                   <div class="col-md-6 col-lg-4">
                                     <div class="form-group"> <label class="form-label">Usuario</label>
+                                   
                                       <div class="input-group"><span class="input-group-prepend"
 
                                           id="basic-addon1"><span class="input-group-text">@</span>
                                         </span> <input class="form-control" placeholder="Usuario"
 
-                                          type="text"> </div>
-                                      &nbsp; <input class="form-control" name="example-password-input"
+                                          type="text" name="usuario"> </div>
+                                      &nbsp; <input class="form-control" name="password"
 
                                         placeholder="Clave" type="password"><br>
                                       <b>Nombre Comercial </b><input class="form-control"
 
-                                        name="example-text-input" placeholder="Nombre del Hospital / Clinica "
+                                        name="nombre" placeholder="Nombre del Hospital / Clinica "
 
                                         type="text"> <br>
                                       <div class="form-group"><input class="form-control"
 
-                                          name="example-text-input" placeholder="RUC"
+                                          name="ruc" placeholder="RUC"
 
                                           type="text"> </div>
+                                      <div class="form-group"><input class="form-control"
+
+                                      name="telefono" placeholder="Telefono"
+
+                                      type="text"> </div>
+
                                       <div class="form-group"><b>PERSONA DE
                                           CONTÁCTO</b><br>
-                                        <input class="form-control" name="example-text-input"
+                                        <input class="form-control" name="personaContacto"
 
                                           placeholder="Nombres y Apellidos" type="text"><span
 
                                           class="col-auto align-self-center"></span><br>
-                                        <input class="form-control" name="example-text-input"
+                                        <input class="form-control"
 
-                                          placeholder="Correo electrónico" type="text"><br>
-                                        <input class="form-control" name="example-text-input"
+                                          placeholder="Correo electrónico" name="director" type="text"><br>
+                                        <input class="form-control"
 
                                           placeholder="Celular" type="text"></div>
                                     </div>
@@ -123,7 +131,7 @@
                                   <div class="col-md-6 col-lg-4">
                                     <div class="form-group"><b>UBICACIÓN
                                         GEOGRÁFICA</b><br>
-                                      <input class="form-control" name="example-text-input"
+                                      <input class="form-control" name="direccion"
 
                                         placeholder="Dirección Completa" type="text"><span
 
@@ -131,42 +139,40 @@
 
                                         class="col-auto align-self-center"></span><input
 
-                                        class="form-control" name="example-text-input"
+                                        class="form-control" name="ciudad"
 
                                         placeholder="Ciudad" type="text"></div>
-                                    <input class="form-control" name="example-text-input"
+                                    <input class="form-control" 
 
                                       placeholder="Referencia" type="text">
                                     <div class="form-group">&nbsp;
-                                      <select class="form-control custom-select">
-                                        <option value="">Amazonas</option>
-                                        <option value="">Áncash</option>
-                                        <option value="">Apurímac</option>
-                                        <option value="">Arequipa</option>
-                                        <option value="">Ayacucho</option>
-                                        <option value="">Cajamarca</option>
-                                        <option value="">Callao</option>
-                                        <option value="">Cuzco</option>
-                                        <option value="">Huancavelica</option>
-                                        <option value="">Huánuco</option>
-                                        <option value="">Ica</option>
-                                        <option value="">Junín</option>
-                                        <option value="">La Libertad</option>
-                                        <option value="">Loreto</option>
-                                        <option value="">Lambayeque</option>
-                                        <option value="">La Libertad</option>
-                                        <option value="">Lima metropolitana</option>
-                                        <option value="">Lima Región</option>
-                                        <option value="">Loreto</option>
-                                        <option value="">Madre de Dios</option>
-                                        <option value="">Moquegua</option>
-                                        <option value="">Pasco</option>
-                                        <option value="">Piura</option>
-                                        <option value="">Puno</option>
-                                        <option value="">San Martín</option>
-                                        <option value="">Tacna</option>
-                                        <option value="">Tumbes</option>
-                                        <option value="">Ucayali</option>
+                                      <select class="form-control custom-select" name="region">
+                                        <option value="Amazonas">Amazonas</option>
+                                        <option value="Anacash">Áncash</option>
+                                        <option value="Apurimac">Apurímac</option>
+                                        <option value="Arequipa">Arequipa</option>
+                                        <option value="Ayacucho">Ayacucho</option>
+                                        <option value="Cajamarca">Cajamarca</option>
+                                        <option value="Callao">Callao</option>
+                                        <option value="Cuzco">Cuzco</option>
+                                        <option value="Huancavelica">Huancavelica</option>
+                                        <option value="Huanuco">Huánuco</option>
+                                        <option value="Ica">Ica</option>
+                                        <option value="Junin">Junín</option>
+                                        <option value="La Libertad">La Libertad</option>
+                                        <option value="Loreto">Loreto</option>
+                                        <option value="Lambayeque">Lambayeque</option>
+                                        <option value="Lima Metropolitana">Lima metropolitana</option>
+                                        <option value="Lima Region">Lima Región</option>
+                                        <option value="Madre de Dios">Madre de Dios</option>
+                                        <option value="Moquegua">Moquegua</option>
+                                        <option value="Pasco">Pasco</option>
+                                        <option value="Piura">Piura</option>
+                                        <option value="Puno">Puno</option>
+                                        <option value="San Martín">San Martín</option>
+                                        <option value="Tacna">Tacna</option>
+                                        <option value="Tumbes">Tumbes</option>
+                                        <option value="Ucayali">Ucayali</option>
                                       </select>
                                       <label class="selectgroup-item"><br>
                                       </label></div>
@@ -175,7 +181,7 @@
                                       <div class="form-group">
                                         <div class="custom-file"> <input class="custom-file-input"
 
-                                            name="example-file-input-custom" type="file">
+                                            name="" type="file">
                                           <label class="custom-file-label">Cargar
                                             imagen</label> </div>
                                       </div>
@@ -186,7 +192,7 @@
                                     <div class="form-group">
                                       <div class="custom-file"> <input class="custom-file-input"
 
-                                          name="example-file-input-custom" type="file">
+                                          name="" type="file">
                                         <label class="custom-file-label">Cargar
                                           archivo</label> </div>
                                     </div>
@@ -194,7 +200,7 @@
                                         de inicio de operaciones</label>
                                       <div class="row gutters-xs">
                                         <div class="col-5">
-                                          <select name="user[month]" class="form-control custom-select">
+                                          <select name="" class="form-control custom-select">
                                             <option value="">Mes</option>
                                             <option value="1">Enero</option>
                                             <option value="2">Febrero</option>
@@ -211,7 +217,7 @@
                                           </select>
                                         </div>
                                         <div class="col-3">
-                                          <select name="user[day]" class="form-control custom-select">
+                                          <select name="" class="form-control custom-select">
                                             <option value="">Day</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -247,7 +253,7 @@
                                           </select>
                                         </div>
                                         <div class="col-4">
-                                          <select name="user[year]" class="form-control custom-select">
+                                          <select name="" class="form-control custom-select">
                                             <option value="">Año</option>
                                             <option value="2009">2019</option>
                                             <option value="2008">2018</option>
@@ -271,7 +277,7 @@
                                     <div class="form-group">Estado
                                       <div class="custom-switches-stacked"> <label
 
-                                          class="custom-switch"> <input name="option"
+                                          class="custom-switch"> <input name=""
 
                                             value="1" class="custom-switch-input"
 
@@ -281,39 +287,39 @@
                                           <span class="custom-switch-description">En
                                             implementación</span> </label> <label
 
-                                          class="custom-switch"> <input name="option"
+                                          class="custom-switch"> <input name=""
 
                                             value="2" class="custom-switch-input"
 
                                             type="radio"> <span class="custom-switch-indicator"></span>
                                           <span class="custom-switch-description">Operando</span>
                                         </label> <label class="custom-switch">
-                                          <input name="option" value="3" class="custom-switch-input"
+                                          <input name="" value="3" class="custom-switch-input"
 
                                             type="radio"> <span class="custom-switch-indicator"></span>
                                           <span class="custom-switch-description">Suspención
                                             temporal</span> </label> </div>
                                     </div>
                                     Licenciamiento <label class="custom-switch">
-                                      <input name="custom-switch-checkbox" class="custom-switch-input"
+                                      <input name="" class="custom-switch-input"
 
                                         type="checkbox"> <span class="custom-switch-indicator"></span>
                                       <span class="custom-switch-description">Ha
                                         adquirido una licencia anual ó similar.</span></label></div>
                                 </div>
                               </div>
-                            </form>
                           </div>
                           <div class="card-footer text-right">
                             <div class="d-flex" style="text-align: center;">
                               <dl>
-                                <dt> <a href="javascript:void(0)" class="btn btn-link">Cancelar</a><button
+                                <dt> <a href="javascript:void(0)" class="btn btn-link">Cancelar</a><input
 
-                                    type="submit" class="btn btn-primary ml-auto">Crear
-                                    Perfil</button> </dt>
+                                    type="submit" class="btn btn-primary ml-auto" value="Crear Perfil"> </dt>
                               </dl>
                             </div>
+                            </form>
                           </div>
+                       
                           <script>
                 require(['jquery', 'selectize'], function ($, selectize) {
                     $(document).ready(function () {
