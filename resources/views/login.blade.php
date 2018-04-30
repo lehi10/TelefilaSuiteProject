@@ -44,8 +44,34 @@
             <div class="col col-login mx-auto">
               <div class="text-center mb-6"> 
                 <img src="/images/logo_alpha.png" alt="logo" title="logo" longdesc="logo">
-                <a href="/login" > <strong> Ingresar </strong></a>
               </div>
+              {!!Form::open(['action'=>'SuperUsuarioController@validarLogin','method'=>'POST'])!!}
+              {{csrf_field()}}
+                <div class="card-body p-6">
+                  <div class="card-title">Bienvenido, por favor ingrese sus
+                    datos:</div>
+                  <div class="form-group"><input class="form-control" id="exampleInputEmail1"
+
+                      aria-describedby="emailHelp" placeholder="Usuario" required="required"
+
+                      type="email" name="email"> </div>
+                  <label class="form-label"> </label><input class="form-control"
+
+                    id="exampleInputPassword1" placeholder="Clave" required="required" name="password"
+
+                    type="password">
+                  <div class="form-group"> <label class="custom-control custom-checkbox">
+                      <input class="custom-control-input" type="checkbox"> <span
+
+                        class="custom-control-label">Recordarme en este equipo</span>
+                    </label> </div>
+                  <div class="form-footer"> <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                  </div>
+                </div>
+                <div class="text-center text-muted" style="font-weight: normal;">
+                    Contactanos +51 925125386 
+                </div>
+              {!!Form::close()!!}
             </div>
           </div>
         </div>
