@@ -1,15 +1,5 @@
 @extends('superUsuario.main')
 
-@section('enlaces')
-<script>
-if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required":["/scripts/museutils.js", "/scripts/museconfig.js", "/scripts/jquery.watch.js", "/scripts/require.js", "/css/cliente.css"], "outOfDate":[]};
-</script>
-  
-  <title>Resultado</title>
-  <!-- CSS -->
-  <link rel="stylesheet" type="text/css" href="/css/cliente.css?crc=381638368" id="pagesheet"/>
-
-@endsection
 
 @section('header')
 <div class="browser_width colelem" id="u226-bw">

@@ -14,7 +14,7 @@
 
                   alt="logo" title="logo" style="width: 144px; height: 36px;"> </a>
               <div class="d-flex order-lg-2 ml-auto">
-                <div class="nav-item d-none d-md-flex"> <a href="nuevo_usuario.html"
+                <div class="nav-item d-none d-md-flex"> <a href="{{url('/superUsuario/nuevoCliente')}}"
 
                     class="btn btn-sm btn-outline-primary" target="_blank">Agregar
                     usuario</a></div>
@@ -79,9 +79,14 @@
               <div class="col-12">
                 <div class="card">
                   <div class="card-header">
-                    <h3 class="card-title">Listado general de Usuarios</h3>
+                    <h3 class="card-title">Listado general de Clientes</h3>
                   </div>
                   <div class="table-responsive">
+                  @if ($hospitales->isEmpty())
+                  <br>
+                    <center><h4>No tiene clientes registrados.</h4></center>
+                  <br>
+                  @else
                     <table class="table card-table table-vcenter text-nowrap">
                       <thead>
                         <tr>
@@ -93,80 +98,24 @@
                         </tr>
                       </thead>
                       <tbody>
+                      
+                        @foreach($hospitales as $hos)
                         <tr>
-                          <td><span class="text-muted">0101</span></td>
-                          <td><a href="editar_usuario.html" class="text-inherit">Juan
-                              Francisco Ordoñez Velasquez<br>
+                          <td><span class="text-muted">{{sprintf("%04d",$hos->id)}}</span></td>
+                          <td><a href="editar_usuario.html" class="text-inherit">{{$hos->nombre}}<br>
                             </a></td>
-                          <td>jordonez125AC</td>
-                          <td>Caja</td>
+                          <td>{{$hos->administrador->usuario}}</td>
+                          <td>Hospital</td>
                           <td> <span class="custom-switch-indicator"></span> <span
 
                               class="custom-switch-description"></span> </td>
                         </tr>
-                        <tr>
-                          <td><span class="text-muted">0102</span></td>
-                          <td><a href="editar_usuario.html" class="text-inherit">Jamila
-                              Morey Perez<br>
-                            </a></td>
-                          <td>jmorey125AC</td>
-                          <td>Caja</td>
-                          <td>
-                            <div class="custom-switches-stacked"> <label class="custom-switch">
-                                <input name="option" value="1" class="custom-switch-input"
+                        @endforeach
 
-                                  checked="checked" type="radio"> <span class="custom-switch-indicator"></span>
-                                <span class="custom-switch-description"></span></label><label
-
-                                class="custom-switch"></label></div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><span class="text-muted">0103</span></td>
-                          <td><a href="editar_usuario.html" class="text-inherit">Maria
-                              Villela Roo<br>
-                            </a></td>
-                          <td>mvillela125AC</td>
-                          <td>Recursos Humanos</td>
-                          <td> <span class="custom-switch-indicator"></span> <span
-
-                              class="custom-switch-description"></span> </td>
-                        </tr>
-                        <tr>
-                          <td><span class="text-muted">0104</span></td>
-                          <td><a href="editar_usuario.html" class="text-inherit">José
-                              Velasquez Chavez<br>
-                            </a></td>
-                          <td>Chepén125AC</td>
-                          <td>Recursos Humanos</td>
-                          <td> <span class="custom-switch-indicator"></span> <span
-
-                              class="custom-switch-description"></span> </td>
-                        </tr>
-                        <tr>
-                          <td><span class="text-muted">0105</span></td>
-                          <td><a href="editar_usuario.html" class="text-inherit">Clodomira
-                              Beltran Agapito<br>
-                            </a></td>
-                          <td>Chiclayo125AC</td>
-                          <td>Admisión</td>
-                          <td> <span class="custom-switch-indicator"></span> <span
-
-                              class="custom-switch-description"></span> </td>
-                        </tr>
-                        <tr>
-                          <td><span class="text-muted">0106</span></td>
-                          <td><a href="editar_usuario.html" class="text-inherit">Sofia
-                              Larrain Verastegui<br>
-                            </a></td>
-                          <td>Arequipa125AC</td>
-                          <td>Histórias Clínicas</td>
-                          <td> <span class="custom-switch-indicator"></span> <span
-
-                              class="custom-switch-description"></span> </td>
-                        </tr>
+                       
                       </tbody>
                     </table>
+                  @endif
                   </div>
                 </div>
               </div>

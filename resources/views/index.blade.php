@@ -54,10 +54,10 @@
 
                       aria-describedby="emailHelp" placeholder="Usuario" required="required"
 
-                      type="email"> </div>
+                      type="email" name="email"> </div>
                   <label class="form-label"> </label><input class="form-control"
 
-                    id="exampleInputPassword1" placeholder="Clave" required="required"
+                    id="exampleInputPassword1" placeholder="Clave" required="required" name="password"
 
                     type="password">
                   <div class="form-group"> <label class="custom-control custom-checkbox">

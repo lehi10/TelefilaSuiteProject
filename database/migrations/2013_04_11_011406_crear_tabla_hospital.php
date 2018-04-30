@@ -20,7 +20,7 @@ class CrearTablaHospital extends Migration
             $table->string('director');
             $table->string('direccion');
             $table->string('ciudad');
-            $table->string('pais');
+            $table->string('region');
             $table->string("telefono",9);
             $table->string('personaContacto');
             $table->string('archivo_1')->nullable();
