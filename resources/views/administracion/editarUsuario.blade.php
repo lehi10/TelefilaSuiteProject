@@ -76,11 +76,12 @@
                     <input type="hidden" class="form-control" name="idCliente" value="{{$usuario->hospital_id}}">
                     
                     <label class="custom-switch">
-                      <input name="optRol" value="3" class="custom-switch-input"  checked="checked" type="radio"> 
+                      <input name="optRol" value="3" class="custom-switch-input"  checked  type="radio"> 
                       <span class="custom-switch-indicator"></span>
                       <span class="custom-switch-description">Control de Caja</span>
                     </label>
                   </div>
+
                   <div class="form-group"> 
                     <label class="custom-switch">
                       <input name="optRol" value="4" class="custom-switch-input" type="radio"> 
@@ -88,6 +89,7 @@
                       <span class="Rolando Ancajima Calle">Admisión</span>
                     </label>
                   </div>
+
                   <div class="form-group"> 
                     <label class="custom-switch">
                       <input name="optRol" value="5" class="custom-switch-input" type="radio"> 
