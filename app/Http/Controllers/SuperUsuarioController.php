@@ -17,7 +17,7 @@ class SuperUsuarioController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth');
+        $this->middleware('auth');
     }
     
     
@@ -35,7 +35,7 @@ class SuperUsuarioController extends Controller
 
     public function index(Request $request)
     {
-        $hos=Hospital::all();
+        $hos=Hospital::join('users','users.hospital_id','hospitals.id')->get();
         return view('superUsuario.index',["hospitales"=>$hos]);
     }
 
@@ -93,7 +93,6 @@ class SuperUsuarioController extends Controller
             $usuarios =\telefilaSuite\User::All();        
             return view('superUsuario.listarUsuarios',compact('usuarios'));
         }
-        
     }
 
 
@@ -116,35 +115,8 @@ class SuperUsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //return $request;
-        /*
-        \telefilaSuite\Hospital::create([
-            'nombre_hospital'=>$request['nombreEst'],
-            'ruc'=>$request['ruc'],
-            'director'=>$request['director'],
-            'direccion'=>$request['direccion'],
-            'cuidad'=>$request['cuidad'],
-            'pais'=>$request['pais'],
-            'telefono_hospital'=>$request['celular'],
-            'personaContacto'=>$request['personaContacto']
-        ]);
-        */
-        //return $request->except(["_token","clave","usuario"]);
         $hos= new Hospital();
         $hos->fill($request->except(["_token","clave","usuario","password"]));  
-        /* ^ En el form deben tener el mismo nombre que los atributos de la base de datos para que funcione, 
-            En el except ponen los campos del form que no quieren que se incluyan
-        */
-
-        //$hos->nombre=$request->nombreEst;
-        //$hos->ruc=$request->ruc;
-        //$hos->director=$request->director;
-        //$hos->direccion=$request->direccion;
-        //$hos->ciudad=$request->ciudad;
-        //$hos->pais=$request->pais;
-        //$hos->telefono=$request->celular;
-        //$hos->personaContacto=$request->personaContacto;
-
         $hos->save();  //Ya no necesitas hacer la consulta de abajo por que ya esta en $hos;
       
         $admin= new Administrador();

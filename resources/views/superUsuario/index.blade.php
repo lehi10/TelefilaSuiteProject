@@ -120,10 +120,9 @@
                           <td><span class="text-muted">{{sprintf("%04d",$hos->id)}}</span></td>
                           <td><a href="editar_usuario.html" class="text-inherit">{{$hos->nombre}}<br>
                             </a></td>
-                          <td>{{$hos->administrador->usuario}}</td>
                           <td>Hospital</td>
+                          <td>{{ $hos->rol }}</td>
                           <td> <span class="custom-switch-indicator"></span> <span
-
                               class="custom-switch-description"></span> </td>
                         </tr>
                         @endforeach

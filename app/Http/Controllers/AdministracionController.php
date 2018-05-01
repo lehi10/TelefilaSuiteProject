@@ -23,7 +23,7 @@ class AdministracionController extends Controller
         }
         else
         {
-            $usuarios =\telefilaSuite\User::join('personas', 'users.persona_id', '=', 'personas.id')->where('hospital_id',$request['idCliente'])->get(); ;        
+            $usuarios =\telefilaSuite\User::join('personas', 'users.persona_id', '=', 'personas.id')->where('users.hospital_id',$request['idCliente'])->get(); ;        
             return view('administracion.index',compact('usuarios'));
         }
     }

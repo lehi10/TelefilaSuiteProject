@@ -20,7 +20,7 @@ class OurLoginController extends Controller
             'password' => 'required'
         ]);
         echo "asd";
-        //lo busca en la bd
+    
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password],$request->remember))
         {
             

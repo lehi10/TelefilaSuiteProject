@@ -103,7 +103,7 @@
                       @foreach($usuarios as $usuario)
                         <tr>
                           <td><span class="text-muted">{{$usuario->id}}</span></td>
-                          <td><a href="admin/editarUsuario/123" class="text-inherit"> 
+                          <td><a href="editarUsuario/{{$usuario->id}}" class="text-inherit"> 
                             {{$usuario->nombre}} {{$usuario->apellido}} <br>
                           </a></td>
                           <td>{{$usuario->username}}</td>
