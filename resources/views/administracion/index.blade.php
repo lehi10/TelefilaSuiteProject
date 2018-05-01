@@ -56,7 +56,7 @@
                   @if (Auth::check())
                   <li class="nav-item"> <a href="{{url('/superUsuario')}}" class="nav-link"><i class="fe fe-home"></i>
                       Incio</a> </li>
-                  @else if(Auth::guard('administrador')->check())
+                  @elseif(Auth::guard('administrador')->check())
                   <li class="nav-item"> <a href="{{url($id.'/admin')}}" class="nav-link"><i class="fe fe-home"></i>
                       Incio</a> </li>
                   @endif
