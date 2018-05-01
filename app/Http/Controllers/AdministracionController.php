@@ -35,7 +35,7 @@ class AdministracionController extends Controller
 
     public function nuevoUsuario(Request $request, $idCliente)
     {
-        return view('administracion.nuevoUsuario');
+        return view('administracion.nuevoUsuario',["id"=>$idCliente]);
     }
     
     public function editarUsuario( Request $request,$idCliente,$idUsuario)
@@ -60,15 +60,13 @@ class AdministracionController extends Controller
         $user->email=$request->email;
         $user->username=$request->usuario;
         $user->password=bcrypt($request->password);
-        $user->hospital_id=1;
+        $user->hospital_id=$request->hospital_id;
         $user->rol=$request->optRol;
         $user->persona_id=$per->id;
         $user->save();
 
-        echo "DNI  : ".$request['hospital_id']."<br>";
-        echo $request;
-
-        return redirect('/');
+     
+        return redirect($request->hospital_id.'/admin');
     }
     public function actualizarUsuario( Request $request)
     {

@@ -49,6 +49,7 @@
               </div>
               {!!Form::open(['action'=>'AdministracionController@guardarUsuario','method'=>'POST'])!!}
                 <div class="card-body p-6">
+                  <input type="hidden" name="hospital_id" value="{{$id}}">
                   <div class="card-title">Crear nuevo usuario</div>
                   <div class="form-group">
                     <input name="nombre" class="form-control" placeholder="Nombres completo" type="text"><br> 
