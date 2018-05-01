@@ -14,9 +14,10 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(telefilaSuite\User::class, function (Faker $faker) {
+    $us=$faker->unique()->numberBetween(2,6);
     return [
-        'username' => "admin",
-        'email' => "admin@mail.com",
+        'username' => "admin".$us,
+        'email' => "admin".$us."@mail.com",
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
         'rol'=>1,
         //'remember_token' => str_random(10),
