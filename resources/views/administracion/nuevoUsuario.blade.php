@@ -42,7 +42,7 @@
         <div class="container">
           <div class="row">
             <div class="col col-login mx-auto">
-              <div style="text-align: center;"><img src="/images/logo_alpha1.png"
+              <div style="text-align: center;"><img src="{{url('/images/logo_alpha.png')}}"
 
                   alt="logo" title="logo"><br>
                 <br>

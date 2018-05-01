@@ -8,7 +8,7 @@
     <div class="header py-4">
       <div class="container">
         <div class="d-flex"> 
-          <a class="header-brand" href="/index.html"> <img src="images/logo_alpha.png" alt="logo" title="logo" style="width: 144px; height: 36px;"> </a>
+          <a class="header-brand" href="/index.html"> <img src="{{url('/images/logo_alpha.png')}}" alt="logo" title="logo" style="width: 144px; height: 36px;"> </a>
           <div class="d-flex order-lg-2 ml-auto">
             <div class="nav-item d-none d-md-flex"> <a href="../nuevoUsuario" class="btn btn-sm btn-outline-primary" target="_top">Agregar                    usuario</a></div>
             <div class="dropdown"> <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown"> <span class="avatar" style="background-image: url(/demo/faces/female/25.jpg)"></span>
