@@ -6,80 +6,55 @@
     
 @section('header')
 <div class="page-main">
-  <div class="header py-4">
-    <div class="container">
-      <div class="d-flex"> <a class="header-brand" href="./index.html"> 
-          <img src="/demo/photos/logo_alpha.png" alt="logo" title="logo" style="width: 144px; height: 36px;"> </a>
-        <div class="d-flex order-lg-2 ml-auto">
-          <div class="nav-item d-none d-md-flex"> <a href="nuevo_usuario.html" class="btn btn-sm btn-outline-primary" target="_blank">Agregar usuario</a></div>
-          <div class="dropdown"> <a href="#" class="nav-link pr-0 leading-none"
-
-              data-toggle="dropdown"> <span class="avatar" style="background-image: url(./demo/faces/female/25.jpg)"></span>
-              <span class="ml-2 d-none d-lg-block"> <span class="text-default">Hospital
-                  Honorio Delgado</span> <small class="text-muted d-block mt-1">Administrator</small>
-              </span> </a>
-            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-              <a class="dropdown-item" href="#"> <i class="dropdown-icon fe fe-user"></i>
-                Editar perfil </a> <a class="dropdown-item" href="#"> <i
-
+        <div class="header py-4">
+          <div class="container">
+            <div class="d-flex"> <a class="header-brand" href="./index.html"> <img
+                  src="{{url('images/logo_alpha.png')}}"
                   alt="logo" title="logo" style="width: 144px; height: 36px;"> </a>
               <div class="d-flex order-lg-2 ml-auto">
                 <div class="nav-item d-none d-md-flex"> <a href="{{url('/superUsuario/nuevoCliente')}}"
-
-                    class="btn btn-sm btn-outline-primary" target="_blank">Agregar
-                    usuario</a></div>
+                    class="btn btn-sm btn-outline-primary">Agregar
+                    cliente</a> </div>
                 <div class="dropdown"> <a href="#" class="nav-link pr-0 leading-none"
-
                     data-toggle="dropdown"> <span class="avatar" style="background-image: url(./demo/faces/female/25.jpg)"></span>
-                    <span class="ml-2 d-none d-lg-block"> <span class="text-default">Hospital
-                        Honorio Delgado</span> <small class="text-muted d-block mt-1">Administrator</small>
+                    <span class="ml-2 d-none d-lg-block"> <span class="text-default">Rolando
+                        Ancajima</span> <small class="text-muted d-block mt-1">Administrator</small>
                     </span> </a>
                   <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                     <a class="dropdown-item" href="#"> <i class="dropdown-icon fe fe-user"></i>
-                      Editar perfil </a> <a class="dropdown-item" href="#"> <i
-
-                        class="dropdown-icon fe fe-settings"></i> <i class="dropdown-icon fe fe-log-out"></i>
+                      Editar perfil </a> <a class="dropdown-item" href="#">  <i class="dropdown-icon fe fe-log-out"></i>
                       Salir </a> </div>
                 </div>
               </div>
               <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse"
-
                 data-target="#headerMenuCollapse"> <span class="header-toggler-icon"></span>
               </a> </div>
           </div>
         </div>
-        <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse"
-
-          data-target="#headerMenuCollapse"> <span class="header-toggler-icon"></span>
-        </a> </div>
-    </div>
-  </div>
-  <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-3 ml-auto">
-          <form class="input-icon my-3 my-lg-0"> <input class="form-control header-search"
-
-              placeholder="Buscar usuario…" tabindex="1" type="search">
-            <div class="input-icon-addon"> <i class="fe fe-search"></i> </div>
-          </form>
+        <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-3 ml-auto">
+                <form class="input-icon my-3 my-lg-0"> <input class="form-control header-search"
+                    placeholder="Buscar cliente…" tabindex="1" type="search">
+                  <div class="input-icon-addon"> <i class="fe fe-search"></i> </div>
+                </form>
+              </div>
+              <div class="col-lg order-lg-first">
+                <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
+                  <li class="nav-item"> <a href="#" class="nav-link"><i class="fe fe-home"></i>
+                      Incio</a> </li>
+                  <li class="nav-item"> <a href="#" class="nav-link" data-toggle="dropdown"><i
+                        class="fe fe-box"></i> Reportes</a> </li>
+                  <li class="nav-item dropdown"> <br>
+                  </li>
+                  <li class="nav-item"> <br>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="col-lg order-lg-first">
-          <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
-            <li class="nav-item"> <a href="#" class="nav-link"><i class="fe fe-home"></i>
-                Incio</a> </li>
-            <li class="nav-item"> <a href="#" class="nav-link" data-toggle="dropdown"><i
-
-                  class="fe fe-box"></i> Reportes</a> </li>
-            <li class="nav-item dropdown"> <br>
-            </li>
-            <li class="nav-item"> <br>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
  @endsection
 
  @section('body')      
@@ -108,22 +83,38 @@
                         <tr>
                           <th class="w-1">Nro.</th>
                           <th>NOMBRE</th>
-                          <th>USUARIO</th>
-                          <th>ROL</th>
-                          <th>ACTIVO</th>
+                          <th>CIUDAD</th>
+                          <th>TICKETS</th>
+                          <th>ESTADO</th>
+                          <th style="text-align: center;">ACCCIONES</th>
+                          <th><br>
+                          </th>
                         </tr>
                       </thead>
                       <tbody>
-                      
+
                         @foreach($hospitales as $hos)
                         <tr>
                           <td><span class="text-muted">{{sprintf("%04d",$hos->id)}}</span></td>
-                          <td><a href="editar_usuario.html" class="text-inherit">{{$hos->nombre}}<br>
+                          <td><a href="inicio_cliente.html" class="text-inherit">{{$hos->nombre}}<br>
                             </a></td>
-                          <td>Hospital</td>
-                          <td>{{ $hos->rol }}</td>
-                          <td> <span class="custom-switch-indicator"></span> <span
-                              class="custom-switch-description"></span> </td>
+                          <td>{{$hos->ciudad}}</td>
+                          <td>0</td>
+                          <td> <span class="status-icon bg-success"></span>
+                            Operando </td>
+                          <td class="text-right">
+                            <select class="custom-select">
+                              <option value="STATUS_CODE" selected="selected">Cambiar
+                                estado</option>
+                              <option value="JSON_BODY">En implementación</option>
+                              <option value="HEADERS">Operando</option>
+                              <option value="TEXT_BODY">Suspensión temporal</option>
+                              <option value="RESPONSE_TIME">Cancelado</option>
+                            </select>
+                          </td>
+                          <td> <a class="icon" href="javascript:void(0)"> </a>
+                            <br>
+                          </td>
                         </tr>
                         @endforeach
 

@@ -35,7 +35,7 @@ class SuperUsuarioController extends Controller
 
     public function index(Request $request)
     {
-        $hos=Hospital::join('users','users.hospital_id','hospitals.id')->get();
+        $hos=Hospital::all();  //superusuario tiene acceso a todos los hospitales
         return view('superUsuario.index',["hospitales"=>$hos]);
     }
 
