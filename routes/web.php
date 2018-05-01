@@ -60,3 +60,4 @@ Route::get('{idCliente}/admin/editarUsuario/{idUsuario}','AdministracionControll
 
 //Envio de Formulario
 Route::post('admin/guardarUsuario','AdministracionController@guardarUsuario');
+Route::post('admin/editarUsuario','AdministracionController@actualizarUsuario');

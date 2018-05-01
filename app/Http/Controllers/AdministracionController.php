@@ -18,12 +18,12 @@ class AdministracionController extends Controller
     {
         if($request['nombreUsuario'])
         {            
-            $usuarios =\telefilaSuite\User::where('username','LIKE' ,'%'.$request['nombreUsuario'].'%')->where('hospital_id',$request['idCliente'])->get(); 
+            $usuarios =User::where('username','LIKE' ,'%'.$request['nombreUsuario'].'%')->where('hospital_id',$request['idCliente'])->get(); 
             return view('administracion.index',compact('usuarios'));
         }
         else
         {
-            $usuarios =\telefilaSuite\User::join('personas', 'users.persona_id', '=', 'personas.id')->where('users.hospital_id',$request['idCliente'])->get(); ;        
+            $usuarios =User::where('hospital_id',$request['idCliente'])->get(); ;        
             return view('administracion.index',compact('usuarios'));
         }
     }
@@ -35,7 +35,8 @@ class AdministracionController extends Controller
     
     public function editarUsuario( Request $request,$idCliente,$idUsuario)
     {
-        return view('administracion.editarUsuario');
+        $usuario =User::where('id',$idUsuario)->first();           
+        return view('administracion.editarUsuario',compact('usuario'));
     }
 
     public function guardarUsuario( Request $request)
@@ -64,4 +65,18 @@ class AdministracionController extends Controller
 
         return redirect('/');
     }
+    public function actualizarUsuario( Request $request)
+    {
+        $user=User::find($request->idUsuario);
+        if($request->password)
+        {
+            $user->password=$request->password;
+        }
+        $user->rol=$request->optRol;    
+        $user->save();
+        
+        return redirect('/'.$request->idCliente.'/admin');
+    }
+
+    
 }
