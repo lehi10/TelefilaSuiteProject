@@ -74,7 +74,7 @@ class AdministracionController extends Controller
         $user=User::find($request->idUsuario);
         if($request->password)
         {
-            $user->password=$request->password;
+            $user->password=bcrypt($request->password);
         }
         $user->rol=$request->optRol;    
         $user->save();

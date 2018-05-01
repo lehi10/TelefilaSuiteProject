@@ -111,7 +111,7 @@
                 <div class="col-sm-6 col-md-4">
                   <div class="form-group"><br></div>
                   Cambiar clave
-                  <input name="password" class="form-control" placeholder="cambiar de contraseña"  type="text"> </div>
+                  <input name="password" class="form-control" placeholder="cambiar de contraseña"  type="password"> </div>
                 <br>
                 <div class="card-footer text-right">
                   <div class="d-flex" style="text-align: center;">
