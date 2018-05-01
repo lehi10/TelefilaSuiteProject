@@ -44,6 +44,11 @@
             <div class="col col-login mx-auto">
               <div class="text-center mb-6"> 
                 <img src="/images/logo_alpha.png" alt="logo" title="logo" longdesc="logo">
+                @if (Auth::check())
+                  {{Auth::user()->username}}
+                  <a href="/logout" > <strong> Salir </strong></a>                  
+                  <br>
+                @endif
                 <a href="/login" > <strong> Ingresar </strong></a>
               </div>
             </div>
