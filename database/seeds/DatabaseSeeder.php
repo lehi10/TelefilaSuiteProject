@@ -13,5 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         factory(telefilaSuite\Hospital::class,20)->create();  
+        factory(telefilaSuite\User::class,2)->create();  
     }
 }
