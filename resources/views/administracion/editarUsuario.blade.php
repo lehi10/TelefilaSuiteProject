@@ -17,7 +17,7 @@
               <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                 <a class="dropdown-item" href="#"> <i class="dropdown-icon fe fe-user"></i>
                   Editar perfil 
-                </a> <a class="dropdown-item" href="#"> <i class="dropdown-icon fe fe-settings"></i> <i class="dropdown-icon fe fe-log-out"></i> Salir </a> 
+                </a> <a class="dropdown-item" href="{{url('/logout')}}"> <i class="dropdown-icon fe fe-settings"></i> <i class="dropdown-icon fe fe-log-out"></i> Salir </a> 
               </div>
             </div>
           </div>

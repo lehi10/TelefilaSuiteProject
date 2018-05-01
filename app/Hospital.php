@@ -44,4 +44,8 @@ class Hospital extends Model
     {
         return $this->hasOne(Administrador::class);
     }
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }

@@ -31,4 +31,8 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Persona::class);
     }
+    public function hospital()
+    {
+        return $this->belongsTo(Hospital::class);
+    }
 }

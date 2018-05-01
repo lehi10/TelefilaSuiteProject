@@ -27,10 +27,11 @@
                         </span> <small class="text-muted d-block mt-1">Administrator</small>
                     </span> </a>
                   <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                    <a class="dropdown-item" href="#"> <i class="dropdown-icon fe fe-user"></i>
-                      Editar perfil </a> <a class="dropdown-item" href="#"> <i
-
-                        class="dropdown-icon fe fe-settings"></i> <i class="dropdown-icon fe fe-log-out"></i>
+                    <a class="dropdown-item" href="#"> 
+                      <i class="dropdown-icon fe fe-user">
+                      </i>
+                      Editar perfil </a> <a class="dropdown-item" href="{{url('/logout')}}"> 
+                      <i class="dropdown-icon fe fe-log-out"></i>
                       Salir </a> </div>
                 </div>
               </div>
