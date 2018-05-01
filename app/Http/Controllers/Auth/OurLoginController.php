@@ -35,6 +35,6 @@ class OurLoginController extends Controller
         }
         //si no entra es que se equivoco o no existe
         //lo regreso al login recordando solo el username mas no el password
-        return  redirect()->back()->withInput($request->only('email','remember'));
+        return  redirect("/login")->with(["error"=>"El correo o contraseña son incorrectos"]);
     }
 }
