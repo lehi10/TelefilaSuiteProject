@@ -29,7 +29,8 @@ class AdministracionController extends Controller
 
             $usuarios =User::where('hospital_id',$request['idCliente'])->get(); ;        
             $hospital=Hospital::find($idCliente)->nombre;
-            return view('administracion.index',compact('usuarios','hospital'));
+            $id=Hospital::find($idCliente)->id;
+            return view('administracion.index',compact('usuarios','hospital','id'));
         }
     }
 
