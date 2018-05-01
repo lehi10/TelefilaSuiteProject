@@ -19,6 +19,7 @@ class Kernel extends HttpKernel
         \telefilaSuite\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \telefilaSuite\Http\Middleware\TrustProxies::class,
+       
     ];
 
     /**
@@ -35,6 +36,9 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \telefilaSuite\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        ],
+        'superUsuario'=>[
+            \telefilaSuite\Http\Middleware\superUsuario::class,
         ],
 
         'api' => [
@@ -57,5 +61,6 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \telefilaSuite\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+      
     ];
 }
