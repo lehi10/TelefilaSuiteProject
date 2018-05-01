@@ -37,7 +37,7 @@ Route::group(['middleware' => 'superUsuario'],function()
     Route::get('superUsuario/listaClientes', 'SuperUsuarioController@listarClientes' );
     Route::get('superUsuario/listaUsuarios', 'SuperUsuarioController@listarUsuarios' );
 
-    Route::post('superUsuario/store','SuperUsuarioController@guardarCliente');
+    Route::post('superUsuario/store','SuperUsuarioController@store');
     Route::post('superUsuario/storeUsuario','SuperUsuarioController@guardarUsuario');
 });
 //superuser
