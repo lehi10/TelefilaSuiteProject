@@ -21,12 +21,15 @@ class AdministracionController extends Controller
         {            
             $usuarios =User::where('username','LIKE' ,'%'.$request['nombreUsuario'].'%')->where('hospital_id',$request['idCliente'])->get(); 
             $hospital=Hospital::find($idCliente)->nombre;
+            
             return view('administracion.index',compact('usuarios','hospital'));
         }
         else
         {
+
             $usuarios =User::where('hospital_id',$request['idCliente'])->get(); ;        
-            return view('administracion.index',compact('usuarios'));
+            $hospital=Hospital::find($idCliente)->nombre;
+            return view('administracion.index',compact('usuarios','hospital'));
         }
     }
 
