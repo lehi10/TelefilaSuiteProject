@@ -11,7 +11,7 @@
           <div class="container">
             <div class="d-flex"> <a class="header-brand" href="./index.html"> <img
 
-                  src="file:///E:/clientes/2018/Telefila/Producto/Suite%20web/demo/photos/logo_alpha.png"
+                  src="{{url('/images/logo_alpha.png')}}"
 
                   alt="logo" title="logo" style="width: 144px; height: 36px;"> </a>
               <div class="d-flex order-lg-2 ml-auto">
@@ -23,7 +23,7 @@
 
                     data-toggle="dropdown"> <span class="avatar" style="background-image: url(/demo/faces/female/25.jpg)"></span>
                     <span class="ml-2 d-none d-lg-block"> <span class="text-default">Hospital
-                        Honorio Delgado</span> <small class="text-muted d-block mt-1">Administrator</small>
+                        {{$hospital}}</span> <small class="text-muted d-block mt-1">Administrator</small>
                     </span> </a>
                   <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                     <a class="dropdown-item" href="#"> <i class="dropdown-icon fe fe-user"></i>

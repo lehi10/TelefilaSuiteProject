@@ -3,6 +3,7 @@
 namespace telefilaSuite\Http\Controllers;
 
 use telefilaSuite\Persona;
+use telefilaSuite\Hospital;
 use telefilaSuite\User;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,8 @@ class AdministracionController extends Controller
         if($request['nombreUsuario'])
         {            
             $usuarios =User::where('username','LIKE' ,'%'.$request['nombreUsuario'].'%')->where('hospital_id',$request['idCliente'])->get(); 
-            return view('administracion.index',compact('usuarios'));
+            $hospital=Hospital::find($idCliente)->nombre;
+            return view('administracion.index',compact('usuarios','hospital'));
         }
         else
         {
