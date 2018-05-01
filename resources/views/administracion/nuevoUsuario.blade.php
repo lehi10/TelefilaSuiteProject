@@ -70,19 +70,19 @@
                   <div class="form-group"><b>¿Que ROL desempeñará?</b><br>
                     <div class="custom-switches-stacked"> 
                       <label class="custom-switch">
-                        <input name="optRol" value="1" class="custom-switch-input" checked="checked" type="radio"> <span class="custom-switch-indicator"></span>
+                        <input name="optRol" value="3" class="custom-switch-input" checked="checked" type="radio"> <span class="custom-switch-indicator"></span>
                         <span class="custom-switch-description">Control de caja</span>
                       </label> 
                       <label class="custom-switch"> 
-                        <input name="optRol" value="2" class="custom-switch-input" type="radio"> 
+                        <input name="optRol" value="4" class="custom-switch-input" type="radio"> 
                         <span class="custom-switch-indicator"></span> 
                         <span class="custom-switch-description">Admisión</span>
                       </label> 
                       <label class="custom-switch"> 
-                        <input name="optRol" value="3" class="custom-switch-input" type="radio"> 
+                        <input name="optRol" value="5" class="custom-switch-input" type="radio"> 
                         <span class="custom-switch-indicator"></span> 
                         <span class="custom-switch-description">Recursos Humanos</span> </label><label class="custom-switch">
-                        <input name="optRol" value="3" class="custom-switch-input" type="radio"> <span class="custom-switch-indicator"></span>
+                        <input name="optRol" value="6" class="custom-switch-input" type="radio"> <span class="custom-switch-indicator"></span>
                         <span class="custom-switch-description">Histórias Clínicas</span> 
                       </label> 
                     </div>
