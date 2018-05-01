@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,27 +17,36 @@ Route::get('', function(){
 });
 Auth::routes();
 //login
-Route::get('login','SuperUsuarioController@login');
-Route::post('validarLogin','SuperUsuarioController@validarLogin');
+//Route::get('login','SuperUsuarioController@login');
+//Route::post('validarLogin','SuperUsuarioController@validarLogin');
 
 //Route::post('/index', ['as' => '/index','uses' =>'Auth\OurLoginController@login'])->name('login.submit');
-Route::post('/index', 'Auth\OurLoginController@login')->name('login');
+//Route::post('superUsuario', 'Auth\OurLoginController@login')->name('login');
+Route::post('login', 'Auth\OurLoginController@login')->name('login');
+Route::get('/logout',function(){
+    Auth::logout();
+});
+Route::group(['middleware' => 'superUsuario'],function()
+{
+   
+    Route::get('superUsuario', 'SuperUsuarioController@index' );
+    Route::get('superUsuario/nuevoCliente', 'SuperUsuarioController@nuevoCliente' );
+    Route::get('superUsuario/{idCliente}/nuevoUsuario', 'SuperUsuarioController@nuevoUsuario' );
+    Route::get('superUsuario/cliente/{idCliente}', 'SuperUsuarioController@cliente');
+    Route::get('superUsuario/listaClientes', 'SuperUsuarioController@listarClientes' );
+    Route::get('superUsuario/listaUsuarios', 'SuperUsuarioController@listarUsuarios' );
+
+    Route::post('superUsuario/store','SuperUsuarioController@guardarCliente');
+    Route::post('superUsuario/storeUsuario','SuperUsuarioController@guardarUsuario');
+});
 //superuser
-Route::get('superUsuario', 'SuperUsuarioController@index' );
+
 /** 
  * Rutas para Modulo Super Usuario
  */
 
-Route::get('superUsuario','SuperUsuarioController@index');
-Route::get('superUsuario/nuevoCliente', 'SuperUsuarioController@nuevoCliente' );
-Route::get('superUsuario/{idCliente}/nuevoUsuario', 'SuperUsuarioController@nuevoUsuario' );
-Route::get('superUsuario/cliente/{idCliente}', 'SuperUsuarioController@cliente');
-Route::get('superUsuario/listaClientes', 'SuperUsuarioController@listarClientes' );
-Route::get('superUsuario/listaUsuarios', 'SuperUsuarioController@listarUsuarios' );
 
 
-Route::post('superUsuario/store','SuperUsuarioController@guardarCliente');
-Route::post('superUsuario/storeUsuario','SuperUsuarioController@guardarUsuario');
 
 /**
  * Rutas para Modulo Administración
