@@ -23,3 +23,17 @@ $factory->define(telefilaSuite\User::class, function (Faker $faker) {
         //'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(telefilaSuite\Hospital::class, function (Faker $faker) {  
+    return [  
+        'nombre' => $faker->lastname,  
+        'ruc'=>$faker->randomNumber($nbDigits=8), 
+        'director'=>$faker->name, 
+        'ciudad'=>$faker->city, 
+        'region'=>$faker->state, 
+        'telefono' => $faker->randomNumber($nbDigits=6),  
+        'direccion' => $faker->address,  
+        'personaContacto'=>$faker->name 
+         
+    ];  
+}); 

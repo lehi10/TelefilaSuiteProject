@@ -12,7 +12,7 @@ class AdministracionController extends Controller
     
     public function __construct()
     {
-      
+        $this->middleware('auth:administrador');
     }
 
     public function index(Request $request, $idCliente)

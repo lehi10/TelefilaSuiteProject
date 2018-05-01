@@ -41,6 +41,11 @@ return [
             'provider' => 'users',
         ],
 
+        'administrador'=>[
+            'driver' => 'session',
+            'provider'=>'administradors'
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -68,6 +73,16 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => telefilaSuite\User::class,
+        ],
+
+        'super_users' => [
+            'driver' => 'eloquent',
+            'model' => telefilaSuite\superUser::class,
+        ],
+        'administradors'=>
+        [
+            'driver' => 'eloquent',
+            'model' => telefilaSuite\Administrador::class,
         ],
 
         // 'users' => [

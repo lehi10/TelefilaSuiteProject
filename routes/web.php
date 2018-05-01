@@ -25,6 +25,7 @@ Auth::routes();
 Route::post('login', 'Auth\OurLoginController@login')->name('login');
 Route::get('/logout',function(){
     Auth::logout();
+    Auth::guard('administrador')->logout();
     return redirect("/");
 });
 Route::group(['middleware' => 'superUsuario'],function()

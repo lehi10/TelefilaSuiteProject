@@ -19,6 +19,7 @@ class CreateAdministradorsTable extends Migration
             $table->string('password');
             $table->unsignedInteger('hospital_id');
             $table->foreign('hospital_id')->references('id')->on('hospitals');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

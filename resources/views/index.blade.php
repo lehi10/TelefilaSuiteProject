@@ -44,8 +44,8 @@
             <div class="col col-login mx-auto">
               <div class="text-center mb-6"> 
                 <img src="/images/logo_alpha.png" alt="logo" title="logo" longdesc="logo">
-                @if (Auth::check())
-                  {{Auth::user()->username}}
+                @if (Auth::guard('administrador')->check())
+                  
                   <a href="/logout" > <strong> Salir </strong></a>                  
                   <br>
                 @endif
