@@ -1,11 +1,13 @@
 @extends('superUsuario.main')
 
 @section('title')
+    <meta name="_token" content="{{ csrf_token() }}">
     <title>Suite Telefila V1.1</title>
 @endsection
     
 @section('header')
 <div class="page-main">
+        <!--div id ="clientes">hola</div-->
         <div class="header py-4">
           <div class="container">
             <div class="d-flex"> <a class="header-brand" href="./index.html"> <img
@@ -21,7 +23,7 @@
                     </span> </a>
                   <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                     <a class="dropdown-item" href="#"> <i class="dropdown-icon fe fe-user"></i>
-                      Editar perfil </a> <a class="dropdown-item" href="{{url('/logout')}}">  <i class="dropdown-icon fe fe-log-out"></i>
+                      Editar perfil </a> <a class="dropdown-item" href="#">  <i class="dropdown-icon fe fe-log-out"></i>
                       Salir </a> </div>
                 </div>
               </div>
@@ -34,12 +36,13 @@
           <div class="container">
             <div class="row align-items-center">
               <div class="col-lg-3 ml-auto">
-                <form class="input-icon my-3 my-lg-0"> <input class="form-control header-search"
+                <form class="input-icon my-3 my-lg-0"> 
+                <input class="form-control header-search" id="search"
                     placeholder="Buscar cliente…" tabindex="1" type="search">
                   <div class="input-icon-addon"> <i class="fe fe-search"></i> </div>
                 </form>
               </div>
-              <div class="col-lg order-lg-first">
+              <div class="col-lg order-lg-first" >
                 <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
                   <li class="nav-item"> <a href="#" class="nav-link"><i class="fe fe-home"></i>
                       Incio</a> </li>
@@ -54,16 +57,11 @@
             </div>
           </div>
         </div>
+
  @endsection
 
  @section('body')      
-        <div class="my-3 my-md-5">
-          <!--<div class="container">-->
-          <!--<nav class="breadcrumb breadcrumb-content">-->
-          <!--<a class="breadcrumb-item" href="javascript:void(0)">Library</a>-->
-          <!--<span class="breadcrumb-item active">Cards</span>-->
-          <!--</nav>-->
-          <!--</div>-->
+        <div class="my-3 my-md-5" >
           <div class="container">
             <div class="row row-cards"><br>
               <div class="col-12">
@@ -72,26 +70,25 @@
                     <h3 class="card-title">Listado general de Clientes</h3>
                   </div>
                   <div class="table-responsive">
-                  @if ($hospitales->isEmpty())
+                  <!--@if ($hospitales->isEmpty())
                   <br>
                     <center><h4>No tiene clientes registrados.</h4></center>
                   <br>
-                  @else
+                  @else -->
                     <table class="table card-table table-vcenter text-nowrap">
                       <thead>
                         <tr>
-                          <th class="w-1">Nro.</th>
+                          <th class="w-1">Id</th>
                           <th>NOMBRE</th>
                           <th>CIUDAD</th>
                           <th>TICKETS</th>
                           <th>ESTADO</th>
                           <th style="text-align: center;">ACCCIONES</th>
-                          <th><br>
-                          </th>
+                          <th><br></th>
                         </tr>
                       </thead>
                       <tbody>
-
+                      <!-- >
                         @foreach($hospitales as $hos)
                         <tr>
                           <td><span class="text-muted">{{sprintf("%04d",$hos->id)}}</span></td>
@@ -116,11 +113,12 @@
                           </td>
                         </tr>
                         @endforeach
+                        < -->
 
                        
                       </tbody>
                     </table>
-                  @endif
+                  <!--@endif*-->
                   </div>
                 </div>
               </div>
@@ -128,9 +126,25 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-@endsection
+      <script type="text/javascript">
+            $('#search').on('keyup',function(){
+                $value=$(this).val();
+                //alert($value);
+                $.ajax({
+                    type : 'get',
+                    url : '{{URL::to('search')}}',
+                    data:{'search':$value},
+                    success:function(data){
+                          $('tbody').html(data);
+                          //alert(data);
+                    }
+                });
+            })
+      </script>
+      <script type="text/javascript">
+            $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+      </script>
+      @endsection
 
 @section('footer')
   <footer class="footer">

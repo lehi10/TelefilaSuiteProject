@@ -38,8 +38,8 @@
           <div class="container">
             <div class="row align-items-center">
               <div class="col-lg-3 ml-auto">
-                <form class="input-icon my-3 my-lg-0"> <input class="form-control header-search"
-
+                <form class="input-icon my-3 my-lg-0"> 
+                <input class="form-control header-search" id="search"
                     placeholder="Buscar cliente…" tabindex="1" type="search">
                   <div class="input-icon-addon"> <i class="fe fe-search"></i> </div>
                 </form>
@@ -67,7 +67,8 @@
   
 @section('body')
 <div class="my-3 my-md-5">
-          <div class="container">
+          <div class="container" >
+          
             <div class="row row-cards"><br>
               <div class="col-12">
                 <div class="card">
@@ -369,6 +370,20 @@
                                 }
                             }
                         });
+
+                         $('#search').on('keyup',function(){
+                              $value=$(this).val();
+                              //alert($value);
+                              $.ajax({
+                                  type : 'get',
+                                  url : '{{URL::to('search')}}',
+                                  data:{'search':$value},
+                                  success:function(data){
+                                        $('#clientes').html(data);
+                                        //alert(data);
+                                  }
+                              });
+                          })
                     });
                 });
               </script> </div>

@@ -28,6 +28,7 @@ Route::get('/logout',function(){
     Auth::guard('administrador')->logout();
     return redirect("/");
 });
+
 Route::group(['middleware' => 'superUsuario'],function()
 {
    
@@ -43,6 +44,7 @@ Route::group(['middleware' => 'superUsuario'],function()
 });
 //superuser
 
+Route::get('/search','SearchController@search');
 /** 
  * Rutas para Modulo Super Usuario
  */
