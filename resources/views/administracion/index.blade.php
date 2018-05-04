@@ -17,7 +17,7 @@
               <div class="d-flex order-lg-2 ml-auto">
                 <div class="nav-item d-none d-md-flex"> <a href="admin/nuevoUsuario"
 
-                    class="btn btn-sm btn-outline-primary" target="_blank">Agregar
+                    class="btn btn-sm btn-outline-primary">Agregar
                     usuario</a></div>
                 <div class="dropdown"> <a href="#" class="nav-link pr-0 leading-none"
 
@@ -53,8 +53,14 @@
               </div>
               <div class="col-lg order-lg-first">
                 <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
-                  <li class="nav-item"> <a href="#" class="nav-link"><i class="fe fe-home"></i>
+                  @if (Auth::check())
+                  <li class="nav-item"> <a href="{{url('/superUsuario')}}" class="nav-link"><i class="fe fe-home"></i>
                       Incio</a> </li>
+                  @elseif(Auth::guard('administrador')->check())
+                  <li class="nav-item"> <a href="{{url($id.'/admin')}}" class="nav-link"><i class="fe fe-home"></i>
+                      Incio</a> </li>
+                  @endif
+
                   <li class="nav-item"> <a href="#" class="nav-link" data-toggle="dropdown"><i
 
                         class="fe fe-box"></i> Reportes</a> </li>

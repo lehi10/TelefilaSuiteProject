@@ -44,8 +44,13 @@
               </div>
               <div class="col-lg order-lg-first" >
                 <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
-                  <li class="nav-item"> <a href="#" class="nav-link"><i class="fe fe-home"></i>
+                @if (Auth::check())
+                  <li class="nav-item"> <a href="{{url('/superUsuario')}}" class="nav-link"><i class="fe fe-home"></i>
                       Incio</a> </li>
+                  @elseif(Auth::guard('administrador')->check())
+                  <li class="nav-item"> <a href="{{url($id.'/admin')}}" class="nav-link"><i class="fe fe-home"></i>
+                      Incio</a> </li>
+                  @endif
                   <li class="nav-item"> <a href="#" class="nav-link" data-toggle="dropdown"><i
                         class="fe fe-box"></i> Reportes</a> </li>
                   <li class="nav-item dropdown"> <br>

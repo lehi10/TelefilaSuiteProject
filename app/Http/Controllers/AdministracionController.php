@@ -12,7 +12,7 @@ class AdministracionController extends Controller
     
     public function __construct()
     {
-        $this->middleware('auth:administrador');
+        //$this->middleware('auth');
     }
 
     public function index(Request $request, $idCliente)
@@ -29,13 +29,14 @@ class AdministracionController extends Controller
 
             $usuarios =User::where('hospital_id',$request['idCliente'])->get(); ;        
             $hospital=Hospital::find($idCliente)->nombre;
-            return view('administracion.index',compact('usuarios','hospital'));
+            $id=Hospital::find($idCliente)->id;
+            return view('administracion.index',compact('usuarios','hospital','id'));
         }
     }
 
     public function nuevoUsuario(Request $request, $idCliente)
     {
-        return view('administracion.nuevoUsuario');
+        return view('administracion.nuevoUsuario',["id"=>$idCliente]);
     }
     
     public function editarUsuario( Request $request,$idCliente,$idUsuario)
@@ -60,22 +61,20 @@ class AdministracionController extends Controller
         $user->email=$request->email;
         $user->username=$request->usuario;
         $user->password=bcrypt($request->password);
-        $user->hospital_id=1;
+        $user->hospital_id=$request->hospital_id;
         $user->rol=$request->optRol;
         $user->persona_id=$per->id;
         $user->save();
 
-        echo "DNI  : ".$request['hospital_id']."<br>";
-        echo $request;
-
-        return redirect('/');
+     
+        return redirect($request->hospital_id.'/admin');
     }
     public function actualizarUsuario( Request $request)
     {
         $user=User::find($request->idUsuario);
         if($request->password)
         {
-            $user->password=$request->password;
+            $user->password=bcrypt($request->password);
         }
         $user->rol=$request->optRol;    
         $user->save();

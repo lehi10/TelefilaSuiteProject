@@ -42,13 +42,14 @@
         <div class="container">
           <div class="row">
             <div class="col col-login mx-auto">
-              <div style="text-align: center;"><img src="/images/logo_alpha1.png"
+              <div style="text-align: center;"><img src="{{url('/images/logo_alpha.png')}}"
 
                   alt="logo" title="logo"><br>
                 <br>
               </div>
               {!!Form::open(['action'=>'AdministracionController@guardarUsuario','method'=>'POST'])!!}
                 <div class="card-body p-6">
+                  <input type="hidden" name="hospital_id" value="{{$id}}">
                   <div class="card-title">Crear nuevo usuario</div>
                   <div class="form-group">
                     <input name="nombre" class="form-control" placeholder="Nombres completo" type="text"><br> 

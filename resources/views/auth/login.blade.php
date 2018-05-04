@@ -72,6 +72,10 @@
                     Contactanos +51 925125386 
                 </div>
               {!!Form::close()!!}
+              
+              <div>
+                <h5 style="color:red;"><center>{{session()->get('error')}}</center></h5>
+              </div>
             </div>
           </div>
         </div>
