@@ -23,6 +23,7 @@ class CrearTablaHospital extends Migration
             $table->string('region');
             $table->string("telefono",9);
             $table->string('personaContacto');
+            $table->tinyInteger('estado');
             $table->string('archivo_1')->nullable();
             $table->string('archivo_2')->nullable();
             $table->string('archivo_3')->nullable();

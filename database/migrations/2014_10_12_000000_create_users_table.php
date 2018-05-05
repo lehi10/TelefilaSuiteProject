@@ -29,6 +29,8 @@ class CreateUsersTable extends Migration
             $table->string('archivo')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            //Agregar el estado
+            $table->boolean('estado');
         });
     }
 
