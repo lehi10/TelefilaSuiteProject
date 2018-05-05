@@ -15,13 +15,15 @@ class SearchController extends Controller
         if($request->ajax()){
             
             $output=" ";
+            $c = " ' ";
             $datos = DB::table('hospitals')->where('nombre', 'like', '%'.$request->search.'%')->get();
-            
+            //echo($c);
             if($datos){
+                //$isq= "{{url('/'.$hos->id.'/admin')}}"
                     foreach ($datos as $key => $dato) {
                         $output.='<tr>'.
                         '<td><span class="text-muted">'.$dato->id.'</span></td>'.
-                        '<td><a href="{{url(/'.$dato->id.'/admin)}}" class="text-inherit">'.$dato->nombre.'<br></a></td>'.
+                        '<td><a href="'.$dato->id.'/admin" class="text-inherit">'.$dato->nombre.'<br></a></td>'.
                         '<td>'.$dato->ciudad.'</td>'.
                         '<td>0</td>'.
                         '<td> <span class="status-icon bg-success"></span>Operando </td>'.
