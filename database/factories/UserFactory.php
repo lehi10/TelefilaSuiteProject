@@ -13,13 +13,31 @@ use Faker\Generator as Faker;
 |
 */
 
+
+$factory->define(telefilaSuite\Persona::class, function (Faker $faker) { 
+    return [ 
+        'nombre' => $faker->firstname, 
+        'apellido' => $faker->lastname, 
+        'dni' => $faker->randomNumber($nbDigits=8), 
+        'telefono' => $faker->randomNumber($nbDigits=9), 
+        'sexo' => $faker->boolean, 
+        'edad' => $faker->numberBetween(10,50), 
+        'direccion' => $faker->address, 
+    ]; 
+}); 
+
 $factory->define(telefilaSuite\User::class, function (Faker $faker) {
-    $us=$faker->unique()->numberBetween(2,6);
+    $nom=$faker->username;
     return [
-        'username' => "admin".$us,
-        'email' => "admin".$us."@mail.com",
+        'username' => $nom,
+        'email' => $nom.'@mail.com',
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
         'rol'=>1,
+        'hospital_id'=>1,
+        'persona_id'=>function () { 
+            return factory(telefilaSuite\Persona::class)->create()->id; 
+       }, 
+        
         //'remember_token' => str_random(10),
     ];
 });

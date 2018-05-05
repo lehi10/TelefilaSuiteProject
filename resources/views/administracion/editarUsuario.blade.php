@@ -82,7 +82,7 @@
                     <input type="hidden" class="form-control" name="idCliente" value="{{$usuario->hospital_id}}">
                     
                     <label class="custom-switch">
-                      <input name="optRol" value="3" class="custom-switch-input" @if($usuario->rol==3 ) checked @endif type="radio"> 
+                      <input name="optRol" value="2" class="custom-switch-input" @if($usuario->rol==2 ) checked @endif type="radio"> 
                       <span class="custom-switch-indicator"></span>
                       <span class="custom-switch-description">Control de Caja</span>
                     </label>
@@ -90,7 +90,7 @@
 
                   <div class="form-group"> 
                     <label class="custom-switch">
-                      <input name="optRol" value="4" class="custom-switch-input" @if($usuario->rol==4 ) checked @endif type="radio"> 
+                      <input name="optRol" value="3" class="custom-switch-input" @if($usuario->rol==3 ) checked @endif type="radio"> 
                       <span class="custom-switch-indicator"></span>&nbsp;&nbsp;&nbsp; 
                       <span class="Rolando Ancajima Calle">Admisión</span>
                     </label>
@@ -98,13 +98,21 @@
 
                   <div class="form-group"> 
                     <label class="custom-switch">
-                      <input name="optRol" value="5" class="custom-switch-input" @if($usuario->rol==5 ) checked @endif type="radio"> 
+                      <input name="optRol" value="4" class="custom-switch-input" @if($usuario->rol==4 ) checked @endif type="radio"> 
                       <span class="custom-switch-indicator"></span>
                       <span class="custom-switch-description">Recursos Humanos</span>
                     </label> 
-                    <input name="option" value="6" class="custom-switch-input" @if($usuario->rol==6 ) checked @endif type="radio">&nbsp;</div>
-                  <div class="form-group"><span class="custom-switch-indicator"></span>
-                    <span class="custom-switch-description">Histórias Clínicas</span></div>
+                  </div>
+
+                  <div class="form-group"> 
+                    <label class="custom-switch">
+                      <input name="optRol" value="5" class="custom-switch-input" @if($usuario->rol==5 ) checked @endif type="radio"> 
+                      <span class="custom-switch-indicator"></span>&nbsp;&nbsp;&nbsp; 
+                      <span class="Rolando Ancajima Calle">Admisión</span>
+                    </label>
+                  </div>
+
+
                 </div>
                 <div class="col-sm-6 col-md-3">
                   <div class="form-group"><br> </div>

@@ -116,7 +116,12 @@
                           </a></td>
                           <td>{{$usuario->username}}</td>
                           <td>{{$usuario->rol}}</td> 
-                          <td> <span class="custom-switch-indicator"></span> <span class="custom-switch-description"></span> </td>
+                          <td> 
+                      <label class="custom-switch">
+                        <input name="optRol" value="5" class="custom-switch-input" @if($usuario->activo==1 ) checked @endif type="checkbox"> 
+                        <span class="custom-switch-indicator"></span> 
+                      </label>
+                   </td>
                         </tr>
                       @endforeach
                       </tbody>
@@ -138,8 +143,8 @@
             $value=$(this).val();
             $.ajax({
                 type : 'get',
-                url : '{{URL::to('{idCliente}/search')}}',
-                data:{'search':$value},
+                url : '{{URL::to('cliente/search')}}',
+                data:{'search':$value,'id':{{$id}}},
                 success:function(data){
                       $('tbody').html(data);
                 }
