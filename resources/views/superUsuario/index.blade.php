@@ -121,8 +121,8 @@
                           </td>
                         </tr>
                         @endforeach
-
-                       
+                        </php>
+                       </script>
                       </tbody>
                     </table>
                   @endif
