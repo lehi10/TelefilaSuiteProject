@@ -45,7 +45,7 @@
           <div class="container">
             <div class="row align-items-center">
               <div class="col-lg-3 ml-auto">
-                <form class="input-icon my-3 my-lg-0"> <input class="form-control header-search"
+                <form class="input-icon my-3 my-lg-0"> <input id = "search" class="form-control header-search"
 
                     placeholder="Buscar usuario…" tabindex="1" type="search">
                   <div class="input-icon-addon"> <i class="fe fe-search"></i> </div>
@@ -133,6 +133,19 @@
           </div>
         </div>
       </div>
+      <script type="text/javascript">
+        $('#search').on('keyup',function(){
+            $value=$(this).val();
+            $.ajax({
+                type : 'get',
+                url : '{{URL::to('{idCliente}/search')}}',
+                data:{'search':$value},
+                success:function(data){
+                      $('tbody').html(data);
+                }
+            });
+        })
+  </script>
       @endsection
       @section('footer')
       <footer class="footer">

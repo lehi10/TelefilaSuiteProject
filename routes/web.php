@@ -61,6 +61,7 @@ Route::get('{idCliente}/admin', 'AdministracionController@index' );
 Route::get('{idCliente}/admin/nuevoUsuario', 'AdministracionController@nuevoUsuario' );
 Route::get('{idCliente}/admin/editarUsuario/{idUsuario}','AdministracionController@editarUsuario' );
 
+Route::get('{idCliente}/search','buscadorUsuario@search');
 //Envio de Formulario
 Route::post('admin/guardarUsuario','AdministracionController@guardarUsuario');
 Route::post('admin/editarUsuario','AdministracionController@actualizarUsuario');
