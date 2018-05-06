@@ -14,7 +14,7 @@
 
 Route::get('', function(){
     return view('index');
-});
+})->middleware('guest');
 Auth::routes();
 //login
 //Route::get('login','SuperUsuarioController@login');

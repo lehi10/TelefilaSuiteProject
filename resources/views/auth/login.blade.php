@@ -54,7 +54,7 @@
 
                       aria-describedby="emailHelp" placeholder="Usuario" required="required"
 
-                      type="email" name="email"> </div>
+                      type="text" name="username"> </div>
                   <label class="form-label"> </label><input class="form-control"
 
                     id="exampleInputPassword1" placeholder="Clave" required="required" name="password"

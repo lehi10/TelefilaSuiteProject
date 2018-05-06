@@ -12,21 +12,22 @@ class OurLoginController extends Controller
     {
         $this->middleware('auth');
     }*/
+    protected $redirectTo = '/';
     public function login(Request $request)
     {
         //valido
         $this->validate($request,[
-            'email' => 'required',
+            'username' => 'required',
             'password' => 'required'
         ]);
     
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password],$request->remember))
+        if(Auth::attempt(['username' => $request->username, 'password' => $request->password],$request->remember))
         {
             
                return redirect()->intended('/superUsuario');
                        
         }
-        if (Auth::guard('administrador')->attempt(['usuario' => $request->email, 'password' => $request->password],$request->remember)) {
+        if (Auth::guard('administrador')->attempt(['usuario' => $request->username, 'password' => $request->password],$request->remember)) {
             // The user is active, not suspended, and exists.
             
             $id = Auth::guard('administrador')->user()->hospital_id;

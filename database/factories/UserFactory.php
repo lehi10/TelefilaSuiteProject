@@ -15,14 +15,15 @@ use Faker\Generator as Faker;
 
 
 $factory->define(telefilaSuite\Persona::class, function (Faker $faker) { 
-    return [ 
+    return  [ 
         'nombre' => $faker->firstname, 
         'apellido' => $faker->lastname, 
         'dni' => $faker->randomNumber($nbDigits=8), 
         'telefono' => $faker->randomNumber($nbDigits=9), 
         'sexo' => $faker->boolean, 
-        'edad' => $faker->numberBetween(10,50), 
-        'direccion' => $faker->address, 
+        'edad' => $faker->numberBetween(10,50),
+        'direccion' => $faker->address,
+
     ]; 
 }); 
 
@@ -37,6 +38,7 @@ $factory->define(telefilaSuite\User::class, function (Faker $faker) {
         'persona_id'=>function () { 
             return factory(telefilaSuite\Persona::class)->create()->id; 
        }, 
+        'estado' => 1,
         
         //'remember_token' => str_random(10),
     ];
@@ -51,7 +53,7 @@ $factory->define(telefilaSuite\Hospital::class, function (Faker $faker) {
         'region'=>$faker->state, 
         'telefono' => $faker->randomNumber($nbDigits=6),  
         'direccion' => $faker->address,  
-        'personaContacto'=>$faker->name 
-         
+        'personaContacto'=>$faker->name, 
+        'estado'=> 1,
     ];  
 }); 

@@ -117,6 +117,7 @@ class SuperUsuarioController extends Controller
     {
         $hos= new Hospital();
         $hos->fill($request->except(["_token","clave","usuario","password"]));  
+        $hos->estado=1;
         $hos->save();  //Ya no necesitas hacer la consulta de abajo por que ya esta en $hos;
       
         $admin= new Administrador();
