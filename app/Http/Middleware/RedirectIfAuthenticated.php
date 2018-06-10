@@ -20,7 +20,7 @@ class RedirectIfAuthenticated
     {
         if (Auth::guard($guard)->check()) {
             //error_log("holi cuidado");
-            return redirect(strtolower( $request->user()->rol->nombre));
+            return redirect( $request->user()->rol->url);
         }
 
         return $next($request);

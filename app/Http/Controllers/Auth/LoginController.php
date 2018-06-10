@@ -44,7 +44,7 @@ class LoginController extends Controller
         {
             $user=Auth::user();
             //return $user->rol->nombre;
-            return redirect(strtolower($user->rol->nombre));
+            return redirect($user->rol->url);
         }
         //return "No logueado";
         return  redirect("/login")->withErrors(["user"=>"Usuario o contraseña incorrectos"]);

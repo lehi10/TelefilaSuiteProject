@@ -17,7 +17,7 @@ class SuperUsuarioController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth','rol:superUser']);
+        $this->middleware(['auth','rol:SuperUser']);
     }
 
     public function index(Request $request)
@@ -62,7 +62,7 @@ class SuperUsuarioController extends Controller
     public function editClientUser(Request $request)
     {
         //return $request;
-        if (in_array( $request->optRol,["3","4","5"]))
+        if (in_array( $request->optRol,["3","4","5","6"]))
         {
             $user=User::find($request->idUsuario);
             $user->rol_id=$request->optRol;

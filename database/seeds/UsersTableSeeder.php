@@ -23,7 +23,7 @@ class UsersTableSeeder extends Seeder
         $user->apellidos=$faker->lastname;
         $user->estado=1;
         $user->save();
-        for ($i=2;$i<8;$i++)
+        for ($i=2;$i<10;$i++)
         {
             $user= new User;
             $user->username="usuario".$i;

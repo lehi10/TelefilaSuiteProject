@@ -44,14 +44,14 @@ class User extends Authenticatable
 
     public function tieneRol($rol)
     {
-        if ($this->rol->nombre=="superUser")
+        if ($this->rol_id=="1")
             return True;
         return $this->rol->nombre==$rol;
     }
 
     public function rolUrl()
     {
-        return strtolower( $this->rol->nombre);
+        return $this->rol->url;
     }
 
 

@@ -51,6 +51,14 @@
                     </label> 
                   </div>
 
+                   <div class="form-group"> 
+                    <label class="custom-switch">
+                      <input name="optRol" value="6" class="custom-switch-input" @if($usuario->rol->id==6 ) checked @endif type="radio"> 
+                      <span class="custom-switch-indicator"></span>
+                      <span class="custom-switch-description">Historial Medico</span>
+                    </label> 
+                  </div>
+
 
 
 
