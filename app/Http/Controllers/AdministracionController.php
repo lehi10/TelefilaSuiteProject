@@ -82,5 +82,16 @@ class AdministracionController extends Controller
         return redirect('/'.$request->idCliente.'/admin');
     }
 
+    public function nuevoConsultorio(Request $request)
+    {
+        return view('administracion.nuevoConsultorio');
+    }
+
+    public function mostrarConsultorios(Request $request)
+    {
+        return view('administracion.mostrarConsultorios');
+    }
+
+    
     
 }

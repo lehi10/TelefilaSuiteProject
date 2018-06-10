@@ -47,7 +47,8 @@ Route::group(['prefix'=>'superuser','middleware' => 'rol:superUser'],function()
 //Rutas para administrador
 Route::group(['prefix'=>'administrador','middleware' => 'rol:Administrador'],function()
 {
-   
+    Route::get( 'mostrarConsultorios','AdministracionController@mostrarConsultorios');
+    Route::get( 'nuevoConsultorio','AdministracionController@nuevoConsultorio');
     Route::get('/',  function() {return "Vista para administradores";} );
 });
 
@@ -63,7 +64,7 @@ Route::group(['prefix'=>'caja','middleware' => 'rol:Caja'],function()
 //Rutas para admision
 Route::group(['prefix'=>'admision','middleware' => 'rol:Admision'],function()
 {
-   
+
     Route::get('/',  function() {return "Vista para admision";} );
 });
 
