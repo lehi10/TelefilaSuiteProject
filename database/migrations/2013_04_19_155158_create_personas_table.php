@@ -15,13 +15,15 @@ class CreatePersonasTable extends Migration
     {
         Schema::create('personas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string("nombre");
-            $table->string("apellido");
-            $table->string("dni",8);
-            $table->string("telefono",9);
-            $table->boolean("sexo");
-            $table->tinyInteger("edad");
-            $table->string("direccion");
+            $table->string("nombres");
+            $table->string("apellidos");
+            $table->string("dni",8)->nullable();
+            $table->string('ciudad')->nullable();
+            $table->boolean('sis')->nullable();
+            $table->string("celular",9)->nullable();
+            $table->boolean("sexo")->nullable();
+            $table->tinyInteger("edad")->nullable();
+            $table->string("direccion")->nullable();
             $table->timestamps();
         });
     }

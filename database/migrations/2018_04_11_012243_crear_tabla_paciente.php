@@ -15,8 +15,16 @@ class CrearTablaPaciente extends Migration
     {
         Schema::create('pacientes', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('persona_id');
-            $table->foreign('persona_id')->references('id')->on('personas');
+            $table->string("nombre");
+            $table->string("apellido");
+            $table->string("dni",8);
+            $table->string('departamento');
+            $table->string('ciudad');
+            $table->tinyInteger("edad");
+            $table->boolean('sis');
+            $table->boolean("sexo");
+            $table->string("celular",9)->nullable();
+            //$table->string("direccion");
             $table->timestamps();
         });
     }

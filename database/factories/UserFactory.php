@@ -14,15 +14,19 @@ use Faker\Generator as Faker;
 */
 
 
-$factory->define(telefilaSuite\Persona::class, function (Faker $faker) { 
+$factory->define(telefilaSuite\Paciente::class, function (Faker $faker) { 
     return  [ 
         'nombre' => $faker->firstname, 
         'apellido' => $faker->lastname, 
-        'dni' => $faker->randomNumber($nbDigits=8), 
-        'telefono' => $faker->randomNumber($nbDigits=9), 
-        'sexo' => $faker->boolean, 
+        'dni' => $faker->dni, 
+        'departamento' => $faker->state, 
+        'ciudad'=>$faker->city,
+        'edad'=>random_int(10,40),
         'edad' => $faker->numberBetween(10,50),
-        'direccion' => $faker->address,
+        'sis' => $faker->boolean, 
+        'sexo' => $faker->boolean, 
+        'celular' => $faker->randomNumber($nbDigits=9),
+        //'direccion' => $faker->address,
 
     ]; 
 }); 
@@ -48,12 +52,16 @@ $factory->define(telefilaSuite\Hospital::class, function (Faker $faker) {
     return [  
         'nombre' => $faker->lastname,  
         'ruc'=>$faker->randomNumber($nbDigits=8), 
-        'director'=>$faker->name, 
+        'nombrePersona'=>$faker->name,
+        'emailPersona'=>$faker->email,
+        'celularPersona'=>$faker->phoneNumber,
+        'direccion' => $faker->streetAddress,  
         'ciudad'=>$faker->city, 
         'region'=>$faker->state, 
-        'telefono' => $faker->randomNumber($nbDigits=6),  
-        'direccion' => $faker->address,  
-        'personaContacto'=>$faker->name, 
+        'fechaInicio'=>$faker->date($format = 'Y-m-d', $max = 'now'),
+        'tarifa'=>10,
         'estado'=> 1,
+        'licenciaAnual'=>0
     ];  
 }); 
+

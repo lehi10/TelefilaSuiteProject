@@ -15,22 +15,22 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('email')->unique();
             $table->string('username')->unique();
             $table->string('password');
+
+            //Agregar el roll
+            $table->boolean('estado');
+            
+            $table->string('nombres');
+            $table->string('apellidos');
             //Agregar id hospital !!
             $table->integer('hospital_id')->unsigned()->nullable();
-            $table->foreign('hospital_id')->references('id')->on('hospitals');
-            //Agregar el roll
-            $table->tinyInteger('rol');
+            $table->integer('rol_id')->unsigned();
 
-            $table->unsignedInteger('persona_id')->nullable();
-            $table->foreign('persona_id')->references('id')->on('personas');
-            $table->string('archivo')->nullable();
+            $table->foreign('rol_id')->references('id')->on('rols');
+            $table->foreign('hospital_id')->references('id')->on('hospitals');
             $table->rememberToken();
             $table->timestamps();
-            //Agregar el estado
-            $table->boolean('estado');
         });
     }
 

@@ -16,8 +16,15 @@ class CrearTablaMedico extends Migration
         //Tabla no referenceada
         Schema::create('medicos', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('persona_id');
-            $table->foreign('persona_id')->references('id')->on('personas');
+            $table->string('nombres');
+            $table->string('apellidos');
+            $table->string('cmp');
+            $table->unsignedInteger('especialidad_id');
+            $table->unsignedInteger('hospital_id');
+
+            $table->foreign('especialidad_id')->references('id')->on('especialidads');
+            $table->foreign('hospital_id')->references('id')->on('hospitals');
+
             $table->timestamps();
         });
     }

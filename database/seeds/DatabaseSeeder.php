@@ -11,8 +11,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
-        factory(telefilaSuite\Hospital::class,1)->create();  
-        factory(telefilaSuite\User::class,1)->create();  
+        $this->call([
+            HospitalsTableSeeder::class,
+            RolsTableSeeder::class,
+            UsersTableSeeder::class,
+            EspecialidadTableSeeder::class,
+            MedicosTableSeeder::class,
+            ]);
+
+
     }
 }

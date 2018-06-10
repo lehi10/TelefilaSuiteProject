@@ -79,7 +79,7 @@ return [
     */
 
     'locale' => 'es',
-
+    'faker_locale'=>'es_PE',
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale

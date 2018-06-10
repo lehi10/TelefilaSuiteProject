@@ -16,20 +16,20 @@ class CrearTablaHospital extends Migration
         Schema::create('hospitals', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
-            $table->string('ruc');
-            $table->string('director');
+            $table->string('ruc',11);
+            $table->string('nombrePersona');
+            $table->string('emailPersona');
+            $table->string('celularPersona');
             $table->string('direccion');
             $table->string('ciudad');
-            $table->string('region');
-            $table->string("telefono",9);
-            $table->string('personaContacto');
+            $table->string('referencia')->nullable();
+            $table->string('region'); //codigo de region
+            $table->string('logo')->nullable();
+            $table->string('contratos')->nullable();
+            $table->date('fechaInicio');
+            $table->unsignedInteger('tarifa');
             $table->tinyInteger('estado');
-            $table->string('archivo_1')->nullable();
-            $table->string('archivo_2')->nullable();
-            $table->string('archivo_3')->nullable();
-            $table->string('archivo_4')->nullable();
-            $table->string('archivo_5')->nullable();
-            $table->string('archivo_6')->nullable();
+            $table->boolean('licenciaAnual');
             $table->timestamps();
         });
     }
