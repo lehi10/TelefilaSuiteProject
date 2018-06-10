@@ -54,14 +54,18 @@
                             class="btn btn-sm btn-outline-primary">Agregar
                             cliente</a> 
                         </div>
+                        @yield('auxiliar')
+                        
                         @elseif(Auth::user()->tieneRol("Administrator"))
                         <div class="nav-item d-none d-md-flex"> <a href="{{url('/administrador/nuevoCliente')}}"
                             class="btn btn-sm btn-outline-primary">Agregar
                             usuario</a> 
                         </div>
                         @endif
+
+                        
                         <div class="dropdown"> <a href="#" class="nav-link pr-0 leading-none"
-                            data-toggle="dropdown"> <span class="avatar" style="background-image: url({{url('/demo/faces/female/25.jpg')}})"></span>
+                            data-toggle="dropdown"> <span class="avatar" style="background-image:url( {{url('/demo/faces/female/25.jpg')}})"></span>
                             <span class="ml-2 d-none d-lg-block"> <span class="text-default">{{Auth::user()->username}}</span> <small class="text-muted d-block mt-1">{{Auth::user()->rol->nombre}}</small>
                             </span> </a>
                           <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
@@ -80,20 +84,21 @@
                   <div class="container">
                     <div class="row align-items-center">
                       <div class="col-lg-3 ml-auto">
-                        
+                        <form class="input-icon my-3 my-lg-0"> <input id="search" class="form-control header-search"
+                            placeholder="Buscar cliente…" tabindex="1" type="search">
+                          <div class="input-icon-addon"> <i class="fe fe-search"></i> </div>
+                        </form>
                       </div>
                       <div class="col-lg order-lg-first">
                         <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
                         
                           <li class="nav-item"> <a href="{{url('/'.Auth::user()->rolUrl())}}" class="nav-link"><i class="fe fe-home"></i>
-                              Incio</a> </li>
+                              Inicio</a> </li>
                           
                           @if (Auth::user()->tieneRol('superUser'))
                           <li class="nav-item"> <a href="#" class="nav-link" data-toggle="dropdown"><i
                                 class="fe fe-box"></i> Reportes</a> </li>
                           @endif
-
-
                           <li class="nav-item dropdown"> <br>
                           </li>
                           <li class="nav-item"> <br>

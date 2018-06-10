@@ -54,6 +54,7 @@ $factory->define(telefilaSuite\Hospital::class, function (Faker $faker) {
         'ruc'=>$faker->randomNumber($nbDigits=8), 
         'nombrePersona'=>$faker->name,
         'emailPersona'=>$faker->email,
+        'telefono'=>$faker->phoneNumber,
         'celularPersona'=>$faker->phoneNumber,
         'direccion' => $faker->streetAddress,  
         'ciudad'=>$faker->city, 

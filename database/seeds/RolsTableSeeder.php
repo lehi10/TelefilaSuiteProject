@@ -25,5 +25,8 @@ class RolsTableSeeder extends Seeder
         $r1=new Rol;
         $r1->nombre="Admision";
         $r1->save();
+        $r1=new Rol;
+        $r1->nombre="Recursos Humanos";
+        $r1->save();
     }
 }

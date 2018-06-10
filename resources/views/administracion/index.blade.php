@@ -1,79 +1,16 @@
-@extends('layouts.base')
+@extends('layouts.template')
 
-@section('title')
-<title>Administración</title>
+@section('title','Administrador')
+
+@section('auxiliar')
+<div class="nav-item d-none d-md-flex"> <a href="{{url('/administrador/nuevoUsuario')}}"
+                            class="btn btn-sm btn-outline-primary">Agregar
+                            usuario</a> 
+</div>
 @endsection
 
-  
     
-      @section('header')
-        <div class="header py-4">
-          <div class="container">
-            <div class="d-flex"> <a class="header-brand" href="./index.html"> <img
-
-                  src="{{url('/images/logo_alpha.png')}}"
-
-                  alt="logo" title="logo" style="width: 144px; height: 36px;"> </a>
-              <div class="d-flex order-lg-2 ml-auto">
-                <div class="nav-item d-none d-md-flex"> <a href="admin/nuevoUsuario"
-
-                    class="btn btn-sm btn-outline-primary">Agregar
-                    usuario</a></div>
-                <div class="dropdown"> <a href="#" class="nav-link pr-0 leading-none"
-
-                    data-toggle="dropdown"> <span class="avatar" style="background-image: url(/demo/faces/female/25.jpg)"></span>
-                    <span class="ml-2 d-none d-lg-block"> <span class="text-default">
-                    Hospital {{$hospital}}
-                        </span> <small class="text-muted d-block mt-1">Administrator</small>
-                    </span> </a>
-                  <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                    <a class="dropdown-item" href="#"> 
-                      <i class="dropdown-icon fe fe-user">
-                      </i>
-                      Editar perfil </a> <a class="dropdown-item" href="{{url('/logout')}}"> 
-                      <i class="dropdown-icon fe fe-log-out"></i>
-                      Salir </a> </div>
-                </div>
-              </div>
-              <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse"
-
-                data-target="#headerMenuCollapse"> <span class="header-toggler-icon"></span>
-              </a> </div>
-          </div>
-        </div>
-        <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
-          <div class="container">
-            <div class="row align-items-center">
-              <div class="col-lg-3 ml-auto">
-                <form class="input-icon my-3 my-lg-0"> <input id = "search" class="form-control header-search"
-
-                    placeholder="Buscar usuario…" tabindex="1" type="search">
-                  <div class="input-icon-addon"> <i class="fe fe-search"></i> </div>
-                </form>
-              </div>
-              <div class="col-lg order-lg-first">
-                <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
-                  @if (Auth::check())
-                  <li class="nav-item"> <a href="{{url('/superUsuario')}}" class="nav-link"><i class="fe fe-home"></i>
-                      Incio</a> </li>
-                  @elseif(Auth::guard('administrador')->check())
-                  <li class="nav-item"> <a href="{{url($id.'/admin')}}" class="nav-link"><i class="fe fe-home"></i>
-                      Incio</a> </li>
-                  @endif
-
-                  <li class="nav-item"> <a href="#" class="nav-link" data-toggle="dropdown"><i
-
-                        class="fe fe-box"></i> Reportes</a> </li>
-                  <li class="nav-item dropdown"> <br>
-                  </li>
-                  <li class="nav-item"> <br>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        @endsection
+    
         @section('body')
         <div class="my-3 my-md-5">
           <!--<div class="container">-->
@@ -112,10 +49,10 @@
                         <tr>
                           <td><span class="text-muted">{{$usuario->id}}</span></td>
                           <td><a href="{!! url('/')!!}/{{$usuario->hospital_id}}/admin/editarUsuario/{{$usuario->id}}" class="text-inherit"> 
-                            {{$usuario->persona->nombre}} {{$usuario->persona->apellido}} <br>
+                            {{$usuario->nombres}} {{$usuario->apellidos}} <br>
                           </a></td>
                           <td>{{$usuario->username}}</td>
-                          <td>{{$usuario->rol}}</td> 
+                          <td>{{$usuario->rol->nombre}}</td> 
                           <td> 
                       <label class="custom-switch">
                         <input name="optRol" value="5" class="custom-switch-input" @if($usuario->activo==1 ) checked @endif type="checkbox"> 

@@ -14,8 +14,16 @@ class UsersTableSeeder extends Seeder
     {
         //
         $faker=Faker\Factory::create();
-        $j=1;
-        for ($i=1;$i<8;$i++)
+        $j=2;
+        $user= new User;
+        $user->username="usuario1";
+        $user->password=bcrypt('secret');
+        $user->rol_id=1;
+        $user->nombres=$faker->firstname;
+        $user->apellidos=$faker->lastname;
+        $user->estado=1;
+        $user->save();
+        for ($i=2;$i<8;$i++)
         {
             $user= new User;
             $user->username="usuario".$i;

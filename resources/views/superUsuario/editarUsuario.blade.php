@@ -20,16 +20,16 @@
                   <div class="form-group"> <label class="form-label">Editar
                       Usuario</label></div>
                   <br>
-                  <div class="form-group"><input class="form-control" disabled="disabled" placeholder="Company" value="{{$usuario->persona->nombre}} {{$usuario->persona->apellido}}" type="text"><br>
+                  <div class="form-group"><input class="form-control" disabled="disabled" placeholder="Company" value="{{$usuario->nombres}} {{$usuario->apellidos}}" type="text"><br>
                   </div>
-                  {!!Form::open(['action'=>'AdministracionController@actualizarUsuario','method'=>'POST'])!!}
+                  {!!Form::open(['url'=>'superuser/editUser','method'=>'POST'])!!}
                   <div class="form-group">Cambiar ROL</div>
                   <div class="form-group"> 
                     <input type="hidden" class="form-control" name="idUsuario" value="{{$usuario->id}}">
                     <input type="hidden" class="form-control" name="idCliente" value="{{$usuario->hospital_id}}">
                     
                     <label class="custom-switch">
-                      <input name="optRol" value="2" class="custom-switch-input" @if($usuario->rol==2 ) checked @endif type="radio"> 
+                      <input name="optRol" value="3" class="custom-switch-input" @if($usuario->rol->id==3 ) checked @endif type="radio"> 
                       <span class="custom-switch-indicator"></span>
                       <span class="custom-switch-description">Control de Caja</span>
                     </label>
@@ -37,7 +37,7 @@
 
                   <div class="form-group"> 
                     <label class="custom-switch">
-                      <input name="optRol" value="3" class="custom-switch-input" @if($usuario->rol==3 ) checked @endif type="radio"> 
+                      <input name="optRol" value="4" class="custom-switch-input" @if($usuario->rol->id==4 ) checked @endif type="radio"> 
                       <span class="custom-switch-indicator"></span>&nbsp;&nbsp;&nbsp; 
                       <span class="Rolando Ancajima Calle">Admisión</span>
                     </label>
@@ -45,19 +45,13 @@
 
                   <div class="form-group"> 
                     <label class="custom-switch">
-                      <input name="optRol" value="4" class="custom-switch-input" @if($usuario->rol==4 ) checked @endif type="radio"> 
+                      <input name="optRol" value="5" class="custom-switch-input" @if($usuario->rol->id==5 ) checked @endif type="radio"> 
                       <span class="custom-switch-indicator"></span>
                       <span class="custom-switch-description">Recursos Humanos</span>
                     </label> 
                   </div>
 
-                  <div class="form-group"> 
-                    <label class="custom-switch">
-                      <input name="optRol" value="5" class="custom-switch-input" @if($usuario->rol==5 ) checked @endif type="radio"> 
-                      <span class="custom-switch-indicator"></span>&nbsp;&nbsp;&nbsp; 
-                      <span class="Rolando Ancajima Calle">Admisión</span>
-                    </label>
-                  </div>
+
 
 
                 </div>
@@ -92,7 +86,7 @@
                   <!-- Modal content-->
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h4 class="modal-title">Esta seguro de Eliminar al usuario {{$usuario->persona->nombre}} {{$usuario->persona->apellido}} </h4>
+                      <h4 class="modal-title">Esta seguro de Eliminar al usuario {{$usuario->nombres}} {{$usuario->apellidos}} </h4>
                       <button type="button" class="close" data-dismiss="modal"></button>
                     </div>
                     <div class="modal-footer ">

@@ -14,8 +14,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-         'username', 'password'
+    protected $guarded = [
     ];
 
     /**
@@ -24,7 +23,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+         'password','remember_token',
     ];
 
     public function hospital()
@@ -36,6 +35,8 @@ class User extends Authenticatable
         return $this->belongsTo(Rol::class);
     }
 
+
+
     public function consultorios()
     {
         return $this->hasMany(Consultorio::class);
@@ -46,6 +47,11 @@ class User extends Authenticatable
         if ($this->rol->nombre=="superUser")
             return True;
         return $this->rol->nombre==$rol;
+    }
+
+    public function rolUrl()
+    {
+        return strtolower( $this->rol->nombre);
     }
 
 

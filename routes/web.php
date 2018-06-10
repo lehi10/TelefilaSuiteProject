@@ -12,10 +12,12 @@
 
 /* llamadas para  interfaces de super_user*/
 
-Route::get('', function(){
+
+Auth::routes();
+
+Route::get('/', function(){
     return view('index');
 })->middleware('guest');
-Auth::routes();
 //login
 //Route::get('login','SuperUsuarioController@login');
 //Route::post('validarLogin','SuperUsuarioController@validarLogin');
@@ -34,8 +36,15 @@ Route::group(['prefix'=>'superuser','middleware' => 'rol:superUser'],function()
 
     Route::get('/', 'SuperUsuarioController@index' );
     Route::get('nuevoCliente', 'SuperUsuarioController@nuevoCliente' );
-    Route::get('{idCliente}/nuevoUsuario', 'SuperUsuarioController@nuevoUsuario' );
+    //Route::get('{idCliente}/nuevoUsuario', 'SuperUsuarioController@nuevoUsuario' );
     Route::get('cliente/{idCliente}', 'SuperUsuarioController@cliente');
+
+    Route::get('{idUser}/user', 'SuperUsuarioController@clienteUser');
+    Route::get('{idCliente}/nuevoUser', 'SuperUsuarioController@nuevoUser');
+
+    Route::post('editUser', 'SuperUsuarioController@editClientUser' );
+    Route::post('nuevoUser','SuperUsuarioController@nuevoClientUser');
+
     Route::get('listaClientes', 'SuperUsuarioController@listarClientes' );
     Route::get('listaUsuarios', 'SuperUsuarioController@listarUsuarios' );
 

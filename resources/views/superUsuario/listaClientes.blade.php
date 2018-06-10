@@ -1,20 +1,7 @@
-@extends('superUsuario.main')
 
 
-@section('header')
-<div class="browser_width colelem" id="u226-bw">
-    <div id="u226"><!-- group -->
-     <div class="clearfix" id="u226_align_to_page">
-      <div class="clearfix grpelem" id="u227-4"><!-- content -->
-       <p>SUITE CENTRO DE SALUD</p>
-      </div>
-      <div class="clip_frame grpelem" id="u232"><!-- image -->
-       <img class="block" id="u232_img" src="/images/logo_alpha.png?crc=4023370297" alt="" data-image-width="141" data-image-height="35"/>
-      </div>
-     </div>
-    </div>
-   </div>
-@endsection
+@section('title','Super Usuaasdsario')
+
 
 @section('content')
     

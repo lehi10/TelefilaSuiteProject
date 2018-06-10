@@ -19,10 +19,6 @@ class SuperUsuarioController extends Controller
     {
         $this->middleware(['auth','rol:superUser']);
     }
-    
-
-
-
 
     public function index(Request $request)
     {
@@ -43,15 +39,63 @@ class SuperUsuarioController extends Controller
             return view('superUsuario.nuevoUsuario',["id"=>$cliente->id,"nombre"=>$cliente->nombre] );
         }        
         if($countRes->count() == 0 )
-            return redirect('superUsuario/');//->with('message','store');
+            return redirect('superuser/');//->with('message','store');
 
         else
             return "Error : Overflow of Results.";
     }
 
     public function cliente($idCliente){
-        $cliente =\telefilaSuite\Hospital::where('id',$idCliente)->get();   
-        return view('superUsuario.cliente',compact('cliente'));
+        $cliente =Hospital::find($idCliente);
+        $users=$cliente->users->where('rol_id','!=',2);
+        
+        return view('superUsuario.cliente',["usuarios"=>$users,"hospital_id"=>$cliente->id,"nombre"=>$cliente->nombre]);
+    }
+
+
+    public function clienteUser($idUser)
+    {
+        $user =User::find($idUser);
+        return view('superUsuario.editarUsuario',['usuario'=>$user]);                
+    }
+
+    public function editClientUser(Request $request)
+    {
+        //return $request;
+        if (in_array( $request->optRol,["3","4","5"]))
+        {
+            $user=User::find($request->idUsuario);
+            $user->rol_id=$request->optRol;
+            if($request->password)
+            {
+                $user->password=bcrypt($request->password);
+                
+            }
+            $user->save();
+            return redirect('superuser/cliente/'.$request->idCliente);
+        }
+    }
+
+
+    public function nuevoUser($idCliente)
+    {
+        return view('superUsuario.nuevoUsuario',["hospital_id"=>$idCliente]);
+    }
+
+    public function nuevoClientUser(Request $request)
+    {
+        //return $request;
+
+        $user= new User;
+        $user->fill($request->except(['_token']));
+        $user->password=bcrypt($request->password);
+        if ($request->estado)
+            $user->estado=true;
+        else
+            $user->estado=false;
+        //return $user;
+        $user->save();
+        return redirect('superuser/cliente/'.$request->hospital_id)->with('message','El usuario ha sido registrado satisfactoriamente.');
     }
 
     public function listarClientes(Request $request){
@@ -106,17 +150,28 @@ class SuperUsuarioController extends Controller
      */
     public function store(Request $request)
     {
+        //return dd($request);
         $hos= new Hospital();
-        $hos->fill($request->except(["_token","clave","usuario","password"]));  
-        $hos->estado=1;
+        $hos->fill($request->except(["_token","mes","dia","year","usuario","password"]));  
+        //$hos->estado=1;
+        $hos->fechaInicio=join('-',[ $request->year,$request->mes,$request->dia]);
+        if ($request->licencia)
+            $hos->licenciaAnual=true;
+        else
+            $hos->licenciaAnual=false;
+        
         $hos->save();  //Ya no necesitas hacer la consulta de abajo por que ya esta en $hos;
       
-        $admin= new Administrador();
-        $admin->usuario=$request->usuario;
+        $admin= new User();
+        $admin->username=$request->usuario;
         $admin->password=bcrypt($request->password);  // No se olviden de encriptarlo, si no el login no funciona
+        $admin->estado=true;
+        $admin->nombres="Hospital";
+        $admin->apellidos=$request->nombre;
         $admin->hospital_id=$hos->id;   // Se llama el id del hospital que se creó arriba
+        $admin->rol_id=2;  //Administrador
         $admin->save();
-        return redirect('superUsuario/');//->with('message','store');
+        return redirect('superuser/')->with('message','El cliente ha sido registrado satisfactoriamente.');
     }
 
     public function guardarUsuario(Request $request){

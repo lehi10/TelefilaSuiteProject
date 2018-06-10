@@ -17,9 +17,11 @@ class CrearTablaHospital extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('ruc',11);
+            $table->string('telefono');
             $table->string('nombrePersona');
             $table->string('emailPersona');
             $table->string('celularPersona');
+            
             $table->string('direccion');
             $table->string('ciudad');
             $table->string('referencia')->nullable();
