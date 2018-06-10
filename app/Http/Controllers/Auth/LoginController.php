@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use telefilaSuite\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
+use telefilaSuite\User;
 
 class LoginController extends Controller
 {
@@ -40,11 +41,16 @@ class LoginController extends Controller
     }
     public function login(Request $request)
     {
-        if (Auth::attempt(['username'=>$request->username,'password'=>$request->password],$request->remember))
+        if (Auth::attempt(['username'=>$request->username,'password'=>$request->password,'estado'=>1],$request->remember))
         {
             $user=Auth::user();
             //return $user->rol->nombre;
             return redirect($user->rol->url);
+        }
+        elseif(User::where('username',$request->username))
+        {
+
+            return redirect('/login')->withErrors(['user'=>"El usuario no esta activo"]);
         }
         //return "No logueado";
         return  redirect("/login")->withErrors(["user"=>"Usuario o contraseña incorrectos"]);
