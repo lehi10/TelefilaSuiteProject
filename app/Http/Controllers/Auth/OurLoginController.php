@@ -8,11 +8,12 @@ use Auth;
 
 class OurLoginController extends Controller
 {
-   /* public function __construct()
+    /*
+    public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('guest');
     }*/
-    protected $redirectTo = '/';
+    protected $redirecPath="";
     public function login(Request $request)
     {
         //valido
@@ -36,6 +37,6 @@ class OurLoginController extends Controller
         }
         //si no entra es que se equivoco o no existe
         //lo regreso al login recordando solo el username mas no el password
-        return  redirect("/login")->with(["error"=>"El correo o contraseña son incorrectos"]);
+        return  redirect("/login")->withErrors(["user"=>"Usuario o contraseña incorrectos"]);
     }
 }

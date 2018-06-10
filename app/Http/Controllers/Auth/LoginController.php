@@ -2,8 +2,10 @@
 
 namespace telefilaSuite\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use telefilaSuite\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -25,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-
+    protected $redirecTo="/";
 
     /**
      * Create a new controller instance.
@@ -36,4 +38,16 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    public function login(Request $request)
+    {
+        if (Auth::attempt(['username'=>$request->username,'password'=>$request->password],$request->remember))
+        {
+            $user=Auth::user();
+            //return $user->rol->nombre;
+            return redirect(strtolower($user->rol->nombre));
+        }
+        //return "No logueado";
+        return  redirect("/login")->withErrors(["user"=>"Usuario o contraseña incorrectos"]);
+    }
+
 }

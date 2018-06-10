@@ -20,9 +20,9 @@ class Medico extends Model
         return $this->belongsTo(Hospital::class);
     }
 
-    public function persona()
+    public function consultorios()
     {
-        return $this->belongsTo(Persona::class);
+        return $this->hasMany(Consultorio::class);
     }
     //Observar
     //Espacio para referenciar a citas o usar agendas

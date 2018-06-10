@@ -37,9 +37,6 @@ class Kernel extends HttpKernel
             \telefilaSuite\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
-        'superUsuario'=>[
-            \telefilaSuite\Http\Middleware\superUsuario::class,
-        ],
 
         'api' => [
             'throttle:60,1',
@@ -61,6 +58,7 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \telefilaSuite\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'rol'=> \telefilaSuite\Http\Middleware\superUsuario::class,
       
     ];
 }

@@ -13,12 +13,12 @@ class superUsuario
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next,$rol)
     {
-        if(Auth::user()->rol==1)
+        if($request->user()->tieneRol($rol))
         {
             return $next($request);
         }
-        abort(401,"User not authorized");
+        abort(403,"Usuario no autorizado.");
     }
 }

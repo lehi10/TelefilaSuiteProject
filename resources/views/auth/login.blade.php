@@ -65,17 +65,20 @@
 
                         class="custom-control-label">Recordarme en este equipo</span>
                     </label> </div>
-                  <div class="form-footer"> <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                  <div class="form-footer"> <button type="submit" name="remember" class="btn btn-primary btn-block">Entrar</button>
                   </div>
                 </div>
+                @if($errors->has('user'))
+                <div class="alert alert-danger form-group text-center" role="alert">
+                  {{$errors->first('user')}}
+                </div>
+                @endif
+
                 <div class="text-center text-muted" style="font-weight: normal;">
                     Contactanos +51 925125386 
                 </div>
               {!!Form::close()!!}
               
-              <div>
-                <h5 style="color:red;"><center>{{session()->get('error')}}</center></h5>
-              </div>
             </div>
           </div>
         </div>

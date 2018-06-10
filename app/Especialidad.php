@@ -16,4 +16,8 @@ class Especialidad extends Model
     {
         return $this->belongsTo(Hospital::class);
     }
+    public function consultorios()
+    {
+        return $this->hasMany(Consultorio::class);
+    }
 }

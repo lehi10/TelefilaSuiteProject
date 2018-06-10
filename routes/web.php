@@ -22,27 +22,58 @@ Auth::routes();
 
 //Route::post('/index', ['as' => '/index','uses' =>'Auth\OurLoginController@login'])->name('login.submit');
 //Route::post('superUsuario', 'Auth\OurLoginController@login')->name('login');
-Route::post('login', 'Auth\OurLoginController@login')->name('login');
+// Route::post('login', 'Auth\OurLoginController@login');
 Route::get('/logout',function(){
-    Auth::logout();
-    Auth::guard('administrador')->logout();
-    return redirect("/");
+      Auth::logout();
+      return redirect("/");
 });
 
-Route::group(['middleware' => 'superUsuario'],function()
+//Rutas para superUser
+Route::group(['prefix'=>'superuser','middleware' => 'rol:superUser'],function()
+{
+
+    Route::get('/', 'SuperUsuarioController@index' );
+    Route::get('nuevoCliente', 'SuperUsuarioController@nuevoCliente' );
+    Route::get('{idCliente}/nuevoUsuario', 'SuperUsuarioController@nuevoUsuario' );
+    Route::get('cliente/{idCliente}', 'SuperUsuarioController@cliente');
+    Route::get('listaClientes', 'SuperUsuarioController@listarClientes' );
+    Route::get('listaUsuarios', 'SuperUsuarioController@listarUsuarios' );
+
+    Route::post('store','SuperUsuarioController@store');
+    Route::post('storeUsuario','SuperUsuarioController@guardarUsuario');
+});
+
+
+//Rutas para administrador
+Route::group(['prefix'=>'administrador','middleware' => 'rol:Administrador'],function()
 {
    
-    Route::get('superUsuario', 'SuperUsuarioController@index' );
-    Route::get('superUsuario/nuevoCliente', 'SuperUsuarioController@nuevoCliente' );
-    Route::get('superUsuario/{idCliente}/nuevoUsuario', 'SuperUsuarioController@nuevoUsuario' );
-    Route::get('superUsuario/cliente/{idCliente}', 'SuperUsuarioController@cliente');
-    Route::get('superUsuario/listaClientes', 'SuperUsuarioController@listarClientes' );
-    Route::get('superUsuario/listaUsuarios', 'SuperUsuarioController@listarUsuarios' );
-
-    Route::post('superUsuario/store','SuperUsuarioController@store');
-    Route::post('superUsuario/storeUsuario','SuperUsuarioController@guardarUsuario');
+    Route::get('/',  function() {return "Vista para administradores";} );
 });
-//superuser
+
+
+//Rutas para caja
+Route::group(['prefix'=>'caja','middleware' => 'rol:Caja'],function()
+{
+   
+    Route::get('/',  function() {return "Vista para caja";} );
+});
+
+
+//Rutas para admision
+Route::group(['prefix'=>'admision','middleware' => 'rol:Admision'],function()
+{
+   
+    Route::get('/',  function() {return "Vista para admision";} );
+});
+
+//Rutas para recursos humanos
+Route::group(['prefix'=>'recursoshumanos','middleware' => 'rol:RecursosHumanos'],function()
+{
+   
+    Route::get('/',  function() {return "Vista para recursos humanos";} );
+});
+
 
 Route::get('/search','SearchController@search');
 /** 
