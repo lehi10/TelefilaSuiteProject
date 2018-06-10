@@ -17,19 +17,10 @@ class SuperUsuarioController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth','rol:superUser']);
     }
     
-    
-    public function login(Request $request)
-    {
-        return view('login');
-    }
-    
-    public function validarLogin(Request $request)
-    {
-        return redirect('superUsuario/');
-    }
+
 
 
 
