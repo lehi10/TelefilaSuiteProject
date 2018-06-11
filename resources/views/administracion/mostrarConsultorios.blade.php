@@ -13,6 +13,26 @@
 
 @section('body')
 
+<script>
+
+function cambiarEstado(id) {
+  
+  $.ajax({
+    method: 'GET', // Type of response and matches what we said in the route
+    url: '/administrador/cambiarEstadoConsultorio', // This is the url we gave in the route
+    data: {'idConsultorio' : id}, // a JSON object to send back
+    success: function(response){ // What to do if we succeed
+        console.log(response); 
+    },
+    error: function(jqXHR, textStatus, errorThrown) { // What to do if we fail
+        console.log(JSON.stringify(jqXHR));
+        console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+    }
+});
+}
+
+</script>
+
         <div class="my-3 my-md-5">
           <!--<div class="container">-->
           <!--<nav class="breadcrumb breadcrumb-content">-->
@@ -62,7 +82,7 @@
                               <td style="text-align: center;"><strong>8</strong></td>
                               <td><span class="badge badge-warning">50%</span> </td>
                               <td> <div class="custom-switches-stacked"> <label class="custom-switch">
-                                <input name="option" value="1" class="custom-switch-input"
+                                <input name="option" value="1" class="custom-switch-input" onchange="cambiarEstado({{$consultorio->id}})"
 
                                    type="checkbox" @if($consultorio->pedestal==1 ) checked @endif> <span class="custom-switch-indicator"></span>
                                 <span class="custom-switch-description"></span></label><label

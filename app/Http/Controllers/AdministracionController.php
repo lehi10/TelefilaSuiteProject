@@ -153,6 +153,17 @@ class AdministracionController extends Controller
         $user->save();
         return "Estado cambiado";
     }
+
+    public function cambiarEstadoConsultorio(Request $request)
+    {
+        $c=Consultorio::find($request->idConsultorio);
+        if($c->pedestal)
+            $c->pedestal=0;
+        else 
+            $c->pedestal=1;
+        $c->save();
+        return "Estado cambiado";
+    }
     
     
     

@@ -79,6 +79,7 @@ Route::group(['prefix'=>'administrador','middleware' => 'rol:Administrador'],fun
     Route::post( 'editarConsultorio','AdministracionController@updateConsultorio');
 
     Route::get('cambiarEstadoUsuario','AdministracionController@cambiarEstadoUsuario');
+    Route::get('cambiarEstadoConsultorio','AdministracionController@cambiarEstadoConsultorio');
 });
 
 
