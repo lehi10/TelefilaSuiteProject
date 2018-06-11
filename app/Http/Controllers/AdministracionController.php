@@ -122,10 +122,24 @@ class AdministracionController extends Controller
         $consultorio=Consultorio::find($idConsultorio);
         if ($consultorio->hospital_id==$hospital->id)
         {
-            $medicos=Medico::where('hospital_id',$hospital->id);
+            $medicos=Medico::where('hospital_id',$hospital->id)->get();
+            
             return view('administracion.editarConsultorio',["consultorio"=>$consultorio,"medicos"=>$medicos]);
 
         }
+    }
+
+    public function updateConsultorio(Request $request)
+    {
+        //return $request;
+        $consultorio = Consultorio::find($request->id);
+        $consultorio->medico_id=$request->medico_id;
+        if ($request->nombre)
+            $consultorio->nombre=$request->nombre;
+        
+        
+        $consultorio->save();
+        return redirect("administrador/consultorios")->with(["message"=>"El consultorio ha sido editado satisfactoriamente"]);
     }
     
     public function cambiarEstadoUsuario(Request $request)

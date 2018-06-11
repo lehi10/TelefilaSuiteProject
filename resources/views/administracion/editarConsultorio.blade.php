@@ -28,10 +28,13 @@
                     </p>
                     <div class="row">
                       <div class="col-md-5">
+                      <form action="/administrador/editarConsultorio" method="post">
+                      {{csrf_field()}}
+                      <input type="hidden" name="id" value="{{$consultorio->id}}">
                         <div class="form-group" style="width: 886px;">&nbsp; <label
                             class="form-label">Editar Consultorio {{$consultorio->nombre}}</label></div>
-                        <div class="form-group"><input class="form-control" placeholder="{{$consultorio->nombre}}"
-                            type="text"></div>
+                        <div class="form-group"><input name="nombre" class="form-control" placeholder="{{$consultorio->nombre}}"
+                            type="text" ></div>
                         <div class="form-group"><label class="form-label" style="width: 886px;">
                             Médicos Asignados</label></div>
                         <div class="form-group"><label class="form-label" style="width: 886px;"></label>
@@ -46,19 +49,17 @@
                               </tr>
                               <tr>
                                 <td>
-                                  <select name="user" class="form-control custom-select">
-                                    &nbsp;
-                                    <option value="1" data-data="{&quot;image&quot;: &quot;demo/faces/female/16.jpg&quot;}">Ninguno</option>
-                                    <option value="2" data-data="{&quot;image&quot;: &quot;demo/faces/male/41.jpg&quot;}">Dra.
-                                      Luciana Perez Aguirre</option>
-                                    <option value="3" data-data="{&quot;image&quot;: &quot;demo/faces/female/1.jpg&quot;}">Dr.
-                                      Godofredo Camacho Bite</option>
-                                    <option value="4" data-data="{&quot;image&quot;: &quot;demo/faces/female/18.jpg&quot;}">Dra.
-                                      Maria del Carmen Ballena</option>
+                                  <select id="medico" name="medico_id" class="form-control custom-select">
+                                    
+                                    <option value=" " data-data="{&quot;image&quot;: &quot;demo/faces/female/16.jpg&quot;}" data-especialidad="Ninguno" {{ $consultorio->medico_id ? 'selected' : ''}} >Ninguno</option>
+                                    
+                                    @foreach($medicos as $medico)
+                                      <option value="{{$medico->id}}" data-especialidad="{{$medico->especialidad->nombre}}" {{$consultorio->medico_id==$medico->id ? 'selected' : ''}}  >{{$medico->nombres}} {{$medico->apellidos}}</option>
+                                    @endforeach
                                   </select>
                                 </td>
-                                <td><input class="form-control" disabled="disabled"
-                                    placeholder="Company" value="Oftalmologia 1"
+                                <td><input class="form-control" disabled="disabled" id="med_especialidad"
+                                    placeholder="" value=""
                                     type="text"></td>
                                 <td><input class="form-control" disabled="disabled"
                                     placeholder="turnos" value="0" type="text">
@@ -91,6 +92,7 @@
                         </div>
                       </div>
                       <div class="col-md-12"> </div>
+                      </form>
                     </div>
                   </div>
                 </div>
@@ -100,4 +102,16 @@
             </div>
           </div>
         </div>
+        <script>
+        
+          $("#medico").ready(function(){
+            $("#med_especialidad").attr('value',$(this).find(":selected").data('especialidad'));
+            $("#med_especialidad").text($(this).find(":selected").data('especialidad'));
+          });
+
+          $("#medico").change(function(){
+            $("#med_especialidad").attr('value',$(this).find(":selected").data('especialidad'));
+            $("#med_especialidad").text($(this).find(":selected").data('especialidad'));
+          });
+        </script>
 @endsection

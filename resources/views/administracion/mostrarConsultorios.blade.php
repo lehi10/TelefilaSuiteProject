@@ -23,6 +23,11 @@
           <div class="container">
             <div class="row row-cards"><br>
               <div class="col-12">
+              @if(session('message'))
+              <div class="alert alert-success form-group text-center" role="alert">
+                  {{session('message')}}
+                </div>
+              @endif
                 <div class="card">
                   <div class="card-header">
                     <h3 class="card-title">Listado de consultorios </h3>

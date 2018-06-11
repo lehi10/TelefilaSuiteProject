@@ -60,6 +60,7 @@ Route::group(['prefix'=>'superuser','middleware' => 'rol:superUser'],function()
 Route::group(['prefix'=>'administrador','middleware' => 'rol:Administrador'],function()
 {
     Route::get('/',  'AdministracionController@index' );
+    Route::get('editar','AdministracionController@editarPerfilHospital');
 
     Route::get('nuevoUsuario','AdministracionController@nuevoUsuario');
     Route::get('/{idUser}/user','AdministracionController@showUser');
@@ -70,15 +71,14 @@ Route::group(['prefix'=>'administrador','middleware' => 'rol:Administrador'],fun
 
     Route::get( 'consultorios','AdministracionController@mostrarConsultorios');
     Route::get( 'nuevoConsultorio','AdministracionController@nuevoConsultorio');
+    Route::get( '{idConsultorio}/consultorio','AdministracionController@editarConsultorio');
 
-    Route::get('editar','AdministracionController@editarPerfilHospital');
 
+
+    Route::post( 'crearConsultorio','AdministracionController@crearConsultorio');
+    Route::post( 'editarConsultorio','AdministracionController@updateConsultorio');
 
     Route::get('cambiarEstadoUsuario','AdministracionController@cambiarEstadoUsuario');
-    
-    Route::get( '{idConsultorio}/consultorio','AdministracionController@editarConsultorio');
-    
-    Route::post( 'crearConsultorio','AdministracionController@crearConsultorio');
 });
 
 

@@ -9,7 +9,7 @@ class Especialidad extends Model
     //
     public function medicos()
     {
-        return $this->belongsTo(Medico::class);
+        return $this->hasMany(Medico::class);
     }
 
     public function hospitals()

@@ -11,7 +11,7 @@ class Medico extends Model
     {
         return $this->hasMany(Agenda::class);
     }
-    public function especialidads()
+    public function especialidad()
     {
         return $this->belongsTo(Especialidad::class);
     }
