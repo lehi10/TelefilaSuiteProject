@@ -45,7 +45,7 @@
         <div class="page-main">
                 <div class="header py-4">
                   <div class="container">
-                    <div class="d-flex"> <a class="header-brand" href="./index.html"> <img
+                    <div class="d-flex"> <a class="header-brand" href="/"> <img
                           src="{{url('images/logo_alpha.png')}}"
                           alt="logo" title="logo" style="width: 144px; height: 36px;"> </a>
                       <div class="d-flex order-lg-2 ml-auto">
@@ -103,9 +103,9 @@
                           <li class="nav-item"> <a href="#" class="nav-link" data-toggle="dropdown"><i
                                 class="fe fe-box"></i> Reportes</a> </li>
                           @elseif (Auth::user()->tieneRol('Administrador'))
-                          <li class="nav-item"> <a href="#" class="nav-link" data-toggle="dropdown"><i
+                          <li class="nav-item"> <a href="/reportes" class="nav-link" ><i
                                 class="fe fe-box"></i> Reportes</a> </li>
-                          <li class="nav-item"> <a href="#" class="nav-link" data-toggle="dropdown"><i
+                          <li class="nav-item"> <a href="/administrador/consultorios" class="nav-link" ><i
                                 class="fe fe-box"></i> Consultorios</a> </li>
                           @endif
 
