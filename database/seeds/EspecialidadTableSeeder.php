@@ -20,5 +20,12 @@ class EspecialidadTableSeeder extends Seeder
             ['nombre'=>'Pediatria','tarifa'=>10],
             ['nombre'=>'Obstetricia','tarifa'=>10],
         ]);
+        DB::table('especialidad_hospital')->insert([
+            ['especialidad_id'=>1,'hospital_id'=>1],
+            ['especialidad_id'=>2,'hospital_id'=>1],
+            ['especialidad_id'=>3,'hospital_id'=>1],
+            ['especialidad_id'=>4,'hospital_id'=>1],
+            ['especialidad_id'=>5,'hospital_id'=>1],
+        ]);
     }
 }

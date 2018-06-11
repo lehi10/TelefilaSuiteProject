@@ -54,7 +54,6 @@
                             class="btn btn-sm btn-outline-primary">Agregar
                             cliente</a> 
                         </div>
-                        @yield('auxiliar')
                         
                         @elseif(Auth::user()->tieneRol("Administrador"))
                         <div class="nav-item d-none d-md-flex"> <a href="{{url('/administrador/nuevoUsuario')}}"
@@ -63,6 +62,7 @@
                         </div>
                         @endif
 
+                        @yield('auxiliar')
                         
                         <div class="dropdown"> <a href="#" class="nav-link pr-0 leading-none"
                             data-toggle="dropdown"> <span class="avatar" style="background-image:url( {{url('/demo/faces/female/25.jpg')}})"></span>

@@ -14,7 +14,7 @@ class Especialidad extends Model
 
     public function hospitals()
     {
-        return $this->belongsTo(Hospital::class);
+        return $this->belongsToMany(Hospital::class);
     }
     public function consultorios()
     {

@@ -38,7 +38,7 @@ class Hospital extends Model
     }
     public function especialidads()
     {
-        return $this->belongsTo(Especialidad::class);
+        return $this->belongsToMany(Especialidad::class);
     }
     public function administrador()
     {

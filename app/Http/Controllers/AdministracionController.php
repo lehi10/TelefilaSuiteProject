@@ -5,7 +5,13 @@ namespace telefilaSuite\Http\Controllers;
 use telefilaSuite\Persona;
 use telefilaSuite\Hospital;
 use telefilaSuite\User;
+use telefilaSuite\Consultorio;
+use telefilaSuite\Especialidad;
+use telefilaSuite\Medico;
+
+
 use Illuminate\Http\Request;
+
 use Auth;
 
 class AdministracionController extends Controller
@@ -68,20 +74,58 @@ class AdministracionController extends Controller
         return redirect('administrador')->with(["message"=>"El usuario ha sido editado con exito"]);
     }
 
-    public function nuevoConsultorio(Request $request)
+
+
+
+
+    ///////////////////////////////////  Consultorios
+
+    public function nuevoConsultorio()
     {
-        return view('administracion.nuevoConsultorio');
+        $hospital=Auth::user()->hospital;
+        $especialidades=$hospital->especialidads;
+        $users=$hospital->users->where('rol_id','5');
+        //return [$especialidades,$users];
+        return view('administracion.nuevoConsultorio',["especialidades"=>$especialidades,'usuarios'=>$users]);
     }
 
-
-    public function mostrarConsultorios(Request $request)
+    public function mostrarConsultorios()
     {
-        return view('administracion.mostrarConsultorios');
+        if (Auth::check())
+        {
+            if (Auth::user()->hospital_id)
+            {
+                $consultorios=Consultorio::where("hospital_id",Auth::user()->hospital_id)->get();
+                return view('administracion.mostrarConsultorios',['consultorios'=>$consultorios]);
+            }
+        }
     }
 
-    public function showConsultorio(Request $request)
+    public function crearConsultorio(Request $request)
     {
-        return view('administracion.editarConsultorio');
+        //return $request;
+        $consultorio= new Consultorio;
+        $consultorio->fill($request->except('_token'));
+        $consultorio->hospital_id=Auth::user()->hospital_id;
+        if ($request->pedestal)
+            $consultorio->pedestal=true;
+        else
+            $consultorio->pedestal=false;
+        $consultorio->save();
+        return redirect('administrador/consultorios')->with(["message"=>"El consultorio ha sido creado satisfactoriamente"]);
+    }
+
+    public function editarConsultorio($idConsultorio)
+    {
+        //return $idConsultorio;
+        $hospital=Auth::user()->hospital;
+        $consultorio=Consultorio::find($idConsultorio);
+        if ($consultorio->hospital_id==$hospital->id)
+        {
+            $medicos=Medico::where('hospital_id',$hospital->id);
+            return view('administracion.editarConsultorio',["consultorio"=>$consultorio,"medicos"=>$medicos]);
+
+        }
     }
     
     public function cambiarEstadoUsuario(Request $request)

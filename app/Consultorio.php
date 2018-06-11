@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Consultorio extends Model
 {
     //
+    protected $guarded=[];
+
     public function especialidad()
     {
         return $this->belongsTo(Especialidad::class);
@@ -16,7 +18,7 @@ class Consultorio extends Model
     {
         return $this->belongsTo(Medico::class);
     }
-    public function admin()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
