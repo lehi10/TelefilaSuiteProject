@@ -58,7 +58,6 @@ class AdministracionController extends Controller
 
 
 
-
     public  function editUser(Request $request)
     {
         $user=User::find($request->idUsuario);
@@ -69,22 +68,22 @@ class AdministracionController extends Controller
         return redirect('administrador')->with(["message"=>"El usuario ha sido editado con exito"]);
     }
 
-
-
-
-
-    
-
     public function nuevoConsultorio(Request $request)
     {
         return view('administracion.nuevoConsultorio');
     }
+
 
     public function mostrarConsultorios(Request $request)
     {
         return view('administracion.mostrarConsultorios');
     }
 
+    public function editarConsultorio(Request $request)
+    {
+        return view('administracion.editarConsultorio');
+    }
+    
     
     
 }

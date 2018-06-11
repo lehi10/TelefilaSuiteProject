@@ -1,7 +1,7 @@
-@extends('layouts.base')
+@extends('layouts.template')
 
 @section('title')
-<title>Consultorios</title>
+Consultorios
 @endsection
 
 
@@ -13,11 +13,6 @@
                 <img src="/demo/photos/logo_alpha.png" alt="logo" title="logo" style="width: 144px; height: 36px;"> 
               </a>
               <div class="d-flex order-lg-2 ml-auto">
-                <div class="nav-item d-none d-md-flex"> 
-                  <a href="nuevo_consultorio.html" class="btn btn-sm btn-outline-primary" target="_blank">
-                    Agregar consultorio
-                  </a>
-                </div>
                 <div class="dropdown"> 
                   <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown"> 
                     <span class="avatar" style="background-image: url(/demo/faces/female/25.jpg)"></span>
@@ -48,52 +43,6 @@
 @endsection
 
 @section('body')
-        <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
-          <div class="container">
-            <div class="row align-items-center">
-              <div class="col-lg-3 ml-auto">
-                <form class="input-icon my-3 my-lg-0"> <input class="form-control header-search"
-
-                    placeholder="Buscar usuario…" tabindex="1" type="search">
-                  <div class="input-icon-addon"> <i class="fe fe-search"></i> </div>
-                </form>
-              </div>
-              <div class="col-lg order-lg-first">
-                <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
-                  <li class="nav-item"> <a href="inicio_cliente.html" class="nav-link"><i
-
-                        class="fe fe-home"></i> Inicio</a> </li>
-                  <li class="nav-item"> <a href="#" class="nav-link" data-toggle="dropdown"><i
-
-                        class="fe fe-box"></i> Reportes</a>
-                    <div class="dropdown-menu dropdown-menu-arrow"> <a href="./cards.html"
-
-                        class="dropdown-item ">Cards design</a> <a href="./charts.html"
-
-                        class="dropdown-item ">Charts</a> <a href="./pricing-cards.html"
-
-                        class="dropdown-item ">Pricing cards</a> </div>
-                  </li>
-                  <li class="nav-item dropdown"> <a href="#" class="nav-link" data-toggle="dropdown"><i
-
-                        class="fe fe-calendar"></i> Consultorios</a>
-                    <div class="dropdown-menu dropdown-menu-arrow"> <a href="./maps.html"
-
-                        class="dropdown-item ">Maps</a> <a href="./icons.html"
-
-                        class="dropdown-item ">Icons</a> <a href="./store.html"
-
-                        class="dropdown-item ">Store</a> <a href="./blog.html"
-
-                        class="dropdown-item ">Blog</a> </div>
-                  </li>
-                  <li class="nav-item"> <br>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="my-3 my-md-5">
           <!--<div class="container">-->
           <!--<nav class="breadcrumb breadcrumb-content">-->
@@ -124,7 +73,7 @@
                       <tbody>
                         <tr>
                           <td><span class="text-muted">0101</span></td>
-                          <td><a href="editar_consultorio.html" class="text-inherit">Medicina
+                          <td><a href="1/consultorio" class="text-inherit">Medicina
                               General 1<br>
                             </a></td>
                           <td>Medicina general</td>

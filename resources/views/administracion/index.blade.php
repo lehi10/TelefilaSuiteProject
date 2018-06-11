@@ -1,6 +1,8 @@
 @extends('layouts.template')
 
 @section('title','Administrador')
+
+
 @section('buscar','usuarios')
 
     
