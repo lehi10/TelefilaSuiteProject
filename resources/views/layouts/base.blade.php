@@ -54,15 +54,23 @@
                             class="btn btn-sm btn-outline-primary">Agregar
                             cliente</a> 
                         </div>
-                        @elseif(Auth::user()->tieneRol("Administrator"))
-                        <div class="nav-item d-none d-md-flex"> <a href="{{url('/administrador/nuevoCliente')}}"
+                        @yield('auxiliar')
+                        
+                        @elseif(Auth::user()->tieneRol("Administrador"))
+                        <div class="nav-item d-none d-md-flex"> <a href="{{url('/administrador/nuevoUsuario')}}"
                             class="btn btn-sm btn-outline-primary">Agregar
                             usuario</a> 
                         </div>
                         @endif
+
+                        
                         <div class="dropdown"> <a href="#" class="nav-link pr-0 leading-none"
-                            data-toggle="dropdown"> <span class="avatar" style="background-image: url({{url('/demo/faces/female/25.jpg')}})"></span>
-                            <span class="ml-2 d-none d-lg-block"> <span class="text-default">{{Auth::user()->username}}</span> <small class="text-muted d-block mt-1">{{Auth::user()->rol->nombre}}</small>
+                            data-toggle="dropdown"> <span class="avatar" style="background-image:url( {{url('/demo/faces/female/25.jpg')}})"></span>
+                            @if (Auth::user()->tieneRol("Administrador"))
+                              <span class="ml-2 d-none d-lg-block"> <span class="text-default">Hospital {{Auth::user()->hospital->nombre}}</span> <small class="text-muted d-block mt-1">{{Auth::user()->rol->nombre}}</small>
+                            @else
+                              <span class="ml-2 d-none d-lg-block"> <span class="text-default">{{Auth::user()->username}}</span> <small class="text-muted d-block mt-1">{{Auth::user()->rol->nombre}}</small>
+                            @endif
                             </span> </a>
                           <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                             <a class="dropdown-item" href="#"> <i class="dropdown-icon fe fe-user"></i>
@@ -86,13 +94,17 @@
                         <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
                         
                           <li class="nav-item"> <a href="{{url('/'.Auth::user()->rolUrl())}}" class="nav-link"><i class="fe fe-home"></i>
-                              Incio</a> </li>
+                              Inicio</a> </li>
                           
                           @if (Auth::user()->tieneRol('superUser'))
                           <li class="nav-item"> <a href="#" class="nav-link" data-toggle="dropdown"><i
                                 class="fe fe-box"></i> Reportes</a> </li>
+                          @elseif (Auth::user()->tieneRol('Administrador'))
+                          <li class="nav-item"> <a href="#" class="nav-link" data-toggle="dropdown"><i
+                                class="fe fe-box"></i> Reportes</a> </li>
+                          <li class="nav-item"> <a href="#" class="nav-link" data-toggle="dropdown"><i
+                                class="fe fe-box"></i> Consultorios</a> </li>
                           @endif
-
 
                           <li class="nav-item dropdown"> <br>
                           </li>
@@ -106,7 +118,30 @@
 
             @yield('body')
 
-            @yield('footer')
+            <footer class="footer">
+              <div class="container">
+                <div class="row align-items-center flex-row-reverse">
+                  <div class="col-auto ml-lg-auto">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <ul class="list-inline list-inline-dots mb-0">
+                        </ul>
+                        <a href="./faq.html">Manual de usuario</a>
+                        <ul class="list-inline list-inline-dots mb-0">
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
+                    <p style="margin: 0px; padding: 0px; border-width: 0px; border-style: solid; border-color: transparent; transform-origin: left top 0px; background-repeat: no-repeat; max-height: 1e+06px; color: rgb(127, 127, 127); font-family: droid-sans, sans-serif; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">TELEFILA
+                      SAC © Todos los derechos reservados</p>
+                    <p style="margin: 0px; padding: 0px; border-width: 0px; border-style: solid; border-color: transparent; transform-origin: left top 0px; background-repeat: no-repeat; max-height: 1e+06px; color: rgb(127, 127, 127); font-family: droid-sans, sans-serif; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">Av.
+                      Joaquín Madrid 277 piso 2, San Borja T. 014750467</p>
+                    <p style="margin: 0px; padding: 0px; border-width: 0px; border-style: solid; border-color: transparent; transform-origin: left top 0px; background-repeat: no-repeat; max-height: 1e+06px; color: rgb(127, 127, 127); font-family: droid-sans, sans-serif; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">info@avtiva.com</p>
+                  </div>
+                </div>
+              </div>
+            </footer>
 
         <!-- END CONTENIDOS -->
         

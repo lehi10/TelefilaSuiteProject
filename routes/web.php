@@ -35,30 +35,40 @@ Route::group(['prefix'=>'superuser','middleware' => 'rol:superUser'],function()
 {
 
     Route::get('/', 'SuperUsuarioController@index' );
-    Route::get('nuevoCliente', 'SuperUsuarioController@nuevoCliente' );
-    //Route::get('{idCliente}/nuevoUsuario', 'SuperUsuarioController@nuevoUsuario' );
     Route::get('cliente/{idCliente}', 'SuperUsuarioController@cliente');
 
-    Route::get('{idUser}/user', 'SuperUsuarioController@clienteUser');
+    Route::get('nuevoCliente', 'SuperUsuarioController@nuevoCliente' );
+    
     Route::get('{idCliente}/nuevoUser', 'SuperUsuarioController@nuevoUser');
-
-    Route::post('editUser', 'SuperUsuarioController@editClientUser' );
+    Route::get('{idUser}/user', 'SuperUsuarioController@clienteUser');
+    
+    Route::post('store','SuperUsuarioController@nuevoCliente');
+    
     Route::post('nuevoUser','SuperUsuarioController@nuevoClientUser');
-
-    Route::get('listaClientes', 'SuperUsuarioController@listarClientes' );
-    Route::get('listaUsuarios', 'SuperUsuarioController@listarUsuarios' );
-
-    Route::post('store','SuperUsuarioController@store');
-    Route::post('storeUsuario','SuperUsuarioController@guardarUsuario');
+    Route::post('editUser', 'SuperUsuarioController@editClientUser' );
+    
+    
+    //Route::get('{idCliente}/nuevoUsuario', 'SuperUsuarioController@nuevoUsuario' );
+    // Route::post('storeUsuario','SuperUsuarioController@guardarUsuario');
+    // Route::get('listaClientes', 'SuperUsuarioController@listarClientes' );
+    // Route::get('listaUsuarios', 'SuperUsuarioController@listarUsuarios' );
 });
 
 
 //Rutas para administrador
 Route::group(['prefix'=>'administrador','middleware' => 'rol:Administrador'],function()
 {
+    Route::get('/',  'AdministracionController@index' );
+
+    Route::get('nuevoUsuario','AdministracionController@nuevoUsuario');
+    Route::get('/{idUser}/user','AdministracionController@user');
+
+    Route::post('/editUser','AdministracionController@editUser');
+    Route::post('nuevoUsuario','AdministracionController@guardarUsuario');
+
+
     Route::get( 'mostrarConsultorios','AdministracionController@mostrarConsultorios');
     Route::get( 'nuevoConsultorio','AdministracionController@nuevoConsultorio');
-    Route::get('/',  function() {return "Vista para administradores";} );
 });
 
 

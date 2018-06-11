@@ -31,19 +31,6 @@ class SuperUsuarioController extends Controller
         return view('superUsuario.nuevoCliente');
     }
 
-    public function nuevoUsuario($idCliente){
-        $countRes =Hospital::where('id',$idCliente);
-        if($countRes->count() == 1 )
-        {
-            $cliente=$countRes->first();
-            return view('superUsuario.nuevoUsuario',["id"=>$cliente->id,"nombre"=>$cliente->nombre] );
-        }        
-        if($countRes->count() == 0 )
-            return redirect('superuser/');//->with('message','store');
-
-        else
-            return "Error : Overflow of Results.";
-    }
 
     public function cliente($idCliente){
         $cliente =Hospital::find($idCliente);
@@ -97,50 +84,7 @@ class SuperUsuarioController extends Controller
         $user->save();
         return redirect('superuser/cliente/'.$request->hospital_id)->with('message','El usuario ha sido registrado satisfactoriamente.');
     }
-
-    public function listarClientes(Request $request){
-        try{
-            if($request['clienteEntrada'])
-            {
-                $clientes =\telefilaSuite\Hospital::where('nombre_hospital','LIKE' ,'%'.$request['clienteEntrada'].'%')->get(); 
-                return view('superUsuario.listaClientes',compact('clientes'));
-            }
-            else
-            {
-                $clientes =\telefilaSuite\Hospital::All();        
-                return view('superUsuario.listaClientes',compact('clientes'));
-            }
-        }
-        catch(Exception $e)
-        {
-            return redirect('superUsuario/');//->with('message','store');
-        }
-    }
-
-    public function listarUsuarios(Request $request){
-        if($request['nombreUsuario'])
-        {
-            $usuarios =\telefilaSuite\User::where('username','LIKE' ,'%'.$request['nombreUsuario'].'%')->get(); 
-            return view('superUsuario.listarUsuarios',compact('usuarios'));
-        }
-        else
-        {
-            $usuarios =\telefilaSuite\User::All();        
-            return view('superUsuario.listarUsuarios',compact('usuarios'));
-        }
-    }
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
+    
     /**
      * Save a New Cliente (Hospital)
      * Store a newly created resource in storage.
@@ -148,7 +92,7 @@ class SuperUsuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeNuevoCliente(Request $request)
     {
         //return dd($request);
         $hos= new Hospital();

@@ -56,8 +56,8 @@
                         </div>
                         @yield('auxiliar')
                         
-                        @elseif(Auth::user()->tieneRol("Administrator"))
-                        <div class="nav-item d-none d-md-flex"> <a href="{{url('/administrador/nuevoCliente')}}"
+                        @elseif(Auth::user()->tieneRol("Administrador"))
+                        <div class="nav-item d-none d-md-flex"> <a href="{{url('/administrador/nuevoUsuario')}}"
                             class="btn btn-sm btn-outline-primary">Agregar
                             usuario</a> 
                         </div>
@@ -66,7 +66,11 @@
                         
                         <div class="dropdown"> <a href="#" class="nav-link pr-0 leading-none"
                             data-toggle="dropdown"> <span class="avatar" style="background-image:url( {{url('/demo/faces/female/25.jpg')}})"></span>
-                            <span class="ml-2 d-none d-lg-block"> <span class="text-default">{{Auth::user()->username}}</span> <small class="text-muted d-block mt-1">{{Auth::user()->rol->nombre}}</small>
+                            @if (Auth::user()->tieneRol("Administrador"))
+                              <span class="ml-2 d-none d-lg-block"> <span class="text-default">Hospital {{Auth::user()->hospital->nombre}}</span> <small class="text-muted d-block mt-1">{{Auth::user()->rol->nombre}}</small>
+                            @else
+                              <span class="ml-2 d-none d-lg-block"> <span class="text-default">{{Auth::user()->username}}</span> <small class="text-muted d-block mt-1">{{Auth::user()->rol->nombre}}</small>
+                            @endif
                             </span> </a>
                           <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                             <a class="dropdown-item" href="#"> <i class="dropdown-icon fe fe-user"></i>
@@ -85,7 +89,7 @@
                     <div class="row align-items-center">
                       <div class="col-lg-3 ml-auto">
                         <form class="input-icon my-3 my-lg-0"> <input id="search" class="form-control header-search"
-                            placeholder="Buscar cliente…" tabindex="1" type="search">
+                            placeholder="Buscar @yield('buscar')..." tabindex="1" type="search">
                           <div class="input-icon-addon"> <i class="fe fe-search"></i> </div>
                         </form>
                       </div>
@@ -98,7 +102,13 @@
                           @if (Auth::user()->tieneRol('superUser'))
                           <li class="nav-item"> <a href="#" class="nav-link" data-toggle="dropdown"><i
                                 class="fe fe-box"></i> Reportes</a> </li>
+                          @elseif (Auth::user()->tieneRol('Administrador'))
+                          <li class="nav-item"> <a href="#" class="nav-link" data-toggle="dropdown"><i
+                                class="fe fe-box"></i> Reportes</a> </li>
+                          <li class="nav-item"> <a href="#" class="nav-link" data-toggle="dropdown"><i
+                                class="fe fe-box"></i> Consultorios</a> </li>
                           @endif
+
                           <li class="nav-item dropdown"> <br>
                           </li>
                           <li class="nav-item"> <br>
@@ -111,7 +121,30 @@
 
             @yield('body')
 
-            @yield('footer')
+            <footer class="footer">
+              <div class="container">
+                <div class="row align-items-center flex-row-reverse">
+                  <div class="col-auto ml-lg-auto">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <ul class="list-inline list-inline-dots mb-0">
+                        </ul>
+                        <a href="./faq.html">Manual de usuario</a>
+                        <ul class="list-inline list-inline-dots mb-0">
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
+                    <p style="margin: 0px; padding: 0px; border-width: 0px; border-style: solid; border-color: transparent; transform-origin: left top 0px; background-repeat: no-repeat; max-height: 1e+06px; color: rgb(127, 127, 127); font-family: droid-sans, sans-serif; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">TELEFILA
+                      SAC © Todos los derechos reservados</p>
+                    <p style="margin: 0px; padding: 0px; border-width: 0px; border-style: solid; border-color: transparent; transform-origin: left top 0px; background-repeat: no-repeat; max-height: 1e+06px; color: rgb(127, 127, 127); font-family: droid-sans, sans-serif; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">Av.
+                      Joaquín Madrid 277 piso 2, San Borja T. 014750467</p>
+                    <p style="margin: 0px; padding: 0px; border-width: 0px; border-style: solid; border-color: transparent; transform-origin: left top 0px; background-repeat: no-repeat; max-height: 1e+06px; color: rgb(127, 127, 127); font-family: droid-sans, sans-serif; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">info@avtiva.com</p>
+                  </div>
+                </div>
+              </div>
+            </footer>
 
         <!-- END CONTENIDOS -->
         

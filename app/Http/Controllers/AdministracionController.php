@@ -6,81 +6,78 @@ use telefilaSuite\Persona;
 use telefilaSuite\Hospital;
 use telefilaSuite\User;
 use Illuminate\Http\Request;
+use Auth;
 
 class AdministracionController extends Controller
 {
     
     public function __construct()
     {
-        //$this->middleware('auth');
+        $this->middleware(['auth','rol:Administrador']);
     }
 
-    public function index(Request $request, $idCliente)
+    public function index()
     {
-        if($request['nombreUsuario'])
-        {            
-            $usuarios =User::where('username','LIKE' ,'%'.$request['nombreUsuario'].'%')->where('hospital_id',$request['idCliente'])->get(); 
-            $hospital=Hospital::find($idCliente)->nombre;
-            
-            return view('administracion.index',compact('usuarios','hospital'));
-        }
+        $users=User::where('hospital_id',Auth::user()->hospital_id)->where('rol_id',"!=",2)->get();
+        //return Auth::user()->hospital_id;
+        //return $users;
+        return view('administracion.index',['usuarios'=>$users,'hospital_id'=>Auth::user()->hospital_id]);
+    }
+
+    public function user($idUser)
+    {
+        $user=User::find($idUser);
+        return view('administracion.editarUsuario',['usuario'=>$user]);
+    }
+
+    public function nuevoUsuario()
+    {
+
+        return view('administracion.nuevoUsuario',['hospital_id'=>Auth::user()->hospital_id]);
+    }
+
+
+    public function guardarUsuario( Request $request)
+    {
+
+     //   return $request;
+     
+        $user= new User;
+        $user->fill($request->except(["_token"]));
+        $user->password=bcrypt($request->password);
+        if ($request->estado)
+            $user->estado=true;
         else
-        {
+            $user->estado=false;
+        $user->save();
 
-            $usuarios =User::where('hospital_id',$request['idCliente'])->get(); ;        
-            $hospital=Hospital::find($idCliente)->nombre;
-            $id=Hospital::find($idCliente)->id;
-            return view('administracion.index',compact('usuarios','hospital','id'));
-        }
+     
+        return redirect('administrador')->with(["message"=>"El usuario ha sido creado con exito."]);
     }
 
-    public function nuevoUsuario(Request $request, $idCliente)
-    {
-        return view('administracion.nuevoUsuario',["id"=>$idCliente]);
-    }
-    
+    // Show the form
     public function editarUsuario( Request $request,$idCliente,$idUsuario)
     {
         $usuario =User::where('id',$idUsuario)->first();           
         return view('administracion.editarUsuario',compact('usuario'));
     }
 
-    public function guardarUsuario( Request $request)
-    {
-        $per= new Persona;
-        $per->nombre=$request->nombre;
-        $per->apellido=$request->apellidos;
-        $per->dni=$request->dni;
-        $per->telefono=0;
-        $per->sexo=0;
-        $per->edad=0;
-        $per->direccion="-";
-        $per->save();
-     
-        $user= new User;
-        $user->email=$request->email;
-        $user->username=$request->usuario;
-        $user->password=bcrypt($request->password);
-        $user->hospital_id=$request->hospital_id;
-        $user->rol=$request->optRol;
-        $user->persona_id=$per->id;
-        $user->save();
-
-     
-        return redirect($request->hospital_id.'/admin');
-    }
-    public function actualizarUsuario( Request $request)
+    
+    public  function editUser(Request $request)
     {
         $user=User::find($request->idUsuario);
-        if($request->password)
-        {
+        $user->rol_id=$request->optRol;
+        if ($request->password)
             $user->password=bcrypt($request->password);
-        }
-        $user->rol=$request->optRol;    
         $user->save();
-        
-        return redirect('/'.$request->idCliente.'/admin');
+        return redirect('administrador')->with(["message"=>"El usuario ha sido editado con exito"]);
     }
+
+
+
+
+
+    
 
     public function nuevoConsultorio(Request $request)
     {

@@ -1,15 +1,8 @@
 @extends('layouts.template')
 
 @section('title','Administrador')
+@section('buscar','usuarios')
 
-@section('auxiliar')
-<div class="nav-item d-none d-md-flex"> <a href="{{url('/administrador/nuevoUsuario')}}"
-                            class="btn btn-sm btn-outline-primary">Agregar
-                            usuario</a> 
-</div>
-@endsection
-
-    
     
         @section('body')
         <div class="my-3 my-md-5">
@@ -22,6 +15,11 @@
           <div class="container">
             <div class="row row-cards"><br>
               <div class="col-12">
+              @if(session('message'))
+              <div class="alert alert-success form-group text-center" role="alert">
+                  {{session('message')}}
+                </div>
+              @endif
                 <div class="card">
                   <div class="card-header">
                     <h3 class="card-title">Listado general de Usuarios</h3>
@@ -48,14 +46,14 @@
                       @foreach($usuarios as $usuario)
                         <tr>
                           <td><span class="text-muted">{{$usuario->id}}</span></td>
-                          <td><a href="{!! url('/')!!}/{{$usuario->hospital_id}}/admin/editarUsuario/{{$usuario->id}}" class="text-inherit"> 
+                          <td><a href="{{url('administrador/'.$usuario->id.'/user')}}" class="text-inherit"> 
                             {{$usuario->nombres}} {{$usuario->apellidos}} <br>
                           </a></td>
                           <td>{{$usuario->username}}</td>
                           <td>{{$usuario->rol->nombre}}</td> 
                           <td> 
                       <label class="custom-switch">
-                        <input name="optRol" value="5" class="custom-switch-input" @if($usuario->activo==1 ) checked @endif type="checkbox"> 
+                        <input name="optRol" value="5" class="custom-switch-input" {{ $usuario->estado==1 ? 'checked' :''}} type="checkbox"> 
                         <span class="custom-switch-indicator"></span> 
                       </label>
                    </td>
@@ -81,7 +79,7 @@
             $.ajax({
                 type : 'get',
                 url : '{{URL::to('cliente/search')}}',
-                data:{'search':$value,'id':{{$id}}},
+                data:{'search':$value,'id':{{$hospital_id}}},
                 success:function(data){
                       $('tbody').html(data);
                 }
@@ -89,32 +87,7 @@
         })
   </script>
       @endsection
-      @section('footer')
-      <footer class="footer">
-        <div class="container">
-          <div class="row align-items-center flex-row-reverse">
-            <div class="col-auto ml-lg-auto">
-              <div class="row align-items-center">
-                <div class="col-auto">
-                  <ul class="list-inline list-inline-dots mb-0">
-                  </ul>
-                  <a href="./faq.html">Manual de usuario</a>
-                  <ul class="list-inline list-inline-dots mb-0">
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
-              <p style="margin: 0px; padding: 0px; border-width: 0px; border-style: solid; border-color: transparent; transform-origin: left top 0px; background-repeat: no-repeat; max-height: 1e+06px; color: rgb(127, 127, 127); font-family: droid-sans, sans-serif; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">TELEFILA
-                SAC © Todos los derechos reservados</p>
-              <p style="margin: 0px; padding: 0px; border-width: 0px; border-style: solid; border-color: transparent; transform-origin: left top 0px; background-repeat: no-repeat; max-height: 1e+06px; color: rgb(127, 127, 127); font-family: droid-sans, sans-serif; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">Av.
-                Joaquín Madrid 277 piso 2, San Borja T. 014750467</p>
-              <p style="margin: 0px; padding: 0px; border-width: 0px; border-style: solid; border-color: transparent; transform-origin: left top 0px; background-repeat: no-repeat; max-height: 1e+06px; color: rgb(127, 127, 127); font-family: droid-sans, sans-serif; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">info@avtiva.com</p>
-            </div>
-          </div>
-        </div>
-      </footer>
-    @endsection
+     
 
     
   
