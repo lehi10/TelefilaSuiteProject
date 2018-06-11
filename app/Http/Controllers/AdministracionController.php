@@ -79,7 +79,7 @@ class AdministracionController extends Controller
         return view('administracion.mostrarConsultorios');
     }
 
-    public function editarConsultorio(Request $request)
+    public function showConsultorio(Request $request)
     {
         return view('administracion.editarConsultorio');
     }
