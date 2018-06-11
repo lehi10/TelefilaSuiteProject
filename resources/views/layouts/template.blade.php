@@ -36,6 +36,8 @@
     <script src="/assets/plugins/maps-google/plugin.js"></script>
     <!-- Input Mask Plugin -->
     <script src="/assets/plugins/input-mask/plugin.js"></script>
+  @yield('scripts')
+
   </head>
   <body class="">
     <div class="page">

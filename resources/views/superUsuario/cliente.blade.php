@@ -1,7 +1,32 @@
 @extends('layouts.template')
 
 @section('title','Hospital')
+
+@section('scripts')
+<script>
+
+
+function cambiarEstado(id) {
+  
+  $.ajax({
+    method: 'GET', // Type of response and matches what we said in the route
+    url: '/administrador/cambiarEstadoUsuario', // This is the url we gave in the route
+    data: {'idUsuario' : id}, // a JSON object to send back
+    success: function(response){ // What to do if we succeed
+        console.log(response); 
+    },
+    error: function(jqXHR, textStatus, errorThrown) { // What to do if we fail
+        console.log(JSON.stringify(jqXHR));
+        console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+    }
+});
+}
+</script>
+
+@endsection
+
 @section('buscar','usuarios')
+
 
 @section('auxiliar')
 <div class="nav-item d-none d-md-flex"> <a href="{{url('/superuser/'.$hospital_id.'/nuevoUser')}}"
@@ -61,7 +86,7 @@
                           <td>{{$usuario->rol->nombre}}</td> 
                           <td> 
                       <label class="custom-switch">
-                        <input name="optRol" value="5" class="custom-switch-input" @if($usuario->estado==1 ) checked @endif type="checkbox"> 
+                        <input name="optRol" value="{{$usuario->id}}" class="custom-switch-input" onchange="cambiarEstado(this.value)" @if($usuario->estado==1 ) checked @endif type="checkbox"> 
                         <span class="custom-switch-indicator"></span> 
                       </label>
                    </td>

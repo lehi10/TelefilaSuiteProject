@@ -47,6 +47,7 @@ Route::group(['prefix'=>'superuser','middleware' => 'rol:superUser'],function()
     Route::post('nuevoUser','SuperUsuarioController@nuevoClientUser');
     Route::post('editUser', 'SuperUsuarioController@editClientUser' );
     
+    Route::get('cambiarEstadoUsuario','SuperUsuarioController@cambiarEstadoUsuario');
     
     //Route::get('{idCliente}/nuevoUsuario', 'SuperUsuarioController@nuevoUsuario' );
     // Route::post('storeUsuario','SuperUsuarioController@guardarUsuario');
@@ -63,7 +64,7 @@ Route::group(['prefix'=>'administrador','middleware' => 'rol:Administrador'],fun
     Route::get('nuevoUsuario','AdministracionController@nuevoUsuario');
     Route::get('/{idUser}/user','AdministracionController@showUser');
 
-    Route::post('/editUser','AdministracionController@editUser');
+    Route::post('/editUser','AdminishttptracionController@editUser');
     Route::post('nuevoUsuario','AdministracionController@guardarUsuario');
 
 
@@ -73,6 +74,8 @@ Route::group(['prefix'=>'administrador','middleware' => 'rol:Administrador'],fun
     Route::get('editar','AdministracionController@editarPerfilHospital');
 
     Route::get('/{idConsultorio}/consultorio','AdministracionController@showConsultorio');
+
+    Route::get('cambiarEstadoUsuario','AdministracionController@cambiarEstadoUsuario');
     
 });
 

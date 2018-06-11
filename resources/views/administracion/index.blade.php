@@ -2,6 +2,29 @@
 
 @section('title','Administrador')
 
+@section('scripts')
+<script>
+
+
+function showUser(id) {
+  
+  $.ajax({
+    method: 'GET', // Type of response and matches what we said in the route
+    url: '/administrador/cambiarEstadoUsuario', // This is the url we gave in the route
+    data: {'idUsuario' : id}, // a JSON object to send back
+    success: function(response){ // What to do if we succeed
+        console.log(response); 
+    },
+    error: function(jqXHR, textStatus, errorThrown) { // What to do if we fail
+        console.log(JSON.stringify(jqXHR));
+        console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+    }
+});
+}
+</script>
+
+@endsection
+
 
 @section('buscar','usuarios')
 
@@ -55,7 +78,7 @@
                           <td>{{$usuario->rol->nombre}}</td> 
                           <td> 
                       <label class="custom-switch">
-                        <input name="optRol" value="5" class="custom-switch-input" {{ $usuario->estado==1 ? 'checked' :''}} type="checkbox"> 
+                        <input   name="optRol" value="{{$usuario->id}}" class="custom-switch-input" onchange="showUser(this.value)" {{ $usuario->estado==1 ? 'checked' :''}} type="checkbox"> 
                         <span class="custom-switch-indicator"></span> 
                       </label>
                    </td>

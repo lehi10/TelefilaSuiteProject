@@ -84,6 +84,18 @@ class AdministracionController extends Controller
         return view('administracion.editarConsultorio');
     }
     
+    public function cambiarEstadoUsuario(Request $request)
+    {
+        $user=User::find($request->idUsuario);
+        $estado_actual=$user->estado;
+        if($estado_actual==0)
+            $user->estado=1;
+        else 
+            $user->estado=0;
+        $user->save();
+        return "Estado cambiado";
+    }
+    
     
     
 }
