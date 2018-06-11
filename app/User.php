@@ -49,6 +49,11 @@ class User extends Authenticatable
         return $this->rol->nombre==$rol;
     }
 
+    public function checkRol($rol)
+    {
+        return $this->rol->nombre==$rol;
+    }
+
     public function rolUrl()
     {
         return $this->rol->url;

@@ -66,7 +66,7 @@
                         
                         <div class="dropdown"> <a href="#" class="nav-link pr-0 leading-none"
                             data-toggle="dropdown"> <span class="avatar" style="background-image:url( {{url('/demo/faces/female/25.jpg')}})"></span>
-                            @if (Auth::user()->tieneRol("Administrador"))
+                            @if (Auth::user()->checkRol("Administrador"))
                               <span class="ml-2 d-none d-lg-block"> <span class="text-default">Hospital {{Auth::user()->hospital->nombre}}</span> <small class="text-muted d-block mt-1">{{Auth::user()->rol->nombre}}</small>
                             @else
                               <span class="ml-2 d-none d-lg-block"> <span class="text-default">{{Auth::user()->username}}</span> <small class="text-muted d-block mt-1">{{Auth::user()->rol->nombre}}</small>

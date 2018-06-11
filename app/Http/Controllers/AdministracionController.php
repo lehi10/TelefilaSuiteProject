@@ -24,7 +24,8 @@ class AdministracionController extends Controller
         return view('administracion.index',['usuarios'=>$users,'hospital_id'=>Auth::user()->hospital_id]);
     }
 
-    public function user($idUser)
+    // Show the form
+    public function showUser($idUser)
     {
         $user=User::find($idUser);
         return view('administracion.editarUsuario',['usuario'=>$user]);
@@ -55,14 +56,9 @@ class AdministracionController extends Controller
         return redirect('administrador')->with(["message"=>"El usuario ha sido creado con exito."]);
     }
 
-    // Show the form
-    public function editarUsuario( Request $request,$idCliente,$idUsuario)
-    {
-        $usuario =User::where('id',$idUsuario)->first();           
-        return view('administracion.editarUsuario',compact('usuario'));
-    }
 
-    
+
+
     public  function editUser(Request $request)
     {
         $user=User::find($request->idUsuario);
