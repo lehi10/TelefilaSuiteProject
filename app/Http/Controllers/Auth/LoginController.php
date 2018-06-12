@@ -41,19 +41,26 @@ class LoginController extends Controller
     }
     public function login(Request $request)
     {
+        $user=User::where('username',$request->username)->first();
         if (Auth::attempt(['username'=>$request->username,'password'=>$request->password,'estado'=>1],$request->remember))
         {
-            $user=Auth::user();
             //return $user->rol->nombre;
             return redirect($user->rol->url);
         }
-        elseif(User::where('username',$request->username))
-        {
-
-            return redirect('/login')->withErrors(['user'=>"El usuario no esta activo"]);
-        }
+        // elseif(Auth::attempt(['username'=>$request->username,'password'=>$request->password]))
+        // {
+        //     Auth::logout();
+        //     return redirect('/login')->withErrors(['user'=>"El usuario no esta activo"]);
+        // }
         //return "No logueado";
-        return  redirect("/login")->withErrors(["user"=>"Usuario o contraseña incorrectos"]);
+        if ($user->estado==0)
+        {
+            return  redirect("/login")->withErrors(["user"=>"El usuario no esta activo"]);
+        }
+        else
+        {
+            return  redirect("/login")->withErrors(["user"=>"Usuario o contraseña incorrectos"]);
+        }
     }
 
 }
