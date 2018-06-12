@@ -20,10 +20,10 @@ class buscadorHospital extends Controller
             $hospitals = DB::table('hospitals')->where('nombre','LIKE','%'.$request->search."%")->get();
             if($hospitales)
             {
-                foreach($hospitals as $key => $hospitals)
+                foreach($hospitals as $key => $hospital)
                 {
                     $output ='<tr>'.
-                    '<td>'.$hospitals->id.'</td>'.
+                    '<td>'.$hospital->id.'</td>'.
                     '</tr>';
                 }
                 return Response($output);

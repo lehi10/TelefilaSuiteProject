@@ -107,6 +107,7 @@ Route::group(['prefix'=>'recursoshumanos','middleware' => 'rol:RecursosHumanos']
 
 
 Route::get('/search','SearchController@search');
+Route::get('/searchConsultorio','SearchController@searchConsultorio');
 /** 
  * Rutas para Modulo Super Usuario
  */

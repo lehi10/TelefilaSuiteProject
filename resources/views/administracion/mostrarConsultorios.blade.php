@@ -107,6 +107,20 @@ function cambiarEstado(id) {
         </div>
       </div>
     </div>
+
+    <script>
+       $('#search').on('keyup',function(){
+            $value=$(this).val();
+            $.ajax({
+                type : 'get',
+                url : '{{URL::to("searchConsultorio")}}',
+                data:{'search':$value},
+                success:function(data){
+                      $('tbody').html(data);
+                }
+            });
+        })
+    </script>
   @endsection
   
   

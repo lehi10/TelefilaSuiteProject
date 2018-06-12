@@ -49,7 +49,7 @@
                           src="{{url('images/logo_alpha.png')}}"
                           alt="logo" title="logo" style="width: 144px; height: 36px;"> </a>
                       <div class="d-flex order-lg-2 ml-auto">
-                        @if(Auth::user()->checkRol("superUser"))
+                        @if(Auth::user()->checkRol("Super Usuario"))
                         <div class="nav-item d-none d-md-flex"> <a href="{{url('/superuser/nuevoCliente')}}"
                             class="btn btn-sm btn-outline-primary">Agregar
                             cliente</a> 
@@ -96,7 +96,7 @@
                           <li class="nav-item"> <a href="{{url('/'.Auth::user()->rolUrl())}}" class="nav-link"><i class="fe fe-home"></i>
                               Inicio</a> </li>
                           
-                          @if (Auth::user()->checkRol('superUser'))
+                          @if (Auth::user()->checkRol('Super Usuario'))
                           <li class="nav-item"> <a href="#" class="nav-link" data-toggle="dropdown"><i
                                 class="fe fe-box"></i> Reportes</a> </li>
                           @elseif (Auth::user()->checkRol('Administrador'))
