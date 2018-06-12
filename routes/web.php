@@ -65,7 +65,7 @@ Route::group(['prefix'=>'administrador','middleware' => 'rol:Administrador'],fun
     Route::get('nuevoUsuario','AdministracionController@nuevoUsuario');
     Route::get('/{idUser}/user','AdministracionController@showUser');
 
-    Route::post('/editUser','AdminishttptracionController@editUser');
+    Route::post('/editUser','AdministracionController@editUser');
     Route::post('nuevoUsuario','AdministracionController@guardarUsuario');
 
 
