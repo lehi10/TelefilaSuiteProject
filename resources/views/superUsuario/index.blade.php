@@ -2,7 +2,7 @@
 
 @section('title','Super Usuario')
 @section('buscar','clientes')
-
+<!--use Illuminate\Pagination\Paginator>
 
 @section('body')      
   <div class="my-3 my-md-5">
@@ -79,7 +79,10 @@
                               </tbody>
                           </table>
                           @endif
-                      </div>
+                          {{ $hospitales->links() }}
+                        </div>
+                          
+                         {{ $hospitales->links() }}
                   </div>
               </div>
           </div>

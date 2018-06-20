@@ -85,14 +85,21 @@ function showUser(id) {
                         </tr>
                       @endforeach
                       </tbody>
+                        
+                  <div class="container">
+                      @foreach($usuarios as $user)
+                            {{$user->name}}
+                      @endforeach
+                    </div>
+                    
+                      {{ $usuarios->links() }}
                     </table>
+                
                   </div>                        
-                  @endif
-
-                  
-
+                  @endif                  
                   
                 </div>
+               
               </div>
             </div>
           </div>

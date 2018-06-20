@@ -14,7 +14,7 @@ class MedicosTableSeeder extends Seeder
         //
         $faker=Faker\Factory::create('es_PE');
         $j=1;
-        for ($i=1; $i <= 10; $i++) { 
+        for ($i=1; $i <= 9; $i++) { 
             $user= new telefilaSuite\Medico;
             $user->especialidad_id=$j;
             $user->nombres=$faker->firstname;

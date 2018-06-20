@@ -25,7 +25,7 @@ class SuperUsuarioController extends Controller
     public function index(Request $request)
     {
         //$hos= DB::table('hospitals')->paginate(10);
-        $hos = Hospital::simplePaginate(10);
+        $hos = Hospital::paginate(10);
         return view('superUsuario.index',["hospitales"=>$hos]);
     }
 
@@ -37,8 +37,8 @@ class SuperUsuarioController extends Controller
 
     public function cliente($idCliente){
         $cliente =Hospital::find($idCliente);
-        $users=$cliente->users->where('rol_id','!=',2);
-        
+        //$users=$cliente->users->where('rol_id','!=',2)->paginate(4);
+        $users=User::where('hospital_id',$idCliente)->paginate(4);
         return view('superUsuario.cliente',["usuarios"=>$users,"hospital_id"=>$cliente->id,"nombre"=>$cliente->nombre]);
     }
 

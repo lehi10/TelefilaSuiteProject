@@ -24,7 +24,7 @@ class AdministracionController extends Controller
 
     public function index()
     {
-        $users=User::where('hospital_id',Auth::user()->hospital_id)->where('rol_id',"!=",2)->get();
+        $users=User::where('hospital_id',Auth::user()->hospital_id)->where('rol_id',"!=",2)->paginate(4);
         //return Auth::user()->hospital_id;
         //return $users;
         return view('administracion.index',['usuarios'=>$users,'hospital_id'=>Auth::user()->hospital_id]);

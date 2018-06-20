@@ -97,7 +97,7 @@ function cambiarEstado(id) {
                   </div>                        
                   @endif
 
-                  
+                  {{ $usuarios->links() }}
 
                   
                 </div>

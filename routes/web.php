@@ -33,12 +33,23 @@ Route::get('/logout',function(){
 //Rutas para superUser
 Route::group(['prefix'=>'superuser','middleware' => 'rol:superUser'],function()
 {
+    Route::get('/',function()
+    {
+        $hospitales = Hospitales::paginate(10);
+        $hospitales->withPath('custom/url');
+    });
+
+    Route::get('cliente/{idCliente}',function()
+    {
+        $usuarios = Usuarios::paginate(4);
+        $usuarios->withPath('custom/url');   
+    });
 
     Route::get('/', 'SuperUsuarioController@index' );
     Route::get('cliente/{idCliente}', 'SuperUsuarioController@cliente');
 
     Route::get('nuevoCliente', 'SuperUsuarioController@nuevoCliente' );
-    
+
     Route::get('{idCliente}/nuevoUser', 'SuperUsuarioController@nuevoUser');
     Route::get('{idUser}/user', 'SuperUsuarioController@clienteUser');
     
@@ -59,8 +70,15 @@ Route::group(['prefix'=>'superuser','middleware' => 'rol:superUser'],function()
 //Rutas para administrador
 Route::group(['prefix'=>'administrador','middleware' => 'rol:Administrador'],function()
 {
+    Route::get('/',function()
+    {
+        $usuarios = Usuarios::paginate(4);
+        $usuarios->withPath('custom/url');   
+    });
     Route::get('/',  'AdministracionController@index' );
     Route::get('editar','AdministracionController@editarPerfilHospital');
+
+   
 
     Route::get('nuevoUsuario','AdministracionController@nuevoUsuario');
     Route::get('/{idUser}/user','AdministracionController@showUser');
