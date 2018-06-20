@@ -13,6 +13,6 @@ class HospitalsTableSeeder extends Seeder
     public function run()
     {
         //
-        factory(telefilaSuite\Hospital::class,6)->create();
+        factory(telefilaSuite\Hospital::class,30)->create();
     }
 }

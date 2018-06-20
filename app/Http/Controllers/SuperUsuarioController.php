@@ -2,6 +2,8 @@
 
 namespace telefilaSuite\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+
 use telefilaSuite\Hospital;
 use telefilaSuite\Persona;
 use telefilaSuite\Administrador;
@@ -22,7 +24,8 @@ class SuperUsuarioController extends Controller
 
     public function index(Request $request)
     {
-        $hos=Hospital::all();
+        //$hos= DB::table('hospitals')->paginate(10);
+        $hos = Hospital::simplePaginate(10);
         return view('superUsuario.index',["hospitales"=>$hos]);
     }
 
