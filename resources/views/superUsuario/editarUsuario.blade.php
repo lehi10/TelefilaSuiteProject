@@ -117,6 +117,5 @@
       <div class="table-responsive"><br>
       </div>
     </div>
-  </div>
 @endsection
 

@@ -81,17 +81,17 @@ function cambiarEstado(id) {
                               <td>{{$consultorio->user->username}}</td>
                               <td style="text-align: center;"><strong>8</strong></td>
                               <td><span class="badge badge-warning">50%</span> </td>
-                              <td> <div class="custom-switches-stacked"> <label class="custom-switch">
-                                <input name="option" value="1" class="custom-switch-input" onchange="cambiarEstado({{$consultorio->id}})"
-
-                                   type="checkbox" @if($consultorio->pedestal==1 ) checked @endif> <span class="custom-switch-indicator"></span>
-                                <span class="custom-switch-description"></span></label><label
-
-                                class="custom-switch"></label></div> </td>
+                              <td> 
+                              <label class="custom-switch">
+                                <input   name="optRol" value="{{$consultorio->id}}" class="custom-switch-input" onchange="cambiarEstado(this.value)" {{ $consultorio->pedestal==1 ? 'checked' :''}} type="checkbox"> 
+                                <span class="custom-switch-indicator"></span> 
+                              </label>
+                              </td>
                             </tr>
                           @endforeach
                         </tbody>
                     </table>
+                    </div>
                   @endif
 
 
@@ -104,10 +104,6 @@ function cambiarEstado(id) {
             </div>
            
           </div>
-        </div>
-      </div>
-    </div>
-
     <script>
        $('#search').on('keyup',function(){
             $value=$(this).val();
