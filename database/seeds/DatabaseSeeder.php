@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             EspecialidadTableSeeder::class,
             MedicosTableSeeder::class,
+            ConsultoriosTableSeeder::class,
             ]);
 
 

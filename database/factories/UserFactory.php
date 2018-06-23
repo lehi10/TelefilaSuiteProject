@@ -66,3 +66,13 @@ $factory->define(telefilaSuite\Hospital::class, function (Faker $faker) {
     ];  
 }); 
 
+$factory->define(telefilaSuite\Consultorio::class,function(Faker $faker){
+    return[
+        'nombre' => $faker->word,
+        'pedestal'=>$faker->boolean,
+        'especialidad_id' =>$faker->numberBetween(1,5),
+        'user_id' =>$faker->randomElement([7,8]),
+        'hospital_id'=>1,
+
+    ];
+});
