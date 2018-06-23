@@ -15,7 +15,7 @@ class superUsuario
      */
     public function handle($request, Closure $next,$rol)
     {
-        if($request->user()->tieneRol($rol))
+        if($request->user()->checkRol($rol))
         {
             return $next($request);
         }
