@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Medico extends Model
 {
     //
+    protected $guarded=[];
+
     public function agendas()
     {
         return $this->hasMany(Agenda::class);

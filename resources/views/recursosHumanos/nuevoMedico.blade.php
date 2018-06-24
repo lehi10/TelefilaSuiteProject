@@ -1,5 +1,60 @@
-@extends('layouts.base')
+@extends('layouts.baseSimple')
 @section('title','Crear Médico')
 @section('body')
+<div class="page">
+    <div class="page-single">
+    <div class="container">
+        <div class="row">
+        <div class="col col-login mx-auto">
+            <div style="text-align: center;"><img src="/demo/photos/logo_alpha.png"
+                alt="logo" title="logo"><br>
+            <br>
+            </div>
+            <form class="card" action="/recursosHumanos/crearMedico" method="post">
 
+            {{csrf_field()}}
+            <div class="card-body p-6">
+                <div class="card-title">Crear Nuevo Médico</div>
+                <div class="form-group"><input class="form-control" placeholder="Nombres completos" name="nombres"
+                    type="text"></div>
+                <div class="form-group"><input class="form-control" placeholder="Apellidos completos" name="apellidos"
+                    type="text"></div>
+                <div class="form-group"><input class="form-control" placeholder="N° CMP" name="cmp"
+                    type="text"></div>
+                <div class="form-group"><input class="form-control" placeholder="Celular" name="celular"
+                    type="text"></div>
+                <div class="form-group">
+                <select name="especialidad_id" class="form-control custom-select">
+                    &nbsp;
+                    @foreach($especialidades as $especialidad)
+                        <option value="{{$especialidad->id}}" data-data="{&quot;image&quot;: &quot;demo/faces/female/16.jpg&quot;}">{{$especialidad->nombre}}</option>
+                    @endforeach
+                </select>
+                <b><br>
+                    Tuno</b><br>
+                <div class="custom-switches-stacked"> 
+
+                    <label class="custom-switch">
+                        <input name="turno" value="1" class="custom-switch-input" checked="checked" type="radio"> <span class="custom-switch-indicator"></span>
+                        <span class="custom-switch-description">Mañana</span> </label>
+                    <label class="custom-switch">
+                        <input name="turno" value="2" class="custom-switch-input" type="radio"> <span class="custom-switch-indicator"></span>
+                        <span class="custom-switch-description">Tarde</span> </label>
+                    <label class="custom-switch">
+                        <input name="turno" value="3" class="custom-switch-input" type="radio"> <span class="custom-switch-indicator"></span>
+                        <span class="custom-switch-description">Noche</span>&nbsp;</label>
+
+                </div>
+                </div>
+                <div class="form-footer"> <button type="submit" class="btn btn-primary btn-block">CREAR
+                    MEDICO&nbsp;</button> </div>
+            </div>
+            </form>
+            <div class="text-center text-muted"><br>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
 @endsection

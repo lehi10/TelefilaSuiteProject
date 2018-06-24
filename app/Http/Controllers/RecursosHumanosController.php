@@ -4,6 +4,7 @@ namespace telefilaSuite\Http\Controllers;
 
 use Illuminate\Http\Request;
 use telefilaSuite\Medico;
+use telefilaSuite\Especialidad;
 
 use Auth;
 
@@ -23,7 +24,21 @@ class RecursosHumanosController extends Controller
 
     public function nuevoMedico()
     {
-        return view('recursosHumanos.nuevoMedico');
+        $especialidades=Especialidad::all();
+        return view('recursosHumanos.nuevoMedico',["especialidades"=>$especialidades]);
+    }
+
+    public function crearMedico(Request $request)
+    {
+        if (Auth::user()->hospital_id)
+        {
+            $medico=new Medico;
+            $medico->fill($request->except('_token'));
+            $medico->hospital_id=Auth::user()->hospital_id;
+            $medico->save();
+            return redirect(Auth::user()->rolUrl())->with(["message"=>"El médico ha sido registrado satisfactoriamente."]);
+        }
+        return "Debug Message";
     }
 
     public function editarMedico($idMedico)

@@ -80,7 +80,5 @@
         </ul>
         </div>
     </div>
-    </div>
-    </div>
 
 @endsection
