@@ -53,14 +53,14 @@ class LoginController extends Controller
         //     return redirect('/login')->withErrors(['user'=>"El usuario no esta activo"]);
         // }
         //return "No logueado";
-        if ($user->estado==0)
+        if ($user)
         {
-            return  redirect("/login")->withErrors(["user"=>"El usuario no esta activo"]);
+            if ($user->estado==0)
+            {
+                return  redirect("/login")->withErrors(["user"=>"El usuario no esta activo"]);
+            }
         }
-        else
-        {
-            return  redirect("/login")->withErrors(["user"=>"Usuario o contraseña incorrectos"]);
-        }
+        return  redirect("/login")->withErrors(["user"=>"Usuario o contraseña incorrectos"]);
     }
 
 }

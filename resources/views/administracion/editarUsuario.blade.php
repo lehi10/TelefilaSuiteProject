@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layouts.base')
 
 @section('title','Editar Usuarios')
 

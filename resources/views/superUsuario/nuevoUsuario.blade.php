@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.baseSimple')
 
 @section('title','Nuevo Usuario')
 
@@ -14,6 +14,7 @@
         <div class="container">
           <div class="row">
             <div class="col col-login mx-auto">
+            <div style="text-align: center;"><img src="/demo/photos/logo_alpha.png" alt="logo" title="logo"><br><br>
               
               <form class="card" action="/superuser/nuevoUser" method="post">
                 {{csrf_field()}}

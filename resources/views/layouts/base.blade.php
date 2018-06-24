@@ -36,7 +36,9 @@
     <script src="/assets/plugins/maps-google/plugin.js"></script>
     <!-- Input Mask Plugin -->
     <script src="/assets/plugins/input-mask/plugin.js"></script>
-  </head>
+    @yield('scripts') 
+    
+    </head>
   <body class="">
     <div class="page">
         <div class="page-main">  
@@ -45,7 +47,7 @@
         <div class="page-main">
                 <div class="header py-4">
                   <div class="container">
-                    <div class="d-flex"> <a class="header-brand" href="./index.html"> <img
+                    <div class="d-flex"> <a class="header-brand" href="/"> <img
                           src="{{url('images/logo_alpha.png')}}"
                           alt="logo" title="logo" style="width: 144px; height: 36px;"> </a>
                       <div class="d-flex order-lg-2 ml-auto">
@@ -60,9 +62,14 @@
                             class="btn btn-sm btn-outline-primary">Agregar
                             usuario</a> 
                         </div>
+                        @elseif(Auth::user()->checkRol('Recursos Humanos'))
+                        <div class="nav-item d-none d-md-flex"> <a href="{{url('/recursosHumanos/nuevoMedico')}}"
+                            class="btn btn-sm btn-outline-primary">Agregar
+                            medico</a> 
+                        </div>
                         @endif
-
                         @yield('auxiliar')
+                        
                         
                         <div class="dropdown"> <a href="#" class="nav-link pr-0 leading-none"
                             data-toggle="dropdown"> <span class="avatar" style="background-image:url( {{url('/demo/faces/female/25.jpg')}})"></span>
@@ -73,9 +80,11 @@
                             @endif
                             </span> </a>
                           <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                          @if (Auth::user()->checkRol('Administrador'))
                             <a class="dropdown-item" href="#"> <i class="dropdown-icon fe fe-user"></i>
-                              Editar perfil </a> <a class="dropdown-item" href="{{route('logout')}}">  <i class="dropdown-icon fe fe-log-out"></i>
-                              Salir </a> 
+                              Editar perfil </a> 
+                            @endif
+                               <a class="dropdown-item" href="{{route('logout')}}">  <i class="dropdown-icon fe fe-log-out"></i> Salir </a>
                           </div>
                         </div>
                       </div>
@@ -88,7 +97,7 @@
                   <div class="container">
                     <div class="row align-items-center">
                       <div class="col-lg-3 ml-auto">
-                        
+                      @yield('buscador')
                       </div>
                       <div class="col-lg order-lg-first">
                         <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
@@ -102,8 +111,8 @@
                           @elseif (Auth::user()->checkRol('Administrador'))
                           <li class="nav-item"> <a href="#" class="nav-link" data-toggle="dropdown"><i
                                 class="fe fe-box"></i> Reportes</a> </li>
-                          <li class="nav-item"> <a href="/administrador/consultorios" class="nav-link" ><i
-                                class="fe fe-box"></i> Consultorios</a> </li>
+                          <li class="nav-item"> <a href="/administrador/consultorios" class="nav-link"><i
+                                class="fe fe-calendar"></i> Consultorios</a> </li>
                           @endif
 
                           <li class="nav-item dropdown"> <br>
@@ -116,7 +125,12 @@
                   </div>
                 </div>
 
+          
+
             @yield('body')
+
+            </div>
+            </div>
 
             <footer class="footer">
               <div class="container">

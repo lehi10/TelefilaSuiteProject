@@ -15,7 +15,9 @@ class superUsuario
      */
     public function handle($request, Closure $next,$rol)
     {
-        if($request->user()->tieneRol($rol))
+        // error_log('User Rol '.$request->user()->rol->nombre);
+        // error_log('Pass Rol '.$rol);
+        if($request->user()->checkRol($rol))
         {
             return $next($request);
         }
