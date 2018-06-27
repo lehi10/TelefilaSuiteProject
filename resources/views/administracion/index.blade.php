@@ -105,6 +105,7 @@ function showUser(id) {
           </div>
         </div>
       </div>
+      </div>
       <script type="text/javascript">
         $('#search').on('keyup',function(){
             $value=$(this).val();
