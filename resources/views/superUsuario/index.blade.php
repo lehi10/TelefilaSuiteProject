@@ -81,8 +81,7 @@
                           @endif
                           {{ $hospitales->links() }}
                         </div>
-                          
-                         {{ $hospitales->links() }}
+                        
                   </div>
               </div>
           </div>
@@ -91,7 +90,7 @@
   </div>
   </div>
   </div>
-  <script type="text/javascript">
+   {{-- <script type="text/javascript">
       $('#search').on('keyup',function(){
           $value=$(this).val();
           $.ajax({
@@ -103,7 +102,10 @@
               }
           });
       })
-  </script>
+  </script>  --}}
+ {{--  <script>
+      $.ajaxSetup({headers:{'csrftoken' :'{{csrftoken()}}'}});
+  </script> --}}
 @endsection
 
 

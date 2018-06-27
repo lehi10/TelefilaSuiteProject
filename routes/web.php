@@ -33,17 +33,17 @@ Route::get('/logout',function(){
 //Rutas para superUser
 Route::group(['prefix'=>'superuser','middleware' => 'rol:superUser'],function()
 {
-    Route::get('/',function()
+    /* Route::get('/',function()
     {
-        $hospitales = Hospitales::paginate(10);
+        $hospitales = Hospitales::paginate(5);
         $hospitales->withPath('custom/url');
-    });
-
-    Route::get('cliente/{idCliente}',function()
+    });/*  
+    //Route::get('/','SuperUsuarioController@index')->name('index');
+    /* Route::get('cliente/{idCliente}',function()
     {
         $usuarios = Usuarios::paginate(4);
         $usuarios->withPath('custom/url');   
-    });
+    }); */
 
     Route::get('/', 'SuperUsuarioController@index' );
     Route::get('cliente/{idCliente}', 'SuperUsuarioController@cliente');

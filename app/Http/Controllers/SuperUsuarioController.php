@@ -24,9 +24,24 @@ class SuperUsuarioController extends Controller
 
     public function index(Request $request)
     {
+        if($request->search == "")
+        {
+            $hospitales = Hospital::paginate(10);
+            //return view('superUsuario.index',compact('hospitales'));
+            return view('superUsuario.index',["hospitales"=>$hospitales]);
+        }
+        else
+        {
+            $hospitales = Hospital::where('nombre','LIKE','%'. $request->search . '%')->paginate(100);
+            //$hospitales->apppends($request->only(''));
+            //return view('superUsuario.index',compact('hospitales'));
+            return view('superUsuario.index',["hospitales"=>$hospitales]);
+        }
+        /*
         //$hos= DB::table('hospitals')->paginate(10);
         $hos = Hospital::paginate(10);
         return view('superUsuario.index',["hospitales"=>$hos]);
+        */
     }
 
     public function nuevoCliente(Request $request)
@@ -41,8 +56,6 @@ class SuperUsuarioController extends Controller
         $users=User::where('hospital_id',$idCliente)->paginate(4);
         return view('superUsuario.cliente',["usuarios"=>$users,"hospital_id"=>$cliente->id,"nombre"=>$cliente->nombre]);
     }
-
-
     public function clienteUser($idUser)
     {
         $user =User::find($idUser);
