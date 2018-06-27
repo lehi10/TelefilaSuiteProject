@@ -42,7 +42,7 @@ Route::group(['prefix'=>'superuser','middleware' => 'rol:Super Usuario'],functio
     Route::get('{idCliente}/nuevoUser', 'SuperUsuarioController@nuevoUser');
     Route::get('{idUser}/user', 'SuperUsuarioController@clienteUser');
     
-    Route::post('store','SuperUsuarioController@nuevoCliente');
+    Route::post('store','SuperUsuarioController@storeNuevoCliente');
     
     Route::post('nuevoUser','SuperUsuarioController@nuevoClientUser');
     Route::post('editUser', 'SuperUsuarioController@editClientUser' );

@@ -24,8 +24,8 @@ class SuperUsuarioController extends Controller
 
     public function index(Request $request)
     {
-        //$hos= DB::table('hospitals')->paginate(10);
-        $hos = Hospital::simplePaginate(10);
+        $hos= DB::table('hospitals')->get();
+        //$hos = Hospital::simplePaginate(10);
         return view('superUsuario.index',["hospitales"=>$hos]);
     }
 
