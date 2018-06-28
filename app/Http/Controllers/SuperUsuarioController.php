@@ -28,14 +28,15 @@ class SuperUsuarioController extends Controller
         {
             $hospitales = Hospital::paginate(10);
             //return view('superUsuario.index',compact('hospitales'));
-            return view('superUsuario.index',["hospitales"=>$hospitales]);
+            //return view('superUsuario.index',["hospitales"=>$hospitales]);
+            return response()->json(view('superUsuario.index',compact('hospitales'))->render());
         }
         else
         {
             $hospitales = Hospital::where('nombre','LIKE','%'. $request->search . '%')->paginate(100);
             //$hospitales->apppends($request->only(''));
             //return view('superUsuario.index',compact('hospitales'));
-            return view('superUsuario.index',["hospitales"=>$hospitales]);
+            //return view('superUsuario.index',["hospitales"=>$hospitales]);
         }
         /*
         //$hos= DB::table('hospitals')->paginate(10);

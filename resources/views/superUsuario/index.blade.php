@@ -12,7 +12,7 @@
       <!--<span class="breadcrumb-item active">Cards</span>-->
       <!--</nav>-->
       <!--</div>-->
-      <div class="container">
+      <div class="container" id="todos">
           <div class="row row-cards">
               <br>
               <div class="col-12">
@@ -99,7 +99,7 @@
               }
           });
       })
-  </script>  --}}
+  </script> 
  {{--  <script>
       $.ajaxSetup({headers:{'csrftoken' :'{{csrftoken()}}'}});
   </script> --}}
