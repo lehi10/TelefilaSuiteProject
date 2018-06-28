@@ -107,6 +107,7 @@ Route::group(['prefix'=>'recursosHumanos','middleware' => 'rol:Recursos Humanos'
     Route::get('{idMedico}/editarMedico','RecursosHumanosController@editarMedico');
     
     Route::post('crearMedico','RecursosHumanosController@crearMedico');
+    Route::post('{idMedico}/crearAgenda','RecursosHumanosController@crearAgenda');
 });
 
 

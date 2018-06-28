@@ -51,4 +51,10 @@ class RecursosHumanosController extends Controller
         return "Editar Medico";
     }
 
+    public function crearAgenda($idMedico,Request $request)
+    {
+        echo $idMedico." <--idmedico\n";
+        return $request;
+    }
+
 }
