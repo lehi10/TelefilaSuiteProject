@@ -11,6 +11,6 @@ class ConsultoriosTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(telefilaSuite\Consultorio::class,30)->create();
+        factory(telefilaSuite\Consultorio::class,10)->create();
     }
 }

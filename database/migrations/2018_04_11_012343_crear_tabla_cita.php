@@ -15,16 +15,17 @@ class CrearTablaCita extends Migration
     {
         Schema::create('citas', function (Blueprint $table) {
             $table->increments('id');
+            $table->date('fecha');
+            $table->time('horaInicio');
+            $table->time('horaFinal');
+
+
             $table->unsignedInteger('paciente_id');
-            $table->foreign('paciente_id')->references('id')->on("pacientes");
-            $table->dateTime('fecha_cita');
-            $table->boolean('confirmada_cita');
-            $table->boolean('reservada_cita');
-            $table->boolean('pagada_cita');
             $table->unsignedInteger('hospital_id');
-            $table->foreign('hospital_id')->references('id')->on("hospitals");
-            $table->timestamps();
+            $table->boolean('pagado');
             
+            $table->foreign('paciente_id')->references('id')->on("pacientes");
+            $table->foreign('hospital_id')->references('id')->on("hospitals");
 
         });
     }

@@ -15,13 +15,14 @@ class CrearTablaAgenda extends Migration
     {
         Schema::create('agendas', function (Blueprint $table) {
             $table->increments('id');
+            $table->date('fecha');
+            $table->time('horaInicio');
+            $table->time('horaFinal');
+            $table->tinyInteger('tiempoCita');
+            $table->unsignedInteger('turnos');
+
             $table->unsignedInteger('medico_id');
             $table->foreign('medico_id')->references('id')->on('medicos');
-            $table->time('horaInicio_agenda');
-            $table->time('horaFinal_agenda');
-            $table->tinyInteger("dia_agenda");
-            $table->boolean("disponibilidad");
-            $table->timestamps();
         });
     }
 

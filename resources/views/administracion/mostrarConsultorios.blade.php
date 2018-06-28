@@ -72,15 +72,20 @@ function cambiarEstado(id) {
                           </tr>
                         </thead>
                         <tbody>
-                          @foreach($consultorios as $consultorio)  
+                          @foreach($consultorios as $key=>$consultorio)  
                             <tr>
                               <td><span class="text-muted">{{$consultorio->id}}</span></td>
                               <td><a href="{{url('administrador/'.$consultorio->id.'/consultorio')}}" class="text-inherit">{{$consultorio->nombre}}<br>
                                 </a></td>
                               <td>{{$consultorio->especialidad->nombre}}</td>
                               <td>{{$consultorio->user->username}}</td>
-                              <td style="text-align: center;"><strong>8</strong></td>
-                              <td><span class="badge badge-warning">50%</span> </td>
+                              @if ($agendas[$key])
+                                <td style="text-align: center;"><strong>{{$agendas[$key]}}</strong></td>
+                                <td style="padding-left: 23px">    <span class="badge badge-success">100%</span> </td>
+                              @else
+                                <td style="text-align: center;">NM</td>
+                                <td style="padding-left: 23px">   <span class="badge badge-danger">0%</span> </td>
+                              @endif
                               <td> 
                               <label class="custom-switch">
                                 <input   name="optRol" value="{{$consultorio->id}}" class="custom-switch-input" onchange="cambiarEstado(this.value)" {{ $consultorio->pedestal==1 ? 'checked' :''}} type="checkbox"> 

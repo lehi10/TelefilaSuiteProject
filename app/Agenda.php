@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Agenda extends Model
 {
     //
+    public $timestamps=false;
     public function medico()
     {
         return $this->belongsTo(Medico::class);

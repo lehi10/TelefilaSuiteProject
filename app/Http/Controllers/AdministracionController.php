@@ -8,6 +8,7 @@ use telefilaSuite\User;
 use telefilaSuite\Consultorio;
 use telefilaSuite\Especialidad;
 use telefilaSuite\Medico;
+use telefilaSuite\Agenda;
 
 
 use Illuminate\Http\Request;
@@ -96,7 +97,13 @@ class AdministracionController extends Controller
             if (Auth::user()->hospital_id)
             {
                 $consultorios=Consultorio::where("hospital_id",Auth::user()->hospital_id)->get();
-                return view('administracion.mostrarConsultorios',['consultorios'=>$consultorios]);
+                $agendas=collect();
+                foreach ($consultorios as $key=>$consultorio) {
+                    //echo "asdas ".now()->format("Y-m-d")."\n";
+                    $agendas->push(Agenda::where('medico_id',$consultorio->medico_id)->where("fecha",now()->format("Y-m-d"))->pluck("turnos")->first());
+                }
+                //return $agendas;
+                return view('administracion.mostrarConsultorios',['consultorios'=>$consultorios,"agendas"=>$agendas]);
             }
         }
     }

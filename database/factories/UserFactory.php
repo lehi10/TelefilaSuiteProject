@@ -76,3 +76,25 @@ $factory->define(telefilaSuite\Consultorio::class,function(Faker $faker){
 
     ];
 });
+
+$factory->define(telefilaSuite\Agenda::class,function(Faker $faker){
+    $today=now();
+    $t0=$faker->dateTimeBetween($min='06:00:00',$max='10:00:00')->format("H:00:00");
+    $t0f=new DateTime($t0);
+    $tf=$faker->dateTimeBetween($min=$t0f,$max='23:59:59')->format("H:00:00");
+    $tff=new DateTime($tf);
+    $tiempo=$faker->numberBetween(1,20);
+    $m=5-$tiempo%5;
+    $tiempo=$tiempo+$m;
+    $diff=$tff->diff($t0f);
+    $diff=$diff->h*60+$diff->i;
+    $turnos=$diff/$tiempo;
+    return[
+        'fecha' => $today->format("Y-m-d"),
+        'horaInicio'=>$t0,
+        'horaFinal'=>$tf,
+        'tiempoCita' =>$tiempo,
+        'turnos' =>$turnos,
+
+    ];
+});
