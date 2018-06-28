@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Medico extends Model
 {
     //
+    protected $guarded=[];
+
     public function agendas()
     {
         return $this->hasMany(Agenda::class);
@@ -20,9 +22,9 @@ class Medico extends Model
         return $this->belongsTo(Hospital::class);
     }
 
-    public function consultorios()
+    public function consultorio()
     {
-        return $this->hasMany(Consultorio::class);
+        return $this->hasOne(Consultorio::class);
     }
     //Observar
     //Espacio para referenciar a citas o usar agendas

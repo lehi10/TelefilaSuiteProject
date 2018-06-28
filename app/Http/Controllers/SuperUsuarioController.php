@@ -19,7 +19,7 @@ class SuperUsuarioController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth','rol:SuperUser']);
+        $this->middleware(['auth','rol:Super Usuario']);
     }
 
     public function index(Request $request)

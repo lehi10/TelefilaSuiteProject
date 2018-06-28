@@ -19,6 +19,9 @@ class CrearTablaMedico extends Migration
             $table->string('nombres');
             $table->string('apellidos');
             $table->string('cmp');
+            $table->string('celular');
+            $table->tinyInteger('turno');
+
             $table->unsignedInteger('especialidad_id');
             $table->unsignedInteger('hospital_id');
 

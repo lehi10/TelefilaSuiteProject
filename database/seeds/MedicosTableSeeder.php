@@ -20,6 +20,8 @@ class MedicosTableSeeder extends Seeder
             $user->nombres=$faker->firstname;
             $user->apellidos=$faker->lastname;
             $user->cmp=$faker->dni;
+            $user->celular=$faker->phoneNumber;
+            $user->turno=$faker->numberBetween(1,3);
             $user->hospital_id=1;
             $user->save();
             if ($i%2==0)

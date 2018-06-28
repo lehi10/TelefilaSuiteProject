@@ -87,10 +87,7 @@
           </div>
       </div>
   </div>
-  </div>
-  </div>
-  </div>
-   {{-- <script type="text/javascript">
+  <script type="text/javascript">
       $('#search').on('keyup',function(){
           $value=$(this).val();
           $.ajax({

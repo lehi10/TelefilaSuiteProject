@@ -31,7 +31,7 @@ Route::get('/logout',function(){
 });
 
 //Rutas para superUser
-Route::group(['prefix'=>'superuser','middleware' => 'rol:superUser'],function()
+Route::group(['prefix'=>'superuser','middleware' => 'rol:Super Usuario'],function()
 {
     /* Route::get('/',function()
     {
@@ -53,7 +53,7 @@ Route::group(['prefix'=>'superuser','middleware' => 'rol:superUser'],function()
     Route::get('{idCliente}/nuevoUser', 'SuperUsuarioController@nuevoUser');
     Route::get('{idUser}/user', 'SuperUsuarioController@clienteUser');
     
-    Route::post('store','SuperUsuarioController@nuevoCliente');
+    Route::post('store','SuperUsuarioController@storeNuevoCliente');
     
     Route::post('nuevoUser','SuperUsuarioController@nuevoClientUser');
     Route::post('editUser', 'SuperUsuarioController@editClientUser' );
@@ -121,6 +121,11 @@ Route::group(['prefix'=>'recursosHumanos','middleware' => 'rol:Recursos Humanos'
 {
    
     Route::get('/',  'RecursosHumanosController@index');
+    Route::get('nuevoMedico','RecursosHumanosController@nuevoMedico');
+    Route::get('{idMedico}/editarMedico','RecursosHumanosController@editarMedico');
+    
+    Route::post('crearMedico','RecursosHumanosController@crearMedico');
+    Route::post('{idMedico}/crearAgenda','RecursosHumanosController@crearAgenda');
 });
 
 
