@@ -48,12 +48,26 @@ class RecursosHumanosController extends Controller
         {
             return view('recursosHumanos.editarMedico',['medico'=>$medico]);
         }
+
         return "Editar Medico";
+    }
+
+    public function mostrarAgenda($idMedico,Request $request)
+    {
+        $medico=Medico::find($idMedico);
+        if (Auth::user()->hospital_id==$medico->hospital_id)
+        {
+            $diasMes = cal_days_in_month (CAL_GREGORIAN, $request['month'] , $request['year'] );
+            setlocale(LC_TIME, 'es_ES.UTF-8'); 
+            $nombreMes=strftime("%B",mktime(0, 0, 0, $request['month'], 1, 2000));    
+            return view('recursosHumanos.editarMedico',[ 'crearFlag'=>True,'medico'=>$medico ,'diasMes'=>$diasMes ,'month' =>$nombreMes , 'year' =>$request['year'] ]);   
+        }
+        return "Crear Agenda";
     }
 
     public function crearAgenda($idMedico,Request $request)
     {
-        echo $idMedico." <--idmedico\n";
+        
         return $request;
     }
 
