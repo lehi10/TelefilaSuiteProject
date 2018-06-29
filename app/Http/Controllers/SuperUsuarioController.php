@@ -22,14 +22,14 @@ class SuperUsuarioController extends Controller
         $this->middleware(['auth','rol:Super Usuario']);
     }
 
-    public function index(Request $request)
+    public function index()
     {
-        if($request->search == "")
+        /* if($request->search == "")
         {
             $hospitales = Hospital::paginate(10);
             //return view('superUsuario.index',compact('hospitales'));
-            //return view('superUsuario.index',["hospitales"=>$hospitales]);
-            return response()->json(view('superUsuario.index',compact('hospitales'))->render());
+            return view('superUsuario.index',["hospitales"=>$hospitales]);
+            //return response()->json(view('superUsuario.index',compact('hospitales'))->render());
         }
         else
         {
@@ -42,7 +42,22 @@ class SuperUsuarioController extends Controller
         //$hos= DB::table('hospitals')->paginate(10);
         $hos = Hospital::paginate(10);
         return view('superUsuario.index',["hospitales"=>$hos]);
-        */
+        */ 
+        return view('superUsuario.index');
+    }
+    public function obtenerTabla(Request $request)
+    {
+        if($request->search == "")
+        {
+            $hospitales = Hospital::paginate(10);
+            return response()->json(view('superUsuario.index',compact('hospitales'))->render());
+        }
+        else
+        {
+            //$hospitales = DB::table('Hospital')->select('')
+            $hospitales = Hospital::where('nombre','LIKE','%'. $request->input('busqueda') . '%')->paginate(5);
+            return response()->json(view('superUsuario.index',compact('hospitales'))->render());    
+        }
     }
 
     public function nuevoCliente(Request $request)

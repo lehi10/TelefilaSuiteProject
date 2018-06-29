@@ -5,19 +5,19 @@
   <div class="input-icon-addon"> <i class="fe fe-search"></i> </div>
 </form>
 @endsection
-  <script>
-    function lagrabusqueda(nom){
-      var datos = {
-        "nom" : nom,
-      };
-      $.ajax({
-        data: datos,
-        url: 'index',
-        type: 'get',
-        dataType: 'json',
-        success: function(data){
-          $("#todos").html(data);
-        }
-      });
-    }
-    </script>
+<script>
+  function lagrabusqueda(nom){
+    var datos = {
+      "nom" : nom,
+    };
+    $.ajax({
+      data: datos,
+      url: '',
+      type: 'get',
+      dataType: 'json',
+      success: function(data){
+        $("#todos").html(data);
+      }
+    });
+  }
+  </script>
