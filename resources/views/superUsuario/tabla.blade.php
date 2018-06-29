@@ -1,4 +1,4 @@
-<div class="container" id="todos">
+<div class="container" >
     <div class="row row-cards">
         <br>
         <div class="col-12">

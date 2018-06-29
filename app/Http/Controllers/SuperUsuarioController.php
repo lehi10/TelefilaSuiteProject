@@ -45,19 +45,20 @@ class SuperUsuarioController extends Controller
         */ 
         return view('superUsuario.index');
     }
+
+    public function inicio()
+    {
+        $hospitales=Hospital::paginate(10);
+        return view('superUsuario.tabla',["hospitales"=>$hospitales]);
+    }
+    
     public function obtenerTabla(Request $request)
     {
-        if($request->search == "")
-        {
-            $hospitales = Hospital::paginate(10);
-            return response()->json(view('superUsuario.index',compact('hospitales'))->render());
-        }
-        else
-        {
-            //$hospitales = DB::table('Hospital')->select('')
-            $hospitales = Hospital::where('nombre','LIKE','%'. $request->input('busqueda') . '%')->paginate(5);
-            return response()->json(view('superUsuario.index',compact('hospitales'))->render());    
-        }
+        //$hospitales = DB::table('Hospital')->select('')
+        $hospitales = Hospital::where('nombre','LIKE','%'. $request->input('busqueda') . '%')->paginate(10);
+        
+        return response()->json(view('superUsuario.tabla',compact('hospitales'))->render());    
+        
     }
 
     public function nuevoCliente(Request $request)

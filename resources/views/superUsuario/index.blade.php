@@ -13,19 +13,22 @@
       <!--</div>-->
       <div id ="tabla">
           
+        
       </div>
+      
   </div>
   <script type="text/javascript">
-    $("#tabla").load("{{ asset('superUsuario/tabla')}}");
+  
+    $("#tabla").load("{{asset('superuser/inicio')}}");
 
-    $("#form").submit(function(){
-      $.post("{{asset('superUsuario')}}",$("#form").serialize()).done(function(){
-        $("#tabla").load("{{asset('superUsuario/tabla')}}");
-        $("#form")[0].reset();
-        alertify.success("buen camino");
-      });
-      return false;
-    })
+    // $("#form").submit(function(){
+    //   $.post("{{asset('superUsuario')}}",$("#form").serialize()).done(function(){
+    //     $("#tabla").load("{{asset('superuser/tabla')}}");
+    //     $("#form")[0].reset();
+    //     alertify.success("buen camino");
+    //   });
+    //   return false;
+    // })
 
 
     function mostrarTabla(busqueda){
@@ -34,18 +37,18 @@
       };
       $.ajax({
         data: datos,
-        url: 'obtenerTabla',
+        url: 'superuser/tabla',
         type: 'get',
         dataType: 'json',
         success: function(data){
-          $("#todos").html(data);
+          $("#tabla").html(data);
         }
       });
     }
     </script> 
- {{--  <script>
-      $.ajaxSetup({headers:{'csrftoken' :'{{csrftoken()}}'}});
-  </script> --}}
+   <script>
+      $.ajaxSetup({headers:{'csrftoken' :'{{csrf_token()}}'}});
+  </script> 
 @endsection
 
 
