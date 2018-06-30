@@ -318,6 +318,7 @@ $('.timepicker').timepicker({
     minTime: '7:00 AM',
     maxTime: '6:00 PM',
     startTime: '7:00 AM',
+    defaultTime: '7:00',
     dynamic: false,
     dropdown: true,
     scrollbar: true,
