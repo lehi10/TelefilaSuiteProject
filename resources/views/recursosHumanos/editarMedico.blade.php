@@ -25,7 +25,7 @@ function updateTurnos(iTurno) {
     var mins=t1.getMinutes() - t2.getMinutes();
     var secs=t1.getSeconds() - t2.getSeconds();
 
-    if(hours<0 || mins <0 || secs <0)
+    if(hours<0 || ( hours==0 && mins <0 ) )
     {
         document.getElementById(iTurno+"cantTurnos").innerHTML = 0;
         $("#row"+iTurno).removeClass("va");
@@ -315,11 +315,10 @@ $("#guardar1").click(function(){
 $('.timepicker').timepicker({
     timeFormat: 'HH:mm',
     interval: 15,
-    minTime: '11:00 AM',
+    minTime: '7:00 AM',
     maxTime: '6:00 PM',
-    defaultTime: '11',
-    //startTime: '11:00 AM',
-    //dynamic: true,
+    startTime: '7:00 AM',
+    dynamic: false,
     dropdown: true,
     scrollbar: true,
     change: function(time) {
