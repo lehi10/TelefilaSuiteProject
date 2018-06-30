@@ -47,14 +47,19 @@
                                 <td><span class="text-muted">{{$medico->id}}</span></td>
                                 <td><a href="{{'recursosHumanos/'.$medico->id.'/editarMedico/'}}" class="text-inherit">{{$medico->nombres}} {{$medico->apellidos}}<br>
                                 </a></td>
-                                <td><a href="editar_consultorio.html" class="text-inherit">{{$medico->consultorio ? $medico->consultorio->nombre:'----'}}<br>
+
+                                @if($medico->consultorio)
+                                <td><a href="/recursosHumanos/{{$medico->consultorio->id}}/consultorio" class="text-inherit">{{$medico->consultorio ? $medico->consultorio->nombre:'----'}}<br>
                                 </a></td>
+                                @else
+                                    <td>----</td>
+                                @endif
                                 <td>
                                 <div class="col"> </div>
-                                <strong>08</strong></td>
+                                <strong>00</strong></td>
                                 <td>
                                 <label class="custom-switch">
-                                    <input   name="optRol" value="{{$medico->id}}" class="custom-switch-input" onchange="showUser(this.value)" {{ $medico->nombres ? 'checked' :''}} type="checkbox"> 
+                                    <input   name="optRol" value="{{$medico->id}}" class="custom-switch-input" {{ $medico->nombres ? 'checked' :''}} type="checkbox"> 
                                     <span class="custom-switch-indicator"></span> 
                                 </label>
                                 </td>

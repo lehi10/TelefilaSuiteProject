@@ -26,6 +26,14 @@ class Medico extends Model
     {
         return $this->hasOne(Consultorio::class);
     }
+
+    public function getTurnos()
+    {
+        $turno=Agenda::where('medico_id',$this->id)->where('fecha',now()->format("Y-m-d"))->pluck("turnos")->first();
+        if ($turno)
+            return $turno;
+        return 0;
+    }
     //Observar
     //Espacio para referenciar a citas o usar agendas
 }

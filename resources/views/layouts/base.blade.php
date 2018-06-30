@@ -113,6 +113,11 @@
                                 class="fe fe-box"></i> Reportes</a> </li>
                           <li class="nav-item"> <a href="/administrador/consultorios" class="nav-link"><i
                                 class="fe fe-calendar"></i> Consultorios</a> </li>
+                          
+                          @elseif (Auth::user()->checkRol('Recursos Humanos'))
+                          <li class="nav-item"> <a href="/recursosHumanos/consultorios" class="nav-link"><i
+                                class="fe fe-calendar"></i> Consultorios</a> </li>
+                        
                           @endif
 
                           <li class="nav-item dropdown"> <br>

@@ -130,6 +130,7 @@ class AdministracionController extends Controller
         if ($consultorio->hospital_id==$hospital->id)
         {
             $medicos=Medico::where('hospital_id',$hospital->id)->get();
+            //$agenda=Agenda::where('medico_id',$)
             
             return view('administracion.editarConsultorio',["consultorio"=>$consultorio,"medicos"=>$medicos]);
 

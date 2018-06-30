@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use telefilaSuite\Medico;
 use telefilaSuite\Especialidad;
 use telefilaSuite\Agenda;
+use telefilaSuite\Consultorio;
+
 use DateTime;   
 
 use Auth;
@@ -102,8 +104,45 @@ class RecursosHumanosController extends Controller
         return redirect('recursosHumanos')->with(["message"=>"La agenda ha sido creada correctamente."]);
     }
 
+
+    public function mostrarConsultorios()
+    {
+        if (Auth::user()->hospital_id)
+            {
+                $consultorios=Consultorio::where("hospital_id",Auth::user()->hospital_id)->get();
+                $agendas=collect();
+                foreach ($consultorios as $key=>$consultorio) {
+                    //echo "asdas ".now()->format("Y-m-d")."\n";
+                    $agendas->push(Agenda::where('medico_id',$consultorio->medico_id)->where("fecha",now()->format("Y-m-d"))->pluck("turnos")->first());
+                }
+                //return $agendas;
+                return view('recursosHumanos.mostrarConsultorios',['consultorios'=>$consultorios,"agendas"=>$agendas]);
+        }
+    }
+
+
     public function editarConsultorio($idConsultorio)
     {
+        $hospital=Auth::user()->hospital;
+        $consultorio=Consultorio::find($idConsultorio);
+        if ($consultorio->hospital_id==$hospital->id)
+        {
+            $medicos=Medico::where('hospital_id',$hospital->id)->doesntHave('consultorio')->get();
+            if($consultorio->medico)
+                $medicos->push($consultorio->medico);
+            
+            //$agenda=Agenda::where('medico_id',$)
+            
+            return view('recursosHumanos.editarConsultorio',["medicos"=>$medicos,"consultorio"=>$consultorio]);
+        }
         return "Consultorio: ".$idConsultorio;
+    }
+
+    public function updateConsultorio($idConsultorio, Request $request)
+    {
+        $consultorio=Consultorio::find($idConsultorio);
+        $consultorio->medico_id=$request->medico_id;
+        $consultorio->save();
+        return redirect("recursosHumanos/consultorios")->with(["message"=>"El médico ha sido asignado correctamente"]);
     }
 }
