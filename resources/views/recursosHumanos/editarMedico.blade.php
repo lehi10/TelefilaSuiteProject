@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 <script>
 
-document.getElementById("1horaSalida").addEventListener("change", updateTurnos);
+//document.getElementById("1horaSalida").addEventListener("change", updateTurnos);
 
 
 function updateTurnos(iTurno) {    
@@ -28,15 +28,23 @@ function updateTurnos(iTurno) {
     if(hours<0 || mins <0 || secs <0)
     {
         document.getElementById(iTurno+"cantTurnos").innerHTML = 0;
+        $("#row"+iTurno).removeClass("va");
         return;
     }
         
     t1.setHours( hours,mins ,secs );
+    var minutos=t1.getHours()*60+t1.getMinutes();
+    //console.log(minutos);
+    var turnosGenerados=minutos/tiempoAt;
+ 	// var minutos=(t1.getHours() +":"+t1.getMinutes()+":0" );
+    // var timeFormat = new Date("0001-01-01T"+minutos);
+    // var turnos = timeFormat.getHours() * 60 + timeFormat.getMinutes();
+    document.getElementById(iTurno+"cantTurnos").innerHTML = parseInt(turnosGenerados);
 
- 	var minutos=(t1.getHours() +":"+t1.getMinutes()+":0" );
-    var timeFormat = new Date("0001-01-01T"+minutos);
-    var turnos = timeFormat.getHours() * 60 + timeFormat.getMinutes();
-    document.getElementById(iTurno+"cantTurnos").innerHTML = parseInt(turnos/tiempoAt);
+    if (turnosGenerados>0){
+        $("#row"+iTurno).addClass("va");
+        $("#turnos"+iTurno).val(parseInt(turnosGenerados));
+    }
 
     } 
 </script>
@@ -118,7 +126,7 @@ function updateTurnos(iTurno) {
                                 </tr>
                                 <tr>
                                 
-                                    {{ Form::open(array('action' => array('RecursosHumanosController@mostrarAgenda', $medico->id))) }}
+                                    {{ Form::open(array('action' => array('RecursosHumanosController@mostrarAgenda', $medico->id),'method'=>'get')) }}
                                         <td>
                                             <br>
                                         </td>
@@ -160,16 +168,17 @@ function updateTurnos(iTurno) {
                     @isset($crearFlag)
                     <div class="table-responsive"><br></div>
                         <div class="table-responsive" style="text-align: center;">
-                        <h3 class="card-title">Ha cargado la agenda de {{$month}} de {{$year}}</h3>
+                        <h3 class="card-title">Ha cargado la agenda de {{$mes}} de {{$year}}</h3>
                         <hr style="width: 80%; height: 1px; color: #999999; border-style: solid;">
                     </div>
                     <div class="table-responsive"></div>
 
-                    {{ Form::open(array('action' => array('RecursosHumanosController@crearAgenda',$medico->id))) }}
-                        <input type="number" name="diasMes" value="{{$diasMes}}" style="display:none"> 
+                    {{ Form::open(array('action' => array('RecursosHumanosController@crearAgenda',$medico->id),'id'=>"agendas")) }}
+                        <input type="number" name="year" value="{{$year}}" style="display:none"> 
+                        <input type="number" name="mes" value="{{$month}}" style="display:none"> 
 
                         <table style="margin: 0px auto; width: 80%;" cellspacing="100" border="0">
-                        <tbody>
+                        <tbody id="ags">
                         <tr>
                             <td>Día<br>
                             </td>
@@ -181,17 +190,39 @@ function updateTurnos(iTurno) {
                         </tr>
                         
                         @for ($i = 1; $i <= $diasMes ; $i++)
-                            <tr>
-                                <td>{{$i}}<br>
+
+                            @if ($agendas->has($i))
+                                <tr id="row{{$i}}">
+                                    <td>{{$i}}</td>
+                                    <td>
+                                        <input name="{{$i}}[horaInicio]" id="{{$i}}horaIngreso" type="text"  class="form-control usado"  value="{{$agendas[$i]->horaInicio}}" disabled>
+                                    </td>
+                                    <td>
+                                        <input name="{{$i}}[horaFinal]" id="{{$i}}horaSalida" class="form-control usado" value="{{$agendas[$i]->horaFinal}}" disabled>
+                                    </td>
+                                    <td>
+                                        <select name="{{$i}}[tiempoCita]" id="{{$i}}tiempoAtencion" class="form-control custom-select"  disabled>
+
+                                            <option value="{{$agendas[$i]->tiempoCita}}" >{{$agendas[$i]->tiempoCita}}</option>
+
+                                        </select>
+                                    </td>
+                                    <input type="hidden" name="{{$i}}[turnos]" value="0" id="turnos{{$i}}" disabled>
+                                    <input type="hidden" name="fecha" value="0" id="" disabled>
+                                    <td style="text-align: center;"><strong> <label id="{{$i}}cantTurnos">{{$agendas[$i]->turnos}}</label> </strong></td>
+                                </tr>
+                            @else
+
+                            <tr id="row{{$i}}">
+                                <td>{{$i}}</td>
+                                <td>
+                                    <input name="{{$i}}[horaInicio]" id="{{$i}}horaIngreso" type="text"  class="form-control timepicker " jt-timepicker="" time="model.time" time-string="model.timeString" default-time="model.options.defaultTime" time-format="model.options.timeFormat" start-time="model.options.startTime" min-time="model.options.minTime" max-time="model.options.maxTime" interval="model.options.interval" dynamic="model.options.dynamic" scrollbar="model.options.scrollbar" dropdown="model.options.dropdown" onchange="updateTurnos({{$i}})">
                                 </td>
                                 <td>
-                                    <input name="{{$i}}horaIngreso" id="{{$i}}horaIngreso" type="text"  class="form-control timepicker" jt-timepicker="" time="model.time" time-string="model.timeString" default-time="model.options.defaultTime" time-format="model.options.timeFormat" start-time="model.options.startTime" min-time="model.options.minTime" max-time="model.options.maxTime" interval="model.options.interval" dynamic="model.options.dynamic" scrollbar="model.options.scrollbar" dropdown="model.options.dropdown" onchange="updateTurnos({{$i}})">
+                                    <input name="{{$i}}[horaFinal]" id="{{$i}}horaSalida" onchange ="updateTurnos({{$i}})" class="form-control timepicker" jt-timepicker="" time="model.time" time-string="model.timeString" default-time="model.options.defaultTime" time-format="model.options.timeFormat" start-time="model.options.startTime" min-time="model.options.minTime" max-time="model.options.maxTime" interval="model.options.interval" dynamic="model.options.dynamic" scrollbar="model.options.scrollbar" dropdown="model.options.dropdown">
                                 </td>
                                 <td>
-                                    <input name="{{$i}}horaSalida" id="{{$i}}horaSalida" onchange ="updateTurnos({{$i}})" class="form-control timepicker" jt-timepicker="" time="model.time" time-string="model.timeString" default-time="model.options.defaultTime" time-format="model.options.timeFormat" start-time="model.options.startTime" min-time="model.options.minTime" max-time="model.options.maxTime" interval="model.options.interval" dynamic="model.options.dynamic" scrollbar="model.options.scrollbar" dropdown="model.options.dropdown">
-                                </td>
-                                <td>
-                                    <select name="{{$i}}tiempoAtencion" id="{{$i}}tiempoAtencion" class="form-control custom-select" onchange="updateTurnos({{$i}})">
+                                    <select name="{{$i}}[tiempoCita]" id="{{$i}}tiempoAtencion" class="form-control custom-select" onchange="updateTurnos({{$i}})">
                                         <option value="10" >10</option>
                                         <option value="15" >15</option>
                                         <option value="30" >30</option>
@@ -199,9 +230,11 @@ function updateTurnos(iTurno) {
                                         <option value="60" >60</option>
                                     </select>
                                 </td>
-                                
-                                <td style="text-align: center;"><strong> <label id="{{$i}}cantTurnos">42</label> </strong></td>
+                                <input type="hidden" name="{{$i}}[turnos]" value="0" id="turnos{{$i}}">
+                                <input type="hidden" name="fecha" value="0" id="">
+                                <td style="text-align: center;"><strong> <label id="{{$i}}cantTurnos">0</label> </strong></td>
                             </tr>
+                            @endif
                         @endfor
                         </tbody>
                         </table>
@@ -209,7 +242,7 @@ function updateTurnos(iTurno) {
                         <div class="table-responsive" style="text-align: center;">
                             <strong>
                                 <div class="card-footer text-right"> 
-                                    <button type="submit" class="btn btn-primary">Guardar</button> 
+                                    <button type="submit" class="btn btn-primary" id="guardar">Guardar</button> 
                                 </div>
                                 <br>
                             </strong>
@@ -231,14 +264,62 @@ function updateTurnos(iTurno) {
 <script>
 $(document).ready(function(){
 
+    $('.usado').each(function(){
+        $(this).val($(this).val().slice(0,-3));
+    });
+
+$("#agendas").submit(function(){
+    $("#ags").children("tr").slice(1).each(function(){
+        if( !$(this).hasClass("va"))
+        {
+            $(this).find("input,select").prop('disabled',true);
+            console.log("nova");
+        }
+    });
+    return true;
+});
+
+
+$("#guardar1").click(function(){
+    var agendas={};
+    $(".va").each(function(){
+        var obj={}
+        var num= $($(this).children("td")[0]).html();
+        //console.log(num);
+        
+        obj["horaInicio"]=$($(this).children("td")[1]).find("input").val();
+        obj["horaFinal"]=$($(this).children("td")[2]).find("input").val();
+        obj["tiempoCita"]=$($(this).children("td")[3]).find("select").val();
+        obj["turnos"]=$($(this).children("td")[4]).find("label").text();
+        agendas[num]=obj;
+    });
+    console.log(agendas);
+    
+    $.ajax({
+        type: "POST",
+        url: "",
+        async:false,
+        dataType: "json",
+        data: {bruce:data,_token:token},
+        success: function (data) {
+            console.log(data);
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
+
+
+
 $('.timepicker').timepicker({
     timeFormat: 'HH:mm',
     interval: 15,
-    minTime: '10',
+    minTime: '11:00 AM',
     maxTime: '6:00 PM',
     defaultTime: '11',
-    startTime: '10:00 AM',
-    dynamic: true,
+    //startTime: '11:00 AM',
+    //dynamic: true,
     dropdown: true,
     scrollbar: true,
     change: function(time) {
@@ -246,6 +327,7 @@ $('.timepicker').timepicker({
         }
     
 });
+
 });
 </script>
 

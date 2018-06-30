@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             EspecialidadTableSeeder::class,
             MedicosTableSeeder::class,
             ConsultoriosTableSeeder::class,
-            AgendasTableSeeder::class,
+            //AgendasTableSeeder::class,
             ]);
 
 

@@ -5,6 +5,8 @@ namespace telefilaSuite\Http\Controllers;
 use Illuminate\Http\Request;
 use telefilaSuite\Medico;
 use telefilaSuite\Especialidad;
+use telefilaSuite\Agenda;
+use DateTime;   
 
 use Auth;
 
@@ -49,6 +51,7 @@ class RecursosHumanosController extends Controller
             return view('recursosHumanos.editarMedico',['medico'=>$medico]);
         }
 
+
         return "Editar Medico";
     }
 
@@ -60,15 +63,38 @@ class RecursosHumanosController extends Controller
             $diasMes = cal_days_in_month (CAL_GREGORIAN, $request['month'] , $request['year'] );
             setlocale(LC_TIME, 'es_ES.UTF-8'); 
             $nombreMes=strftime("%B",mktime(0, 0, 0, $request['month'], 1, 2000));    
-            return view('recursosHumanos.editarMedico',[ 'crearFlag'=>True,'medico'=>$medico ,'diasMes'=>$diasMes ,'month' =>$nombreMes , 'year' =>$request['year'] ]);   
+            //sprintf("%s-%s-%s",$request->year,$request->mes,$dia)
+            $agendas= Agenda::where("medico_id",$idMedico)->whereMonth('fecha',$request->month)->get()->keyBy("dia");
+            //$dias=$agendas->pluck('id');
+            //return $agendas;
+            return view('recursosHumanos.editarMedico',[ 'crearFlag'=>True,'medico'=>$medico ,'diasMes'=>$diasMes ,'month' =>$request->month , 'year' =>$request['year'] ,'agendas'=>$agendas,'mes'=>$nombreMes]);   
         }
         return "Crear Agenda";
     }
 
     public function crearAgenda($idMedico,Request $request)
     {
+        $agendas=$request->except(["year","_token","mes","fecha"]);
+
+        //dd($agendas);
+        $f=new DateTime();
+        foreach ($agendas as $dia=>$agenda) {
+            //echo $dia."->".$agenda["horaInicio"]."\n";
+            $a=new Agenda;
+            $a->fecha=sprintf("%s-%s-%s",$request->year,$request->mes,$dia);
+            $a->horaInicio=$agenda["horaInicio"];
+            $a->dia=$dia;
+            $a->horaFinal=$agenda["horaFinal"];
+            $a->tiempoCita=$agenda["tiempoCita"];
+            $a->turnos=$agenda["turnos"];
+            $a->medico_id=$idMedico;
+            $a->save();
+            //echo $a."\n";
+        }
+//        echo "\n";
+  //      echo "\n";
         
-        return $request;
+        return redirect('recursosHumanos')->with(["message"=>"La agenda ha sido creada correctamente."]);
     }
 
 }
