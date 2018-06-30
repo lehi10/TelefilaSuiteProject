@@ -10,9 +10,14 @@ use DateTime;
 
 use Auth;
 
+function days_in_month($month, $year) { 
+    return date('t', mktime(0, 0, 0, $month+1, 0, $year)); 
+}
 class RecursosHumanosController extends Controller
 {
     //
+       
+
     public function __construct()
     {
         $this->middleware(['auth','rol:Recursos Humanos']);
@@ -60,7 +65,7 @@ class RecursosHumanosController extends Controller
         $medico=Medico::find($idMedico);
         if (Auth::user()->hospital_id==$medico->hospital_id)
         {
-            $diasMes = cal_days_in_month (CAL_GREGORIAN, $request['month'] , $request['year'] );
+            $diasMes = days_in_month ( $request['month'] , $request['year'] );
             setlocale(LC_TIME, 'es_ES.UTF-8'); 
             $nombreMes=strftime("%B",mktime(0, 0, 0, $request['month'], 1, 2000));    
             //sprintf("%s-%s-%s",$request->year,$request->mes,$dia)
@@ -97,4 +102,8 @@ class RecursosHumanosController extends Controller
         return redirect('recursosHumanos')->with(["message"=>"La agenda ha sido creada correctamente."]);
     }
 
+    public function editarConsultorio($idConsultorio)
+    {
+        return "Consultorio: ".$idConsultorio;
+    }
 }
