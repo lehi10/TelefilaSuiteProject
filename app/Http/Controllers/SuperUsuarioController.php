@@ -9,6 +9,7 @@ use telefilaSuite\Persona;
 use telefilaSuite\Administrador;
 use telefilaSuite\User;
 use Illuminate\Http\Request;
+use Auth;
 
 class SuperUsuarioController extends Controller
 {
@@ -37,7 +38,15 @@ class SuperUsuarioController extends Controller
 
     public function cliente($idCliente){
         $cliente =Hospital::find($idCliente);
-        $users=$cliente->users->where('rol_id','!=',2);
+        $users=$cliente->users->where('rol_id','>',2);
+        $user=User::find(Auth::user()->id);
+        if ($user->rol_id==1)
+        {
+            $user->hospital_id=$idCliente;
+            $user->save();
+            //return "NUevo user hospital: ".$user->hospital_id;
+        }
+        
         
         return view('superUsuario.cliente',["usuarios"=>$users,"hospital_id"=>$cliente->id,"nombre"=>$cliente->nombre]);
     }

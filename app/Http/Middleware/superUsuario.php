@@ -17,7 +17,7 @@ class superUsuario
     {
         // error_log('User Rol '.$request->user()->rol->nombre);
         // error_log('Pass Rol '.$rol);
-        if($request->user()->checkRol($rol))
+        if($request->user()->tieneRol($rol))
         {
             return $next($request);
         }
