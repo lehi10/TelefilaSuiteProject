@@ -15,7 +15,7 @@ class AgendasTableSeeder extends Seeder
         $medicos=Medico::all();
         
         foreach ($medicos as $medico) {
-            factory(telefilaSuite\Agenda::class,1)->create(["medico_id"=>$medico->id,"fecha"=>"2018-06-28"]);
+            factory(telefilaSuite\Agenda::class,1)->create(["medico_id"=>$medico->id]);
         }
 
     }

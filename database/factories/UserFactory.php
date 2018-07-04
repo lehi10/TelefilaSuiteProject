@@ -14,22 +14,22 @@ use Faker\Generator as Faker;
 */
 
 
-$factory->define(telefilaSuite\Paciente::class, function (Faker $faker) { 
-    return  [ 
-        'nombre' => $faker->firstname, 
-        'apellido' => $faker->lastname, 
-        'dni' => $faker->dni, 
-        'departamento' => $faker->state, 
-        'ciudad'=>$faker->city,
-        'edad'=>random_int(10,40),
-        'edad' => $faker->numberBetween(10,50),
-        'sis' => $faker->boolean, 
-        'sexo' => $faker->boolean, 
-        'celular' => $faker->randomNumber($nbDigits=9),
-        //'direccion' => $faker->address,
+// $factory->define(telefilaSuite\Paciente::class, function (Faker $faker) { 
+//     return  [ 
+//         'nombre' => $faker->firstname, 
+//         'apellido' => $faker->lastname, 
+//         'dni' => $faker->dni, 
+//         'departamento' => $faker->state, 
+//         'ciudad'=>$faker->city,
+//         'edad'=>random_int(10,40),
+//         'edad' => $faker->numberBetween(10,50),
+//         'sis' => $faker->boolean, 
+//         'sexo' => $faker->boolean, 
+//         'celular' => $faker->randomNumber($nbDigits=9),
+//         //'direccion' => $faker->address,
 
-    ]; 
-}); 
+//     ]; 
+// }); 
 
 $factory->define(telefilaSuite\User::class, function (Faker $faker) {
     $nom=$faker->username;
@@ -91,10 +91,27 @@ $factory->define(telefilaSuite\Agenda::class,function(Faker $faker){
     $turnos=$diff/$tiempo;
     return[
         'fecha' => $today->format("Y-m-d"),
-        'horaInicio'=>$t0,
-        'horaFinal'=>$tf,
-        'tiempoCita' =>$tiempo,
-        'turnos' =>$turnos,
+        'horaInicio'=>"7:00:00",
+        'horaFinal'=>"17:15:00",
+        'tiempoCita' =>30,
+        'turnos' =>20,
+        'dia'=>$today->format('d'),
 
+    ];
+});
+
+
+$factory->define(telefilaSuite\Paciente::class,function(Faker $faker){
+    #$today=now();
+    
+    return[
+        'nombres' => $faker->firstname,
+        'apellidos' => $faker->firstname,
+        'dni'=>$faker->dni,
+        'departamento'=>"Arequipa",
+        'ciudad'=>"Arequipa",
+        'edad' =>$faker->numberBetween(15,19),
+        'sis'=>$faker->boolean,
+        'sexo'=>$faker->boolean,
     ];
 });
