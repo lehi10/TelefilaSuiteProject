@@ -185,7 +185,7 @@
                                               <div class="input-group"> <span class="input-group-prepend">
                                                                     <span class="input-group-text">S/.</span>
                                                   </span>
-                                                  <input class="form-control text-right" aria-label="Amount (to the nearest dollar)" name="tarifa" type="text"> <span class="input-group-append">
+                                                  <input class="form-control text-right" name="tarifa" aria-label="Amount (to the nearest dollar)" name="tarifa" type="text"> <span class="input-group-append">
                                                                     <span class="input-group-text">PE</span>
                                                   </span>
                                               </div>
