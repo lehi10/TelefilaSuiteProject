@@ -19,7 +19,8 @@
   </div>
   <script type="text/javascript">
   
-    $("#tabla").load("{{asset('superuser/inicio')}}");
+    $("#tabla").load("{{asset('superuser/inicio?page='.$page)}}");
+    
 
     // $("#form").submit(function(){
     //   $.post("{{asset('superUsuario')}}",$("#form").serialize()).done(function(){

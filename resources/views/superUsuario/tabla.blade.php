@@ -65,6 +65,7 @@
                         </tbody>
                     </table>
                     @endif
+    
                     {{ $hospitales->links() }}
                   </div>
                   

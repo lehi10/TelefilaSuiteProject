@@ -9,6 +9,7 @@ use telefilaSuite\Persona;
 use telefilaSuite\Administrador;
 use telefilaSuite\User;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 
 class SuperUsuarioController extends Controller
 {
@@ -22,7 +23,7 @@ class SuperUsuarioController extends Controller
         $this->middleware(['auth','rol:Super Usuario']);
     }
 
-    public function index()
+    public function index(Request $request)
     {
         /* if($request->search == "")
         {
@@ -43,12 +44,26 @@ class SuperUsuarioController extends Controller
         $hos = Hospital::paginate(10);
         return view('superUsuario.index',["hospitales"=>$hos]);
         */ 
-        return view('superUsuario.index');
+        //$hospitales=Hospital::paginate(10);
+        if ($request->page)
+        {
+            return view('superUsuario.index',["page"=>$request->page]);
+        }
+        return view('superUsuario.index',["page"=>0]);
     }
 
-    public function inicio()
+    public function inicio(Request $request)
     {
-        $hospitales=Hospital::paginate(10);
+        //return $request;
+        if ($request->page){
+            $hospitales=Hospital::paginate(10,["*"],'page',$request->page);
+            $hospitales->withPath('/superuser');
+        }
+        else{
+            $hospitales=Hospital::paginate(10,["*"],'page');
+            $hospitales->withPath('/superuser');
+        }
+
         return view('superUsuario.tabla',["hospitales"=>$hospitales]);
     }
     

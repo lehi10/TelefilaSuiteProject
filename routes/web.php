@@ -48,7 +48,8 @@ Route::group(['prefix'=>'superuser','middleware' => 'rol:Super Usuario'],functio
     Route::get('/', 'SuperUsuarioController@index');
     
     Route::get('/inicio', 'SuperUsuarioController@inicio');
-    Route::get('/tabla', 'SuperUsuarioController@obtenerTabla' );
+    Route::get('/tabla', 'SuperUsuarioController@obtenerTabla');
+
 
     Route::get('cliente/{idCliente}', 'SuperUsuarioController@cliente');
 
