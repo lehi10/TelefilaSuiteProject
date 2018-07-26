@@ -68,8 +68,18 @@
     
                     {{ $hospitales->links() }}
                   </div>
+
+
                   
             </div>
         </div>
     </div>
 </div>
+
+<script>
+      $(".pagination").children("li").each(function(){
+            $(this).addClass("page-item");
+            $(this).children("a").addClass("page-link");
+            $(this).children("span").addClass("page-link");
+      });
+</script>
