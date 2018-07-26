@@ -31,14 +31,11 @@ class SearchController extends Controller
                         '<td>0</td>'.
                         '<td> <span class="status-icon '.$color[$dato->estado-1].'"></span>'.$states[$dato->estado-1].'</td>'.
                         '<td class="text-right">
-                          <select class="custom-select">
-                            <option value="STATUS_CODE" selected="selected">Cambiar
-                              estado</option>
-                            <option value="JSON_BODY">En implementación</option>
-                            <option value="HEADERS">Operando</option>
-                            <option value="TEXT_BODY">Suspensión temporal</option>
-                            <option value="RESPONSE_TIME">Cancelado</option>
-                          </select>
+                        <select class="custom-select" id="select1" onchange="updateState(this.value,'.$dato->id.')" >                                                                    
+                            <option value="1"'.(($dato->estado ==1 ) ? 'selected="selected"':'').'>En implementación</option>
+                            <option value="2"'.(($dato->estado ==2 ) ? 'selected="selected"':'').'>Operando</option>
+                            <option value="3"'.(($dato->estado ==3 ) ? 'selected="selected"':'').'>Suspensión temporal</option>                                            
+                        </select>
                         </td>
                         <td> 
                         <a href="{{url(superuser/editClient/'.$dato->id.')}}" class="btn btn-lg "> 

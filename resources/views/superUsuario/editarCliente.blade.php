@@ -4,10 +4,9 @@
 
 
   
-@section('body')
+  @section('body')
 <div class="my-3 my-md-5">
           <div class="container" >
-          
             <div class="row row-cards"><br>
               <div class="col-12">
                 <div class="card">
@@ -19,49 +18,57 @@
                           <form action="/superuser/updateClient/{{$hospital->id}}" method="post" class="card">
                               {{csrf_field()}}
                               <div class="card-header">
-                                  <h3 class="card-title">Editando Datos</h3>
+                                    <h3 class="card-title">Editando Datos</h3>
                               </div>
-                              <div class="card-body">
-                                  <div class="row">
-                                      <div class="col-md-6 col-lg-4">
-                                          <div class="form-group">
-                                              <label class="form-label">Usuario</label>
-
-                                              <div class="input-group"><span class="input-group-prepend" id="basic-addon1"><span class="input-group-text">@</span>
+                              <div class="card-body" >
+                                  <div class="row" >
+                                      <div class="col-md-6 col-lg-4" >
+                                          <div class="form-group" >
+                                              <label class="form-label">USUARIO</label>
+                                              <div class="input-group" >
+                                                  <span class="input-group-prepend" id="basic-addon1">
+                                                      <span class="input-group-text">@</span>
                                                   </span>
-                                                  <input class="form-control" placeholder="Usuario" type="text" name="usuario"  value = "{{$usuario[0]->username}}" > </div>
-                                              &nbsp;
-                                              <input class="form-control" disabled="disabled" name="password"  placeholder="******" type="password">
+                                                  <input id="user" class="form-control" required="" placeholder="Usuario" type="text" name="usuario" value = "{{$usuario[0]->username}}">
+                                              </div>
+                                              <div id="v_user" style="color:red;" ></div>
                                               <br>
-                                              <b>Nombre Comercial </b>
-                                              <input class="form-control" name="nombre" placeholder="Nombre del Hospital / Clinica " type="text" value = "{{$hospital->nombre}}">
+                                              <input id="psw" class="form-control" required="" name="password" disabled="disabled" placeholder="Clave" type="password" >
+                                              <div id="v_psw" style="color:red;" ></div><br>
+                                              <b>INFORMACIÓN DEL CLIENTE </b>
+                                              <input  id="name_hosp" class="form-control" required="" name="nombre" placeholder="Nombre del Hospital / Clinica " type="text" value = "{{$hospital->nombre}}">                                            
+                                              <div id="v_name_hosp" style="color:red;" ></div>
                                               <br>
-                                              <div class="form-group">
-                                                  <input class="form-control" name="ruc" disabled="disabled" placeholder="RUC" value = "{{$hospital->ruc}}"> </div>
-                                              <div class="form-group">
-                                                  <input class="form-control" name="telefono" placeholder="Telefono" type="text" value = "{{$hospital->telefono}}"> </div>
+                                              <input id="ruc" class="form-control " required="" name="ruc" placeholder="RUC" type="text" value = "{{$hospital->ruc}}">
+                                              <div id="v_ruc" style="color:red;" ></div>
+                                              <br>
+                                              <input id="telf_hosp" class="form-control" required="" name="telefono" placeholder="Telefono" type="text" value = "{{$hospital->telefono}}">
+                                              <div id="v_telf_hosp" style="color:red;" ></div>
+                                              <div class="form-group" >
+                                              <b>PERSONA DE CONTÁCTO</b>
+                                                  <br>
+                                                  <input  id="name_per" class="form-control" required="" name="nombrePersona" placeholder="Nombres y Apellidos" type="text" value = "{{$hospital->nombrePersona}}">
+                                                  <div id="v_name_per" style="color:red;" ></div>
+                                                  <br>
+                                                  <input id="email_per" class="form-control" required="" placeholder="Correo electrónico" name="emailPersona" type="text" value = "{{$hospital->emailPersona}}">
+                                                  <div id="v_email_per" style="color:red;" ></div>
+                                                  <br>
+                                                  <input id="telf_per" class="form-control" required="" placeholder="Celular" type="text" name="celularPersona" value = "{{$hospital->celularPersona}}">
 
-                                              <div class="form-group"><b>PERSONA DE
-                                                                    CONTÁCTO</b>
-                                                  <br>
-                                                  <input class="form-control" name="nombrePersona" placeholder="Nombres y Apellidos" type="text" value = "{{$hospital->nombrePersona}}"><span class="col-auto align-self-center"></span>
-                                                  <br>
-                                                  <input class="form-control" placeholder="Correo electrónico" name="emailPersona" type="text" value = "{{$hospital->emailPersona}}">
-                                                  <br>
-                                                  <input class="form-control" placeholder="Celular" type="text" name="celularPersona" value = "{{$hospital->celularPersona}}" >
                                               </div>
                                           </div>
                                       </div>
-                                      <div class="col-md-6 col-lg-4">
-                                          <div class="form-group"><b>UBICACIÓN
-                                                                  GEOGRÁFICA</b>
+                                      <div class="col-md-6 col-lg-4" >
+                                          <div class="form-group" >
+                                            <b>UBICACIÓN GEOGRÁFICA</b>
                                               <br>
-                                              <input class="form-control" name="direccion" value = "{{$hospital->direccion}}" placeholder="Dirección Completa" type="text"><span class="col-auto align-self-center"></span><span class="col-auto align-self-center"></span>
-                                              <input class="form-control" name="ciudad"  value = "{{$hospital->ciudad}}" placeholder="Ciudad" type="text">
-                                          </div>
-                                          <input class="form-control" name="referencia"  value = "{{$hospital->referencia}}" placeholder="Referencia" type="text">
-                                          <div class="form-group">&nbsp;
-                                              <select class="form-control custom-select" name="region"  value = "{{$hospital->region}}">
+                                              <input id="direc_hosp" class="form-control" required=""  name="direccion" placeholder="Dirección Completa" type="text" value = "{{$hospital->direccion}}">
+                                              <div id="v_direc" style="color:red;" ></div><br>
+                                              <input id="ciudad" class="form-control" required="" name="ciudad" placeholder="Ciudad" type="text" value = "{{$hospital->ciudad}}">
+                                              <div id="v_ciudad" style="color:red;" ></div><br>
+                                              <input id="refer" class="form-control" name="referencia" placeholder="Referencia" type="text" value = "{{$hospital->referencia}}">
+                                              <br>
+                                              <select class="form-control custom-select" required="" name="region" value = "{{$hospital->region}}">
                                                   <option value="Amazonas">Amazonas</option>
                                                   <option value="Anacash">Áncash</option>
                                                   <option value="Apurimac">Apurímac</option>
@@ -92,40 +99,36 @@
                                               <label class="selectgroup-item">
                                                   <br>
                                               </label>
-                                          </div>
-                                          <div class="form-group"><b>Foto / logotipo<br>
-                                                                </b>
+                                            <br>
+                                            <b>FOTO / LOGOTIPO<br></b>
                                               <div class="form-group">
                                                   <div class="custom-file">
-                                                      <input class="custom-file-input" name="logo" value = "{{$hospital->logo}}" type="file">
-                                                      <label class="custom-file-label"> {{$hospital->logo}}
-                                                      </label>
+                                                      <input class="custom-file-input" name="logo" type="file" value = "{{$hospital->logo}}">
+                                                      <label class="custom-file-label">{{$hospital->logo}}</label>
                                                   </div>
                                               </div>
-                                              <br>
-                                              <label class="selectgroup-item"></label>
                                           </div>
                                       </div>
-                                      <div class="col-md-6 col-lg-4"><b> Contratos</b>
-                                          <div class="form-group">
+                                      <div class="col-md-6 col-lg-4" >
+                                        <b> CONTRATOS</b>
+                                          <div class="form-group" >
                                               <div class="custom-file">
-                                                  <input class="custom-file-input" name="contratos" value = "{{$hospital->contratos}}" type="file">
+                                                  <input class="custom-file-input" name="contratos" type="file" value = "{{$hospital->contratos}}">
                                                   <label class="custom-file-label">{{$hospital->contratos}}
                                                   </label>
                                               </div>
-                                          </div>
-                                          <div class="form-group">
-                                              <label class="form-label">Fecha de inicio de operaciones</label>
+                                              <br>
+                                              <b>FECHA DE INICIO DE OPERACIÓN</b>  
+                                                                                                                          
                                               <div class="row gutters-xs">
-                                                  <div class="col-5">
-                                                      <select name="mes" class="form-control custom-select" disabled="disabled" value = "{{$hospital->mes}}">
-                                                          <option value="">Mes</option>
+                                                  <div class="col-5">                                                 
+                                                  <select name="mes" class="form-control custom-select" disabled="disabled" value = "{{$hospital->mes}}">                                                          
                                                           <option value="1">Enero</option>
                                                           <option value="2">Febrero</option>
                                                           <option value="3">Marzo</option>
                                                           <option value="4">Abril</option>
                                                           <option value="5">Mayo</option>
-                                                          <option selected="selected" value="6">Junio</option>
+                                                          <option value="6">Junio</option>
                                                           <option value="7">Julio</option>
                                                           <option value="8">Augosto</option>
                                                           <option value="9">Setiembre</option>
@@ -134,9 +137,9 @@
                                                           <option value="12">Diciembre</option>
                                                       </select>
                                                   </div>
-                                                  <div class="col-3">
-                                                      <select name="dia" class="form-control custom-select" disabled="disabled" value = "{{$hospital->dia}}">
-                                                          <option value="">Day</option>
+                                                  <div class="col-3">                                                  
+                                                  <select name="dia" class="form-control custom-select" disabled="disabled" value = "{{$hospital->dia}}">
+                                                          
                                                           <option value="1">1</option>
                                                           <option value="2">2</option>
                                                           <option value="3">3</option>
@@ -156,7 +159,7 @@
                                                           <option value="17">17</option>
                                                           <option value="18">18</option>
                                                           <option value="19">19</option>
-                                                          <option selected="selected" value="20">20</option>
+                                                          <option  value="20">20</option>
                                                           <option value="21">21</option>
                                                           <option value="22">22</option>
                                                           <option value="23">23</option>
@@ -171,46 +174,50 @@
                                                       </select>
                                                   </div>
                                                   <div class="col-4">
-                                                      <select name="year" class="form-control custom-select" disabled="disabled" value = "{{$hospital->year}}">
-                                                          <option value="">Año</option>
+                                                
+                                                  <select name="year" class="form-control custom-select" disabled="disabled" value = "{{$hospital->year}}">
+                                                          
                                                           <option value="2019">2019</option>
                                                           <option value="2018">2018</option>
                                                           <option value="2017">2017</option>
                                                       </select>
                                                   </div>
                                               </div>
-                                          </div>
-                                          <div class="form-group">
-                                              <label class="form-label">Tarifa por operación</label>
-                                              <div class="input-group"> <span class="input-group-prepend">
-                                                                    <span class="input-group-text">S/.</span>
+                                          <br>
+                                              <b>TARIFA POR OPERACIÓN</b>
+                                              <div class="input-group">
+                                                  <span class="input-group-prepend">
+                                                        <span class="input-group-text">S/.</span>
                                                   </span>
-                                                  <input class="form-control text-right" aria-label="Amount (to the nearest dollar)" name="tarifa" value = "{{$hospital->tarifa}}" type="text"> <span class="input-group-append">
-                                                                    <span class="input-group-text">PE</span>
+                                                  <input id="tari" class="form-control text-right" required="" aria-label="Amount (to the nearest dollar)" name="tarifa" value = "{{$hospital->tarifa}}" type="text">
+                                                  <span class="input-group-append">
+                                                        <span class="input-group-text">PE</span>
                                                   </span>
                                               </div>
-                                          </div>
-                                          <div class="form-group">Estado
+                                          <div id="v_tari" style="color:red;" ></div><br>
+                                          <b>ESTADO</b>
                                               <div class="custom-switches-stacked">
                                                   <label class="custom-switch">
-                                                      <input name="estado" value="1"  @if($hospital->estado==1 ) checked @endif class="custom-switch-input"  type="radio" checked> <span class="custom-switch-indicator"></span>
+                                                      <input name="estado" value="1" class="custom-switch-input" @if($hospital->estado==1 ) checked @endif type="radio" checked> <span class="custom-switch-indicator"></span>
                                                       <span class="custom-switch-description">En implementación</span>
                                                   </label>
                                                   <label class="custom-switch">
-                                                      <input name="estado" value="2"  @if($hospital->estado==2 ) checked @endif class="custom-switch-input" type="radio"> <span class="custom-switch-indicator"></span>
+                                                      <input name="estado" value="2" class="custom-switch-input" @if($hospital->estado==2 ) checked @endif type="radio"> <span class="custom-switch-indicator"></span>
                                                       <span class="custom-switch-description">Operando</span>
                                                   </label>
                                                   <label class="custom-switch">
-                                                      <input name="estado" value="3"  @if($hospital->estado==3 ) checked @endif class="custom-switch-input" type="radio"> <span class="custom-switch-indicator"></span>
+                                                      <input name="estado" value="3" class="custom-switch-input" @if($hospital->estado==3 ) checked @endif type="radio"> <span class="custom-switch-indicator"></span>
                                                       <span class="custom-switch-description">Suspención temporal</span>
                                                   </label>
                                               </div>
-                                          </div>
-                                          Licenciamiento
+                                          <br>
+                                          <b>LICENSAMIENTO</b>
                                           <label class="custom-switch">
-                                              <input name="licenciamento" class="custom-switch-input" type="checkbox"> <span class="custom-switch-indicator"></span>
-                                              <span class="custom-switch-description">Ha
-                                                                  adquirido una licencia anual ó similar.</span></label>
+                                              <input name="licenciamento" class="custom-switch-input" type="checkbox">
+                                              <span class="custom-switch-indicator"></span>
+                                              <span class="custom-switch-description">Ha adquirido una licencia anual ó similar.</span>
+                                          </label>
+                                        </div>
                                       </div>
                                   </div>
                               </div>
@@ -219,30 +226,17 @@
                                   <div class="d-flex" style="text-align: center;">
                                       <dl>
                                           <dt> <a href="{{url('superuser/')}}" class="btn btn-primary">Cancelar</a>
-                                          <input type="submit" class="btn btn-primary ml-auto" value="Guardar"> </dt>
+                                              <button id="guardar" type="submit" class="btn btn-primary ml-auto">Guardar cambios</button>                                        
+                                          </dt>
                                       </dl>
                                   </div>
+                              </div>
                           </form>
                           </div>
-                       
-                          <script>
-                require(['jquery', 'selectize'], function ($, selectize) {
-                    $(document).ready(function () {
-                        $('#input-tags').selectize({
-                            delimiter: ',',
-                            persist: false,
-                            create: function (input) {
-                                return {
-                                    value: input,
-                                    text: input
-                                }
-                            }
-                        });             
-                    });
-                });
-              </script> </div>
                         <div class="col-lg-4">
-                          <script>require(['input-mask'])</script></div>
+                          <script>require(['input-mask'])</script>
+                          <script src="/assets/js/scripts.js"></script>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -253,6 +247,5 @@
         </div>
       </div>
     </div>
-  
-@endsection
 
+@endsection

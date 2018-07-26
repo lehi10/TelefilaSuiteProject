@@ -37,7 +37,7 @@ Route::group(['prefix'=>'superuser','middleware' => 'rol:Super Usuario'],functio
     Route::get('/', 'SuperUsuarioController@index' );
     Route::get('editClient/{idCliente}', 'SuperUsuarioController@editarCliente');
     Route::get('nuevoCliente', 'SuperUsuarioController@nuevoCliente' );
-    //Route::get('cambiarEstadoCliente','SuperUsuarioController@cambiarEstadoCliente');
+    Route::get('cambiarEstadoCliente','SuperUsuarioController@cambiarEstadoCliente');
     Route::post('store','SuperUsuarioController@storeNuevoCliente');
     Route::post('updateClient/{idCliente}','SuperUsuarioController@updateCliente');
 

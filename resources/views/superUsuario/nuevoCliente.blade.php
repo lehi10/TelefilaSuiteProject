@@ -224,14 +224,9 @@
                               <div class="card-footer text-right">
                                   <div class="d-flex" style="text-align: center;">
                                       <dl>
-<<<<<<< Updated upstream
-                                          <dt> <a href="{{ url('superuser/') }}" class="btn btn-link">Cancelar</a>
-                                          <input type="submit" class="btn btn-primary ml-auto" value="Crear Perfil"> </dt>
-=======
                                           <dt> <a href="{{url('superuser/')}}" class="btn btn-primary">Cancelar</a>
                                               <button id="guardar" type="submit" class="btn btn-primary ml-auto">Guardar cambios</button>                                        
                                           </dt>
->>>>>>> Stashed changes
                                       </dl>
                                   </div>
                               </div>

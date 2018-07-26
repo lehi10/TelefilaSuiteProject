@@ -174,17 +174,17 @@ class SuperUsuarioController extends Controller
         return view('superUsuario.editarCliente',["hospital"=>$cliente,"usuario"=>$user]);
     }
 
-    /*public function cambiarEstadoCliente(Request $request)
+    public function cambiarEstadoCliente(Request $request)
     {
         $cliente=Hospital::find($request->idCliente);
         $cliente->estado = $request->state;
         $cliente->save();
         return "Estado cambiado";
-    }*/
+    }
 
     public function updateCliente(Request $request, $idCliente){
         
-        $cliente= Hospital::find($idCliente);
+        $cliente = Hospital::find($idCliente);
         $cliente->nombre = $request->nombre;
         $cliente->telefono = $request->telefono;
         $cliente->nombrePersona = $request->nombrePersona;
@@ -200,6 +200,10 @@ class SuperUsuarioController extends Controller
         $cliente->tarifa= $request->tarifa;
         $cliente->estado= $request->estado;
         $cliente->save();
+
+        $user = User::where('hospital_id','=',$idCliente)->where('rol_id','=',2)->first();        
+        $user->username = $request->usuario;
+        $user->save();
         return redirect('superuser/')->with('message','Datos guardados satisfactoriamente');          
 
     }
