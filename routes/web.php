@@ -87,16 +87,13 @@ Route::group(['prefix'=>'administrador','middleware' => 'rol:Administrador'],fun
 Route::group(['prefix'=>'caja','middleware' => 'rol:Caja'],function()
 {
    
-    Route::get('/',  function() {return "Vista para caja";} );
+    Route::get('/', 'CajaController@index' );
+
+
 });
 
 
-//Rutas para admision
-Route::group(['prefix'=>'admision','middleware' => 'rol:Admision'],function()
-{
 
-    Route::get('/',  function() {return "Vista para admision";} );
-});
 
 //Rutas para recursos humanos
 Route::group(['prefix'=>'recursosHumanos','middleware' => 'rol:Recursos Humanos'],function()
@@ -129,8 +126,6 @@ Route::get('/searchConsultorio','SearchController@searchConsultorio');
 /**
  * Rutas para Modulo Administración
  */
-
-
 Route::get('{idCliente}/admin', 'AdministracionController@index' );
 Route::get('{idCliente}/admin/nuevoUsuario', 'AdministracionController@nuevoUsuario' );
 Route::get('{idCliente}/admin/editarUsuario/{idUsuario}','AdministracionController@editarUsuario' );
@@ -139,3 +134,28 @@ Route::get('cliente/search','buscadorUsuario@search');
 //Envio de Formulario
 Route::post('admin/guardarUsuario','AdministracionController@guardarUsuario');
 Route::post('admin/editarUsuario','AdministracionController@actualizarUsuario');
+
+
+
+/**
+ * Rutas para Modulo de Pedestal
+ */
+
+Route::group(['prefix'=>'pedestal','middleware' => 'rol:Pedestal'],function()
+{
+
+    Route::get('/',  'PedestalController@index' );
+});
+
+//Rutas para admision
+Route::group(['prefix'=>'admision','middleware' => 'rol:Admision'],function()
+{
+    Route::get('/',  'AdmisionController@buscarPaciente' );
+    Route::get('/agregarPaciente',  function() {return view('admision.agregarPaciente');} );
+    
+    
+    Route::post('/agregarPaciente/crearRegistro',  'AdmisionController@crearPaciente' );
+
+});
+
+

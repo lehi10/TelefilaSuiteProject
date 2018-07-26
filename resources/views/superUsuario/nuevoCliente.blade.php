@@ -227,9 +227,8 @@
                               <div class="card-footer text-right">
                                   <div class="d-flex" style="text-align: center;">
                                       <dl>
-                                          <dt> <a href="javascript:void(0)" class="btn btn-link">Cancelar</a><input
-
-                                                              type="submit" class="btn btn-primary ml-auto" value="Crear Perfil"> </dt>
+                                          <dt> <a href="{{ url('superuser/') }}" class="btn btn-link">Cancelar</a>
+                                          <input type="submit" class="btn btn-primary ml-auto" value="Crear Perfil"> </dt>
                                       </dl>
                                   </div>
                           </form>

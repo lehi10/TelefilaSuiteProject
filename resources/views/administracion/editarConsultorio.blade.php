@@ -18,8 +18,8 @@
           <!--<span class="breadcrumb-item active">Cards</span>-->
           <!--</nav>-->&nbsp;
           <div class="container">
-            <div class="row row-cards"><br>
-              <div class="col-12">
+            <div class="row rUsuarioow-cards"><br>
+              <div class="colUsuario-12">
                 <div class="card">
                   <div class="card-header">
                     <h3 class="card-title"><br>
