@@ -4,6 +4,15 @@
 <div class="page">
     <div class="page-single">
     <div class="container">
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <u1>
+                    @foreach ($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </u1>
+            </div>
+        @endif
         <div class="row">
         <div class="col col-login mx-auto">
             <div style="text-align: center;"><img src="/demo/photos/logo_alpha.png"
@@ -15,13 +24,13 @@
             {{csrf_field()}}
             <div class="card-body p-6">
                 <div class="card-title">Crear Nuevo Médico</div>
-                <div class="form-group"><input class="form-control" placeholder="Nombres completos" name="nombres"
+                <div class="form-group"><input class="form-control" name="nombre"placeholder="Nombres completos" name="nombres"
                     type="text"></div>
-                <div class="form-group"><input class="form-control" placeholder="Apellidos completos" name="apellidos"
+                <div class="form-group"><input class="form-control" name="apellido" placeholder="Apellidos completos" name="apellidos"
                     type="text"></div>
-                <div class="form-group"><input class="form-control" placeholder="N° CMP" name="cmp"
+                <div class="form-group"><input class="form-control" name="cmp" placeholder="N° CMP" name="cmp"
                     type="text"></div>
-                <div class="form-group"><input class="form-control" placeholder="Celular" name="celular"
+                <div class="form-group"><input class="form-control" name="celular" placeholder="Celular" name="celular"
                     type="text"></div>
                 <div class="form-group">
                 <select name="especialidad_id" class="form-control custom-select">
