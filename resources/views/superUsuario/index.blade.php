@@ -19,7 +19,7 @@
               @if(session('message'))
               <div class="alert alert-success form-group text-center" role="alert">
                   {{session('message')}}
-                </div>
+              </div>
               @endif
                   <div class="card">
                       <div class="card-header">
@@ -41,7 +41,8 @@
                                       <th>CIUDAD</th>
                                       <th>TICKETS</th>
                                       <th>ESTADO</th>
-                                      <th style="text-align: center;">ACCCIONES</th>
+                                      <th style="text-align: center;">ACCIONES</th>
+                                      <th>EDITAR</th>
                                       <th><br>
                                       </th>
                                   </tr>
@@ -50,27 +51,32 @@
                                   @foreach($hospitales as $hos)
                                   <tr>
                                       <td><span class="text-muted">{{sprintf("%04d",$hos->id)}}</span></td>
-                                      <td><a href="{{url('superuser/cliente/'.$hos->id)}}" class="text-inherit">{{$hos->nombre}}<br>
+                                      <td><a href="{{url('superuser/usersClient/'.$hos->id)}}" class="text-inherit">{{$hos->nombre}}<br>
                                           </a>
                                       </td>
                                       <td>{{$hos->ciudad}}</td>
                                       <td>0</td>
-                                      <td> <span class="status-icon bg-success"></span>
-                                          Operando 
-                                      </td>
+                                      <td> 
+                                      @if ($hos->estado===1)
+                                        <span class="status-icon bg-warning"></span> En implementación                                
+                                      @elseif ($hos->estado===2)
+                                        <span class="status-icon bg-success"></span> Operando
+                                      @else
+                                        <span class="status-icon bg-danger"></span> Suspención Temporal
+                                      @endif
+                                       </td>
                                       <td class="text-right">
-                                          <select class="custom-select">
-                                              <option value="STATUS_CODE" selected="selected">Cambiar
-                                                  estado
-                                              </option>
-                                              <option value="JSON_BODY">En implementación</option>
-                                              <option value="HEADERS">Operando</option>
-                                              <option value="TEXT_BODY">Suspensión temporal</option>
-                                              <option value="RESPONSE_TIME">Cancelado</option>
+                                          <select class="custom-select" id="select1" >
+                                              <option selected="selected" >Cambiar estado </option>
+                                              <option >En implementación</option>
+                                              <option >Operando</option>
+                                              <option >Suspensión temporal</option>
+                                              <option >Cancelado</option>
                                           </select>
                                       </td>
-                                      <td> <a class="icon" href="javascript:void(0)"> </a>
-                                          <br>
+                                      <td> 
+                                      <a href="{{url('superuser/editClient/'.$hos->id)}}" class="btn btn-lg "> 
+                                      <span class="glyphicon glyphicon-edit"></span></a>
                                       </td>
                                   </tr>
                                   @endforeach
@@ -97,7 +103,24 @@
               }
           });
       })
-  </script>
+
+
+        /*function updateState(id,state) {
+            $value = state;
+            $.ajax({
+            method: 'GET', // Type of response and matches what we said in the route
+            url: '/superuser/cambiarEstadoCliente', // This is the url we gave in the route
+            data: {'idCliente' : id, 'state':$value }, // a JSON object to send back
+            success: function(data){ // What to do if we succeed
+                console.log(response); 
+            },
+            error: function(jqXHR, textStatus, errorThrown) { // What to do if we fail
+                console.log(JSON.stringify(jqXHR));
+                console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+            }
+        });
+        }*/
+  </script> 
 @endsection
 
 

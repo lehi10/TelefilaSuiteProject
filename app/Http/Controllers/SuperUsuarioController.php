@@ -2,7 +2,7 @@
 
 namespace telefilaSuite\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB;   
 
 use telefilaSuite\Hospital;
 use telefilaSuite\Persona;
@@ -11,6 +11,8 @@ use telefilaSuite\User;
 use Illuminate\Http\Request;
 use Auth;
 
+use Session;
+use Redirect;
 class SuperUsuarioController extends Controller
 {
     /**
@@ -35,8 +37,8 @@ class SuperUsuarioController extends Controller
         return view('superUsuario.nuevoCliente');
     }
 
-
-    public function cliente($idCliente){
+    /*Muestra la lista de usuarios que tiene ese cliente(hospital) */
+    public function usersCliente($idCliente){
         $cliente =Hospital::find($idCliente);
         $users=$cliente->users->where('rol_id','>',2);
         $user=User::find(Auth::user()->id);
@@ -71,7 +73,7 @@ class SuperUsuarioController extends Controller
                 
             }
             $user->save();
-            return redirect('superuser/cliente/'.$request->idCliente);
+            return redirect('superuser/usersClient/'.$request->idCliente);
         }
     }
 
@@ -84,7 +86,6 @@ class SuperUsuarioController extends Controller
     public function nuevoClientUser(Request $request)
     {
         //return $request;
-
         $user= new User;
         $user->fill($request->except(['_token']));
         $user->password=bcrypt($request->password);
@@ -94,7 +95,7 @@ class SuperUsuarioController extends Controller
             $user->estado=false;
         //return $user;
         $user->save();
-        return redirect('superuser/cliente/'.$request->hospital_id)->with('message','El usuario ha sido registrado satisfactoriamente.');
+        return redirect('superuser/usersClient/'.$request->hospital_id)->with('message','El usuario ha sido registrado satisfactoriamente.');
     }
     
     /**
@@ -106,18 +107,15 @@ class SuperUsuarioController extends Controller
      */
     public function storeNuevoCliente(Request $request)
     {
-        //return dd($request);
+    
         $hos= new Hospital();
         $hos->fill($request->except(["_token","mes","dia","year","usuario","password"]));  
-        //$hos->estado=1;
         $hos->fechaInicio=join('-',[ $request->year,$request->mes,$request->dia]);
         if ($request->licencia)
             $hos->licenciaAnual=true;
         else
             $hos->licenciaAnual=false;
-        
         $hos->save();  //Ya no necesitas hacer la consulta de abajo por que ya esta en $hos;
-      
         $admin= new User();
         $admin->username=$request->usuario;
         $admin->password=bcrypt($request->password);  // No se olviden de encriptarlo, si no el login no funciona
@@ -152,7 +150,7 @@ class SuperUsuarioController extends Controller
 
         echo "DNI  : ".$request['hospital_id']."<br>";
         echo $request;
-        return redirect("/superUsuario/cliente/".$request['hospital_id']);
+        return redirect('/superUsuario/usersClient/'.$request['hospital_id'])->with('message','Datos guardados satisfactoriamente.');
     }
 
 
@@ -168,6 +166,44 @@ class SuperUsuarioController extends Controller
         $user->save();
         return "Estado cambiado";
     }
+
+    public function editarCliente($idCliente)
+    {
+        $cliente = Hospital::find($idCliente);
+        $user=$cliente->users->where('rol_id','==',2);
+        return view('superUsuario.editarCliente',["hospital"=>$cliente,"usuario"=>$user]);
+    }
+
+    /*public function cambiarEstadoCliente(Request $request)
+    {
+        $cliente=Hospital::find($request->idCliente);
+        $cliente->estado = $request->state;
+        $cliente->save();
+        return "Estado cambiado";
+    }*/
+
+    public function updateCliente(Request $request, $idCliente){
+        
+        $cliente= Hospital::find($idCliente);
+        $cliente->nombre = $request->nombre;
+        $cliente->telefono = $request->telefono;
+        $cliente->nombrePersona = $request->nombrePersona;
+        $cliente->emailPersona = $request->emailPersona;
+        $cliente->celularPersona= $request->celularPersona;
+        $cliente->direccion = $request->direccion;
+        $cliente->ciudad= $request->ciudad;
+        $cliente->referencia= $request->referencia;
+        $cliente->region= $request->region;
+        $cliente->logo= $request->logo;
+        $cliente->contratos= $request->contratos;
+        $cliente->direccion = $request->direccion;
+        $cliente->tarifa= $request->tarifa;
+        $cliente->estado= $request->estado;
+        $cliente->save();
+        return redirect('superuser/')->with('message','Datos guardados satisfactoriamente');          
+
+    }
+    
     
 
     

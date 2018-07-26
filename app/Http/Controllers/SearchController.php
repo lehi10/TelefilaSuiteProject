@@ -21,13 +21,15 @@ class SearchController extends Controller
             //echo($c);
             if($datos){
                 //$isq= "{{url('/'.$hos->id.'/admin')}}"
-                    foreach ($datos as $key => $dato) {
+                    $states = array("En implementación", "Operando", "Suspención Temporal");   
+                    $color = array("bg-warning","bg-success","bg-danger");                    
+                    foreach ($datos as $key => $dato) {                        
                         $output.='<tr>'.
                         '<td><span class="text-muted">'.$dato->id.'</span></td>'.
                         '<td><a href="/superuser/cliente/'.$dato->id.'" class="text-inherit">'.$dato->nombre.'<br></a></td>'.
                         '<td>'.$dato->ciudad.'</td>'.
                         '<td>0</td>'.
-                        '<td> <span class="status-icon bg-success"></span>Operando </td>'.
+                        '<td> <span class="status-icon '.$color[$dato->estado-1].'"></span>'.$states[$dato->estado-1].'</td>'.
                         '<td class="text-right">
                           <select class="custom-select">
                             <option value="STATUS_CODE" selected="selected">Cambiar
@@ -37,9 +39,12 @@ class SearchController extends Controller
                             <option value="TEXT_BODY">Suspensión temporal</option>
                             <option value="RESPONSE_TIME">Cancelado</option>
                           </select>
-                        </td>'.
-                        '<td> <a class="icon" href="javascript:void(0)"> </a><br></td>'.
-                      '</tr>';                    
+                        </td>
+                        <td> 
+                        <a href="{{url(superuser/editClient/'.$dato->id.')}}" class="btn btn-lg "> 
+                        <span class="glyphicon glyphicon-edit"></span></a>
+                        </td>                            
+                     </tr>';                    
                     }        
                     return Response($output);
             }else{

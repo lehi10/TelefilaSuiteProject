@@ -95,18 +95,12 @@ function cambiarEstado(id) {
                       </tbody>
                     </table>
                   </div>                        
-                  @endif
-
-                  
-
-                  
+                  @endif              
                 </div>
               </div>
               </div>
               </div>
               </div>
-            
-
       <script type="text/javascript">
         $('#search').on('keyup',function(){
             $value=$(this).val();

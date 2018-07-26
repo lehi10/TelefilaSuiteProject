@@ -33,21 +33,23 @@ Route::get('/logout',function(){
 //Rutas para superUser
 Route::group(['prefix'=>'superuser','middleware' => 'rol:Super Usuario'],function()
 {
-
+    //------------- hospitales-------------------
     Route::get('/', 'SuperUsuarioController@index' );
-    Route::get('cliente/{idCliente}', 'SuperUsuarioController@cliente');
-
+    Route::get('editClient/{idCliente}', 'SuperUsuarioController@editarCliente');
     Route::get('nuevoCliente', 'SuperUsuarioController@nuevoCliente' );
-    
+    //Route::get('cambiarEstadoCliente','SuperUsuarioController@cambiarEstadoCliente');
+    Route::post('store','SuperUsuarioController@storeNuevoCliente');
+    Route::post('updateClient/{idCliente}','SuperUsuarioController@updateCliente');
+
+
+    //-------------Usuarios-------------------
+    Route::get('usersClient/{idCliente}', 'SuperUsuarioController@usersCliente');
     Route::get('{idCliente}/nuevoUser', 'SuperUsuarioController@nuevoUser');
     Route::get('{idUser}/user', 'SuperUsuarioController@clienteUser');
-    
-    Route::post('store','SuperUsuarioController@storeNuevoCliente');
-    
+    Route::get('cambiarEstadoUsuario','SuperUsuarioController@cambiarEstadoUsuario');
     Route::post('nuevoUser','SuperUsuarioController@nuevoClientUser');
     Route::post('editUser', 'SuperUsuarioController@editClientUser' );
     
-    Route::get('cambiarEstadoUsuario','SuperUsuarioController@cambiarEstadoUsuario');
     
     //Route::get('{idCliente}/nuevoUsuario', 'SuperUsuarioController@nuevoUsuario' );
     // Route::post('storeUsuario','SuperUsuarioController@guardarUsuario');
@@ -119,7 +121,6 @@ Route::get('/searchConsultorio','SearchController@searchConsultorio');
 /** 
  * Rutas para Modulo Super Usuario
  */
-
 
 
 
