@@ -19,6 +19,10 @@ class CajaController extends Controller
             ->where('fecha',date("Y-m-d"))
             ->get();
         return $citas;
+        
         //return view('caja.index');
-    }
+
+
+        
+        }
 }
