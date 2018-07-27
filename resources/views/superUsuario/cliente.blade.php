@@ -96,6 +96,11 @@ function cambiarEstado(id) {
                     </table>
                   </div>                        
                   @endif              
+                  @endif
+
+                  {{ $usuarios->links() }}
+
+                  
                 </div>
               </div>
               </div>
