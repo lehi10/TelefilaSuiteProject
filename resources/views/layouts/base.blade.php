@@ -94,7 +94,8 @@
                       </a> </div>
                   </div>
                 </div>
-                <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
+
+                <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse" >
                   <div class="container">
                     <div class="row align-items-center">
                       <div class="col-lg-3 ml-auto">
@@ -109,6 +110,9 @@
                           @if (Auth::user()->checkRol('Super Usuario'))
                           <li class="nav-item"> <a href="#" class="nav-link" data-toggle="dropdown"><i
                                 class="fe fe-box"></i> Reportes</a> </li>
+                          
+                          @yield('mas_opciones')
+                         
                           @elseif (Auth::user()->checkRol('Administrador'))
                           <li class="nav-item"> <a href="#" class="nav-link" data-toggle="dropdown"><i
                                 class="fe fe-box"></i> Reportes</a> </li>

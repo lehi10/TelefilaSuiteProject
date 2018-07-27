@@ -2,10 +2,9 @@
 
 @section('title','Hospital')
 
+
 @section('scripts')
 <script>
-
-
 function cambiarEstado(id) {
   
   $.ajax({
@@ -23,6 +22,13 @@ function cambiarEstado(id) {
 }
 </script>
 
+@endsection
+
+@section('mas_opciones')
+<li class="nav-item"> <a href="/administrador/consultorios" class="nav-link"><i
+                                class="fe fe-calendar"></i> Consultorios</a> </li>
+<li class="nav-item"> <a href="/recursosHumanos" class="nav-link"><i
+                                class="fa fa-address-book"></i> Recursos Humanos</a> </li>                                
 @endsection
 
 @section('buscar','usuarios')

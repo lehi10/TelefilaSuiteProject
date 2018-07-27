@@ -74,7 +74,7 @@ function updateTurnos(iTurno) {
                     </div>
                     <div class="table-responsive">
                         <br>
-                        <table style="margin: 0px auto; width: 80%;" cellspacing="100" border="0">
+                        <table style="margin: 0px auto; width: 80%; " cellspacing="100" border="0">
                             <tbody>
                                 <tr>
                                     <td>
@@ -91,14 +91,14 @@ function updateTurnos(iTurno) {
                                     <td>
                                         <br>
                                     </td>
-                                    <td>
-                                        <input class="form-control" disabled="disabled" placeholder="Company" value="{{$medico->nombres}} {{$medico->apellidos}}" type="text">
+                                    <td style="padding-right:10px;" >
+                                        <input class="form-control"  disabled="disabled" placeholder="Company" value="{{$medico->nombres}} {{$medico->apellidos}}" type="text">
                                     </td>
-                                    <td>
-                                        <input class="form-control" disabled="disabled" placeholder="Company" value="{{$medico->especialidad->nombre}}" type="text">
+                                    <td style="padding-right:10px;" >
+                                        <input class="form-control"   disabled="disabled" placeholder="Company" value="{{$medico->especialidad->nombre}}" type="text">
                                     </td>
-                                    <td>
-                                        <input class="form-control" disabled="disabled" placeholder="Company" value="Mañana" type="text">
+                                    <td style="padding-right:10px;" >
+                                        <input class="form-control"  disabled="disabled" placeholder="Company" value="Mañana" type="text">
                                     </td>
                                     <td>
                                         <br>
@@ -111,27 +111,26 @@ function updateTurnos(iTurno) {
                         <br>
                     </div>
                     <div class="table-responsive">
-                        <table style="margin: 0px auto; width: 80%;" cellspacing="100" border="0">
+                        <table style="margin: 0px auto; width: 80%; padding:5px;"  cellspacing="100" border="0">
                             <tbody>
                                 <tr>
                                     <td>
                                         <br>
                                     </td>
-                                    <td style="margin-left: -131px;">Seleccionar mes</td>
+                                    <td >Seleccionar mes</td>
                                     <td>Año</td>
                                     <td>Accion</td>
                                     <td>
                                         <br>
                                     </td>
                                 </tr>
-                                <tr>
-                                
+                                <tr>                                
                                     {{ Form::open(array('action' => array('RecursosHumanosController@mostrarAgenda', $medico->id),'method'=>'get')) }}
-                                        <td>
+                                        <td>                                                                            
                                             <br>
                                         </td>
-                                        <td>
-                                            <select name="month" id="select-users" class="form-control custom-select">
+                                        <td style="padding-right:10px;" >
+                                            <select name="month" id="select-users" class="form-control custom-select" >
                                                 <option value="1" >Enero</option>
                                                 <option value="2" >Febrero</option>
                                                 <option value="3" >Marzo</option>
@@ -146,14 +145,14 @@ function updateTurnos(iTurno) {
                                                 <option value="12">Diciembre</option>
                                             </select>
                                         </td>
-                                        <td>
+                                        <td style="padding-right:10px;" >
                                             <select name="year" id="select-users" class="form-control custom-select">
                                                 <option value="2018" >2018</option>
                                                 <option value="2019" >2019</option>
                                             </select>
                                         </td>
-                                        <td>
-                                            <button type="submit" class="btn btn-primary btn-block">CARGAR&nbsp;</button>
+                                        <td style="padding-right:10px;" >
+                                            <button type="submit" class="btn btn-primary btn-block">CARGAR</button>
                                         </td>
                                         <td>
                                             <br>
@@ -238,7 +237,7 @@ function updateTurnos(iTurno) {
                         @endfor
                         </tbody>
                         </table>
-
+                        <br>
                         <div class="table-responsive" style="text-align: center;">
                             <strong>
                                 <div class="card-footer text-right"> 
