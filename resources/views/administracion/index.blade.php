@@ -94,7 +94,7 @@ function showUser(id) {
                   --}}   
                      
                     </table>
-                    {{ $usuarios->links() }}
+                    {{-- $usuarios->links() --}}
                   </div>                        
                   @endif                  
                   
