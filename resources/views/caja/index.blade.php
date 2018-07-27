@@ -68,8 +68,15 @@
           <div class="container">
             <div class="row align-items-center">
               <div class="col-lg-3 ml-auto">
-                <form class="input-icon my-3 my-lg-0"> 
-                  <input class="form-control header-search" placeholder="Buscar DNI…" tabindex="1" type="search">
+                <form action="caja" methot="get" class="input-icon my-3 my-lg-0">                   
+                  {!! csrf_field() !!}
+                  <div class="input-group"> 
+                  <input name="citaID" class="form-control" placeholder="Código de Ticket" type="text"> 
+                    <span class="input-group-append">
+                      <button class="btn btn-primary" type="submit">Go!</button>
+                    </span> 
+                  </div>
+
                   <div class="input-icon-addon"> <i class="fe fe-search"></i> </div>
                 </form>
               </div>
@@ -103,7 +110,13 @@
                     <h3 class="card-title">Listado general de Tickets de HOY</h3>
                   </div>
                   <div class="table-responsive">
-                    
+                  @if(session('message'))
+                  <div class="alert alert-{{session('kind')}} form-group text-center" role="alert">
+                      {{session('message')}}
+                    </div>
+                  @endif
+          
+          
                     <table class="table card-table table-vcenter text-nowrap">
                       <thead>
                         <tr>
@@ -116,20 +129,72 @@
                           <th class="w-1">ELIMINAR </th>
                         </tr>
                       </thead>
+                      
 
                       <tbody>
-                        <tr>
-                          <td><span class="text-muted">0101</span></td>
-                          <td>Juan Francisco Ordoñez Velasquez<br></td>
-                          <td>Medicina General</td>
-                          <td>25 abril 2018</td>
-                          <td style="width: 65px;">10:30<br>
+                      @foreach ($citas as $cita)
+                      <tr>
+                          <td><span class="text-muted">{{$cita->id}}</span></td>
+                          <td>{{$cita->nombres}} {{$cita->apellidos}}<br></td>
+                          <td>-</td>
+                          <td>{{$cita->fecha}}</td>
+                          <td style="width: 65px;">{{$cita->horaInicio}}<br>
                           </td>
-                          <td style="margin-left: -13px;"><button type="submit" class="btn btn-primary btn-block">PAGADO&nbsp;</button></td>
-                          <td><a href="#" class="icon"><i class="fe fe-trash"></i></a>
+                          @if($cita->pagado==0)
+
+                          <!-- Trigger the modal with a button -->
+                          <td style="margin-left:-13px;"><button type="submit" data-toggle="modal" data-target="#myModal" class="btn btn-primary">PAGAR&nbsp;</button></td>
+                          
+
+                          <!-- Modal -->
+                          <div id="myModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+
+                              <!-- Modal content-->
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                <h4 class="modal-title">Realizar Pago</h4>
+                                  <button type="button" class="close" data-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <p>Aceptar el pago realizado por ecl Paciente <b>{{$cita->nombres}} {{$cita->apellidos}}</b> del ticket de cita <b>{{$cita->id}}</b></p>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-default bg-red" data-dismiss="modal">Cancelar</button>
+                                {{ Form::open(array('url' => 'caja/guardarPago','method' => 'post')) }}
+                                  {!! csrf_field() !!}
+                                  <input id="prodId" name="citaID" type="hidden" value="{{$cita->id}}">
+                                  <button type="submit" class="btn btn-default bg-green" >Aceptar el Pago</button>
+                                {{ Form::close() }}
+                                
+                                  
+                                  
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+
+
+                          
+                              
+                            
+                          @else
+                            <td style="margin-left: -13px;"><button type="submit" class="btn btn-primary btn-block bg-green">PAGADO&nbsp;</button></td>
+                          @endif
+                          {{ Form::open(array('url' => 'caja/eliminarTicket','id'=>'eliminarTicket','method' => 'post')) }}
+                            <input id="prodId" name="citaID" type="hidden" value="{{$cita->id}}">
+                            <td><a href="#" onclick="document.getElementById('eliminarTicket').submit()" class="icon"><i class="fe fe-trash"></i></a>                            
+                          {{ Form::close() }}
+                          
+                          
+
                             <br>
                           </td>
                         </tr>
+                        
+                      @endforeach
+
                         
 
                       </tbody>
@@ -139,12 +204,13 @@
                 </div>
               </div>
             </div>
+            
             <ul class="pagination ">
               <li class="page-item page-prev disabled"> <a class="page-link" href="#"
 
                   tabindex="-1"> Atras </a> </li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item active"><a class="page-link" href="#">2</a></li>
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
               <li class="page-item"><a class="page-link" href="#">3</a></li>
               <li class="page-item"><a class="page-link" href="#">4</a></li>
               <li class="page-item"><a class="page-link" href="#">5</a></li>

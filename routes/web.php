@@ -90,6 +90,8 @@ Route::group(['prefix'=>'caja','middleware' => 'rol:Caja'],function()
 {
    
     Route::get('/', 'CajaController@index' );
+    Route::post('/guardarPago',  'CajaController@guardarPago' );
+    Route::post('/eliminarTicket',  'CajaController@eliminarTicket' );
 
 
 });
@@ -156,7 +158,6 @@ Route::group(['prefix'=>'admision','middleware' => 'rol:Admision'],function()
     
     
     Route::post('/agregarPaciente/crearRegistro',  'AdmisionController@crearPaciente' );
-
 });
 
 

@@ -29,6 +29,8 @@ class CrearTablaCita extends Migration
             $table->foreign('hospital_id')->references('id')->on("hospitals");
             $table->foreign('agenda_id')->references('id')->on("agendas");
 
+            $table->timestamps();
+
         });
     }
 

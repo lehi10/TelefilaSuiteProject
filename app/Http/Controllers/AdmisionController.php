@@ -14,8 +14,8 @@ class AdmisionController extends Controller
     {   
         $paciente= new Paciente;
         $paciente->fill($request->except(["_token"]));
-        $paciente->nombre=$request['nombres'];
-        $paciente->apellido=$request['apellidos'];
+        $paciente->nombres=$request['nombres'];
+        $paciente->apellidos=$request['apellidos'];
         
         $paciente->dni=$request['dni'];
 

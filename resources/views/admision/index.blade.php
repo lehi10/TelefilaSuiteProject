@@ -46,6 +46,7 @@
                 <div class="col-sm-3" >
                   <center>
                     {{ Form::open(array('url' => 'admision', 'method' => 'get')) }}  
+                      {!! csrf_field() !!}
                       <input  name="pacienteDNI" class="form-control" placeholder="Ingrese DNI" type="text"><br>
                       <button class="btn btn-primary" type="submit">Buscar</button>    
                     {{ Form::close() }}
@@ -55,7 +56,7 @@
                 @if(isset($paciente)) 
                 <div class="col-sm-6" >
                   <h4>Resultados</h4>                      
-                  Paciente : <b>{{ $paciente[0]->nombre }} {{$paciente[0]->apellido}}</b> 
+                  Paciente : <b>{{ $paciente[0]->nombres }} {{$paciente[0]->apellidos}}</b> 
                   <br>
                   DNI : <b>{{$paciente[0]->dni}}</b>
                 </div>
@@ -64,7 +65,7 @@
               <br>
 
             <div class="container" >  
-              <div class="form-control" style="width : 50%; margin: auto; padding: 10px;">
+              <div class="form-control" style="width : 50%; margin: auto; ">
                 <label> Referir a</label>
                     <select name="user" id="select-users" class="form-control custom-select">
                       <option value="1" data-data="{&quot;image&quot;: &quot;demo/faces/female/16.jpg&quot;}">Medicina
@@ -109,9 +110,7 @@
                       <br>
                       <button class="btn btn-primary" type="button">Generar Referencia</button>
                     </center>
-                    
-                    
-              
+                                
               </div>
             
               @else
@@ -124,13 +123,8 @@
               @endif
 
             </div>
-          
-            
+
               <hr>
-            
-            
-
-
             </div>
           </div>
         </div>
