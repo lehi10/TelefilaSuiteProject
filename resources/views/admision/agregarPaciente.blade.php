@@ -1,9 +1,6 @@
-@extends('layouts.base')
-
-@section('title','Admisión')
-
 
 <!DOCTYPE html>
+
 <html dir="ltr" lang="en">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">

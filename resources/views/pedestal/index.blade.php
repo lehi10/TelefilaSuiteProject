@@ -1,18 +1,9 @@
 <!DOCTYPE html>
-<html class="nojs html css_verticalspacer" lang="es-ES">
+<html class="html css_verticalspacer" lang="es-ES">
  <head>
 
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
-  <meta name="generator" content="2017.0.0.363"/>
   
-  <script type="text/javascript">
-   // Update the 'nojs'/'js' class on the html node
-document.documentElement.className = document.documentElement.className.replace(/\bnojs\b/g, 'js');
-
-// Check that all required assets are uploaded and up-to-date
-if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required":["museutils.js", "museconfig.js", "webpro.js","jquery.musepolyfill.bgsize.js", "jquery.watch.js", "require.js", "./css/index.css"], "outOfDate":[]};
- 
-</script>
   
   <title>Inicio</title>
   <!-- CSS -->
@@ -55,7 +46,13 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
      <span class="fld-textarea actAsDiv rounded-corners clearfix grpelem" id="u119-3"><!-- content --><textarea class="wrapped-input" id="widgetu118_input" name="custom_U118" tabindex="1"></textarea></span>
     </div>
    </form>
-   <a class="nonblock nontext museBGSize clearfix colelem" id="u218" href="especialidad.html"><!-- group --><div class="clearfix grpelem" id="u199-4"><!-- content --><p>ENTRAR</p></div></a>
+   <a class="nonblock nontext museBGSize clearfix colelem" id="u218" href="{{url('pedestal/especialidad')}}">
+   <!-- group -->
+    <div class="clearfix grpelem" id="u199-4">
+    <!-- content -->
+    <p>ENTRAR</p>
+    </div>
+  </a>
    <div class="verticalspacer" data-offset-top="393" data-content-above-spacer="392" data-content-below-spacer="108"></div>
   </div>
   <div class="preload_images">

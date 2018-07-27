@@ -1,30 +1,64 @@
-<manifest alg="2" build="2017.0.0.363" opt="false" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster" exportTarget="other" domain="telefila.com" resolutions="1x" timestamp="1523319124165">
+<manifest alg="2" build="2017.0.0.363" opt="false" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster" exportTarget="other" domain="telefila.com" resolutions="1x" timestamp="1499719611872">
   <folder name="css">
     <file name="site_global.css" crc="443350757"/>
-    <file name="index.css" crc="177440677" ref="index"/>
-    <file name="cliente.css" crc="381638368" ref="cliente"/>
-    <file name="nuevo-usuario.css" crc="127623343" ref="nuevo-usuario"/>
-    <file name="nuevo_cliente.css" crc="4038161940" ref="nuevo_cliente"/>
+    <file name="index.css" crc="322861927" ref="index"/>
+    <file name="imprime.css" crc="259043253" ref="imprime"/>
+    <file name="imprimiendo.css" crc="4017479104" ref="imprimiendo"/>
+    <file name="fecha.css" crc="251659439" ref="fecha"/>
+    <file name="especialidad.css" crc="4201154614" ref="especialidad"/>
   </folder>
   <folder name="scripts">
-    <file name="jquery-1.8.3.min.js" crc="209076791" ref="index:cliente:nuevo_cliente:nuevo-usuario"/>
-    <file name="museutils.js" crc="163421577" ref="index:cliente:nuevo_cliente:nuevo-usuario"/>
-    <file name="whatinput.js" crc="86476730" ref="index:cliente:nuevo_cliente:nuevo-usuario"/>
-    <file name="museconfig.js" crc="168988563" ref="index:cliente:nuevo_cliente:nuevo-usuario"/>
-    <file name="jquery.watch.js" crc="104486786" ref="index:cliente:nuevo_cliente:nuevo-usuario"/>
-    <file name="require.js" crc="244322403" ref="index:cliente:nuevo_cliente:nuevo-usuario"/>
+    <file name="jquery-1.8.3.min.js" crc="209076791" ref="index:fecha:especialidad:imprime:imprimiendo"/>
+    <file name="museutils.js" crc="163421577" ref="index:fecha:especialidad:imprime:imprimiendo"/>
+    <file name="whatinput.js" crc="86476730" ref="index:fecha:especialidad:imprime:imprimiendo"/>
+    <file name="museconfig.js" crc="168988563" ref="index:fecha:especialidad:imprime:imprimiendo"/>
+    <file name="jquery.watch.js" crc="104486786" ref="index:fecha:especialidad:imprime:imprimiendo"/>
+    <file name="require.js" crc="244322403" ref="index:fecha:especialidad:imprime:imprimiendo"/>
+    <file name="webpro.js" crc="3848665353" ref="index"/>
+    <file name="form_check.php" crc="158155501" ref="index"/>
+    <file name="form_throttle.php" crc="3992970984" ref="index"/>
+    <file name="form_process.php" crc="4078697226" ref="index"/>
+    <file name="form-u113.php" crc="373583772" ref="index"/>
+    <file name="jquery.musepolyfill.bgsize.js" crc="379354253" ref="index:fecha:especialidad:imprime"/>
   </folder>
   <folder name="images">
-    <file name="logo_alpha.png" crc="4023370297" seo="true" ref="index:cliente:nuevo_cliente:nuevo-usuario"/>
-    <file name="back_admin.jpg" crc="114687435" ref="index"/>
-    <file name="pasted-svg-50691x50.svg" crc="3973562438" seo="true" ref="cliente:nuevo_cliente:nuevo-usuario"/>
-    <file name="pasted svg 50691x50_poster_.png" crc="495545644" ref="cliente:nuevo-usuario"/>
-    <file name="pasted-svg-287179x246.svg" crc="213937591" seo="true" ref="nuevo_cliente:nuevo-usuario"/>
-    <file name="pasted svg 287179x246_poster_.png" crc="320079953" ref="nuevo_cliente:nuevo-usuario"/>
-    <file name="nuevo-usuario-favicon.ico" crc="3940202540" ref="nuevo-usuario"/>
+    <file name="logo_alpha.png" crc="4209966205" seo="true" ref="index"/>
+    <file name="largo_a.png" crc="340962900" ref="index"/>
+    <file name="largo_b.png" crc="4172065039" ref="index:imprime"/>
+    <file name="logo_alpha2.png" crc="4239319242" seo="true" ref="fecha:especialidad:imprime:imprimiendo"/>
+    <file name="backb.png" crc="4221144759" ref="fecha:especialidad:imprime"/>
+    <file name="back.png" crc="107087755" ref="fecha:especialidad:imprime"/>
+    <file name="boton_amarillo.png" crc="3902754778" ref="fecha"/>
+    <file name="boton_blancob.png" crc="369233959" ref="fecha"/>
+    <file name="boton_rojo.png" crc="286257404" ref="fecha"/>
+    <file name="boton_blanco.png" crc="4121168921" ref="fecha"/>
+    <file name="medgen_a.png" crc="3923899377" ref="especialidad:imprime"/>
+    <file name="medgen_b.png" crc="300562693" ref="especialidad"/>
+    <file name="gine_a.png" crc="195012754" ref="especialidad"/>
+    <file name="gine_b.png" crc="26139113" ref="especialidad"/>
+    <file name="dental_a.png" crc="36746584" ref="especialidad"/>
+    <file name="dental_b.png" crc="463551447" ref="especialidad"/>
+    <file name="obstetricia_a.png" crc="390409617" ref="especialidad"/>
+    <file name="obstetricia_b.png" crc="494308813" ref="especialidad"/>
+    <file name="pedia_a.png" crc="3834157272" ref="especialidad"/>
+    <file name="pedia_b.png" crc="259735835" ref="especialidad"/>
+    <file name="medint_a.png" crc="4197446232" ref="especialidad"/>
+    <file name="medint_b.png" crc="48247206" ref="especialidad"/>
+    <file name="oftal_a.png" crc="4223443757" ref="especialidad"/>
+    <file name="oftal_b.png" crc="102071850" ref="especialidad"/>
+    <file name="cirujia_a.png" crc="4075238387" ref="especialidad"/>
+    <file name="cirujia_b.png" crc="4228318749" ref="especialidad"/>
+    <file name="nutri_a.png" crc="3939622240" ref="especialidad"/>
+    <file name="nutri_b.png" crc="8563566" ref="especialidad"/>
+    <file name="cardio_a.png" crc="247143415" ref="especialidad"/>
+    <file name="cardio_b.png" crc="4148589182" ref="especialidad"/>
+    <file name="check.png" crc="501764073" seo="true" ref="imprime"/>
+    <file name="largo_rojo.png" crc="4100241817" ref="imprime"/>
+    <file name="imagen pegada 322x342.jpg" crc="4061717987" seo="true" ref="imprimiendo"/>
   </folder>
-  <file name="index.html" crc="264738217" seo="true" mt="1523317768982" redirect="true"/>
-  <file name="cliente.html" crc="161633831" seo="true" mt="1523318773985" redirect="true"/>
-  <file name="nuevo_cliente.html" crc="4217165543" seo="true" mt="1523318806926" redirect="true"/>
-  <file name="nuevo-usuario.html" crc="445572778" seo="true" mt="1523319091783" redirect="true"/>
+  <file name="index.html" crc="159624248" seo="true" mt="1499710238937" redirect="true"/>
+  <file name="fecha.html" crc="4272652018" seo="true" mt="1499719499432" redirect="true"/>
+  <file name="especialidad.html" crc="18160310" seo="true" mt="1499711964622" redirect="true"/>
+  <file name="imprime.html" crc="324470507" seo="true" mt="1499719512783" redirect="true"/>
+  <file name="imprimiendo.html" crc="3805943519" seo="true" mt="1499719549553" redirect="true"/>
 </manifest>

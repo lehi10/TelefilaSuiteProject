@@ -10,4 +10,14 @@ class PedestalController extends Controller
     {
         return view('pedestal.index');
     }
+
+    public function especialidad(Request $request)
+    {
+        return view('pedestal.especialidad');
+    }
+
+    public function fecha(Request $request)
+    {
+        return view('pedestal.fecha');
+    }
 }

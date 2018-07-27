@@ -3,7 +3,6 @@
 @section('title','Caja')
 
 @section('body')
-
         <div class="my-3 my-md-5">        
           <div class="container form-group" style="width : 50%; margin: auto; ">
           {{ Form::open(array('url' => 'caja','method' => 'get','class'=>'input-icon my-3 my-lg-0')) }}
@@ -16,7 +15,6 @@
               </div>
               <div class="input-icon-addon"> <i class="fe fe-search"></i> </div>
             {{ Form::close() }}
-
           </div>
         <br>
           <div class="container">
@@ -31,9 +29,7 @@
                   <div class="alert alert-{{session('kind')}} form-group text-center" role="alert">
                       {{session('message')}}
                     </div>
-                  @endif
-          
-          
+                  @endif          
                     <table class="table card-table table-vcenter text-nowrap">
                       <thead>
                         <tr>
@@ -46,8 +42,6 @@
                           <th class="w-1">ELIMINAR </th>
                         </tr>
                       </thead>
-                      
-
                       <tbody>
                       @foreach ($citas as $cita)
                       <tr>
@@ -58,15 +52,11 @@
                           <td style="width: 65px;">{{$cita->horaInicio}}<br>
                           </td>
                           @if($cita->pagado==0)
-
                           <!-- Trigger the modal with a button -->
                           <td style="margin-left:-13px;"><button type="submit" data-toggle="modal" data-target="#myModal" class="btn btn-primary">PAGAR&nbsp;</button></td>
-                          
-
                           <!-- Modal -->
                           <div id="myModal" class="modal fade" role="dialog">
                             <div class="modal-dialog">
-
                               <!-- Modal content-->
                               <div class="modal-content">
                                 <div class="modal-header">
@@ -83,19 +73,10 @@
                                   <input id="prodId" name="citaID" type="hidden" value="{{$cita->id}}">
                                   <button type="submit" class="btn btn-default bg-green" >Aceptar el Pago</button>
                                 {{ Form::close() }}
-                                
-                                  
-                                  
                                 </div>
                               </div>
-
                             </div>
                           </div>
-
-
-                          
-                              
-                            
                           @else
                             <td style="margin-left: -13px;"><button type="submit" class="btn btn-primary btn-block bg-green">PAGADO&nbsp;</button></td>
                           @endif
@@ -103,20 +84,12 @@
                             <input id="prodId" name="citaID" type="hidden" value="{{$cita->id}}">
                             <td><a href="#" onclick="document.getElementById('eliminarTicket').submit()" class="icon"><i class="fe fe-trash"></i></a>                            
                           {{ Form::close() }}
-                          
-                          
-
                             <br>
                           </td>
                         </tr>
-                        
                       @endforeach
-
-                        
-
                       </tbody>
                     </table>
-
                   </div>
                 </div>
               </div>
