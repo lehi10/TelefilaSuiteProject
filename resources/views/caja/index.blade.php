@@ -41,11 +41,14 @@
       <div class="page-main">
         <div class="header py-4">
           <div class="container">
-            <div class="d-flex"> <a class="header-brand" href="./index.html"> <img
-                  src="file:///E:/clientes/2018/Telefila/Producto/Suite%20web/demo/photos/logo_alpha.png"
+            <div class="d-flex"> <a class="header-brand" href="./index.html"> <img
+
+                  src="file:///E:/clientes/2018/Telefila/Producto/Suite%20web/demo/photos/logo_alpha.png"
+
                   alt="logo" title="logo" style="width: 144px; height: 36px;"> </a>
               <div class="d-flex order-lg-2 ml-auto">
-                <div class="dropdown"> <a href="#" class="nav-link pr-0 leading-none"
+                <div class="dropdown"> <a href="#" class="nav-link pr-0 leading-none"
+
                     data-toggle="dropdown"> <span class="avatar" style="background-image: url(./demo/faces/female/25.jpg)"></span>
                     <span class="ml-2 d-none d-lg-block"> <span class="text-default">Maria
                         Delgado Arrascue</span> <small class="text-muted d-block mt-1">Caja</small>
@@ -55,7 +58,8 @@
                       <i class="dropdown-icon fe fe-log-out"></i> Salir </a> </div>
                 </div>
               </div>
-              <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse"
+              <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse"
+
                 data-target="#headerMenuCollapse"> <span class="header-toggler-icon"></span>
               </a> </div>
           </div>
@@ -64,8 +68,8 @@
           <div class="container">
             <div class="row align-items-center">
               <div class="col-lg-3 ml-auto">
-                <form class="input-icon my-3 my-lg-0"> <input class="form-control header-search"
-                    placeholder="Buscar DNI…" tabindex="1" type="search">
+                <form class="input-icon my-3 my-lg-0"> 
+                  <input class="form-control header-search" placeholder="Buscar DNI…" tabindex="1" type="search">
                   <div class="input-icon-addon"> <i class="fe fe-search"></i> </div>
                 </form>
               </div>
@@ -99,6 +103,7 @@
                     <h3 class="card-title">Listado general de Tickets de HOY</h3>
                   </div>
                   <div class="table-responsive">
+                    
                     <table class="table card-table table-vcenter text-nowrap">
                       <thead>
                         <tr>
@@ -111,89 +116,32 @@
                           <th class="w-1">ELIMINAR </th>
                         </tr>
                       </thead>
+
                       <tbody>
                         <tr>
                           <td><span class="text-muted">0101</span></td>
-                          <td>Juan Francisco Ordoñez Velasquez<br>
-                          </td>
+                          <td>Juan Francisco Ordoñez Velasquez<br></td>
                           <td>Medicina General</td>
                           <td>25 abril 2018</td>
                           <td style="width: 65px;">10:30<br>
                           </td>
-                          <td style="margin-left: -13px;"><button type="submit"
-                              class="btn btn-primary btn-block">PAGADO&nbsp;</button></td>
+                          <td style="margin-left: -13px;"><button type="submit" class="btn btn-primary btn-block">PAGADO&nbsp;</button></td>
                           <td><a href="#" class="icon"><i class="fe fe-trash"></i></a>
                             <br>
                           </td>
                         </tr>
-                        <tr>
-                          <td><span class="text-muted">0103</span></td>
-                          <td>Maria Villela Roo<br>
-                          </td>
-                          <td>Medicina General</td>
-                          <td>25 abril 2018</td>
-                          <td>10:45<br>
-                          </td>
-                          <td><button type="submit" class="btn btn-primary btn-block">PAGADO&nbsp;</button>
-                          </td>
-                          <td><a href="#" class="icon"><i class="fe fe-trash"></i></a><br>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><span class="text-muted">0104</span></td>
-                          <td>José Velasquez Chavez<br>
-                          </td>
-                          <td>Oftalmología</td>
-                          <td>25 abril 2018</td>
-                          <td>10:45 </td>
-                          <td><button type="submit" class="btn btn-primary btn-block">PAGADO
-                              </button></td>
-                          <td><a href="#" class="icon"><i class="fe fe-trash"></i></a>
-                            <br>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><span class="text-muted">0105</span></td>
-                          <td>Clodomira Beltran Agapito<br>
-                          </td>
-                          <td>Odontología</td>
-                          <td>28 abril 2018</td>
-                          <td>10:45 </td>
-                          <td><button type="submit" class="btn btn-primary btn-block">PAGADO
-                              </button></td>
-                          <td><a href="#" class="icon"><i class="fe fe-trash"></i></a>
-                            <br>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><span class="text-muted">0106</span></td>
-                          <td>Sofia Larrain Verastegui<br>
-                          </td>
-                          <td>Medicina General</td>
-                          <td>29 abril 2018</td>
-                          <td>10:45 </td>
-                          <td><button type="submit" class="btn btn-primary btn-block">PAGADO
-                              </button></td>
-                          <td><a href="#" class="icon"><i class="fe fe-trash"></i></a>&nbsp;
-                            </td> </tr>
-                        <tr>
-                          <td><span class="text-muted">0106</span></td>
-                          <td>José Velasquez Chavez</td>
-                          <td>Medicina General</td>
-                          <td>29 abril 2018</td>
-                          <td>10:45</td>
-                          <td><button type="submit" class="btn btn-primary btn-block">PAGADO
-                              </button></td>
-                          <td><a href="#" class="icon"><i class="fe fe-trash"></i></a>&nbsp;
-                            </td> </tr>
+                        
+
                       </tbody>
                     </table>
+
                   </div>
                 </div>
               </div>
             </div>
             <ul class="pagination ">
-              <li class="page-item page-prev disabled"> <a class="page-link" href="#"
+              <li class="page-item page-prev disabled"> <a class="page-link" href="#"
+
                   tabindex="-1"> Atras </a> </li>
               <li class="page-item"><a class="page-link" href="#">1</a></li>
               <li class="page-item active"><a class="page-link" href="#">2</a></li>
