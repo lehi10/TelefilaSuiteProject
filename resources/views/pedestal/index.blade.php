@@ -7,6 +7,7 @@
   
   <title>Inicio</title>
   <!-- CSS -->
+  
   <link rel="stylesheet" type="text/css" href="/css/site_global.css?crc=443350757"/>
   <link rel="stylesheet" type="text/css" href="/css/index.css?crc=322861927" id="pagesheet"/>
   <!-- Other scripts -->
@@ -22,7 +23,7 @@
 
   <div class="clearfix gradient" id="page"><!-- column -->
    <div class="clip_frame colelem" id="u103"><!-- image -->
-    <img class="block" id="u103_img" src="images/logo_alpha.png?crc=4209966205" alt="" width="212" height="53"/>
+    <img class="block" id="u103_img" src="/images/logo_alpha.png?crc=4209966205" alt="" width="212" height="53"/>
    </div>
    <div class="clearfix colelem" id="u184-4"><!-- content -->
     <p>Ingresa tu numero de DNI</p>

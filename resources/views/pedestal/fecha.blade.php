@@ -38,6 +38,7 @@
     <div class="clearfix colelem" id="u231-4"><!-- content -->
      <p>¿Qué día necesitas atenderte?</p>
     </div>
+    
     <div class="browser_width colelem" id="u310-bw">
      <div id="u310"><!-- group -->
       <div class="clearfix" id="u310_align_to_page">
@@ -104,7 +105,7 @@
           <p>Jueves</p>
          </div>
         </div>
-        <a class="nonblock nontext museBGSize clearfix colelem" id="u734" href="imprime.html"><!-- column --><div class="clearfix colelem" id="u752-4"><!-- content --><p>28</p></div><div class="clearfix colelem" id="u737-4"><!-- content --><p>Jueves</p></div></a>
+        <a class="nonblock nontext museBGSize clearfix colelem" id="u734" href="{{url('pedestal/imprime')}}"><!-- column --><div class="clearfix colelem" id="u752-4"><!-- content --><p>28</p></div><div class="clearfix colelem" id="u737-4"><!-- content --><p>Jueves</p></div></a>
        </div>
        <div class="clearfix grpelem" id="pu725"><!-- column -->
         <div class="museBGSize clearfix colelem" id="u725"><!-- column -->
@@ -127,6 +128,8 @@
       </div>
      </div>
     </div>
+
+    
    </div>
    <div class="verticalspacer" data-offset-top="537" data-content-above-spacer="537" data-content-below-spacer="62"></div>
    <div class="clearfix grpelem" id="u989-4"><!-- content -->

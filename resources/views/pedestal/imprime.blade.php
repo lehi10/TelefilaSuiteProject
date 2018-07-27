@@ -1,22 +1,11 @@
 <!DOCTYPE html>
-<html class="nojs html css_verticalspacer" lang="es-ES">
+<html class=" html css_verticalspacer" lang="es-ES">
  <head>
-
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
-  <meta name="generator" content="2017.0.0.363"/>
-  
-  <script type="text/javascript">
-   // Update the 'nojs'/'js' class on the html node
-document.documentElement.className = document.documentElement.className.replace(/\bnojs\b/g, 'js');
-
-// Check that all required assets are uploaded and up-to-date
-if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required":["museutils.js", "museconfig.js", "jquery.musepolyfill.bgsize.js", "jquery.watch.js", "require.js", "imprime.css"], "outOfDate":[]};
-</script>
-  
   <title>imprime</title>
   <!-- CSS -->
-  <link rel="stylesheet" type="text/css" href="css/site_global.css?crc=443350757"/>
-  <link rel="stylesheet" type="text/css" href="css/imprime.css?crc=259043253" id="pagesheet"/>
+  <link rel="stylesheet" type="text/css" href="/css/site_global.css?crc=443350757"/>
+  <link rel="stylesheet" type="text/css" href="/css/imprime.css?crc=259043253" id="pagesheet"/>
   <!-- Other scripts -->
   <script type="text/javascript">
    var __adobewebfontsappname__ = "muse";
@@ -38,7 +27,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
       <p>Hola! Rolando Ancajima</p>
      </div>
      <div class="clip_frame" id="u844"><!-- image -->
-      <img class="block" id="u844_img" src="images/logo_alpha2.png?crc=4239319242" alt="" width="171" height="42"/>
+      <img class="block" id="u844_img" src="/images/logo_alpha2.png?crc=4239319242" alt="" width="171" height="42"/>
      </div>
      <a class="nonblock nontext museBGSize" id="u852" href="fecha.html"><!-- simple frame --></a>
     </div>
@@ -54,10 +43,10 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
          <p>Se ha reservado temporalmente tu turno con el Dr. Armando Bejarano para la especialidad de Medicina General para el dia JUEVES 28 a las 12:15. Dale en IMPRIMIR y acércate a caja a <span id="u880-2">pagar S/.11.00</span> y así confirmar tu turno.</p>
         </div>
        </div>
-       <a class="nonblock nontext museBGSize clearfix colelem" id="u883" href="imprimiendo.html"><!-- group --><div class="clearfix grpelem" id="u884-4"><!-- content --><p>IMPRIMIR</p></div></a>
+       <a class="nonblock nontext museBGSize clearfix colelem" id="u883" href="{{url('pedestal/imprimiendo')}}"><!-- group --><div class="clearfix grpelem" id="u884-4"><!-- content --><p>IMPRIMIR</p></div></a>
        <div class="clearfix colelem" id="u895"><!-- group -->
-        <a class="nonblock nontext clearfix grpelem" id="u889-4" href="index.html"><!-- content --><p>Cancelar</p></a>
-        <a class="nonblock nontext rounded-corners grpelem" id="u892" href="index.html"><!-- simple frame --></a>
+        <a class="nonblock nontext clearfix grpelem" id="u889-4" href="{{url('pedestal')}}"><!-- content --><p>Cancelar</p></a>
+        <a class="nonblock nontext rounded-corners grpelem" id="u892" href="{{url('pedestal')}}"><!-- simple frame --></a>
        </div>
       </div>
      </div>

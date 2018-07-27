@@ -1,22 +1,14 @@
 <!DOCTYPE html>
-<html class="nojs html css_verticalspacer" lang="es-ES">
+<html class=" html css_verticalspacer" lang="es-ES">
  <head>
 
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
-  <meta name="generator" content="2017.0.0.363"/>
-  
-  <script type="text/javascript">
-   // Update the 'nojs'/'js' class on the html node
-document.documentElement.className = document.documentElement.className.replace(/\bnojs\b/g, 'js');
 
-// Check that all required assets are uploaded and up-to-date
-if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required":["museutils.js", "museconfig.js", "jquery.watch.js", "require.js", "imprimiendo.css"], "outOfDate":[]};
-</script>
   
   <title>imprimiendo</title>
   <!-- CSS -->
-  <link rel="stylesheet" type="text/css" href="css/site_global.css?crc=443350757"/>
-  <link rel="stylesheet" type="text/css" href="css/imprimiendo.css?crc=4017479104" id="pagesheet"/>
+  <link rel="stylesheet" type="text/css" href="/css/site_global.css?crc=443350757"/>
+  <link rel="stylesheet" type="text/css" href="/css/imprimiendo.css?crc=4017479104" id="pagesheet"/>
   <!-- Other scripts -->
   <script type="text/javascript">
    var __adobewebfontsappname__ = "muse";
@@ -35,7 +27,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
       <div id="u907"><!-- simple frame --></div>
      </div>
      <div class="clip_frame" id="u913"><!-- image -->
-      <img class="block" id="u913_img" src="images/logo_alpha2.png?crc=4239319242" alt="" width="171" height="42"/>
+      <img class="block" id="u913_img" src="/images/logo_alpha2.png?crc=4239319242" alt="" width="171" height="42"/>
      </div>
     </div>
     <div class="clearfix colelem" id="u906-4"><!-- content -->
@@ -45,7 +37,7 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
      <div id="u911"><!-- column -->
       <div class="clearfix" id="u911_align_to_page">
        <div class="clip_frame colelem" id="u939"><!-- image -->
-        <img class="block" id="u939_img" src="images/imagen%20pegada%20322x342.jpg?crc=4061717987" alt="" width="179" height="190"/>
+        <img class="block" id="u939_img" src="/images/imagen%20pegada%20322x342.jpg?crc=4061717987" alt="" width="179" height="190"/>
        </div>
        <div class="clearfix colelem" id="u917-4"><!-- content -->
         <p>Gracias por usar telefila</p>
@@ -75,6 +67,6 @@ Muse.Utils.transformMarkupToFixBrowserProblems();/* body */
 
 </script>
   <!-- RequireJS script -->
-  <script src="scripts/require.js?crc=244322403" type="text/javascript" async data-main="scripts/museconfig.js?crc=168988563" onload="if (requirejs) requirejs.onError = function(requireType, requireModule) { if (requireType && requireType.toString && requireType.toString().indexOf && 0 <= requireType.toString().indexOf('#scripterror')) window.Muse.assets.check(); }" onerror="window.Muse.assets.check();"></script>
+  <script src="/scripts/require.js?crc=244322403" type="text/javascript" async data-main="/scripts/museconfig.js?crc=168988563" onload="if (requirejs) requirejs.onError = function(requireType, requireModule) { if (requireType && requireType.toString && requireType.toString().indexOf && 0 <= requireType.toString().indexOf('#scripterror')) window.Muse.assets.check(); }" onerror="window.Muse.assets.check();"></script>
    </body>
 </html>

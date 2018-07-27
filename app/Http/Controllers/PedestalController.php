@@ -20,4 +20,14 @@ class PedestalController extends Controller
     {
         return view('pedestal.fecha');
     }
+    
+    public function imprime(Request $request)
+    {
+        return view('pedestal.imprime');
+    }
+    
+    public function imprimiendo(Request $request)
+    {
+        return view('pedestal.imprimiendo');
+    }
 }
