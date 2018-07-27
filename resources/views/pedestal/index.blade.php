@@ -28,7 +28,7 @@
    <div class="clearfix colelem" id="u184-4"><!-- content -->
     <p>Ingresa tu numero de DNI</p>
    </div>
-   <form class="form-grp clearfix colelem" id="widgetu113" method="post" enctype="multipart/form-data" action="scripts/form-u113.php"><!-- none box -->
+   <form action="/pedestal/especialidad" class="form-DNIgrp clearfix colelem" id="widgetu113" method="get" enctype="multipart/form-data"><!-- none box -->
     <div class="clearfix grpelem" id="u129-4"><!-- content -->
      <p>Enviando formulario...</p>
     </div>
@@ -44,10 +44,13 @@
      </div>
     </button>
     <div class="fld-grp clearfix grpelem" id="widgetu118" data-required="false"><!-- none box -->
-     <span class="fld-textarea actAsDiv rounded-corners clearfix grpelem" id="u119-3"><!-- content --><textarea class="wrapped-input" id="widgetu118_input" name="custom_U118" tabindex="1"></textarea></span>
+     <span class="fld-textarea actAsDiv rounded-corners clearfix grpelem" id="u119-3"><!-- content -->
+     <input class="wrapped-input" id="widgetu118_input" name="dni" tabindex="1"></input>
+     </span>
     </div>
-   </form>
-   <a class="nonblock nontext museBGSize clearfix colelem" id="u218" href="{{url('pedestal/especialidad')}}">
+    </form>
+   <a class="nonblock nontext museBGSize clearfix colelem" id="u218" href="{{url('/pedestal/especialidad')}}">
+   
    <!-- group -->
     <div class="clearfix grpelem" id="u199-4">
     <!-- content -->

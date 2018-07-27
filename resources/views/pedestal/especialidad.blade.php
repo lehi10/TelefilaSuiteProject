@@ -25,7 +25,7 @@
       <img class="block" id="u560_img" src="/images/logo_alpha2.png?crc=4239319242" alt="" width="171" height="42"/>
      </div>
      <div class="clearfix" id="u983-4"><!-- content -->
-      <p>Hola! Rolando Ancajima</p>
+      <p>Hola! {{$paciente->nombres}} {{$paciente->apellidos}}</p>
      </div>
      <a class="nonblock nontext museBGSize" id="u984" href="{{url('pedestal/fecha')}}"><!-- simple frame --></a>
     </div>
@@ -36,7 +36,7 @@
      <div id="u559"><!-- group -->
       <div class="clearfix" id="u559_align_to_page">
        <div class="clearfix grpelem" id="pu573"><!-- column -->
-        <a class="nonblock nontext museBGSize colelem" id="u573" href="{{url('pedestal/fecha')}}"><!-- simple frame --></a>
+        <a class="nonblock nontext museBGSize colelem" id="u573" href="{{url('pedestal/fecha')}}?dni={{$paciente->dni}}"><!-- simple frame --></a>
         <a class="nonblock nontext museBGSize colelem" id="u569" href="{{url('pedestal/fecha')}}"><!-- simple frame --></a>
        </div>
        <div class="clearfix grpelem" id="pu565"><!-- column -->
