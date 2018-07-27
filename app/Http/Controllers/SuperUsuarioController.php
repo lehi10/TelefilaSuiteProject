@@ -154,7 +154,7 @@ class SuperUsuarioController extends Controller
     {
     
         $hos= new Hospital();
-        $hos->fill($request->except(["_token","mes","dia","year","usuario","password"]));  
+        $hos->fill($request->except(["_token","mes","dia","year","usuario","password","licencia"]));  
         $hos->fechaInicio=join('-',[ $request->year,$request->mes,$request->dia]);
         if ($request->licencia)
             $hos->licenciaAnual=true;

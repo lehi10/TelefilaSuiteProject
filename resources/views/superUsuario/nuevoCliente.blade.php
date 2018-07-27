@@ -212,7 +212,7 @@
                                           <br>
                                           <b>LICENSAMIENTO</b>
                                           <label class="custom-switch">
-                                              <input name="licenciamento" class="custom-switch-input" type="checkbox">
+                                              <input name="licencia" class="custom-switch-input" type="checkbox">
                                               <span class="custom-switch-indicator"></span>
                                               <span class="custom-switch-description">Ha adquirido una licencia anual ó similar.</span>
                                           </label>
