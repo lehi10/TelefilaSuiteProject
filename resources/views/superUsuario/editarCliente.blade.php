@@ -29,7 +29,7 @@
                                                   <span class="input-group-prepend" id="basic-addon1">
                                                       <span class="input-group-text">@</span>
                                                   </span>
-                                                  <input id="user" class="form-control" required="" placeholder="Usuario" type="text" name="usuario" value = "{{$usuario[0]->username}}">
+                                                  <input id="user" class="form-control" required="" placeholder="Usuario" type="text" name="usuario" value = "{{$usuario->username}}">
                                               </div>
                                               <div id="v_user" style="color:red;" ></div>
                                               <br>

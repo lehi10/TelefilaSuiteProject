@@ -19,26 +19,7 @@
   </div>
   <script type="text/javascript">
 
-        function updateState(value,id) {
-            //alert(value+" "+id);
-            $.ajax({
-            method: 'GET', // Type of response and matches what we said in the route
-            url: '/superuser/cambiarEstadoCliente', // This is the url we gave in the route
-            data: {'idCliente' : id, 'state':value }, // a JSON object to send back
-            success: function(data){ // What to do if we succeed
-                if(data.success == true){ // if true (1)
-                    alert("cargando");
-                    setTimeout(function(){// wait for 5 secs(2)
-                        location.reload(); // then reload the page.(3)
-                    }, 5000); 
-                }    
-            },
-            error: function(jqXHR, textStatus, errorThrown) { // What to do if we fail
-                console.log(JSON.stringify(jqXHR));
-                console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
-            }
-        });
-        }
+        
   
     $("#tabla").load("{{asset('superuser/inicio?page='.$page)}}");
     

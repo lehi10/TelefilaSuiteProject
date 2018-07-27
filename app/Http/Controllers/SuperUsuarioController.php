@@ -215,7 +215,7 @@ class SuperUsuarioController extends Controller
     public function editarCliente($idCliente)
     {
         $cliente = Hospital::find($idCliente);
-        $user=$cliente->users->where('rol_id','==',2);
+        $user=$cliente->users->where('rol_id','==',2)->first();
         return view('superUsuario.editarCliente',["hospital"=>$cliente,"usuario"=>$user]);
     }
 
