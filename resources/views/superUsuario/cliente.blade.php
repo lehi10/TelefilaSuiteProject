@@ -95,10 +95,9 @@ function cambiarEstado(id) {
                       </tbody>
                     </table>
                   </div>                        
-                  @endif              
                   @endif
 
-                  {{ $usuarios->links() }}
+                  {{-- $usuarios->links() --}}
 
                   
                 </div>

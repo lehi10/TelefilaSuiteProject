@@ -36,7 +36,7 @@
                             @foreach($hospitales as $hos)
                             <tr>
                                 <td><span class="text-muted">{{sprintf("%04d",$hos->id)}}</span></td>
-                                <td><a href="{{url('superuser/cliente/'.$hos->id)}}" class="text-inherit">{{$hos->nombre}}<br>
+                                <td><a href="{{url('superuser/usersClient/'.$hos->id)}}" class="text-inherit">{{$hos->nombre}}<br>
                                     </a>
                                 </td>
                                 <td>{{$hos->ciudad}}</td>
