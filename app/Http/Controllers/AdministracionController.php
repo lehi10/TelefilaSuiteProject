@@ -84,7 +84,8 @@ class AdministracionController extends Controller
     public function nuevoConsultorio()
     {
         $hospital=Auth::user()->hospital;
-        $especialidades=$hospital->especialidads;
+        //$especialidades=$hospital->especialidads;
+        $especialidades=Especialidad::all();
         $users=$hospital->users->where('rol_id','5');
         //return [$especialidades,$users];
         return view('administracion.nuevoConsultorio',["especialidades"=>$especialidades,'usuarios'=>$users]);
