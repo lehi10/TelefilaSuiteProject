@@ -10,6 +10,7 @@ use telefilaSuite\Administrador;
 use telefilaSuite\User;
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Pagination\Paginator;
 
 use Session;
 use Redirect;
@@ -27,9 +28,55 @@ class SuperUsuarioController extends Controller
 
     public function index(Request $request)
     {
-        $hos= DB::table('hospitals')->get();
-        //$hos = Hospital::simplePaginate(10);
+        /* if($request->search == "")
+        {
+            $hospitales = Hospital::paginate(10);
+            //return view('superUsuario.index',compact('hospitales'));
+            return view('superUsuario.index',["hospitales"=>$hospitales]);
+            //return response()->json(view('superUsuario.index',compact('hospitales'))->render());
+        }
+        else
+        {
+            $hospitales = Hospital::where('nombre','LIKE','%'. $request->search . '%')->paginate(100);
+            //$hospitales->apppends($request->only(''));
+            //return view('superUsuario.index',compact('hospitales'));
+            //return view('superUsuario.index',["hospitales"=>$hospitales]);
+        }
+        /*
+        //$hos= DB::table('hospitals')->paginate(10);
+        $hos = Hospital::paginate(10);
         return view('superUsuario.index',["hospitales"=>$hos]);
+        */ 
+        //$hospitales=Hospital::paginate(10);
+        if ($request->page)
+        {
+            return view('superUsuario.index',["page"=>$request->page]);
+        }
+        return view('superUsuario.index',["page"=>0]);
+    }
+
+    public function inicio(Request $request)
+    {
+        //return $request;
+        if ($request->page){
+            $hospitales=Hospital::paginate(10,["*"],'page',$request->page);
+            $hospitales->withPath('/superuser');
+        }
+        else{
+            $hospitales=Hospital::paginate(10,["*"],'page');
+            $hospitales->withPath('/superuser');
+        }
+
+        return view('superUsuario.tabla',["hospitales"=>$hospitales]);
+    }
+    
+    public function obtenerTabla(Request $request)
+    {
+        //$hospitales = DB::table('Hospital')->select('')
+        $hospitales = Hospital::where('nombre','LIKE','%'. $request->input('busqueda') . '%')->paginate(10);
+        
+        return response()->json(view('superUsuario.tabla',compact('hospitales'))->render());    
+        
     }
 
     public function nuevoCliente(Request $request)
@@ -52,8 +99,6 @@ class SuperUsuarioController extends Controller
         
         return view('superUsuario.cliente',["usuarios"=>$users,"hospital_id"=>$cliente->id,"nombre"=>$cliente->nombre]);
     }
-
-
     public function clienteUser($idUser)
     {
         $user =User::find($idUser);

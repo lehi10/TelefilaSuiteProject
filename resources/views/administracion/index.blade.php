@@ -85,21 +85,27 @@ function showUser(id) {
                         </tr>
                       @endforeach
                       </tbody>
+                        
+                 {{--  <div class="container">
+                      @foreach($usuarios as $user)
+                            {{$user->name}}
+                      @endforeach
+                    </div>
+                  --}}   
+                     
                     </table>
+                    {{ $usuarios->links() }}
                   </div>                        
-                  @endif
-
-                  
-
+                  @endif                  
                   
                 </div>
+               
               </div>
             </div>
           </div>
         </div>
       </div>
-      </div>
-      <script type="text/javascript">
+      {{-- <script type="text/javascript">
         $('#search').on('keyup',function(){
             $value=$(this).val();
             $.ajax({
@@ -111,7 +117,7 @@ function showUser(id) {
                 }
             });
         })
-  </script>
+  </script> --}}
       @endsection
      
 

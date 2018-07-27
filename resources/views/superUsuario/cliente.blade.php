@@ -95,7 +95,11 @@ function cambiarEstado(id) {
                       </tbody>
                     </table>
                   </div>                        
-                  @endif              
+                  @endif
+
+                  {{-- $usuarios->links() --}}
+
+                  
                 </div>
               </div>
               </div>
