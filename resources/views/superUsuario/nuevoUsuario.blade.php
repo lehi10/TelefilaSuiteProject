@@ -16,25 +16,26 @@
             <div class="col col-login mx-auto">
             <div style="text-align: center;"><img src="/demo/photos/logo_alpha.png" alt="logo" title="logo"><br><br>
               
-              <form class="card" action="/superuser/nuevoUser" method="post">
+              <form id="formid" class="card" action="/superuser/nuevoUser" method="post" class="card">
                 {{csrf_field()}}
                 <div class="card-body p-6">
                   <div class="card-title">Crear nuevo usuario</div>
+                  <div id="ok"></div>
                   <div class="form-group"><input class="form-control" placeholder="Nombres" name="nombres"
 
-                      type="text" onkeyup="funcion()" id="nombre"><br>
-                      <input class="form-control"  id="apellido" placeholder="Apellidos" name="apellidos" onkeyup="funcion()"
+                      type="text" onkeyup="funcion()" id="nombre" required><br>
+                      <input class="form-control" required id="apellido" placeholder="Apellidos" name="apellidos" onkeyup="funcion()"
 
-                      type="text" ><br>
+                      type="text" required="" ><br>
                     <input type="hidden" name="hospital_id" value="{{$hospital_id}}">
-                    <input class="form-control" id="username" name="username" 
+                    <input class="form-control" id="username" name="username" required="" 
 
                       placeholder="Disabled.." value="usuario autogenerado"
 
                        type="text" readonly> </div>
                   <div class="form-group"><input class="form-control" name="password" placeholder="Clave"
 
-                      type="password"> </div>
+                      type="password"  minlength="6"  required> </div>
                   <div class="form-group"> <label class="custom-control custom-checkbox">
                       <input class="custom-control-input" name="estado" type="checkbox"> <span
 
@@ -62,8 +63,11 @@
                         <span class="custom-switch-description">Histórias
                           Clínicas</span> </label> </div>
                   </div>
-                  <div class="form-footer"> <button type="submit" class="btn btn-primary btn-block">CREAR
-                      NUEVO&nbsp;</button> </div>
+                  <div class="form-footer">                                                                    
+                    <!--a style="width:35%;" href="{{url('superuser/usersClient/'.$hospital_id.'')}}" class="btn btn-primary ">Cancelar &nbsp;</a-->
+                    <button  type="submit" class="btn btn-primary btn-block">CREAR USUARIO</button>                                                                                                                                        
+                  
+                  </div>
                 </div>
               </form>
               <div class="text-center text-muted"><br>
@@ -71,9 +75,9 @@
             </div>
           </div>
         </div>
-      </div>
-
+      </div>        
       <script>
+      $("#formid").validate();
         function funcion()
         {
           var a=document.getElementById('nombre').value;

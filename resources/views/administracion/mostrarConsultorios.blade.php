@@ -3,11 +3,22 @@
 @section('buscar','consultorios')
 
 @section('auxiliar')
-<div class="nav-item d-none d-md-flex"> 
-                  <a href="/administrador/nuevoConsultorio" class="btn btn-sm btn-outline-primary">
-                    Agregar consultorio
-                  </a>
-                </div>
+<div class="nav-item d-none d-md-flex" > 
+      <a href="/administrador/nuevoConsultorio" class="btn btn-sm btn-outline-primary">
+       Agregar consultorio
+      </a>
+</div>
+@endsection
+
+@section('mas_opciones')
+<li class="nav-item"> <a href="/administrador/consultorios" class="nav-link"><i
+                                class="fe fe-calendar"></i> Consultorios</a> </li>
+<li class="nav-item"> <a href="/recursosHumanos" class="nav-link"><i
+                                class="fa fa-address-book"></i> Recursos Humanos</a> </li>     
+<li class="nav-item"> <a href="/admision" class="nav-link"><i
+                              class="fa fa-users"></i> Admisión</a> </li>
+<li class="nav-item"> <a href="/caja" class="nav-link"><i
+                              class="fa fa-money"></i> Caja</a> </li>                                                                                                                         
 @endsection
 
 

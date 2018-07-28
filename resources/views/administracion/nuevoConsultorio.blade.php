@@ -15,7 +15,7 @@
               {{csrf_field()}}
               <div class="card-body p-6">
                 <div class="card-title">Crear Nuevo Consultorio</div>
-                <div class="form-group"><input name="nombre" class="form-control" placeholder="Nombre del consultorio" type="text"></div>
+                <div class="form-group"><input name="nombre" class="form-control" placeholder="Nombre del consultorio" type="text" required></div>
                 <div class="form-group">
                   <div class="form-group"> <label class="form-label">Especialidad</label>
                     <select name="especialidad_id" id="select-users" class="form-control custom-select">

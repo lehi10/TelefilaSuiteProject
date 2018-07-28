@@ -41,7 +41,7 @@
                                   </th><th class="w-1" style="width: 155px;">Turnos</th>
                               </tr>
                               <tr>
-                                <td>
+                                <td style="padding-right:10px;" >
                                   <select id="medico" name="medico_id" class="form-control custom-select">
                                     
                                     <option value=" " data-data="{&quot;image&quot;: &quot;demo/faces/female/16.jpg&quot;}" data-especialidad="Ninguno" {{ $consultorio->medico_id ? 'selected' : ''}} >Ninguno</option>
@@ -51,10 +51,13 @@
                                     @endforeach
                                   </select>
                                 </td>
-                                <td><input class="form-control" disabled="disabled" id="med_especialidad"
+                                
+                                <td style="padding-right:10px;" >
+                                <input class="form-control" disabled="disabled" id="med_especialidad"
                                     placeholder="" value=""
                                     type="text"></td>
-                                <td><input class="form-control" disabled="disabled"
+                                <td style="padding-right:10px;" >
+                                <input class="form-control" disabled="disabled"
                                     placeholder="turnos" value="0" type="text" id="turnos">
                                 </td>
                               </tr>
@@ -78,9 +81,11 @@
                       <div class="card-footer text-right">
                         <div class="d-flex" style="text-align: center;">
                           <dl>
-                            <dt> <a href="javascript:void(0)" class="btn btn-link">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            </a><button type="submit" class="btn btn-primary ml-auto">Guardar
-                                cambios</button> </dt>
+                            <dt> 
+                            <br>
+                            <a href="javascript:void(0)" class="btn btn-link">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            Eliminar</a>                                          
+                            <button type="submit" class="btn btn-primary ml-auto">Guardar cambios</button> </dt>
                           </dl>
                         </div>
                       </div>

@@ -1,6 +1,6 @@
 
 
-@section('title','Super Usuaasdsario')
+@section('title','Super Usuario')
 
 
 @section('content')

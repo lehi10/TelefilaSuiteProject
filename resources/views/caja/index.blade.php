@@ -2,6 +2,17 @@
 
 @section('title','Caja')
 
+@section('mas_opciones')
+<li class="nav-item"> <a href="/administrador/consultorios" class="nav-link"><i
+                                class="fe fe-calendar"></i> Consultorios</a> </li>
+<li class="nav-item"> <a href="/recursosHumanos" class="nav-link"><i
+                                class="fa fa-address-book"></i> Recursos Humanos</a> </li>     
+<li class="nav-item"> <a href="/admision" class="nav-link"><i
+                              class="fa fa-users"></i> Admisión</a> </li>
+<li class="nav-item"> <a href="/caja" class="nav-link"><i
+                              class="fa fa-money"></i> Caja</a> </li>                                                                                                                         
+@endsection
+
 @section('body')
         <div class="my-3 my-md-5">        
           <div class="container form-group" style="width : 50%; margin: auto; ">
@@ -64,7 +75,7 @@
                                   <button type="button" class="close" data-dismiss="modal"></button>
                                 </div>
                                 <div class="modal-body">
-                                  <p>Aceptar el pago realizado por ecl Paciente <b>{{$cita->nombres}} {{$cita->apellidos}}</b> del ticket de cita <b>{{$cita->id}}</b></p>
+                                  <p>Aceptar el pago realizado por el Paciente <b>{{$cita->nombres}} {{$cita->apellidos}}</b> del ticket de cita <b>{{$cita->id}}</b></p>
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-default bg-red" data-dismiss="modal">Cancelar</button>

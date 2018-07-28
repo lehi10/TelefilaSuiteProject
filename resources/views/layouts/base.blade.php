@@ -109,9 +109,8 @@
                           
                           @if (Auth::user()->checkRol('Super Usuario'))
                           <li class="nav-item"> <a href="#" class="nav-link" data-toggle="dropdown"><i
-                                class="fe fe-box"></i> Reportes</a> </li>
-                          
-                          @yield('mas_opciones')
+                                class="fe fe-box"></i> Reportes</a> </li>                          
+                                @yield('mas_opciones')
                          
                           @elseif (Auth::user()->checkRol('Administrador'))
                           <li class="nav-item"> <a href="#" class="nav-link" data-toggle="dropdown"><i

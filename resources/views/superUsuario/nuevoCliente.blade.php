@@ -225,7 +225,7 @@
                                   <div class="d-flex" style="text-align: center;">
                                       <dl>
                                           <dt> <a href="{{url('superuser/')}}" class="btn btn-primary">Cancelar</a>
-                                              <button id="guardar" type="submit" class="btn btn-primary ml-auto">Guardar cambios</button>                                        
+                                              <button id="guardar" type="submit" class="btn btn-primary ml-auto">Crear Cliente</button>                                        
                                           </dt>
                                       </dl>
                                   </div>

@@ -16,13 +16,13 @@
             <div class="card-body p-6">
                 <div class="card-title">Crear Nuevo Médico</div>
                 <div class="form-group"><input class="form-control" placeholder="Nombres completos" name="nombres"
-                    type="text"></div>
+                    type="text" required></div>
                 <div class="form-group"><input class="form-control" placeholder="Apellidos completos" name="apellidos"
-                    type="text"></div>
+                    type="text" required></div>
                 <div class="form-group"><input class="form-control" placeholder="N° CMP" name="cmp"
-                    type="text"></div>
+                    type="text" required></div>
                 <div class="form-group"><input class="form-control" placeholder="Celular" name="celular"
-                    type="text"></div>
+                    type="text"required  minlength="9" ></div>
                 <div class="form-group">
                 <select name="especialidad_id" class="form-control custom-select">
                     &nbsp;
@@ -46,8 +46,10 @@
 
                 </div>
                 </div>
-                <div class="form-footer"> <button type="submit" class="btn btn-primary btn-block">CREAR
-                    MEDICO&nbsp;</button> </div>
+
+                <div class="form-footer"> 
+                <button type="submit" class="btn btn-primary btn-block">CREAR MEDICO&nbsp;</button>
+                </div>            
             </div>
             </form>
             <div class="text-center text-muted"><br>
