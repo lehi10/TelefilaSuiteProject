@@ -17,6 +17,8 @@ class CreateEspecialidadPacienteTable extends Migration
             //
             $table->unsignedInteger("paciente_id");
             $table->unsignedInteger("especialidad_id");
+            $table->date("inicio");
+            $table->date("final");
 
             $table->foreign("paciente_id")->references('id')->on("pacientes");
             $table->foreign("especialidad_id")->references('id')->on("especialidads");

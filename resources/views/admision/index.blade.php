@@ -28,6 +28,12 @@
       {{ $message }}
     </div>
   @endif
+
+  @if(session('message'))
+              <div class="alert alert-success form-group text-center" role="alert">
+                  {{session('message')}}
+                </div>
+  @endif
   <div class="my-3 my-md-5">
     <!--<div class="container">-->
     <!--<nav class="breadcrumb breadcrumb-content">-->
@@ -88,11 +94,16 @@
                           </td>
                         </tr>
                         
+                        
+                        <form action="/admision/referir" method="post" id="referir">
+                          <input type="hidden" name="paciente_id" value="{{$paciente->id}}">
+                        {{csrf_field()}}
+
                         <tr>
                           <td><br>
                           </td>
                           <td>Referir a
-                            <select name="user" id="select-users" class="form-control custom-select">
+                            <select name="especialidad" id="especialidad" class="form-control custom-select">
                               @foreach ($especialidades as $especialidad)
                                 <option value="{{$especialidad->id}}" data-data="{&quot;image&quot;: &quot;demo/faces/female/16.jpg&quot;}">{{$especialidad->nombre}}</option>
                               @endforeach
@@ -142,10 +153,13 @@
                           <td><br>
                           </td>
                           <td> <br><span class="input-group-append"> <button class="btn btn-primary"
-                                type="button">Generar Referencia</button></span></td>
+                                type="submit">Generar Referencia</button></span></td>
                           <td><br>
                           </td>
                         </tr>
+
+                        </form>
+
                         <tr>
                           <td><br>
                           </td>
@@ -172,15 +186,77 @@
         return Math.ceil( (first + last)/7 );   
     }
 
+    function getWeeksInMonth(month, year){
+      var weeks=[],
+          firstDate=new Date(year, month, 1),
+          lastDate=new Date(year, month+1, 0), 
+          numDays= lastDate.getDate();
+      
+      var start=1;
+      var end=7-firstDate.getDay();
+      while(start<=numDays){
+          weeks.push({start:start,end:end});
+          start = end + 1;
+          end = end + 7;
+          if(end>numDays)
+              end=numDays;    
+      }        
+        return weeks;
+    }
+
+
+
+
+
+
     $("#mes").change(function() {
-      console.log("asdssad");
+      //console.log("asdssad");
       $('option',$('#semanas')).remove();
-      var semanas=weeksOfMonth(new Date().getFullYear(),this.value);
+      var semanas=weeksOfMonth(new Date().getFullYear()-1,this.value-1);
+      console.log("cambio a",semanas);
       $("#semanas").append(new Option(1,1,true,true));
       for (let index = 2; index <= semanas; index++) {
         $("#semanas").append(new Option(index,index,false,false));
       }
     });
+
+    $("#referir").submit(function(){
+      let semana=$("#semanas").val();
+      let mes=$("#mes").val();
+      let year=new Date().getFullYear();
+      let semanas=getWeeksInMonth(mes-1,year-1);
+
+      //console.log("asdasd");
+      try {
+        let intervalo=semanas[semana-1];
+        console.log(intervalo);
+        let inicio=new Date(year,mes-1,intervalo["start"]);
+        let final=new Date(year,mes-1,intervalo["end"]);
+        console.log(inicio);
+        console.log(final);
+        $('<input />').attr('type', 'hidden')
+          .attr('name', "especialidad")
+          .attr('value', $("#especialidad").val()).appendTo(this);
+        $('<input />').attr('type', 'hidden')
+          .attr('name', "inicio")
+          .attr('value', inicio.toJSON().slice(0, 10)).appendTo(this);
+        $('<input />').attr('type', 'hidden')
+          .attr('name', "final")
+          .attr('value', final.toJSON().slice(0, 10)).appendTo(this);
+        return true;
+        //$("#referir").append()
+
+
+
+      }
+      catch(err) {
+        alert("Algo salió mal");
+        console.log(err);
+        return false;
+      }
+    });
+
+
    
 
 
