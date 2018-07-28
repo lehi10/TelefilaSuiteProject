@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Paciente extends Model
 {
-    protected $fillable = ['id', 'nombre','apellido','dni','departamento','ciudad','edad','sis','sexo','celular','create_at','update_at'];
+    protected $fillable = ['id', 'nombre','apellido','dni','departamento','ciudad','edad','sis','sexo','celular','hospital_id','create_at','update_at'];
     public function citas()
     {
         return $this->hasMany(Paciente::class);
     }
-    public function hospitals()
+    public function hospital()
     {
         return $this->belongsTo(Hospital::class);
     }

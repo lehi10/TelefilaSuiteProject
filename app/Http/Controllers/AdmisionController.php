@@ -5,6 +5,7 @@ namespace telefilaSuite\Http\Controllers;
 use Illuminate\Http\Request;
 use telefilaSuite\Paciente;
 use telefilaSuite\Hospital;
+use telefilaSuite\Especialidad;
 use Illuminate\Support\Facades\DB;
 use Auth;
 
@@ -39,23 +40,27 @@ class AdmisionController extends Controller
 
         return redirect('admision')->with(["message"=>"El Paciente ha sido creado correctamente"]);
     }
-
+    
     public function buscarPaciente(Request $request)
     {
         
         if(!isset($request->pacienteDNI)) 
-            return view('admision/index');
-        
-        $paciente=Paciente::where('dni',$request->pacienteDNI)->get();
+        return view('admision.index');
 
-        if(count($paciente)<1)
+        if(!isset(Auth::user()->hospital_id)) 
+        return view('admision.index');
+        
+        $paciente=Paciente::where('dni',$request->pacienteDNI)->where("hospital_id",Auth::user()->hospital_id)->first();
+        
+        if(!$paciente)
         {
             $message='No se encontró al Paciente con el DNI : '.$request->pacienteDNI;
-            return view('admision/index',['message'=> $message,'kindMessage'=>'danger']);
+            return view('admision.index',['message'=> $message,'kindMessage'=>'danger']);
+            return redirect('admision')->with(["message"=>"El Paciente con el DNI: ".$request->pacienteDNI." no se ha encontrado.","kindMessage"=>"danger"]);
         }
-            
-
-        return view('admision/index',['paciente'=>$paciente]);
+        
+        $especialidades=Especialidad::all();
+        return view('admision.index',['paciente'=>$paciente,"dni"=>$request->pacienteDNI,"especialidades"=>$especialidades]);
     }
 
 

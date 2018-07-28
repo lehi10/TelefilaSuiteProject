@@ -171,6 +171,7 @@ Route::group(['prefix'=>'admision','middleware' => 'rol:Admision'],function()
     Route::get('/agregarPaciente',  function() {return view('admision.agregarPaciente');} );
     
     
+    Route::post('/buscarPaciente',  'AdmisionController@buscarPaciente' );
     Route::post('/agregarPaciente/crearRegistro',  'AdmisionController@crearPaciente' );
 });
 

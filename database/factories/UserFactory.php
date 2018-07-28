@@ -113,5 +113,6 @@ $factory->define(telefilaSuite\Paciente::class,function(Faker $faker){
         'edad' =>$faker->numberBetween(15,19),
         'sis'=>$faker->boolean,
         'sexo'=>$faker->boolean,
+        
     ];
 });

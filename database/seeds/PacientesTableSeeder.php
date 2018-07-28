@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use telefilaSuite\Hospital;
 
 class PacientesTableSeeder extends Seeder
 {
@@ -12,6 +13,11 @@ class PacientesTableSeeder extends Seeder
     public function run()
     {
         //
-        factory(telefilaSuite\Paciente::class,6)->create();  
+
+        $hospitales=Hospital::all();
+        foreach ($hospitales as $hospital) {
+            factory(telefilaSuite\Paciente::class,6)->create(["hospital_id"=>$hospital->id]);  
+        }
+
     }
 }

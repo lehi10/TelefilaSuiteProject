@@ -24,6 +24,10 @@ class CrearTablaPaciente extends Migration
             $table->boolean('sis');
             $table->boolean("sexo");
             $table->string("celular",9)->nullable();
+
+            $table->unsignedInteger("hospital_id");
+            $table->foreign("hospital_id")->references("id")->on("hospitals");
+
             //$table->string("direccion");
             $table->timestamps();
         });
