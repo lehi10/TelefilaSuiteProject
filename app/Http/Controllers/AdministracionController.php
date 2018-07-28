@@ -47,9 +47,7 @@ class AdministracionController extends Controller
 
     public function guardarUsuario( Request $request)
     {
-
-     //   return $request;
-     
+        var_dump($request);
         $user= new User;
         $user->fill($request->except(["_token"]));
         $user->password=bcrypt($request->password);
@@ -63,6 +61,12 @@ class AdministracionController extends Controller
         return redirect('administrador')->with(["message"=>"El usuario ha sido creado con exito."]);
     }
 
+    public function eliminarUsuario(Request $request)
+    {     
+        User::destroy($request->idUser);        
+        return redirect('administrador')->with(["message"=>"El usuario ha sido eliminado correctamente."]);
+    }
+
 
 
     public  function editUser(Request $request)
@@ -72,7 +76,7 @@ class AdministracionController extends Controller
         if ($request->password)
             $user->password=bcrypt($request->password);
         $user->save();
-        return redirect('administrador')->with(["message"=>"El usuario ha sido editado con exito"]);
+        return redirect('administrador')->with(["message"=>"El usuario ha sido editado con exitossssssssssss"]);
     }
 
 
@@ -172,6 +176,12 @@ class AdministracionController extends Controller
             $c->pedestal=1;
         $c->save();
         return "Estado cambiado";
+    }
+
+    public function eliminarConsultorio(Request $request)
+    {     
+        Consultorio::destroy($request->idConsul);        
+        return redirect("administrador/consultorios")->with(["message"=>"El consultorio ha sido eliminado correctamente"]);
     }
     
     

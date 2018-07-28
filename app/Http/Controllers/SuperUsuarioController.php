@@ -107,7 +107,6 @@ class SuperUsuarioController extends Controller
 
     public function editClientUser(Request $request)
     {
-        //return $request;
         if (in_array( $request->optRol,["3","4","5","6"]))
         {
             $user=User::find($request->idUsuario);

@@ -94,16 +94,21 @@
                   <!-- Modal content-->
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h4 class="modal-title">Esta seguro de Eliminar al usuario {{$usuario->nombres}} {{$usuario->apellidos}} </h4>
-                      <button type="button" class="close" data-dismiss="modal"></button>
+                        <h4 class="modal-title">Mensaje de Confirmación </h4>
+                        <button type="button" class="close" data-dismiss="modal"></button>
                     </div>
-                    <div class="modal-footer ">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                      
-                      <button type="button" action="AdministracionController@actualizarUsuario" class="btn btn-default" >Si</button>
-                      </a>
+                    <div class="modal-body" style="text-align: center; ">
+                        ¿Seguro que quiere eliminar al usuario {{$usuario->nombres}} {{$usuario->apellidos}} ?                                                        
                     </div>
-                  </div>
+                    <div  style="padding :5px 5px 5px 400px;  ">
+                        {{ Form::open(array('url' => 'administrador/eliminarUsr','id'=>'eliminarUsr','method' => 'post')) }}
+                            <input  name="idUser" type="hidden" value="{{$usuario->id}}">
+                            <td>
+                            <a class="btn btn-default" data-dismiss="modal">No</a>                
+                            <a class="btn btn-default" onclick="document.getElementById('eliminarUsr').submit()">Si</a>                            
+                          {{ Form::close() }}
+                     
+                    </div>
 
                 </div>
               </div>

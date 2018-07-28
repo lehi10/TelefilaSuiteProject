@@ -80,6 +80,7 @@ Route::group(['prefix'=>'administrador','middleware' => 'rol:Administrador'],fun
 
     Route::post('/editUser','AdministracionController@editUser');
     Route::post('nuevoUsuario','AdministracionController@guardarUsuario');
+    Route::post( '/eliminarUsr','AdministracionController@eliminarUsuario');
 
 
     Route::get( 'consultorios','AdministracionController@mostrarConsultorios');
@@ -90,7 +91,7 @@ Route::group(['prefix'=>'administrador','middleware' => 'rol:Administrador'],fun
 
     Route::post( 'crearConsultorio','AdministracionController@crearConsultorio');
     Route::post( 'editarConsultorio','AdministracionController@updateConsultorio');
-
+    Route::post( '/eliminarConsul','AdministracionController@eliminarConsultorio');
     Route::get('cambiarEstadoUsuario','AdministracionController@cambiarEstadoUsuario');
     Route::get('cambiarEstadoConsultorio','AdministracionController@cambiarEstadoConsultorio');
 });
@@ -147,7 +148,7 @@ Route::get('{idCliente}/admin/editarUsuario/{idUsuario}','AdministracionControll
 Route::get('cliente/search','buscadorUsuario@search');
 //Envio de Formulario
 Route::post('admin/guardarUsuario','AdministracionController@guardarUsuario');
-Route::post('admin/editarUsuario','AdministracionController@actualizarUsuario');
+Route::post('admin/editarUsuario','AdministracionController@eliminarUsuario');
 
 
 

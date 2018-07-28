@@ -5,7 +5,6 @@
 @section('scripts')
 <script>
 
-
 function showUser(id) {
   
   $.ajax({

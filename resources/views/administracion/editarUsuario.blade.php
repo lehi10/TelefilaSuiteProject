@@ -3,6 +3,7 @@
 @section('title','Editar Usuarios')
 
 
+
 @section('body')
   <div class="my-3 my-md-5">
     <!--</nav>-->&nbsp;
@@ -34,6 +35,7 @@
                       <span class="custom-switch-description">Control de Caja</span>
                     </label>
                   </div>
+                  
 
                   <div class="form-group"> 
                     <label class="custom-switch">
@@ -94,14 +96,22 @@
                   <!-- Modal content-->
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h4 class="modal-title">Esta seguro de Eliminar al usuario {{$usuario->nombres}} {{$usuario->apellidos}} </h4>
-                      <button type="button" class="close" data-dismiss="modal"></button>
+                        <h4 class="modal-title">Mensaje de Confirmación </h4>
+                        <button type="button" class="close" data-dismiss="modal"></button>
                     </div>
-                    <div class="modal-footer ">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                      
-                      <button type="button" action="AdministracionController@actualizarUsuario" class="btn btn-default" >Si</button>
-                      </a>
+                    <div class="modal-body" style="text-align: center; ">
+                        ¿Seguro que quiere eliminar al usuario {{$usuario->nombres}} {{$usuario->apellidos}} ?                                                        
+                        
+                        
+                    </div>
+                    <div  style="padding :5px 5px 5px 400px;  ">
+                        {{ Form::open(array('url' => 'administrador/eliminarUsr','id'=>'eliminarUsr','method' => 'post')) }}
+                            <input  name="idUser" type="hidden" value="{{$usuario->id}}">
+                            <td>
+                            <a class="btn btn-default" data-dismiss="modal">No</a>                
+                            <a class="btn btn-default" onclick="document.getElementById('eliminarUsr').submit()">Si</a>                            
+                          {{ Form::close() }}
+                     
                     </div>
                   </div>
 
@@ -114,9 +124,27 @@
           </div>
         </div>
       </div>
-      <div class="table-responsive"><br>
-      </div>
+      <div class="table-responsive"><br> </div>
     </div>
   </div>
+  <script type="text/javascript">
+
+  
+    function eliminarUsr(id)
+    {   
+      $idusr = id;
+      alert($idusr);
+      $.ajax({
+            type:'post', //aqui puede ser igual get
+            url: '{{URL::to('eliminarUsr')}}',//aqui va tu direccion donde esta tu funcion php
+            data: {'idUsuario':$idusr},//aqui tus datos
+            success:function(data){  },
+            error:function(data){  }
+        });
+        alert($idusr);
+
+    }
+   
+</script>
 @endsection
 
