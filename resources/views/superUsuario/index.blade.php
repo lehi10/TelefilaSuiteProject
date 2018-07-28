@@ -18,9 +18,6 @@
       
   </div>
   <script type="text/javascript">
-
-        
-  
     $("#tabla").load("{{asset('superuser/inicio?page='.$page)}}");
     
 

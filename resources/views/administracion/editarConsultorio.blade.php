@@ -106,6 +106,32 @@
             </div>
           </div>
         </div>
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Mensaje de Confirmación </h4>
+                    <button type="button" class="close" data-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" style="text-align: center; ">
+                    ¿Seguro que quiere eliminar el consultorio{{$consultorio->especialidad->nombre}} ?                                                        
+                </div>
+                <div  style="padding :5px 5px 5px 400px;  ">
+                    {{ Form::open(array('url' => 'administrador/eliminarConsul','id'=>'eliminarConsul','method' => 'post')) }}
+                        <input  name="idConsul" type="hidden" value="{{$consultorio->id}}">
+                        <td>
+                        <a class="btn btn-default" data-dismiss="modal">No</a>                
+                        <a class="btn btn-default" onclick="document.getElementById('eliminarConsul').submit()">Si</a>                            
+                      {{ Form::close() }}
+                 
+                </div>
+
+            </div>
+          </div>
+            <div class="col-md-12"> </div>
+          </div>
         <script>
         
           $("#medico").ready(function(){

@@ -1,3 +1,6 @@
+
+
+
 @extends('layouts.template')
 
 @section('title','Hospital')
