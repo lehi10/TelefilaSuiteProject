@@ -6,6 +6,15 @@
   <div class="page">
     <div class="page-single">
       <div class="container">
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <u1>
+                    @foreach ($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </u1>
+            </div>
+        @endif
         <div class="row">
           <div class="col col-login mx-auto">
             <div style="text-align: center;"><img src="/demo/photos/logo_alpha.png" alt="logo" title="logo"><br><br>

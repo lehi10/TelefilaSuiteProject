@@ -41,6 +41,12 @@ class RecursosHumanosController extends Controller
     {
         if (Auth::user()->hospital_id)
         {
+            $validateData = $request->validate([
+                'nombre' => 'required',
+                'apellido' => 'required',
+                'cmp' => 'required|numeric',
+                'celular' => 'required|numerica|max:7',
+            ]);
             $medico=new Medico;
             $medico->fill($request->except('_token'));
             $medico->hospital_id=Auth::user()->hospital_id;

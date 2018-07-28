@@ -7,6 +7,16 @@
 @section('body')
 <div class="my-3 my-md-5">
           <div class="container" >
+            @if($errors->any())
+                <div class="alert alert-danger">
+                    <u1>
+                        @foreach ($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                    </u1>
+                </div>
+            @endif
+
             <div class="row row-cards"><br>
               <div class="col-12">
                 <div class="card">

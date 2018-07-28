@@ -42,6 +42,15 @@
     <div class="page">
       <div class="page-single">
         <div class="container">
+          @if($errors->any())
+            <div class="alert alert-danger">
+                <u1>
+                    @foreach ($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </u1>
+            </div>
+          @endif
           <div class="row">
             <div class="col col-login mx-auto">
               <div style="text-align: center;"><img src="/demo/photos/logo_alpha.png"
@@ -55,13 +64,13 @@
                 <div class="card-body p-6">
                   <div class="card-title">Agregar Paciente</div>
                   <div class="form-group">
-                    <input name="nombres" class="form-control" placeholder="Nombres" type="text" required>
+                    <input name="nombres" class="form-control" name="nombre" placeholder="Nombres" type="text" required>
                   </div>
                   <div class="form-group">
-                    <input name="apellidos" class="form-control" placeholder="Apellidos" type="text" required>
+                    <input name="apellidos" class="form-control" name="apellido" placeholder="Apellidos" type="text" required>
                   </div>
                   <div class="form-group">
-                    <input name="dni"  maxlength="8" class="form-control" placeholder="N° DNI" type="text" required>
+                    <input name="dni"  maxlength="8" class="form-control" name="dni" placeholder="N° DNI" type="text" required>
                   </div>
                   <div class="form-group">Departamento </div>
                   <div class="form-group">
@@ -99,7 +108,7 @@
                     </select>
                   </div>
                   <div class="form-group">
-                    <input name="ciudad" class="form-control" placeholder="Ciudad" type="text" required>
+                    <input name="ciudad" class="form-control" name="ciudad" placeholder="Ciudad" type="text" required>
                   </div>
                   <div class="form-group">
                     <label class="custom-control custom-checkbox">

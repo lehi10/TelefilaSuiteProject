@@ -13,6 +13,12 @@ class AdmisionController extends Controller
 {
     public function crearPaciente(Request $request)
     {   
+        $validateData = $request->validate([
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'dni' => 'required|numeric',
+            'ciudad' => 'required',
+        ]);
         $paciente= new Paciente;
         $paciente->fill($request->except(["_token"]));
         $paciente->nombres=$request['nombres'];

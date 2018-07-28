@@ -47,7 +47,13 @@ class AdministracionController extends Controller
 
     public function guardarUsuario( Request $request)
     {
-        var_dump($request);
+
+     //   return $request;
+        $validateData = $request->validate([
+            'nombres' => 'required',
+            'apellidos' => 'required',
+            'password' => 'required',
+        ]);
         $user= new User;
         $user->fill($request->except(["_token"]));
         $user->password=bcrypt($request->password);
@@ -116,6 +122,9 @@ class AdministracionController extends Controller
     public function crearConsultorio(Request $request)
     {
         //return $request;
+        $validateData = $request->validate([
+            'nombre' => 'required',
+        ]);
         $consultorio= new Consultorio;
         $consultorio->fill($request->except('_token'));
         $consultorio->hospital_id=Auth::user()->hospital_id;

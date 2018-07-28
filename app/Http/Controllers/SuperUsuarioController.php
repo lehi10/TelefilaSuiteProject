@@ -151,7 +151,21 @@ class SuperUsuarioController extends Controller
      */
     public function storeNuevoCliente(Request $request)
     {
-    
+        //return dd($request);
+        $validateData = $request->validate([
+            'usuario' => 'required',
+            'password' => 'required',
+            'nombre' => 'required',
+            'ruc' => 'required|numeric',
+            'telefono' => 'required|numeric',
+            'nombrePersona' => 'required',
+            'emailPersona' => 'required|email',
+            'celularPersona' => 'required|numeric',
+            'direccion' => 'required',
+            'ciudad' => 'required',
+            'referencia' => 'required',
+            'tarifa' => 'nullable|numeric',
+        ]);
         $hos= new Hospital();
         $hos->fill($request->except(["_token","mes","dia","year","usuario","password","licencia"]));  
         $hos->fechaInicio=join('-',[ $request->year,$request->mes,$request->dia]);
