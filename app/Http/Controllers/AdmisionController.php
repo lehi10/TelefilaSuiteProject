@@ -26,19 +26,24 @@ class AdmisionController extends Controller
         $paciente->sexo=$request['sexo'];
         $paciente->edad=0; //Default
 
+        if(Auth::user()->hospital_id)
+        {
+            $paciente->hospital_id=Auth::user()->hospital_id;
+            $paciente->save();        
+            return redirect('admision')->with(["message"=>"El Paciente ha sido creado correctamente"]);
+        }
+        else{
+            return redirect('admision')->with(["message"=>"Hubo un error en el servidor","kindMessage"=>"danger"]);
+        }
         
 
-        $paciente->save();        
         
-        $pacienteId=$paciente->id;        
-        $hospitalId=Auth::user()->hospital_id;
 
-        DB::table('hospital_paciente')->insert(
-            ['paciente_id' => $pacienteId, 
-            'hospital_id' => $hospitalId]
-        );
+        // DB::table('hospital_paciente')->insert(
+        //     ['paciente_id' => $pacienteId, 
+        //     'hospital_id' => $hospitalId]
+        // );
 
-        return redirect('admision')->with(["message"=>"El Paciente ha sido creado correctamente"]);
     }
     
     public function buscarPaciente(Request $request)

@@ -21,7 +21,7 @@ class CajaController extends Controller
             $citas = DB::table('pacientes')->select('*','pacientes.id as pacienteID')
             ->Join('citas', 'citas.paciente_id', '=', 'pacientes.id')
             ->where('citas.id',$request->citaID)
-            ->where('hospital_id',$hospitalID)
+            ->where('citas.hospital_id',$hospitalID)
             ->where('fecha',date("Y-m-d"))
             ->get();
 
@@ -32,7 +32,7 @@ class CajaController extends Controller
             $hospitalID = Auth::user()->hospital_id; 
             $citas = DB::table('pacientes')->select('*','pacientes.id as pacienteID')
             ->Join('citas', 'citas.paciente_id', '=', 'pacientes.id')
-            ->where('hospital_id',$hospitalID)
+            ->where('citas.hospital_id',$hospitalID)
             ->where('fecha',date("Y-m-d"))
             ->get();
             return view('caja.index',['citas'=>$citas]);

@@ -30,7 +30,7 @@
   @endif
 
   @if(session('message'))
-              <div class="alert alert-success form-group text-center" role="alert">
+              <div class="alert alert-{{session('kindMessage') ? session('kindMessage') : 'success'  }} form-group text-center" role="alert">
                   {{session('message')}}
                 </div>
   @endif
