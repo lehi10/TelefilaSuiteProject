@@ -28,7 +28,8 @@
    <div class="clearfix colelem" id="u184-4"><!-- content -->
     <p>Ingresa tu numero de DNI</p>
    </div>
-   <form action="/pedestal/especialidad" class="form-DNIgrp clearfix colelem" id="widgetu113" method="get" enctype="multipart/form-data"><!-- none box -->
+   <form action="/pedestal/especialidad" class="form-DNIgrp clearfix colelem" id="widgetu113" method="post" enctype="multipart/form-data"><!-- none box -->
+   {{csrf_field()}}
     <div class="clearfix grpelem" id="u129-4"><!-- content -->
      <p>Enviando formulario...</p>
     </div>
@@ -49,18 +50,27 @@
      </span>
     </div>
     </form>
-   <a class="nonblock nontext museBGSize clearfix colelem" id="u218" href="{{url('/pedestal/especialidad')}}">
    
+    <a class="nonblock nontext museBGSize clearfix colelem" id="u218" href="javascript:document.getElementById('widgetu113').submit()">
    <!-- group -->
     <div class="clearfix grpelem" id="u199-4">
     <!-- content -->
     <p>ENTRAR</p>
     </div>
   </a>
+  @if(session('message'))
+  <div class="clearfix colelem" style="color:#ff5959;" id="u184-4"><!-- content -->
+    <p>{{session('message')}}</p>
+   </div>
+  @endif
+
    <div class="verticalspacer" data-offset-top="393" data-content-above-spacer="392" data-content-below-spacer="108"></div>
   </div>
   <div class="preload_images">
    <img class="preload" src="images/largo_b.png?crc=4172065039" alt=""/>
+
+   <div class="alert alert-success" role="alert">
+  This is a success alert—check it out!
   </div>
   <!-- Other scripts -->
   <script type="text/javascript">

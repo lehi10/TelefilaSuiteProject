@@ -159,10 +159,12 @@ Route::post('admin/editarUsuario','AdministracionController@eliminarUsuario');
 Route::group(['prefix'=>'pedestal'],function()
 {
     Route::get('/',  'PedestalController@index' );
-    Route::get('/especialidad',  'PedestalController@especialidad' );
+    //Route::get('/especialidad',  'PedestalController@especialidad' );
     Route::get('/fecha',  'PedestalController@fecha' );
     Route::get('/imprime',  'PedestalController@imprime' );
     Route::get('/imprimiendo',  'PedestalController@imprimiendo' );
+
+    Route::post('/especialidad',  'PedestalController@especialidad' );
 });
 
 //Rutas para admision

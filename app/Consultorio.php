@@ -22,4 +22,9 @@ class Consultorio extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function hospital()
+    {
+        return $this->belongsTo(Hospital::class);
+    }
 }

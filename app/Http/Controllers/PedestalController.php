@@ -3,6 +3,8 @@
 namespace telefilaSuite\Http\Controllers;
 
 use telefilaSuite\Paciente;
+use telefilaSuite\Hospital;
+use telefilaSuite\Especialidad;
 use Illuminate\Http\Request;
 
 class PedestalController extends Controller
@@ -14,18 +16,26 @@ class PedestalController extends Controller
 
     public function especialidad(Request $request)
     {
-        
+        //return $request;
         if(isset($request->dni))
         {
             
-            $paciente = Paciente::select('*')->where('dni',$request->dni)->get();
-            if(count($paciente))
-                return view('pedestal.especialidad',['paciente'=>$paciente[0]]);    
+            $paciente = Paciente::select('*')->where('dni',$request->dni)->first();
+            if($paciente)
+            {
+                $hospital=Hospital::find($paciente->hospital_id);
+                $especialidades=Especialidad::all();
+
+                //return $hospital->consultorios()->where("pedestal",1)->get();
+
+                return view('pedestal.especialidad',['paciente'=>$paciente]);    
+            }
             else
-                return redirect('pedestal')->with(['message'=> 'El DNI no es valido, o el paciente aun no tiene un registro. Puede acercarse a Admisión para solucionar el problema.','kindMessage'=>'warning']);        
+            {
+                return redirect('pedestal')->with(['message'=> 'El DNI no es valido, o el paciente aun no tiene un registro. Puede acercarse a Admisión para solucionar el problema.']);        
+            }
         }
-        return redirect('pedestal')->with(['message'=> 'Ingrese DNI','kindMessage'=>'warning']);
-        
+        return redirect('pedestal')->with(['message'=> 'Ingrese DNI']); 
     }
 
     public function fecha(Request $request)
