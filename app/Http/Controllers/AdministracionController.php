@@ -2,6 +2,7 @@
 
 namespace telefilaSuite\Http\Controllers;
 
+use Illuminate\Support\Facades\DB; 
 use telefilaSuite\Persona;
 use telefilaSuite\Hospital;
 use telefilaSuite\User;
@@ -107,13 +108,20 @@ class AdministracionController extends Controller
         {
             if (Auth::user()->hospital_id)
             {
-                $consultorios=Consultorio::where("hospital_id",Auth::user()->hospital_id)->get();
+                $consultorios=Consultorio::where("consultorios.hospital_id",Auth::user()->hospital_id)
+                        ->Join('medicos', 'medicos.id', '=', 'consultorios.medico_id')
+                        ->Join('agendas','agendas.medico_id','=','consultorios.medico_id')          
+                        ->select('consultorios.*', 'medicos.id', 'medicos.turno','agendas.turnos')
+                        ->get();        
+                //$consultorios=Consultorio::where("consultorios.hospital_id",Auth::user()->hospital_id)->get();        
+                         
                 $agendas=collect();
+                
                 foreach ($consultorios as $key=>$consultorio) {
-                    //echo "asdas ".now()->format("Y-m-d")."\n";
+                 
                     $agendas->push(Agenda::where('medico_id',$consultorio->medico_id)->where("fecha",now()->format("Y-m-d"))->pluck("turnos")->first());
                 }
-                //return $agendas;
+                
                 return view('administracion.mostrarConsultorios',['consultorios'=>$consultorios,"agendas"=>$agendas]);
             }
         }

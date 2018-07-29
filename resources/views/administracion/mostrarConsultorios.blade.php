@@ -83,19 +83,38 @@ function cambiarEstado(id) {
                           </tr>
                         </thead>
                         <tbody>
-                          @foreach($consultorios as $key=>$consultorio)  
+                          
+                          @foreach($consultorios as $key=>$consultorio )  
                             <tr>
                               <td><span class="text-muted">{{$consultorio->id}}</span></td>
                               <td><a href="{{url('administrador/'.$consultorio->id.'/consultorio')}}" class="text-inherit">{{$consultorio->nombre}}<br>
                                 </a></td>
+                              
                               <td>{{$consultorio->especialidad->nombre}}</td>
                               <td>{{$consultorio->user->username}}</td>
                               @if ($agendas[$key])
                                 <td style="text-align: center;"><strong>{{$agendas[$key]}}</strong></td>
-                                <td style="padding-left: 23px">    <span class="badge badge-success">100%</span> </td>
+                                <td style="padding-left: 23px"><span class="badge badge-success">100%</span> </td>
                               @else
-                                <td style="text-align: center;">NM</td>
-                                <td style="padding-left: 23px">   <span class="badge badge-danger">0%</span> </td>
+                                <td style="text-align: center;">
+                                  @if($consultorio->turno===1)
+                                      Mañana 
+                                  @elseif($consultorio->turno===2)
+                                      Tarde
+                                  @else 
+                                    Noche 
+                                  @endif
+                                </td>
+                                <td style="padding-left: 23px">
+                                    @if($consultorio->turnos>10)
+                                    <span class="badge badge-success">  
+                                @elseif($consultorio->turnos>5 and $consultorio->turnos<11)
+                                    <span class="badge badge-warning">
+                                @else 
+                                    <span class="badge badge-danger">
+                                @endif
+                                {{$consultorio->turnos}} %
+                                </span> </td>
                               @endif
                               <td> 
                               <label class="custom-switch">
