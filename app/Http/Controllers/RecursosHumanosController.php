@@ -3,6 +3,7 @@
 namespace telefilaSuite\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use telefilaSuite\Medico;
 use telefilaSuite\Especialidad;
 use telefilaSuite\Agenda;
@@ -42,10 +43,24 @@ class RecursosHumanosController extends Controller
         if (Auth::user()->hospital_id)
         {
             $validateData = $request->validate([
-                'nombre' => 'required',
-                'apellido' => 'required',
-                'cmp' => 'required|numeric',
-                'celular' => 'required|numerica|max:7',
+                'nombres' => [
+                    'required',
+                     Rule::unique('medicos')->where( function ($query) {
+                        $query->where([
+                            ['hospital_id',Auth::user()->hospital_id],
+                            ['apellidos','apellidos'],
+                        ]);
+                    }), 
+                ],
+                'apellidos' => 'required',
+                'cmp' => [
+                    'required',
+                    'numeric',
+                     Rule::unique('medicos')->where( function ($query) {
+                        $query->where('hospital_id',Auth::user()->hospital_id);
+                    }), 
+                ],
+                'celular' => 'required|numeric|max:9',
             ]);
             $medico=new Medico;
             $medico->fill($request->except('_token'));
