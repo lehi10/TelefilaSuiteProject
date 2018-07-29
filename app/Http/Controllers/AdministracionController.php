@@ -131,7 +131,7 @@ class AdministracionController extends Controller
     {
         //return $request;
         $validateData = $request->validate([
-            'nombre' => 'required',
+            'nombre' => 'required|unique',
         ]);
         $consultorio= new Consultorio;
         $consultorio->fill($request->except('_token'));
