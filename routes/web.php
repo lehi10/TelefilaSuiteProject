@@ -180,3 +180,9 @@ Route::group(['prefix'=>'admision','middleware' => 'rol:Admision'],function()
 });
 
 
+
+//Ruta Historial
+Route::group(['prefix'=>'historial'],function()
+{
+    Route::get('/',  'HistorialController@index' );
+});
