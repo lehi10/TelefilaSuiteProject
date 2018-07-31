@@ -24,10 +24,10 @@ class PedestalController extends Controller
             if($paciente)
             {
                 $hospital=Hospital::find($paciente->hospital_id);
-                $especialidades=Especialidad::all();
-
-                //return $hospital->consultorios()->where("pedestal",1)->get();
-
+                //$especialidades=Especialidad::all();
+                $especialidades = $hospital->consultorios()->where("pedestal",1)->pluck("especialidad_id");
+                $especialidades = Especialidad::find($especialidades);   //Especialidades con al menos un consultorio en pedestal
+                
                 return view('pedestal.especialidad',['paciente'=>$paciente]);    
             }
             else
@@ -37,6 +37,7 @@ class PedestalController extends Controller
         }
         return redirect('pedestal')->with(['message'=> 'Ingrese DNI']); 
     }
+
 
     public function fecha(Request $request)
     {
