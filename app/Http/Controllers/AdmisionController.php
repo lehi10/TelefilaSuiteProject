@@ -14,8 +14,8 @@ class AdmisionController extends Controller
     public function crearPaciente(Request $request)
     {   
         $validateData = $request->validate([
-            'nombre' => 'required',
-            'apellido' => 'required',
+            'nombres' => 'required',
+            'apellidos' => 'required',
             'dni' => 'required|numeric',
             'ciudad' => 'required',
         ]);
