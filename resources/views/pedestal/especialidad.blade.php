@@ -36,6 +36,7 @@
      <div id="u559"><!-- group -->
       <div class="clearfix" id="u559_align_to_page">
        <div class="clearfix grpelem" id="pu573"><!-- column -->
+        
         <a class="nonblock nontext museBGSize colelem" id="u573" href="{{url('pedestal/fecha')}}?dni={{$paciente->dni}}"><!-- simple frame --></a>
         <a class="nonblock nontext museBGSize colelem" id="u569" href="{{url('pedestal/fecha')}}"><!-- simple frame --></a>
        </div>

@@ -182,7 +182,9 @@ Route::group(['prefix'=>'admision','middleware' => 'rol:Admision'],function()
 
 
 //Ruta Historial
-Route::group(['prefix'=>'historial'],function()
+Route::group(['prefix'=>'historialMedico','middleware' => 'rol:HistorialMedico'],function()
 {
     Route::get('/',  'HistorialController@index' );
 });
+
+Route::get('pdf', 'PdfController@invoice');
