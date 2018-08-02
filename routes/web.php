@@ -179,10 +179,8 @@ Route::group(['prefix'=>'admision','middleware' => 'rol:Admision'],function()
     Route::post('/referir','AdmisionController@referir');
 });
 
-
-
 //Ruta Historial
-Route::group(['prefix'=>'historialMedico','middleware' => 'rol:HistorialMedico'],function()
+Route::group(['prefix'=>'historialMedico','middleware' => 'rol:Historial Medico'],function()
 {
     Route::get('/',  'HistorialController@index' );
 });
