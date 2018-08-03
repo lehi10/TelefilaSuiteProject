@@ -60,7 +60,7 @@ class RecursosHumanosController extends Controller
                         $query->where('hospital_id',Auth::user()->hospital_id);
                     }), 
                 ],
-                'celular' => 'required|numeric|max:9',
+                'celular' => 'required|numeric',
             ]);
             $medico=new Medico;
             $medico->fill($request->except('_token'));
