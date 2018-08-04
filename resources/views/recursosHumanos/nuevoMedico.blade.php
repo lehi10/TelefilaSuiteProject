@@ -5,15 +5,7 @@
 <div class="page">
     <div class="page-single">
     <div class="container">
-        @if($errors->any())
-            <div class="alert alert-danger">
-                <u1>
-                    @foreach ($errors->all() as $error)
-                        <li>{{$error}}</li>
-                    @endforeach
-                </u1>
-            </div>
-        @endif
+       
         <div class="row">
         <div class="col col-login mx-auto">
             <div style="text-align: center;"><img src="/demo/photos/logo_alpha.png"
@@ -39,7 +31,19 @@
                     @foreach($especialidades as $especialidad)
                         <option value="{{$especialidad->id}}" data-data="{&quot;image&quot;: &quot;demo/faces/female/16.jpg&quot;}">{{$especialidad->nombre}}</option>
                     @endforeach
+                    
                 </select>
+                <br>
+                @if($errors->any())
+                <br>
+                <div class="alert alert-danger">
+                    <u1>
+                        @foreach ($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                    </u1>
+                </div>
+            @endif
                 <b><br>
                     Tuno</b><br>
                 <div class="custom-switches-stacked"> 
