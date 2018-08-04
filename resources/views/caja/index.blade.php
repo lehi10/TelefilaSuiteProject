@@ -12,6 +12,7 @@
 <li class="nav-item"> <a href="/caja" class="nav-link"><i
                               class="fa fa-money"></i> Caja</a> </li>                                                                                                                         
 @endsection
+<script>$('#msg').delay(8000).hide(600);</script>
 
 @section('body')
         <div class="my-3 my-md-5">        
@@ -37,7 +38,7 @@
                   </div>
                   <div class="table-responsive">
                   @if(session('message'))
-                  <div class="alert alert-{{session('kind')}} form-group text-center" role="alert">
+                  <div id="msg" class="alert alert-{{session('kind')}} form-group text-center" role="alert">
                       {{session('message')}}
                     </div>
                   @endif          

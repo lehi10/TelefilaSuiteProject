@@ -30,7 +30,7 @@
   @endif
 
   @if(session('message'))
-              <div class="alert alert-{{session('kindMessage') ? session('kindMessage') : 'success'  }} form-group text-center" role="alert">
+              <div class="alert alert-{{session('kindMessage') ? session('kindMessage') : 'success'  }} form-group text-center" id="msg" role="alert">
                   {{session('message')}}
                 </div>
   @endif
@@ -180,6 +180,8 @@
   </div>
 
   <script>
+    $('#msg').delay(8000).hide(600);
+
     function weeksOfMonth( y, m ) {
         var first = new Date(y, m,1).getDay();      
         var last = 32 - new Date(y, m, 32).getDate(); 

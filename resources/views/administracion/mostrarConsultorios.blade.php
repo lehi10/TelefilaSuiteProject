@@ -53,9 +53,9 @@ function cambiarEstado(id) {
           <!--</div>-->
           <div class="container">
             <div class="row row-cards"><br>
-              <div class="col-12">
+              <div class="col-12" >
               @if(session('message'))
-              <div class="alert alert-success form-group text-center" role="alert">
+                <div class="alert alert-success form-group text-center" id="msg" role="alert">
                   {{session('message')}}
                 </div>
               @endif
@@ -88,8 +88,7 @@ function cambiarEstado(id) {
                             <tr>
                               <td><span class="text-muted">{{$consultorio->id}}</span></td>
                               <td><a href="{{url('administrador/'.$consultorio->id.'/consultorio')}}" class="text-inherit">{{$consultorio->nombre}}<br>
-                                </a></td>
-                              
+                                </a></td>                          
                               <td>{{$consultorio->especialidad->nombre}}</td>
                               <td>{{$consultorio->user->username}}</td>
                               @if ($agendas[$key])
@@ -101,8 +100,13 @@ function cambiarEstado(id) {
                                       Mañana 
                                   @elseif($consultorio->turno===2)
                                       Tarde
+<<<<<<< Updated upstream
                                   @elseif($consultorio->turno===2)
                                       Noche
+=======
+                                  @elseif($consultorio->turno===3)
+                                      Noche 
+>>>>>>> Stashed changes
                                   @else 
                                     Ninguno
                                   @endif
@@ -112,6 +116,8 @@ function cambiarEstado(id) {
                                     <span class="badge badge-success">  
                                 @elseif($consultorio->turnos>5 and $consultorio->turnos<11)
                                     <span class="badge badge-warning">
+                                @elseif($consultorio->turnos===null)
+                                        <span class="badge badge-dark">
                                 @else 
                                     <span class="badge badge-danger">
                                 @endif
@@ -130,18 +136,13 @@ function cambiarEstado(id) {
                     </table>
                     </div>
                   @endif
-
-
-
-
-
                   </div>
                 </div>
               </div>
-            </div>
-           
+            </div>           
           </div>
-    <script>
+    <script>        
+       $('#msg').delay(8000).hide(600);
        $('#search').on('keyup',function(){
             $value=$(this).val();
             $.ajax({

@@ -3,7 +3,7 @@
         <br>
         <div class="col-12">
         @if(session('message'))
-        <div class="alert alert-success form-group text-center" role="alert">
+        <div id="msg" class="alert alert-success form-group text-center" role="alert">
             {{session('message')}}
           </div>
         @endif
@@ -86,7 +86,7 @@
 </div>
 
 <script>
-
+        $('#msg').delay(8000).hide(600);
         function updateState(value,id) {
             //alert(value+" "+id);
             $.ajax({

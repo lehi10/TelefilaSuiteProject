@@ -11,15 +11,12 @@
       <!--<span class="breadcrumb-item active">Cards</span>-->
       <!--</nav>-->
       <!--</div>-->
-      <div id ="tabla">
-          
-        
-      </div>
+      <div id ="tabla">                  
+  </div>
       
   </div>
-  <script type="text/javascript">
-    $("#tabla").load("{{asset('superuser/inicio?page='.$page)}}");
-    
+  <script type="text/javascript">  
+    $("#tabla").load("{{asset('superuser/inicio?page='.$page)}}");    
 
     // $("#form").submit(function(){
     //   $.post("{{asset('superUsuario')}}",$("#form").serialize()).done(function(){
@@ -29,8 +26,6 @@
     //   });
     //   return false;
     // })
-
-
     function mostrarTabla(busqueda){
       var datos = {
         "busqueda" : busqueda,

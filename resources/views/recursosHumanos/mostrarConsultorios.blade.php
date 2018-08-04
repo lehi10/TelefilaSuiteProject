@@ -7,6 +7,7 @@
 @section('body')
 
 <script>
+  $('#msg').delay(5000).hide(600);
 
 // function cambiarEstado(id) {
   
@@ -37,7 +38,7 @@
             <div class="row row-cards"><br>
               <div class="col-12">
               @if(session('message'))
-              <div class="alert alert-success form-group text-center" role="alert">
+              <div id="msg" class="alert alert-success form-group text-center" role="alert">
                   {{session('message')}}
                 </div>
               @endif

@@ -83,7 +83,7 @@ class AdministracionController extends Controller
         if ($request->password)
             $user->password=bcrypt($request->password);
         $user->save();
-        return redirect('administrador')->with(["message"=>"El usuario ha sido editado con exitossssssssssss"]);
+        return redirect('administrador')->with(["message"=>"El usuario ha sido editado con exitos"]);
     }
 
 
@@ -108,15 +108,12 @@ class AdministracionController extends Controller
         {
             if (Auth::user()->hospital_id)
             {
-                $consultorios=Consultorio::where("consultorios.hospital_id",Auth::user()->hospital_id)
-                        ->leftJoin('medicos', 'medicos.id', '=', 'consultorios.medico_id')
+                $consultorios=Consultorio::where("consultorios.hospital_id",Auth::user()->hospital_id)                        
+                        ->leftJoin('medicos', 'consultorios.medico_id', '=', 'medicos.id')
                         ->leftJoin('agendas','agendas.medico_id','=','consultorios.medico_id')          
                         ->select('consultorios.*', 'medicos.turno','agendas.turnos')
-                        ->get();        
-                //$consultorios=Consultorio::where("consultorios.hospital_id",Auth::user()->hospital_id)->get();        
-                         
-                $agendas=collect();
-                
+                        ->get();                                                       
+                $agendas=collect();            
                 foreach ($consultorios as $key=>$consultorio) {
                  
                     $agendas->push(Agenda::where('medico_id',$consultorio->medico_id)->where("fecha",now()->format("Y-m-d"))->pluck("turnos")->first());

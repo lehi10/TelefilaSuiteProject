@@ -4,10 +4,10 @@
 
 @section('buscar','medico')
 @section('auxiliar')
+<script>$('#msg').delay(8000).hide(600);</script>
 <div class="nav-item d-none d-md-flex"> <a href="{{url('/recursosHumanos/nuevoMedico')}}"
-                            class="btn btn-sm btn-outline-primary">Agregar
-                            medico</a> 
-                        </div>
+    class="btn btn-sm btn-outline-primary">Agregar medico</a> 
+</div>
 @endsection
 
 @section('mas_opciones')
@@ -34,7 +34,7 @@
         <div class="row row-cards"><br>
             <div class="col-12">
             @if(session('message'))
-              <div class="alert alert-success form-group text-center" role="alert">
+              <div id="msg" class="alert alert-success form-group text-center" role="alert">
                   {{session('message')}}
                 </div>
             @endif

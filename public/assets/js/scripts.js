@@ -207,4 +207,28 @@ function tarifa(){
     }
   }
 }
+//---------------------------------------------------
+$(document).ready(function(){
+  $("#cmd").keyup(checkCmd);
+});
+
+function checkCmd(){
+  var value = document.getElementById("cmd").value;
+  if(vacio(value)){
+    $("#tari").attr("class","form-control is-invalid");
+    $("#v_tari").html("<i class='fa fa-close'></i> Este campo es requerido. ");
+    $('#guardar').attr('disabled','disabled');
+  }else{
+    if(value.match(/[A-z]/)){
+      $("#tari").attr("class","form-control is-invalid");
+      $("#v_tari").html("<i class='fa fa-close'></i>Tarífa invalida.");
+      $('#guardar').attr('disabled','disabled');
+    }else {      
+      $("#tari").attr("class","form-control is-valid");
+      $("#v_tari").html("");
+      $('#guardar').removeAttr('disabled');
+    }
+  }
+}
+
 

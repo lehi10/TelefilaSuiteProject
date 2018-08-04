@@ -4,7 +4,7 @@
 
 @section('scripts')
 <script>
-
+$('#msg').delay(8000).hide(600);
 function showUser(id) {
   
   $.ajax({
@@ -40,7 +40,7 @@ function showUser(id) {
             <div class="row row-cards"><br>
               <div class="col-12">
               @if(session('message'))
-              <div class="alert alert-success form-group text-center" role="alert">
+              <div id="msg" class="alert alert-success form-group text-center" role="alert">
                   {{session('message')}}
                 </div>
               @endif
