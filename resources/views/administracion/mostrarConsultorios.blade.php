@@ -101,8 +101,10 @@ function cambiarEstado(id) {
                                       Mañana 
                                   @elseif($consultorio->turno===2)
                                       Tarde
+                                  @elseif($consultorio->turno===2)
+                                      Noche
                                   @else 
-                                    Noche 
+                                    Ninguno
                                   @endif
                                 </td>
                                 <td style="padding-left: 23px">

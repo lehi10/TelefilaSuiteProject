@@ -109,9 +109,9 @@ class AdministracionController extends Controller
             if (Auth::user()->hospital_id)
             {
                 $consultorios=Consultorio::where("consultorios.hospital_id",Auth::user()->hospital_id)
-                        ->Join('medicos', 'medicos.id', '=', 'consultorios.medico_id')
-                        ->Join('agendas','agendas.medico_id','=','consultorios.medico_id')          
-                        ->select('consultorios.*', 'medicos.id', 'medicos.turno','agendas.turnos')
+                        ->leftJoin('medicos', 'medicos.id', '=', 'consultorios.medico_id')
+                        ->leftJoin('agendas','agendas.medico_id','=','consultorios.medico_id')          
+                        ->select('consultorios.*', 'medicos.turno','agendas.turnos')
                         ->get();        
                 //$consultorios=Consultorio::where("consultorios.hospital_id",Auth::user()->hospital_id)->get();        
                          

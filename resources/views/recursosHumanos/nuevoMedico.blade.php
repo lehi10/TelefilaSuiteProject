@@ -1,6 +1,7 @@
 @extends('layouts.baseSimple')
 @section('title','Crear Médico')
 @section('body')
+<script src="/assets/js/scripts.js"></script>
 <div class="page">
     <div class="page-single">
     <div class="container">
@@ -24,13 +25,13 @@
             {{csrf_field()}}
             <div class="card-body p-6">
                 <div class="card-title">Crear Nuevo Médico</div>
-                <div class="form-group"><input class="form-control" placeholder="Nombres completos" name="nombres"
+                <div class="form-group"><input id="nombre_me" class="form-control" placeholder="Nombres completos" name="nombres"
                     type="text" required></div>
-                <div class="form-group"><input class="form-control" placeholder="Apellidos completos" name="apellidos"
+                <div class="form-group"><input id="apellido_me" class="form-control" placeholder="Apellidos completos" name="apellidos"
                     type="text" required></div>
-                <div class="form-group"><input class="form-control" placeholder="N° CMP" name="cmp"
+                <div class="form-group"><input id="cmd" class="form-control" placeholder="N° CMP" name="cmp"
                     type="text" required></div>
-                <div class="form-group"><input class="form-control" placeholder="Celular" name="celular"
+                <div class="form-group"><input id=""class="form-control" placeholder="Celular" name="celular"
                     type="text"required  minlength="9" ></div>
                 <div class="form-group">
                 <select name="especialidad_id" class="form-control custom-select">
