@@ -48,8 +48,7 @@ class RecursosHumanosController extends Controller
                      Rule::unique('medicos')->where( function ($query) {
                         $query->where([
                             ['hospital_id',Auth::user()->hospital_id],
-                            ['nombres','nombres'],
-                            ['apellidos','apellidos'],
+                            ['apellidos',$request->apellidos],
                         ]);
                     }), 
                 ],
