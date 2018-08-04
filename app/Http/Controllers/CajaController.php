@@ -44,6 +44,7 @@ class CajaController extends Controller
     {
         $cita=Cita::find($request->citaID);
         $cita->pagado=1;
+        $cita->save();
         return redirect('caja?citaID='.$request->citaID)->with(["message"=>"Se ha realizado el pago con exito."]);
     }
 
