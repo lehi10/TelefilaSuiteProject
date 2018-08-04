@@ -24,6 +24,11 @@ class AdministracionController extends Controller
         $this->middleware(['auth','rol:Administrador']);
     }
 
+    public function index1()
+    {
+        return view('layouts.base');
+    }
+
     public function index()
     {
         $users=User::where('hospital_id',Auth::user()->hospital_id)->where('rol_id',">",2)->get();

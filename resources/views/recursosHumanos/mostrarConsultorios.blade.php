@@ -6,28 +6,8 @@
 
 @section('body')
 
-<script>
-  $('#msg').delay(5000).hide(600);
 
-// function cambiarEstado(id) {
-  
-//   $.ajax({
-//     method: 'GET', // Type of response and matches what we said in the route
-//     url: '/administrador/cambiarEstadoConsultorio', // This is the url we gave in the route
-//     data: {'idConsultorio' : id}, // a JSON object to send back
-//     success: function(response){ // What to do if we succeed
-//         console.log(response); 
-//     },
-//     error: function(jqXHR, textStatus, errorThrown) { // What to do if we fail
-//         console.log(JSON.stringify(jqXHR));
-//         console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
-//     }
-// });
-// }
-
-</script>
-
-        <div class="my-3 my-md-5">
+<div class="my-3 my-md-5">
           <!--<div class="container">-->
           <!--<nav class="breadcrumb breadcrumb-content">-->
           <!--<a class="breadcrumb-item" href="javascript:void(0)">Library</a>-->
@@ -36,9 +16,9 @@
           <!--</div>-->
           <div class="container">
             <div class="row row-cards"><br>
-              <div class="col-12">
+              <div class="col-12" >
               @if(session('message'))
-              <div id="msg" class="alert alert-success form-group text-center" role="alert">
+                <div class="alert alert-success form-group text-center" id="msg" role="alert">
                   {{session('message')}}
                 </div>
               @endif
@@ -66,24 +46,46 @@
                           </tr>
                         </thead>
                         <tbody>
-                          @foreach($consultorios as $key=>$consultorio)  
+                          
+                          @foreach($consultorios as $key=>$consultorio )  
                             <tr>
                               <td><span class="text-muted">{{$consultorio->id}}</span></td>
                               <td><a href="{{url('recursosHumanos/'.$consultorio->id.'/consultorio')}}" class="text-inherit">{{$consultorio->nombre}}<br>
-                                </a></td>
+                                </a></td>                          
                               <td>{{$consultorio->especialidad->nombre}}</td>
                               <td>{{$consultorio->user->username}}</td>
                               @if ($agendas[$key])
                                 <td style="text-align: center;"><strong>{{$agendas[$key]}}</strong></td>
-                                <td style="padding-left: 23px">    <span class="badge badge-success">100%</span> </td>
+                                <td style="padding-left: 23px"><span class="badge badge-success">100%</span> </td>
                               @else
-                                <td style="text-align: center;">NM</td>
-                                <td style="padding-left: 23px">   <span class="badge badge-danger">0%</span> </td>
+                                <td style="text-align: center;">
+                                  @if($consultorio->turno===1)
+                                      Mañana 
+                                  @elseif($consultorio->turno===2)
+                                      Tarde
+                                  @elseif($consultorio->turno===3)
+                                      Noche
+                                  @else 
+                                    Ninguno
+                                  @endif
+                                </td>
+                                <td style="padding-left: 23px">
+                                    @if($consultorio->turnos>10)
+                                    <span class="badge badge-success">  
+                                @elseif($consultorio->turnos>5 and $consultorio->turnos<11)
+                                    <span class="badge badge-warning">
+                                @elseif($consultorio->turnos===null)
+                                        <span class="badge badge-dark">
+                                @else 
+                                    <span class="badge badge-danger">
+                                @endif
+                                {{$consultorio->turnos}} %
+                                </span> </td>
                               @endif
                               <td> 
                               <label class="custom-switch">
-                                <input   name="optRol" value="{{$consultorio->id}}" class="custom-switch-input" onchange="cambiarEstado(this.value)" {{ $consultorio->pedestal==1 ? 'checked' :''}} type="checkbox" disabled> 
-                                <span class="custom-switch-indicator" ></span> 
+                                <input   name="optRol" value="{{$consultorio->id}}" class="custom-switch-input" onchange="cambiarEstado(this.value)" {{ $consultorio->pedestal==1 ? 'checked' :''}} type="checkbox"> 
+                                <span class="custom-switch-indicator"></span> 
                               </label>
                               </td>
                             </tr>
@@ -92,18 +94,13 @@
                     </table>
                     </div>
                   @endif
-
-
-
-
-
                   </div>
                 </div>
               </div>
-            </div>
-           
+            </div>           
           </div>
-    <script>
+    <script>        
+       $('#msg').delay(8000).hide(600);
        $('#search').on('keyup',function(){
             $value=$(this).val();
             $.ajax({

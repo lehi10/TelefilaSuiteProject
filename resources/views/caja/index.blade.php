@@ -2,16 +2,16 @@
 
 @section('title','Caja')
 
-@section('mas_opciones')
-<li class="nav-item"> <a href="/administrador/consultorios" class="nav-link"><i
-                                class="fe fe-calendar"></i> Consultorios</a> </li>
-<li class="nav-item"> <a href="/recursosHumanos" class="nav-link"><i
-                                class="fa fa-address-book"></i> Recursos Humanos</a> </li>     
-<li class="nav-item"> <a href="/admision" class="nav-link"><i
-                              class="fa fa-users"></i> Admisión</a> </li>
-<li class="nav-item"> <a href="/caja" class="nav-link"><i
-                              class="fa fa-money"></i> Caja</a> </li>                                                                                                                         
+@section('more_options')
+<li class="nav-item"  ><a href="{{url('/'.Auth::user()->rolUrl())}}" class="nav-link"><i class="fe fe-home"></i>Inicio</a></li>
+<li class="nav-item" > <a href="{{url('superuser/usersClient/'.Auth::user()->checkRol("Super Usuario"))}}"  class="nav-link"><i class="fa fa-users"></i>Usuarios</a> </li>
+<li class="nav-item"> <a href="/administrador/consultorios" class="nav-link"><i class="fa fa-stethoscope"></i> Consultorios</a></li>                                     
+<li class="nav-item"> <a href="/recursosHumanos" class="nav-link"><i class="fa fa-user-md"></i> Recursos Humanos</a> </li>     
+<li class="nav-item"> <a href="/admision" class="nav-link"><i class="fa fa-file-text"></i> Admisión</a> </li>
+<li class="nav-item slc"> <a href="/caja" class="nav-link"><i class="fa fa-money"></i> Caja</a> </li>                                                                                                                         
+<li class="nav-item"> <a href="/historialMedico" class="nav-link" ><i class="fa fa-bar-chart"></i> Reportes</a></li>                                                                               
 @endsection
+
 <script>$('#msg').delay(8000).hide(600);</script>
 
 @section('body')
@@ -20,12 +20,10 @@
           {{ Form::open(array('url' => 'caja','method' => 'get','class'=>'input-icon my-3 my-lg-0')) }}
               {!! csrf_field() !!}
               <div class="input-group"> 
-              <input name="citaID" class="form-control" placeholder="Código de Ticket" type="text"> 
-                <span class="input-group-append">
-                  <button class="btn btn-primary" type="submit">Go!</button>
-                </span> 
+              <input name="citaID" class="form-control" placeholder="Código de Ticket" type="text">               
+                  <button style="margin-left:10px;" class="btn btn-primary" type="submit"><i class="fe fe-search"></i></button>                                  
               </div>
-              <div class="input-icon-addon"> <i class="fe fe-search"></i> </div>
+              
             {{ Form::close() }}
           </div>
         <br>

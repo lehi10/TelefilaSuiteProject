@@ -10,15 +10,14 @@
   </div>
 @endsection
 
-@section('mas_opciones')
-<li class="nav-item"> <a href="/administrador/consultorios" class="nav-link"><i
-                                class="fe fe-calendar"></i> Consultorios</a> </li>
-<li class="nav-item"> <a href="/recursosHumanos" class="nav-link"><i
-                                class="fa fa-address-book"></i> Recursos Humanos</a> </li>     
-<li class="nav-item"> <a href="/admision" class="nav-link"><i
-                              class="fa fa-users"></i> Admisión</a> </li>
-<li class="nav-item"> <a href="/caja" class="nav-link"><i
-                              class="fa fa-money"></i> Caja</a> </li>                                                                                                                         
+@section('more_options')
+<li class="nav-item"><a href="{{url('/'.Auth::user()->rolUrl())}}" class="nav-link"><i class="fe fe-home"></i>Inicio</a></li>
+<li class="nav-item" > <a href="{{url('superuser/usersClient/'.Auth::user()->checkRol("Super Usuario"))}}"  class="nav-link"><i class="fa fa-users"></i>Usuarios</a> </li>
+<li class="nav-item"> <a href="/administrador/consultorios" class="nav-link"><i class="fa fa-stethoscope"></i> Consultorios</a></li>                                     
+<li class="nav-item"> <a href="/recursosHumanos" class="nav-link"><i class="fa fa-user-md"></i> Recursos Humanos</a> </li>     
+<li class="nav-item slc"> <a href="/admision" class="nav-link"><i class="fa fa-file-text"></i> Admisión</a> </li>
+<li class="nav-item"> <a href="/caja" class="nav-link"><i class="fa fa-money"></i> Caja</a> </li>                                                                                                                         
+<li class="nav-item"> <a href="/historialMedico" class="nav-link" ><i class="fa fa-bar-chart"></i> Reportes</a></li>                                                                               
 @endsection
 
 @section('body')
@@ -64,44 +63,39 @@
                           </td>
                           <form action="/admision/buscarPaciente" method="post">
                             {{csrf_field()}}
-                            <td style="background-color: white;" id="table"><input
-                                class="form-control" placeholder="Ingrese DNI" type="text" name="pacienteDNI" @isset($dni) value="{{$dni}}" @endisset >
-                                </td>
-                                <td>
-                              <span class="input-group-append"> <button class="btn btn-primary"
-                                  type="submit">Buscar</button></span> </td>
+                            <td style="background-color: white;" id="table">
+                              <input class="form-control" placeholder="Ingrese DNI" type="text" name="pacienteDNI" @isset($dni) value="{{$dni}}" @endisset >
+                            </td>
+                            <td>
+                              <button class="btn btn-primary" style="margin-left:10px;" type="submit">
+                                <i class="fe fe-search"></i>
+                              </button>
+                            </td>
                           </form>
                           <td><br> <br>
                           </td>
                         </tr>
-
-
                         @isset($paciente)
-
                         <tr>
-                          <td><br>
-                          <br>
+                          <td>
+                            <br><br>
                           </td>
                           <td>
-                          <br>
-                          <h4>Resultados:</h4>
+                            <br>
+                            <h4>Resultados:</h4>
                             <div class="form-label">Paciente: <b>{{$paciente->nombres}} {{$paciente->apellidos}}</b><br>
                               <div class="form-label"> DNI: <b> {{$paciente->dni}}</b>
-                                <hr style="width: 100%; height: 1px; color: #999999; border-style: solid;"></div>
+                                <hr style="width: 100%; height: 1px; color: #999999; border-style: solid;">
+                              </div>
                             </div>
                           </td>
-                          <td><br>
-                          </td>
-                        </tr>
-                        
-                        
+                          <td> <br>  </td>
+                        </tr>                                             
                         <form action="/admision/referir" method="post" id="referir">
                           <input type="hidden" name="paciente_id" value="{{$paciente->id}}">
                         {{csrf_field()}}
-
                         <tr>
-                          <td><br>
-                          </td>
+                          <td><br> </td>
                           <td>Referir a
                             <select name="especialidad" id="especialidad" class="form-control custom-select">
                               @foreach ($especialidades as $especialidad)
@@ -109,12 +103,10 @@
                               @endforeach
                             </select>
                           </td>
-                          <td><br>
-                          </td>
+                          <td><br></td>
                         </tr>
                         <tr>
-                          <td><br>
-                          </td>
+                          <td><br></td>
                           <td>Mes
                             <select class="form-control custom-select" id="mes">
                               <option value="1" data-data="{&quot;image&quot;: &quot;demo/faces/female/16.jpg&quot;}">Enero</option>
@@ -131,12 +123,10 @@
                               <option value="12" data-data="{&quot;image&quot;: &quot;demo/faces/male/9.jpg&quot;}">Diciembre</option>
                             </select>
                           </td>
-                          <td><br>
-                          </td>
+                          <td><br></td>
                         </tr>
                         <tr>
-                          <td><br>
-                          </td>
+                          <td><br></td>
                           <td>Semana
                             <select class="form-control custom-select" id="semanas">
                               <option value="1">1</option>
@@ -146,20 +136,18 @@
                               <option value="5">5</option>
                             </select>
                           </td>
-                          <td><br>
-                          </td>
+                          <td><br></td>
                         </tr>
                         <tr>
-                          <td><br>
+                          <td><br></td>
+                          <td> <br>
+                            <span class="input-group-append"> 
+                              <button class="btn btn-primary"type="submit">Generar Referencia</button>
+                            </span>
                           </td>
-                          <td> <br><span class="input-group-append"> <button class="btn btn-primary"
-                                type="submit">Generar Referencia</button></span></td>
-                          <td><br>
-                          </td>
+                          <td><br></td>
                         </tr>
-
                         </form>
-
                         <tr>
                           <td><br>
                           </td>

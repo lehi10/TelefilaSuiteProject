@@ -4,7 +4,9 @@
 
   <input id="search" class="form-control header-search"
     placeholder="Buscar @yield('buscar')..." tabindex="1" type="search" onkeyup="mostrarTabla($(this).val())">
-  <div class="input-icon-addon"> <i class="fe fe-search"></i> </div>
+  <div class="input-icon-addon"> 
+    <i class="fe fe-search"></i> 
+  </div>
 </form>
 @endsection
 <script>
