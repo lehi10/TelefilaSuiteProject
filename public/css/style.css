@@ -266,3 +266,13 @@ transition: all 0.3s ease 0s;
   text-align: center;
 }
 
+.slc{
+  color:white;
+  background:#3498DB;
+}
+
+.pad{
+  padding: 8px;
+}
+
+

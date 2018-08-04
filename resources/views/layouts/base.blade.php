@@ -28,6 +28,7 @@
     </script>
     <!-- Dashboard Core -->
     <link href="/assets/css/dashboard.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
     <script src="/assets/js/dashboard.js"></script>
     <!-- c3.js Charts Plugin -->
     <link href="/assets/plugins/charts-c3/plugin.css" rel="stylesheet">
@@ -43,131 +44,150 @@
   <body class="">
     <div class="page">
         <div class="page-main">  
-
-        <!-- CONTEasdsadNIDOS -->
+        <!-- CONTENIDOS -->
         <div class="page-main">
                 <div class="header py-4">
                   <div class="container">
-                    <div class="d-flex"> <a class="header-brand" href="/"> <img
-                          src="{{url('images/logo_alpha.png')}}"
-                          alt="logo" title="logo" style="width: 144px; height: 36px;"> </a>
+                    <div class="d-flex"> 
+                      <a class="header-brand" href="/"> 
+                        <img src="{{url('images/logo_alpha.png')}}" alt="logo" title="logo" style="width: 144px; height: 36px;">
+                      </a>
                       <div class="d-flex order-lg-2 ml-auto">
                         @if(Auth::user()->checkRol("Super Usuario"))
-                        <div class="nav-item d-none d-md-flex"> <a href="{{url('/superuser/nuevoCliente')}}"
-                            class="btn btn-sm btn-outline-primary">Agregar
-                            cliente</a> 
-                        </div>
-                        
+                        <div class="nav-item d-none d-md-flex"> 
+                          <a href="{{url('/superuser/nuevoCliente')}}" class="btn btn-sm btn-outline-primary">
+                            Agregar Cliente
+                          </a> 
+                        </div>                      
                         @elseif(Auth::user()->checkRol("Administrador"))
-                        <div class="nav-item d-none d-md-flex"> <a href="{{url('/administrador/nuevoUsuario')}}"
-                            class="btn btn-sm btn-outline-primary">Agregar
-                            usuario</a> 
+                        <div class="nav-item d-none d-md-flex"> 
+                          <a href="{{url('/administrador/nuevoUsuario')}}" class="btn btn-sm btn-outline-primary">
+                            Agregar Usuario
+                          </a> 
                         </div>
                         @elseif(Auth::user()->checkRol('Recursos Humanos'))
-                        <div class="nav-item d-none d-md-flex"> <a href="{{url('/recursosHumanos/nuevoMedico')}}"
-                            class="btn btn-sm btn-outline-primary">Agregar
-                            medico</a> 
+                        <div class="nav-item d-none d-md-flex"> 
+                          <a href="{{url('/recursosHumanos/nuevoMedico')}}" class="btn btn-sm btn-outline-primary">
+                            Agregar Médico
+                          </a> 
                         </div>
                         @endif
-                        @yield('auxiliar')
-                        
-                        
-                        <div class="dropdown"> <a href="#" class="nav-link pr-0 leading-none"
-                            data-toggle="dropdown"> <span class="avatar" style="background-image:url( {{url('/demo/faces/female/25.jpg')}})"></span>
-                            @if (Auth::user()->checkRol("Administrador"))
-                              <span class="ml-2 d-none d-lg-block"> <span class="text-default">Hospital {{Auth::user()->hospital->nombre}}</span> <small class="text-muted d-block mt-1">{{Auth::user()->rol->nombre}}</small>
-                            @else
-                              <span class="ml-2 d-none d-lg-block"> <span class="text-default">{{Auth::user()->username}}</span> <small class="text-muted d-block mt-1">{{Auth::user()->rol->nombre}}</small>
-                            @endif
-                            </span> </a>
+                        @yield('auxiliar')                                                
+                        <div class="dropdown" >
+                          <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown"> 
+                          <span class="avatar" style="background-image:url( {{url('/demo/faces/female/25.jpg')}})"></span>
+                          @if (Auth::user()->checkRol("Administrador"))
+                              <span class="ml-2 d-none d-lg-block"> 
+                                <span class="text-default">
+                                  Hospital {{Auth::user()->hospital->nombre}}
+                                </span> 
+                                <small class="text-muted d-block mt-1">
+                                  {{Auth::user()->rol->nombre}}
+                                </small>
+                              </span>
+                          @else
+                                <span class="ml-2 d-none d-lg-block"> 
+                                  <span class="text-default">
+                                    {{Auth::user()->username}}
+                                  </span>
+                                  <small class="text-muted d-block mt-1">
+                                     {{Auth::user()->rol->nombre}}
+                                  </small>
+                                </span>
+                          @endif
+                          </a>
                           <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                           @if (Auth::user()->checkRol('Administrador'))
-                            <a class="dropdown-item" href="#"> <i class="dropdown-icon fe fe-user"></i>
-                              Editar perfil </a> 
-                            @endif
-                               <a class="dropdown-item" href="{{route('logout')}}">  <i class="dropdown-icon fe fe-log-out"></i> Salir </a>
+                            <a class="dropdown-item" href="#"> 
+                              <i class="dropdown-icon fe fe-user"></i>
+                              Editar perfil 
+                            </a> 
+                          @endif
+                            <a class="dropdown-item" href="{{route('logout')}}">
+                              <i class="dropdown-icon fe fe-log-out"></i> 
+                              Salir 
+                            </a>
                           </div>
                         </div>
                       </div>
-                      <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse"
-                        data-target="#headerMenuCollapse"> <span class="header-toggler-icon"></span>
-                      </a> </div>
+                      <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
+                        <span class="header-toggler-icon"></span>
+                      </a> 
+                    </div>
                   </div>
                 </div>
-
                 <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse" >
                   <div class="container">
                     <div class="row align-items-center">
-                      <div class="col-lg-3 ml-auto">
+                      <div class="col-lg-3 ml-auto pad">
                       @yield('buscador')
                       </div>
                       <div class="col-lg order-lg-first">
-                        <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
-                        
-                          <li class="nav-item"> <a href="{{url('/'.Auth::user()->rolUrl())}}" class="nav-link"><i class="fe fe-home"></i>
-                              Inicio</a> </li>
-                          
-                          @if (Auth::user()->checkRol('Super Usuario'))
-                          <li class="nav-item"> <a href="#" class="nav-link" data-toggle="dropdown"><i
-                                class="fe fe-box"></i> Reportes</a> </li>                          
-                                @yield('mas_opciones')
-                         
+                        <ul class="nav nav-tabs border-0 flex-column flex-lg-row">                                                                            
+                          @if (Auth::user()->checkRol('Super Usuario'))                                  
+                            @yield('more_options')                         
                           @elseif (Auth::user()->checkRol('Administrador'))
-                          <li class="nav-item"> <a href="#" class="nav-link" data-toggle="dropdown"><i
-                                class="fe fe-box"></i> Reportes</a> </li>
-                          <li class="nav-item"> <a href="/administrador/consultorios" class="nav-link"><i
-                                class="fe fe-calendar"></i> Consultorios</a> </li>
-                          
+                          <li class="nav-item"> 
+                            <a href="/historialMedico" class="nav-link" >
+                              <i class="fe fe-box"></i> 
+                                Reportes
+                            </a>
+                          </li>  
+                          <li class="nav-item">
+                            <a href="/administrador/consultorios" class="nav-link">
+                              <i class="fe fe-calendar"></i>
+                                Consultorios
+                            </a> 
+                          </li>                          
                           @elseif (Auth::user()->checkRol('Recursos Humanos'))
-                          <li class="nav-item"> <a href="/recursosHumanos/consultorios" class="nav-link"><i
-                                class="fe fe-calendar"></i> Consultorios</a> </li>
-                        
+                          <li class="nav-item"> 
+                            <a href="/recursosHumanos/consultorios" class="nav-link">
+                              <i class="fe fe-calendar"></i>
+                                Consultorios
+                            </a>
+                          </li>                        
                           @endif
-
-                          <li class="nav-item dropdown"> <br>
+                          <li class="nav-item dropdown">
+                            <br>
                           </li>
-                          <li class="nav-item"> <br>
+                          <li class="nav-item">
+                            <br>
                           </li>
                         </ul>
                       </div>
                     </div>
                   </div>
-                </div>
-
-          
-
+                </div>      
             @yield('body')
-
             </div>
-            </div>
-
-            <footer class="footer">
+          </div>
+          <footer class="footer">
               <div class="container">
                 <div class="row align-items-center flex-row-reverse">
                   <div class="col-auto ml-lg-auto">
                     <div class="row align-items-center">
                       <div class="col-auto">
-                        <ul class="list-inline list-inline-dots mb-0">
-                        </ul>
+                        <ul class="list-inline list-inline-dots mb-0"></ul>
                         <a href="./faq.html">Manual de usuario</a>
-                        <ul class="list-inline list-inline-dots mb-0">
-                        </ul>
+                        <ul class="list-inline list-inline-dots mb-0"></ul>
                       </div>
                     </div>
                   </div>
                   <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
-                    <p style="margin: 0px; padding: 0px; border-width: 0px; border-style: solid; border-color: transparent; transform-origin: left top 0px; background-repeat: no-repeat; max-height: 1e+06px; color: rgb(127, 127, 127); font-family: droid-sans, sans-serif; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">TELEFILA
-                      SAC © Todos los derechos reservados</p>
-                    <p style="margin: 0px; padding: 0px; border-width: 0px; border-style: solid; border-color: transparent; transform-origin: left top 0px; background-repeat: no-repeat; max-height: 1e+06px; color: rgb(127, 127, 127); font-family: droid-sans, sans-serif; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">Av.
-                      Joaquín Madrid 277 piso 2, San Borja T. 014750467</p>
-                    <p style="margin: 0px; padding: 0px; border-width: 0px; border-style: solid; border-color: transparent; transform-origin: left top 0px; background-repeat: no-repeat; max-height: 1e+06px; color: rgb(127, 127, 127); font-family: droid-sans, sans-serif; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">info@avtiva.com</p>
+                    <p style="margin: 0px; padding: 0px; border-width: 0px; border-style: solid; border-color: transparent; transform-origin: left top 0px; background-repeat: no-repeat; max-height: 1e+06px; color: rgb(127, 127, 127); font-family: droid-sans, sans-serif; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">
+                      TELEFILA SAC © Todos los derechos reservados
+                    </p>
+                    <p style="margin: 0px; padding: 0px; border-width: 0px; border-style: solid; border-color: transparent; transform-origin: left top 0px; background-repeat: no-repeat; max-height: 1e+06px; color: rgb(127, 127, 127); font-family: droid-sans, sans-serif; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">
+                      Av.Joaquín Madrid 277 piso 2, San Borja T. 014750467
+                    </p>
+                    <p style="margin: 0px; padding: 0px; border-width: 0px; border-style: solid; border-color: transparent; transform-origin: left top 0px; background-repeat: no-repeat; max-height: 1e+06px; color: rgb(127, 127, 127); font-family: droid-sans, sans-serif; font-size: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">
+                      info@avtiva.com
+                    </p>
                   </div>
                 </div>
               </div>
             </footer>
-
-        <!-- END CONTENIDOS -->
-        
+        <!-- END CONTENIDOS -->        
         </div>
     </div>
   </body>

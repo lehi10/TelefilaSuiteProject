@@ -10,15 +10,14 @@
 </div>
 @endsection
 
-@section('mas_opciones')
-<li class="nav-item"> <a href="/administrador/consultorios" class="nav-link"><i
-                                class="fe fe-calendar"></i> Consultorios</a> </li>
-<li class="nav-item"> <a href="/recursosHumanos" class="nav-link"><i
-                                class="fa fa-address-book"></i> Recursos Humanos</a> </li>     
-<li class="nav-item"> <a href="/admision" class="nav-link"><i
-                              class="fa fa-users"></i> Admisión</a> </li>
-<li class="nav-item"> <a href="/caja" class="nav-link"><i
-                              class="fa fa-money"></i> Caja</a> </li>                                                                                                                         
+@section('more_options')
+<li class="nav-item"><a href="{{url('/'.Auth::user()->rolUrl())}}" class="nav-link"><i class="fe fe-home"></i>Inicio</a></li>
+<li class="nav-item"> <a href="{{url('superuser/usersClient/'.Auth::user()->checkRol("Super Usuario"))}}"  class="nav-link"><i class="fa fa-users"></i>Usuarios</a> </li>
+<li class="nav-item"> <a href="/administrador/consultorios" class="nav-link"><i class="fa fa-stethoscope"></i> Consultorios</a></li>                                     
+<li class="nav-item slc"> <a href="/recursosHumanos" class="nav-link"><i class="fa fa-user-md"></i> Recursos Humanos</a> </li>     
+<li class="nav-item"> <a href="/admision" class="nav-link"><i class="fa fa-file-text"></i> Admisión</a> </li>
+<li class="nav-item"> <a href="/caja" class="nav-link"><i class="fa fa-money"></i> Caja</a> </li>                                                                                                                         
+<li class="nav-item"> <a href="/historialMedico" class="nav-link" ><i class="fa fa-bar-chart"></i> Reportes</a></li>                                                                               
 @endsection
 
 @section('body')

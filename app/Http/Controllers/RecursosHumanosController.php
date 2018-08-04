@@ -131,7 +131,11 @@ class RecursosHumanosController extends Controller
     {
         if (Auth::user()->hospital_id)
             {
-                $consultorios=Consultorio::where("hospital_id",Auth::user()->hospital_id)->get();
+                $consultorios=Consultorio::where("consultorios.hospital_id",Auth::user()->hospital_id)                        
+                        ->leftJoin('medicos', 'consultorios.medico_id', '=', 'medicos.id')
+                        ->leftJoin('agendas','agendas.medico_id','=','consultorios.medico_id')          
+                        ->select('consultorios.*', 'medicos.turno','agendas.turnos')
+                        ->get(); 
                 $agendas=collect();
                 foreach ($consultorios as $key=>$consultorio) {
                     //echo "asdas ".now()->format("Y-m-d")."\n";

@@ -71,10 +71,8 @@ Route::group(['prefix'=>'administrador','middleware' => 'rol:Administrador'],fun
         $usuarios->withPath('custom/url');   
     });
     Route::get('/',  'AdministracionController@index' );
-    Route::get('editar','AdministracionController@editarPerfilHospital');
-
-   
-
+    Route::get('/base',  'AdministracionController@index1' );
+    Route::get('editar','AdministracionController@editarPerfilHospital');   
     Route::get('nuevoUsuario','AdministracionController@nuevoUsuario');
     Route::get('/{idUser}/user','AdministracionController@showUser');
 
@@ -186,3 +184,4 @@ Route::group(['prefix'=>'historialMedico','middleware' => 'rol:Historial Medico'
 });
 
 Route::get('pdf', 'PdfController@invoice');
+
