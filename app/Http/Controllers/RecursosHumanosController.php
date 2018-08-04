@@ -42,13 +42,14 @@ class RecursosHumanosController extends Controller
     {
         if (Auth::user()->hospital_id)
         {
+            $apell = $request->apellidos;
             $validateData = $request->validate([
                 'nombres' => [
                     'required',
-                     Rule::unique('medicos')->where( function ($query) {
+                     Rule::unique('medicos')->where( function ($query) use ($apell){
                         $query->where([
                             ['hospital_id',Auth::user()->hospital_id],
-                            ['apellidos',$request->apellidos],
+                            ['apellidos',$apell],
                         ]);
                     }), 
                 ],
