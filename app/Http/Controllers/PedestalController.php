@@ -65,7 +65,7 @@ class PedestalController extends Controller
             $agenda = $medico->agendas->where('fecha',$dia)->first();
             $citas =$agendas->citas;
             $ncitas = $citas->count();
-            if(ncitas<$agenda->turnos)
+            if($ncitas<$agenda->turnos)
             {
                 $agendas->push($agenda);
             }
