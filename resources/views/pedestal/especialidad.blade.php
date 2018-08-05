@@ -54,32 +54,35 @@
      <div id="u559"><!-- group -->
 
     <div class="padre">
-    @foreach ( $especialidades as $especialidad )
-      <div class="hijo">
-        <form action="/pedestal/fecha" method="post" id="form">
-          {{csrf_field()}}
-          <input type="hidden" name="especialidad_id" value="{{$especialidad->id}}">
-          <input type="hidden" name="apellidos" value="{{$paciente->apellidos}}">
-          <input type="hidden" name="nombres" value="{{$paciente->nombres}}">
-          <input type="hidden" name="paciente_id" value="{{$paciente->id}}">
-          <a style='background:transparent url("../images/{{$especialidad->id}}.png?crc=3939622240")' class="nonblock nontext museBGSize colelem" id="u570" href="#" onclick="document.getElementById('form').submit()"><!-- simple frame --></a>
-        </form>
-      </div>
-      @endforeach
-
+    @if(isset($especialidades))
+      @foreach ( $especialidades as $especialidad )
+        <div class="hijo">
+          <form action="/pedestal/fecha" method="post" id="form">
+            {{csrf_field()}}
+            <input type="hidden" name="especialidad_id" value="{{$especialidad->id}}">
+            <input type="hidden" name="apellidos" value="{{$paciente->apellidos}}">
+            <input type="hidden" name="nombres" value="{{$paciente->nombres}}">
+            <input type="hidden" name="paciente_id" value="{{$paciente->id}}">
+            <a style='background:transparent url("../images/{{$especialidad->id}}.png?crc=3939622240")' class="nonblock nontext museBGSize colelem" id="u570" href="#" onclick="document.getElementById('form').submit()"><!-- simple frame --></a>
+          </form>
+        </div>
+        @endforeach
+    @endif
+    
+    @if(isset($especialidadesReferidas))
       @foreach ( $especialidadesReferidas as $especialidad )
-      <div class="hijo">
-        <form action="/pedestal/fecha" method="post" id="form">
-          {{csrf_field()}}
-          <input type="hidden" name="especialidad_id" value="{{$especialidad->id}}">
-          <input type="hidden" name="apellidos" value="{{$paciente->apellidos}}">
-          <input type="hidden" name="nombres" value="{{$paciente->nombres}}">
-          <input type="hidden" name="paciente_id" value="{{$paciente->id}}">
-          <a style='background:transparent url("../images/{{$especialidad->id}}.png?crc=3939622240")' class="nonblock nontext museBGSize colelem" id="u570" href="#" onclick="document.getElementById('form').submit()"><!-- simple frame --></a>
-        </form>
-      </div>
+        <div class="hijo">
+          <form action="/pedestal/fecha" method="post" id="form">
+            {{csrf_field()}}
+            <input type="hidden" name="especialidad_id" value="{{$especialidad->id}}">
+            <input type="hidden" name="apellidos" value="{{$paciente->apellidos}}">
+            <input type="hidden" name="nombres" value="{{$paciente->nombres}}">
+            <input type="hidden" name="paciente_id" value="{{$paciente->id}}">
+            <a style='background:transparent url("../images/{{$especialidad->id}}.png?crc=3939622240")' class="nonblock nontext museBGSize colelem" id="u570" href="#" onclick="document.getElementById('form').submit()"><!-- simple frame --></a>
+          </form>
+        </div>
       @endforeach
-      
+      @endif
     </div>
     
      </div>
