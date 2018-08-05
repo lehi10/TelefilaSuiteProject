@@ -4,7 +4,6 @@ namespace telefilaSuite\Http\Controllers;
 
 use telefilaSuite\Paciente;
 use telefilaSuite\Hospital;
-use telefilaSuite\Cita;
 use telefilaSuite\Especialidad;
 use Illuminate\Http\Request;
 use DateTime;
@@ -61,46 +60,44 @@ class PedestalController extends Controller
         //return $request;
         $paciente=Paciente::find($request->paciente_id);
         $date=new DateTime($request->dia);
-        $dia='2018-08-04';
+        $dia = '2018-08-04';
+        
         $medicos=$paciente->hospital->consultorios()->where('pedestal',1)
                     ->where('especialidad_id',$request->especialidad_id)->has('medico')
                     ->with('medico')->get()->pluck('medico');
-        
-        $agendas=collect();
+
+        $agendas = collect();
         foreach ($medicos as $medico) {
-            $agenda=$medico->agendas->where('fecha',$dia)->first();
-            $citas=$agenda->citas;
-            $ncitas=$citas->count();
-            if ($ncitas<$agenda->turnos)
+            $agenda = $medico->agendas->where('fecha',$dia)->first();
+            $citas =$agendas->citas;
+            $ncitas = $citas->count();
+            if($ncitas<$agenda->turnos)
             {
                 $agendas->push($agenda);
             }
         }
         $agendaEscogida=$agendas->first();
-        $consultorio=$agendaEscogida->medico->consultorio;
-        $lastCita=$agendaEscogida->citas->sortByDesc('horaFinal')->first();
-        if ($lastCita)
+        $cita=$agendaEscogida->citas->sortByDesc('horaFinal')->first();
+        if($cita)
         {
-            $hora=$lastCita->horaFinal;
+            $hora = $cita->horaFinal();
         }
         else{
-            $hora=$agendaEscogida->horaInicio;
+            $hora = $agendaEscogida->horaInicio;
         }
-
-        $medico=$consultorio->medico;
-
-        $cita=new Cita;
+        $cita = new Cita;
         $cita->fecha=$dia;
-        $hora=new DateTime($hora);
-        $cita->horaInicio=$hora->format('H:i');
-        $hora->modify('+'.$agendaEscogida->tiempoCita.' minutes');
-        $cita->horaFinal=$hora->format('H:i');
-        $cita->paciente_id=$request->paciente_id;
-        $cita->hospital_id=$paciente->hospital->id;
-        $cita->agenda_id  =$agendaEscogida->id;
-        $cita->pagado=false;
+        $horaFinal = new DateTime($hora);
+        $cita->horaInicio = $horaFinal->format('H:i');
+        $horaFinal->modify('+'.$agendaEscogida->tiempoCita.' minutes');
+        $cita->horaFinal = $horaFinal->format('H:i');
+        $cita->paciente_id = $request->paciente_id;
+        $cita->hospital_id = $paciente->hospital->id;
+        $cita->agenda_id = $agendaEscogida->id;
+        $cita->pagado = false;
         $cita->save();
-        return view('pedestal.imprime',['cita'=>$cita,'paciente'=>$paciente,'consultorio'=>$consultorio,'medico'=>$medico]);
+       // return $cita;
+        return view('pedestal.imprime', ['cita'=>$cita]);
     }
     
     public function imprimiendo(Request $request)
