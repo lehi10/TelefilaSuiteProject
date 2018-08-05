@@ -15,6 +15,7 @@
    var __adobewebfontsappname__ = "muse";
 </script>
   <!-- JS includes -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="  crossorigin="anonymous"></script>
   <script type="text/javascript">
    document.write('\x3Cscript src="' + (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//webfonts.creativecloud.com/basic:n4:default.js" type="text/javascript">\x3C/script>');
 </script>
@@ -30,7 +31,7 @@
      <img class="block" id="u281_img" src="images/logo_alpha2.png?crc=4239319242" alt="" width="171" height="42"/>
     </div>
     <div class="clearfix" id="u977-4"><!-- content -->
-     <p>Hola! Rolando Ancajima</p>
+     <p>Hola! {{$nombres}}  {{$apellidos}}</p>
     </div>
     <a class="nonblock nontext museBGSize" id="u978" href="index.html"><!-- simple frame --></a>
    </div>
@@ -38,6 +39,17 @@
     <div class="clearfix colelem" id="u231-4"><!-- content -->
      <p>¿Qué día necesitas atenderte?</p>
     </div>
+
+    <form action="/pedestal/imprime" method="post" id="form">
+      {{csrf_field()}}
+      <input type="hidden" name="paciente_id" value='{{$paciente_id}}'>
+      <input type="hidden" name="especialidad_id" value='{{$especialidad_id}}'>
+      <input type="hidden" name="dia" value='' id="dia">
+      <!-- <input type="hidden" name="mes" value='{{$mes}}'>
+      <input type="hidden" name="year" value='{{$year}}'> -->
+
+
+    </form>
     
     <div class="browser_width colelem" id="u310-bw">
      <div id="u310"><!-- group -->
@@ -105,7 +117,7 @@
           <p>Jueves</p>
          </div>
         </div>
-        <a class="nonblock nontext museBGSize clearfix colelem" id="u734" href="{{url('pedestal/imprime')}}"><!-- column --><div class="clearfix colelem" id="u752-4"><!-- content --><p>28</p></div><div class="clearfix colelem" id="u737-4"><!-- content --><p>Jueves</p></div></a>
+        <a class="nonblock nontext museBGSize clearfix colelem" id="u734" href="#"><!-- column --><div class="clearfix colelem" id="u752-4"><!-- content --><p>28</p></div><div class="clearfix colelem" id="u737-4"><!-- content --><p>Jueves</p></div></a>
        </div>
        <div class="clearfix grpelem" id="pu725"><!-- column -->
         <div class="museBGSize clearfix colelem" id="u725"><!-- column -->
@@ -128,6 +140,17 @@
       </div>
      </div>
     </div>
+
+    <script>
+      $('#u734').click(function(){
+        var dia=$("#u752-4").text();
+        //console.log(dia);
+        $('#dia').val('{{$year}}-{{$mes}}-'+dia);
+        $("#form").submit();
+        
+
+      });
+    </script>
 
     
    </div>

@@ -19,7 +19,7 @@ class CitasTableSeeder extends Seeder
         $tiempoCita=$agenda->tiempoCita;
         $t=$agenda->horaInicio;
         $t0= new DateTime($t);
-        for ($i=0; $i < $turnos; $i++) { 
+        for ($i=0; $i < $turnos; $i++) {
             $cita= new Cita;
             $cita->timestamps=false;
             $cita->fecha=now()->format("Y-m-d");

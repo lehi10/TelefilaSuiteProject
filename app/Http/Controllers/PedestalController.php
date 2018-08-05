@@ -6,6 +6,7 @@ use telefilaSuite\Paciente;
 use telefilaSuite\Hospital;
 use telefilaSuite\Especialidad;
 use Illuminate\Http\Request;
+use DateTime;
 
 class PedestalController extends Controller
 {
@@ -28,7 +29,7 @@ class PedestalController extends Controller
                 $especialidades = $hospital->consultorios()->where("pedestal",1)->pluck("especialidad_id");
                 $especialidades = Especialidad::find($especialidades);   //Especialidades con al menos un consultorio en pedestal
                 
-                return view('pedestal.especialidad',['paciente'=>$paciente]);    
+                return view('pedestal.especialidad',['paciente'=>$paciente,'especialidades'=>$especialidades]);    
             }
             else
             {
@@ -41,12 +42,24 @@ class PedestalController extends Controller
 
     public function fecha(Request $request)
     {
-        
-        return view('pedestal.fecha');
+        //return $request;
+        $time=now();
+        return view('pedestal.fecha',['nombres'=>$request->nombres,'apellidos'=>$request->apellidos,
+                                    'paciente_id'=>$request->paciente_id,'especialidad_id'=>$request->especialidad_id,
+                                    'mes'=>$time->format('m'),'year'=>$time->format('Y')]);
     }
     
     public function imprime(Request $request)
     {
+        //return $request;
+        $paciente=Paciente::find($request->paciente_id);
+        $date=new DateTime($request->dia);
+        $consultorios=$paciente->hospital->consultorios()->where('pedestal',1)
+                    ->where('especialidad_id',$request->especialidad_id)->has('medico')
+                    ->with('medico')->get()->pluck('medico');
+
+        
+        return $consultorios;
         return view('pedestal.imprime');
     }
     

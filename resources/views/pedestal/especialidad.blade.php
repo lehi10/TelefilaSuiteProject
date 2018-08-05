@@ -36,9 +36,18 @@
      <div id="u559"><!-- group -->
       <div class="clearfix" id="u559_align_to_page">
        <div class="clearfix grpelem" id="pu573"><!-- column -->
-        
-        <a class="nonblock nontext museBGSize colelem" id="u573" href="{{url('pedestal/fecha')}}?dni={{$paciente->dni}}"><!-- simple frame --></a>
+        <form action="/pedestal/fecha" method="post" id="form">
+          {{csrf_field()}}
+          <input type="hidden" name="especialidad_id" value="1">
+          <input type="hidden" name="apellidos" value="{{$paciente->apellidos}}">
+          <input type="hidden" name="nombres" value="{{$paciente->nombres}}">
+          <input type="hidden" name="paciente_id" value="{{$paciente->id}}">
+
+          <a class="nonblock nontext museBGSize colelem" id="u573" href="#" onclick="document.getElementById('form').submit()"><!-- simple frame --></a>
+        </form>
+
         <a class="nonblock nontext museBGSize colelem" id="u569" href="{{url('pedestal/fecha')}}"><!-- simple frame --></a>
+
        </div>
        <div class="clearfix grpelem" id="pu565"><!-- column -->
         <a class="nonblock nontext museBGSize colelem" id="u565" href="{{url('pedestal/fecha')}}"><!-- simple frame --></a>
