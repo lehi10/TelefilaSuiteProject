@@ -90,8 +90,8 @@ class PedestalController extends Controller
         $cita->agenda_id = $agendaEscogida->id;
         $cita->pagado = false;
         $cita->save();
-        return $cita;
-        return view('pedestal.imprime');
+       // return $cita;
+        return view('pedestal.imprime', ['cita'=>$cita]);
     }
     
     public function imprimiendo(Request $request)
