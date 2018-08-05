@@ -4,6 +4,7 @@ namespace telefilaSuite\Http\Controllers;
 
 use telefilaSuite\Paciente;
 use telefilaSuite\Hospital;
+use telefilaSuite\Cita;
 use telefilaSuite\Especialidad;
 use Illuminate\Http\Request;
 use DateTime;
