@@ -22,4 +22,9 @@ class Cita extends Model
     {
         return $this->hasOne(Transaccion::class);
     }
+
+    public function agenda()
+    {
+        return $this->belongsTo(Agenda::class);
+    }
 }

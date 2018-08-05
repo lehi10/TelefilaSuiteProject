@@ -129,7 +129,6 @@ class AdministracionController extends Controller
                         ->get();                                                       
                 $agendas=collect();            
                 foreach ($consultorios as $key=>$consultorio) {
-                 
                     $agendas->push(Agenda::where('medico_id',$consultorio->medico_id)->where("fecha",now()->format("Y-m-d"))->pluck("turnos")->first());
                 }
                 

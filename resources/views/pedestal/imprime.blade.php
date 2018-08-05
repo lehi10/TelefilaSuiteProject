@@ -24,7 +24,7 @@
       <div id="u839"><!-- simple frame --></div>
      </div>
      <div class="clearfix" id="u847-4"><!-- content -->
-      <p>Hola! Rolando Ancajima</p>
+      <p>Hola! {{$paciente->nombres}} {{$paciente->apellidos}}</p>
      </div>
      <div class="clip_frame" id="u844"><!-- image -->
       <img class="block" id="u844_img" src="/images/logo_alpha2.png?crc=4239319242" alt="" width="171" height="42"/>
@@ -40,7 +40,7 @@
        <div class="clearfix colelem" id="pu841"><!-- group -->
         <a class="nonblock nontext museBGSize clearfix grpelem" id="u841" href="fecha.html"><!-- group --><div class="clip_frame grpelem" id="u948"><!-- image --><img class="block" id="u948_img" src="images/check.png?crc=501764073" alt="" width="116" height="114"/></div></a>
         <div class="clearfix grpelem" id="u880-6"><!-- content -->
-         <p>Se ha reservado temporalmente tu turno con el Dr. Armando Bejarano para la especialidad de Medicina General para el dia JUEVES 28 a las 12:15. Dale en IMPRIMIR y acércate a caja a <span id="u880-2">pagar S/.11.00</span> y así confirmar tu turno.</p>
+         <p>Se ha reservado temporalmente tu turno con el Dr. {{$medico->nombres.' '.$medico->apellidos }} para la especialidad de {{$consultorio->especialidad->nombre}}  para el {{$cita->fecha}} a las {{$cita->horaInicio}}. Dale en IMPRIMIR y acércate a caja a <span id="u880-2">pagar S/.{{$consultorio->especialidad->tarifa}}</span> y así confirmar tu turno.</p>
         </div>
        </div>
        <a class="nonblock nontext museBGSize clearfix colelem" id="u883" href="{{url('pedestal/imprimiendo')}}"><!-- group --><div class="clearfix grpelem" id="u884-4"><!-- content --><p>IMPRIMIR</p></div></a>

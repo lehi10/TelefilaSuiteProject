@@ -23,6 +23,11 @@ class Consultorio extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function agendas()
+    {
+        return $this->hasMany(Agenda::class);
+    }
+
     public function hospital()
     {
         return $this->belongsTo(Hospital::class);

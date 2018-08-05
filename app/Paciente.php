@@ -9,7 +9,7 @@ class Paciente extends Model
     protected $fillable = ['id', 'nombre','apellido','dni','departamento','ciudad','edad','sis','sexo','celular','hospital_id','create_at','update_at'];
     public function citas()
     {
-        return $this->hasMany(Paciente::class);
+        return $this->hasMany(Cita::class);
     }
     public function hospital()
     {
