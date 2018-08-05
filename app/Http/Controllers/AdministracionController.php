@@ -14,8 +14,6 @@ use telefilaSuite\Medico;
 use telefilaSuite\Agenda;
 
 
-use Illuminate\Http\Request;
-
 use Auth;
 
 class AdministracionController extends Controller
