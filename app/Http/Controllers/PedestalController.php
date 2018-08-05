@@ -8,6 +8,7 @@ use telefilaSuite\Cita;
 use telefilaSuite\Especialidad;
 use Illuminate\Http\Request;
 use DateTime;
+use Illuminate\Support\Facades\DB;
 
 class PedestalController extends Controller
 {
@@ -30,7 +31,12 @@ class PedestalController extends Controller
                 $especialidades = $hospital->consultorios()->where("pedestal",1)->pluck("especialidad_id");
                 $especialidades = Especialidad::find($especialidades);   //Especialidades con al menos un consultorio en pedestal
                 
-                return view('pedestal.especialidad',['paciente'=>$paciente,'especialidades'=>$especialidades]);    
+                
+                $especialidadesReferidas = DB::table('especialidad_paciente')->select('especialidads.*')->where('paciente_id',$paciente->id)
+                    ->Join('especialidads','especialidads.id','=','especialidad_paciente.especialidad_id')->get();
+                
+                
+                return view('pedestal.especialidad',['paciente'=>$paciente,'especialidades'=>$especialidades,'especialidadesReferidas'=>$especialidadesReferidas]);    
             }
             else
             {

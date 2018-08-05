@@ -11,12 +11,26 @@ use Illuminate\Support\Facades\DB;
 use Auth;
 
 
+/**
+ * Controlador para el modulo Caja.
+ */
 class CajaController extends Controller
 {
+    /**
+     * Funcion del index del modulo Caja.  
+     * Entradas:    Recibe por POST el codigo de un ticket ( citaID ).  
+     * 
+     * Salida:      El registro de la cita a partir de citaID , 
+     *              o los registros de las citas generadas el 
+     *              día actual. La salida es enviada a una vista
+     * 
+     */
     public function index(Request $request)    
     {
+        //Si se ha enviado el dato por POST se busca el registro con citaID y se envia a una vista.
         if(isset($request->citaID))
         {
+            //Obtenemos el id del hospital en el que nos encontramos (variable que fue guardada en Auth )
             $hospitalID = Auth::user()->hospital_id; 
             $citas = DB::table('pacientes')->select('*','pacientes.id as pacienteID')
             ->Join('citas', 'citas.paciente_id', '=', 'pacientes.id')
@@ -24,9 +38,9 @@ class CajaController extends Controller
             ->where('citas.hospital_id',$hospitalID)
             ->where('fecha',date("Y-m-d"))
             ->get();
-
             return view('caja.index',['citas'=>$citas]);
         }
+        //Si no se ha enviado el citaID se muestran las citas generadas el día actual
         else
         {
             $hospitalID = Auth::user()->hospital_id; 
@@ -39,9 +53,16 @@ class CajaController extends Controller
         }
         
     }
-
+    
+    /**
+     * Función para guardar un pago a una cita generada en el pedestal.
+     * Entradas:    Recibe por POST el codigo de un ticket ( citaID ).  
+     * 
+     * Salidas:     Mensaje de confirmación de pago.
+     */
     public function guardarPago(Request $request)
     {
+        //Se busca a partir de citaID el registro al que se actualizará el pago
         $cita=Cita::find($request->citaID);
         $cita->pagado=1;
         $cita->save();

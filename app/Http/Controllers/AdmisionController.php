@@ -41,15 +41,6 @@ class AdmisionController extends Controller
         else{
             return redirect('admision')->with(["message"=>"Hubo un error en el servidor","kindMessage"=>"danger"]);
         }
-        
-
-        
-
-        // DB::table('hospital_paciente')->insert(
-        //     ['paciente_id' => $pacienteId, 
-        //     'hospital_id' => $hospitalId]
-        // );
-
     }
     
     public function buscarPaciente(Request $request)
