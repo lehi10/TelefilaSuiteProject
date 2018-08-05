@@ -54,12 +54,43 @@ class PedestalController extends Controller
         //return $request;
         $paciente=Paciente::find($request->paciente_id);
         $date=new DateTime($request->dia);
-        $consultorios=$paciente->hospital->consultorios()->where('pedestal',1)
+        $dia = '2018-08-04';
+        
+        $medicos=$paciente->hospital->consultorios()->where('pedestal',1)
                     ->where('especialidad_id',$request->especialidad_id)->has('medico')
                     ->with('medico')->get()->pluck('medico');
 
-        
-        return $consultorios;
+        $agendas = collect();
+        foreach ($medicos as $medico) {
+            $agenda = $medico->agendas->where('fecha',$dia)->first();
+            $citas =$agendas->citas;
+            $ncitas = $citas->count();
+            if(ncitas<$agenda->turnos)
+            {
+                $agendas->push($agenda);
+            }
+        }
+        $agendaEscogida=$agendas->first();
+        $cita=$agendaEscogida->citas->sortByDesc('horaFinal')->first();
+        if($cita)
+        {
+            $hora = $cita->horaFinal();
+        }
+        else{
+            $hora = $agendaEscogida->horaInicio;
+        }
+        $cita = new Cita;
+        $cita->fecha=$dia;
+        $horaFinal = new DateTime($hora);
+        $cita->horaInicio = $horaFinal->format('H:i');
+        $horaFinal->modify('+'.$agendaEscogida->tiempoCita.' minutes');
+        $cita->horaFinal = $horaFinal->format('H:i');
+        $cita->paciente_id = $request->paciente_id;
+        $cita->hospital_id = $paciente->hospital->id;
+        $cita->agenda_id = $agendaEscogida->id;
+        $cita->pagado = false;
+        $cita->save();
+        return $cita;
         return view('pedestal.imprime');
     }
     
