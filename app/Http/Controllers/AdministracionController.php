@@ -55,8 +55,17 @@ class AdministracionController extends Controller
     {
 
      //   return $request;
+        $apell = $request->apellidos;
         $validateData = $request->validate([
-            'nombres' => 'required',
+            'nombres' => [
+                    'required',
+                     Rule::unique('users')->where( function ($query) use ($apell){
+                        $query->where([
+                            ['hospital_id',Auth::user()->hospital_id],
+                            ['apellidos',$apell],
+                        ]);
+                    }), 
+                ],
             'apellidos' => 'required',
             'password' => 'required',
         ]);
