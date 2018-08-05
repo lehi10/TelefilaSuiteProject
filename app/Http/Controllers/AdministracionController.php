@@ -3,6 +3,7 @@
 namespace telefilaSuite\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use telefilaSuite\Persona;
 use telefilaSuite\Hospital;
