@@ -72,7 +72,7 @@
                                 @endif
                                 <td>
                                 <div class="col"> </div>
-                                <strong>00</strong></td>
+                                <strong >{{$medico->turnos}}</strong></td>
                                 <td>
                                 <label class="custom-switch">
                                     <input   name="optRol" value="{{$medico->id}}" class="custom-switch-input" {{ $medico->nombres ? 'checked' :''}} type="checkbox"> 

@@ -28,6 +28,19 @@ class RecursosHumanosController extends Controller
     public function index()
     {
         $medicos=Medico::where('hospital_id',Auth::user()->hospital_id)->get();
+        $agendas = collect();
+        foreach ($medicos as $key=>$medico)
+        {
+            if($medico->agenda)
+            {
+                $medico->turnos = $medico->agenda->citas->where('fecha',now())->where('medico_id',$medico->id)->where('pagado',1);
+            }
+            else
+            {
+                $medico->turnos = '-';
+            }
+        }
+        //return $medicos;
         return view('recursosHumanos.index',["medicos"=>$medicos]);
 
     }
