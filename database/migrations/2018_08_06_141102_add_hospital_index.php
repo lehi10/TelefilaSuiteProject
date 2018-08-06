@@ -14,8 +14,10 @@ class AddHospitalIndex extends Migration
     public function up()
     {
         Schema::table('hospitals',function(Blueprint $table){
-            $table->string('codigo')->after('ruc');
+            $table->string('codigo')->after('ruc')->nullable();
         });
+
+
     }
 
     /**
