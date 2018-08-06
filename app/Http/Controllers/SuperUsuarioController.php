@@ -14,6 +14,16 @@ use Illuminate\Pagination\Paginator;
 
 use Session;
 use Redirect;
+
+
+
+function limpiarCaracteresEspeciales($string ){
+    $string = htmlentities($string);
+    $string = preg_replace('/\&(.)[^;]*;/', '\\1', $string);
+    return $string;
+}
+
+
 class SuperUsuarioController extends Controller
 {
     /**
@@ -167,13 +177,17 @@ class SuperUsuarioController extends Controller
             'tarifa' => 'nullable|numeric',
         ]);
         $hos= new Hospital();
-        $hos->fill($request->except(["_token","mes","dia","year","usuario","password","licencia"]));  
+        $hos->fill($request->except(["_token","mes","dia","year","usuario","password","licencia"]));
         $hos->fechaInicio=join('-',[ $request->year,$request->mes,$request->dia]);
         if ($request->licencia)
             $hos->licenciaAnual=true;
         else
             $hos->licenciaAnual=false;
-        $hos->save();  //Ya no necesitas hacer la consulta de abajo por que ya esta en $hos;
+        $hos->save();  
+        $codigo=mb_substr($hos->nombre,0,2,'UTF-8').$hos->id.substr($hos->ruc,-4);
+        $hos->codigo= strtolower(limpiarCaracteresEspeciales($codigo));
+        $hos->save();
+
         $admin= new User();
         $admin->username=$request->usuario;
         $admin->password=bcrypt($request->password);  // No se olviden de encriptarlo, si no el login no funciona
