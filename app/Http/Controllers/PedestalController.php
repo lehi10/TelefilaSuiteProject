@@ -32,8 +32,19 @@ class PedestalController extends Controller
                 $especialidades = Especialidad::find($especialidades);   //Especialidades con al menos un consultorio en pedestal
                 
                 
-                $especialidadesReferidas = DB::table('especialidad_paciente')->select('especialidads.*')->where('paciente_id',$paciente->id)
-                    ->Join('especialidads','especialidads.id','=','especialidad_paciente.especialidad_id')->get();
+                // $especialidadesReferidas = DB::table('especialidad_paciente')->select('especialidads.*')->where('paciente_id',$paciente->id)
+                //     ->Join('especialidads','especialidads.id','=','especialidad_paciente.especialidad_id')->get()
+
+                $especialidadesReferidas=$paciente->especialidads
+                    ->filter(function($item){
+                        $n=Carbon::now();
+                        $i=Carbon::parse($item->pivot->inicio);
+                        $f=Carbon::parse($item->pivot->final);
+                        return $n->between($i,$f);
+                    });
+                
+                
+                //return $especialidadesReferidas;
                 
                 
                 return view('pedestal.especialidad',['paciente'=>$paciente,'especialidades'=>$especialidades,'especialidadesReferidas'=>$especialidadesReferidas]);    
