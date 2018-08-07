@@ -140,8 +140,16 @@ class AdministracionController extends Controller
     public function crearConsultorio(Request $request)
     {
         //return $request;
+        
         $validateData = $request->validate([
-            'nombre' => 'required|unique:consultorios',
+            'nombre' => [
+                    'required',
+                     Rule::unique('consultorios')->where( function ($query){
+                        $query->where([
+                            ['hospital_id',Auth::user()->hospital_id],
+                        ]);
+                    }), 
+                ],
         ]);
         $consultorio= new Consultorio;
         $consultorio->fill($request->except('_token'));
