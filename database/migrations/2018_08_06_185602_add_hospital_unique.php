@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddHospitalIndex extends Migration
+class AddHospitalUnique extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddHospitalIndex extends Migration
     public function up()
     {
         Schema::table('hospitals',function(Blueprint $table){
-            $table->string('codigo')->after('ruc')->nullable();
+            $table->unique('codigo');
         });
 
 
@@ -28,6 +28,7 @@ class AddHospitalIndex extends Migration
     public function down()
     {
         Schema::table('hospitals',function(Blueprint $table){
+            $table->dropColumn('codigo');
         });
     }
 }
