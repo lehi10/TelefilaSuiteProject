@@ -6,6 +6,8 @@
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="/css/site_global.css?crc=443350757"/>
   <link rel="stylesheet" type="text/css" href="/css/imprime.css?crc=259043253" id="pagesheet"/>
+   
+
   <!-- Other scripts -->
   <script type="text/javascript">
    var __adobewebfontsappname__ = "muse";
@@ -43,7 +45,14 @@
          <p>Se ha reservado temporalmente tu turno con el Dr. {{$medico->nombres.' '.$medico->apellidos }} para la especialidad de {{$consultorio->especialidad->nombre}}  para el {{$cita->fecha}} a las {{$cita->horaInicio}}. Dale en IMPRIMIR y acércate a caja a <span id="u880-2">pagar S/.{{$consultorio->especialidad->tarifa}}</span> y así confirmar tu turno.</p>
         </div>
        </div>
-       <a class="nonblock nontext museBGSize clearfix colelem" id="u883" href="{{url('pedestal/imprimiendo')}}"><!-- group --><div class="clearfix grpelem" id="u884-4"><!-- content --><p>IMPRIMIR</p></div></a>
+
+        
+        
+       
+      <a class="nonblock nontext museBGSize clearfix colelem" id="u883" onclick="print()" href="{{url('pedestal/imprimiendo')}}"><!-- group --><div class="clearfix grpelem" id="u884-4"><!-- content --><p>IMPRIMIR</p></div></a>
+       
+       
+
        <div class="clearfix colelem" id="u895"><!-- group -->
         <a class="nonblock nontext clearfix grpelem" id="u889-4" href="{{url('pedestal')}}"><!-- content --><p>Cancelar</p></a>
         <a class="nonblock nontext rounded-corners grpelem" id="u892" href="{{url('pedestal')}}"><!-- simple frame --></a>
@@ -55,9 +64,9 @@
    </div>
   </div>
   <div class="preload_images">
-   <img class="preload" src="images/back.png?crc=107087755" alt=""/>
-   <img class="preload" src="images/medgen_a.png?crc=3923899377" alt=""/>
-   <img class="preload" src="images/largo_b.png?crc=4172065039" alt=""/>
+   <img class="preload" src="/images/back.png?crc=107087755" alt=""/>
+   <img class="preload" src="/images/medgen_a.png?crc=3923899377" alt=""/>
+   <img class="preload" src="/images/largo_b.png?crc=4172065039" alt=""/>
   </div>
   <!-- Other scripts -->
   <script type="text/javascript">
@@ -79,5 +88,15 @@ Muse.Utils.transformMarkupToFixBrowserProblems();/* body */
 </script>
   <!-- RequireJS script -->
   <script src="scripts/require.js?crc=244322403" type="text/javascript" async data-main="scripts/museconfig.js?crc=168988563" onload="if (requirejs) requirejs.onError = function(requireType, requireModule) { if (requireType && requireType.toString && requireType.toString().indexOf && 0 <= requireType.toString().indexOf('#scripterror')) window.Muse.assets.check(); }" onerror="window.Muse.assets.check();"></script>
+   
+   
+<script>
+function print() {
+    ventimp.print();
+    window.location.replace("/pedestal/imprimiendo");
+}
+</script>
+
    </body>
+
 </html>

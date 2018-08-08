@@ -9,6 +9,8 @@ use telefilaSuite\Especialidad;
 use Illuminate\Http\Request;
 use DateTime;
 use Illuminate\Support\Facades\DB;
+use Milon\Barcode\DNS1D;
+use Milon\Barcode\DNS2D;
 
 use Carbon\Carbon;
 
@@ -48,7 +50,7 @@ class PedestalController extends Controller
                 
                 //return $especialidadesReferidas;
                 
-                
+                    
                 return view('pedestal.especialidad',['paciente'=>$paciente,'especialidades'=>$especialidades,'especialidadesReferidas'=>$especialidadesReferidas]);    
             }
             else
@@ -62,7 +64,7 @@ class PedestalController extends Controller
 
     public function fecha(Request $request)
     {
-        //return $request;
+        
         $time=now();
         return view('pedestal.fecha',['nombres'=>$request->nombres,'apellidos'=>$request->apellidos,
                                     'paciente_id'=>$request->paciente_id,'especialidad_id'=>$request->especialidad_id,
@@ -74,14 +76,16 @@ class PedestalController extends Controller
         //return $request;
         $paciente=Paciente::find($request->paciente_id);
         $date=new DateTime($request->dia);
-        $dia='2018-08-04';
+        $dia='2018-08-07';
         $medicos=$paciente->hospital->consultorios()->where('pedestal',1)
                     ->where('especialidad_id',$request->especialidad_id)->has('medico')
                     ->with('medico')->get()->pluck('medico');
         
+        
         $agendas=collect();
         foreach ($medicos as $medico) {
             $agenda=$medico->agendas->where('fecha',$dia)->first();
+            
             $citas=$agenda->citas;
             $ncitas=$citas->count();
             if ($ncitas<$agenda->turnos)
@@ -89,6 +93,7 @@ class PedestalController extends Controller
                 $agendas->push($agenda);
             }
         }
+
         $agendaEscogida=$agendas->first();
         if (!$agendaEscogida)
         {
@@ -118,6 +123,8 @@ class PedestalController extends Controller
         $cita->agenda_id  =$agendaEscogida->id;
         $cita->pagado=false;
         $cita->save();
+        
+
         return view('pedestal.imprime',['cita'=>$cita,'paciente'=>$paciente,'consultorio'=>$consultorio,'medico'=>$medico]);
     }
     

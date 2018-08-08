@@ -37,16 +37,6 @@
      <p>¿Qué día necesitas atenderte?</p>
     </div>
 
-    <form action="/pedestal/imprime" method="post" id="form">
-      {{csrf_field()}}
-      <input type="hidden" name="paciente_id" value='{{$paciente_id}}'>
-      <input type="hidden" name="especialidad_id" value='{{$especialidad_id}}'>
-      <input type="hidden" name="dia" value='' id="dia">
-      <!-- <input type="hidden" name="mes" value='{{$mes}}'>
-      <input type="hidden" name="year" value='{{$year}}'> -->
-
-
-    </form>
     
     <div class="browser_width colelem" id="u310-bw">
      <div id="u310"><!-- group -->
@@ -114,7 +104,17 @@
           <p>Jueves</p>
          </div>
         </div>
-        <a class="nonblock nontext museBGSize clearfix colelem" id="u734" href="#"><!-- column --><div class="clearfix colelem" id="u752-4"><!-- content --><p>28</p></div><div class="clearfix colelem" id="u737-4"><!-- content --><p>Jueves</p></div></a>
+        <form action="/pedestal/imprime" method="post" id="form">
+          {{csrf_field()}}
+          <input type="hidden" name="paciente_id" value='{{$paciente_id}}'>
+          <input type="hidden" name="especialidad_id" value='{{$especialidad_id}}'>
+          <input type="hidden" name="dia" value='' id="dia">
+          <!-- <input type="hidden" name="mes" value='{{$mes}}'>
+          <input type="hidden" name="year" value='{{$year}}'> -->
+          <a class="nonblock nontext museBGSize clearfix colelem" id="u734" href="#" onclick="document.getElementById('form').submit()"><!-- column --><div class="clearfix colelem" id="u752-4"><!-- content --><p>28</p></div><div class="clearfix colelem" id="u737-4"><!-- content --><p>Jueves</p></div></a>
+        </form>
+        
+        
        </div>
        <div class="clearfix grpelem" id="pu725"><!-- column -->
         <div class="museBGSize clearfix colelem" id="u725"><!-- column -->
