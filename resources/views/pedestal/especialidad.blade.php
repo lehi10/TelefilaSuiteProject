@@ -53,34 +53,35 @@
     <div class="browser_width colelem" id="u559-bw">
      <div id="u559"><!-- group -->
 
+
+    <form action="/pedestal/{{$codigo}}/fecha" method="post" id="form">
+      {{csrf_field()}}
+      <input type="hidden" name="especialidad_id" value="" id="especialidad">
+      <input type="hidden" name="apellidos" value="{{$paciente->apellidos}}">
+      <input type="hidden" name="nombres" value="{{$paciente->nombres}}">
+      <input type="hidden" name="paciente_id" value="{{$paciente->id}}">
+    </form>
+  
+
+
     <div class="padre">
     @if(isset($especialidades))
       @foreach ( $especialidades as $especialidad )
         <div class="hijo">
-          <form action="/pedestal/fecha" method="post" id="form">
-            {{csrf_field()}}
-            <input type="hidden" name="especialidad_id" value="{{$especialidad->id}}">
-            <input type="hidden" name="apellidos" value="{{$paciente->apellidos}}">
-            <input type="hidden" name="nombres" value="{{$paciente->nombres}}">
-            <input type="hidden" name="paciente_id" value="{{$paciente->id}}">
-            <a style='background:transparent url("../images/{{$especialidad->id}}.png?crc=3939622240")' class="nonblock nontext museBGSize colelem" id="u570" href="#" onclick="document.getElementById('form').submit()"><!-- simple frame --></a>
-          </form>
+            <a style='background:transparent url("/images/{{$especialidad->id}}.png?crc=3939622240")' class="nonblock nontext museBGSize colelem" id="u570" href="#" onclick="mandarForm({{$especialidad->id}})"><!-- simple frame --></a>
         </div>
         @endforeach
     @endif
     
     @if(isset($especialidadesReferidas))
+  
+    <h2> <b> Especialidades referidas: </b> </h2>
       @foreach ( $especialidadesReferidas as $especialidad )
+        @if(!$especialidades->contains('id',$especialidad->id))
         <div class="hijo">
-          <form action="/pedestal/fecha" method="post" id="form">
-            {{csrf_field()}}
-            <input type="hidden" name="especialidad_id" value="{{$especialidad->id}}">
-            <input type="hidden" name="apellidos" value="{{$paciente->apellidos}}">
-            <input type="hidden" name="nombres" value="{{$paciente->nombres}}">
-            <input type="hidden" name="paciente_id" value="{{$paciente->id}}">
-            <a style='background:transparent url("../images/{{$especialidad->id}}.png?crc=3939622240")' class="nonblock nontext museBGSize colelem" id="u570" href="#" onclick="document.getElementById('form').submit()"><!-- simple frame --></a>
-          </form>
+          <a style='background:transparent url("/images/{{$especialidad->id}}.png?crc=3939622240")' class="nonblock nontext museBGSize colelem" id="u570" href="#" onclick="mandarForm({{$especialidad->id}})"><!-- simple frame --></a>
         </div>
+        @endif
       @endforeach
       @endif
     </div>
@@ -105,6 +106,16 @@
   </div>
   <!-- Other scripts -->
   
+  <script>
+    function mandarForm(value)
+    {
+
+      document.getElementById('especialidad').value = value;
+      document.getElementById('form').submit();
+    }
+  </script>
+
+
   <!-- RequireJS script -->
   <script src="/scripts/require.js?crc=244322403" type="text/javascript" async data-main="/scripts/museconfig.js?crc=168988563" onload="if (requirejs) requirejs.onError = function(requireType, requireModule) { if (requireType && requireType.toString && requireType.toString().indexOf && 0 <= requireType.toString().indexOf('#scripterror')) window.Muse.assets.check(); }" onerror="window.Muse.assets.check();"></script>
    </body>
