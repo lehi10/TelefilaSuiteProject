@@ -18,6 +18,6 @@ class Paciente extends Model
 
     public function especialidads()
     {
-        return $this->belongsToMany(Especialidad::class);
+        return $this->belongsToMany(Especialidad::class)->withPivot('inicio','final');
     }
 }
