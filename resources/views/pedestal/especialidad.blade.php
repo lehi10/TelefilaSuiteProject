@@ -54,7 +54,7 @@
      <div id="u559"><!-- group -->
 
 
-    <form action="/pedestal/{{$codigo}}/fecha" method="post" id="form">
+    <form action="/pedestal/fecha" method="post" id="form">
       {{csrf_field()}}
       <input type="hidden" name="especialidad_id" value="" id="especialidad">
       <input type="hidden" name="apellidos" value="{{$paciente->apellidos}}">
