@@ -38,6 +38,7 @@ class CajaController extends Controller
             ->where('citas.hospital_id',$hospitalID)
             ->where('fecha',date("Y-m-d"))
             ->get();
+            
             return view('caja.index',['citas'=>$citas]);
         }
         //Si no se ha enviado el citaID se muestran las citas generadas el día actual

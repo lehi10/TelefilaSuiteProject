@@ -23,6 +23,6 @@ class Especialidad extends Model
 
     public function pacientes()
     {
-        return $this->belongsToMany(Paciente::class);
+        return $this->belongsToMany(Paciente::class)->with('inicio','final');
     }
 }

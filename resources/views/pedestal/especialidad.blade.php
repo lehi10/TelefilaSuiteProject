@@ -60,6 +60,7 @@
       <input type="hidden" name="apellidos" value="{{$paciente->apellidos}}">
       <input type="hidden" name="nombres" value="{{$paciente->nombres}}">
       <input type="hidden" name="paciente_id" value="{{$paciente->id}}">
+      <input type="hidden" name="codigo" value="{{$codigo}}">
     </form>
   
 

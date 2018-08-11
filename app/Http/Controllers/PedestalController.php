@@ -16,9 +16,18 @@ use Carbon\Carbon;
 
 class PedestalController extends Controller
 {
-    public function index()    
+    public function root()
     {
-        return view('pedestal.index');
+        return view('pedestal.root');
+    }
+    public function index(Request $request)    
+    {
+        $hospital=Hospital::where('codigo',$request->codigo)->first();
+        if ($hospital)
+        {
+            return view('pedestal.index',['hospital_id'=>$hospital->id,'codigo'=>$hospital->codigo]);
+        }
+        return redirect('/pedestal')->with(['message'=>'El hospital requerido no existe']);
     }
 
     public function especialidad(Request $request)
@@ -26,13 +35,15 @@ class PedestalController extends Controller
         //return $request;
         if(isset($request->dni))
         {
-            
-            $paciente = Paciente::select('*')->where('dni',$request->dni)->first();
+            $hospital=Hospital::find($request->hospital_id);
+          //  return $hospital; 
+
+            $paciente = Paciente::where('dni',$request->dni)->where('hospital_id',$hospital->id)->first();
             if($paciente)
             {
-                $hospital=Hospital::find($paciente->hospital_id);
+                //$hospital=Hospital::find($paciente->hospital_id);
                 //$especialidades=Especialidad::all();
-                $especialidades = $hospital->consultorios()->where("pedestal",1)->pluck("especialidad_id");
+                $especialidades = $hospital->consultorios()->where("pedestal",1)->has('medico')->pluck("especialidad_id");
                 $especialidades = Especialidad::find($especialidades);   //Especialidades con al menos un consultorio en pedestal
                 
                 
@@ -50,26 +61,29 @@ class PedestalController extends Controller
                 
                 //return $especialidadesReferidas;
                 
-                    
-                return view('pedestal.especialidad',['paciente'=>$paciente,'especialidades'=>$especialidades,'especialidadesReferidas'=>$especialidadesReferidas]);    
+                
+                
+                return view('pedestal.especialidad',['paciente'=>$paciente,'especialidades'=>$especialidades,'especialidadesReferidas'=>$especialidadesReferidas,'codigo'=>$hospital->codigo]);    
             }
             else
             {
-                return redirect('pedestal')->with(['message'=> 'El DNI no es valido, o el paciente aun no tiene un registro. Puede acercarse a Admisión para solucionar el problema.']);        
+                return redirect('pedestal/'.$hospital->codigo)->with(['message'=> 'El DNI no es valido, o el paciente aun no tiene un registro. Puede acercarse a Admisión para solucionar el problema.']);        
             }
         }
-        return redirect('pedestal')->with(['message'=> 'Ingrese DNI']); 
+        $hos=Hospital::find($request->hospital_id);
+        return redirect('pedestal/'.$request->codigo)->with(['message'=> 'Ingrese DNI']); 
     }
 
 
     public function fecha(Request $request)
     {
-        
         $time=now();
         return view('pedestal.fecha',['nombres'=>$request->nombres,'apellidos'=>$request->apellidos,
                                     'paciente_id'=>$request->paciente_id,'especialidad_id'=>$request->especialidad_id,
-                                    'mes'=>$time->format('m'),'year'=>$time->format('Y')]);
+                                    'mes'=>$time->format('m'),'year'=>$time->format('Y'),
+                                    'codigo'=>$request->codigo]);
     }
+    
     
     public function imprime(Request $request)
     {
@@ -85,19 +99,21 @@ class PedestalController extends Controller
         $agendas=collect();
         foreach ($medicos as $medico) {
             $agenda=$medico->agendas->where('fecha',$dia)->first();
-            
-            $citas=$agenda->citas;
-            $ncitas=$citas->count();
-            if ($ncitas<$agenda->turnos)
+            if ($agenda)
             {
-                $agendas->push($agenda);
+                $citas=$agenda->citas;
+                $ncitas=$citas->count();
+                if ($ncitas<$agenda->turnos)
+                {
+                    $agendas->push($agenda);
+                }
             }
         }
 
         $agendaEscogida=$agendas->first();
         if (!$agendaEscogida)
         {
-            return redirect('/pedestal')->with(['message'=>'No se encontro ningun consultorio disponible.']);
+            return redirect("pedestal/".$request->codigo)->with(['message'=>'No se encontro ningun consultorio disponible.']);
         }
 
         $consultorio=$agendaEscogida->medico->consultorio;
@@ -123,13 +139,11 @@ class PedestalController extends Controller
         $cita->agenda_id  =$agendaEscogida->id;
         $cita->pagado=false;
         $cita->save();
-        
-
-        return view('pedestal.imprime',['cita'=>$cita,'paciente'=>$paciente,'consultorio'=>$consultorio,'medico'=>$medico]);
+        return view('pedestal.imprime',['cita'=>$cita,'paciente'=>$paciente,'consultorio'=>$consultorio,'medico'=>$medico,'codigo'=>$request->codigo]);
     }
     
     public function imprimiendo(Request $request)
     {
-        return view('pedestal.imprimiendo');
+        return view('pedestal.imprimiendo',['codigo'=>$request->codigo]);
     }
 }

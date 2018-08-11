@@ -28,7 +28,7 @@
    <div class="clearfix colelem" id="u184-4"><!-- content -->
     <p>Ingresa tu numero de DNI</p>
    </div>
-   <form action="/pedestal/especialidad" class="form-DNIgrp clearfix colelem" id="widgetu113" method="post" enctype="multipart/form-data"><!-- none box -->
+   <form action="/pedestal/{{$codigo}}/especialidad" class="form-DNIgrp clearfix colelem" id="widgetu113" method="post" enctype="multipart/form-data"><!-- none box -->
    {{csrf_field()}}
     <div class="clearfix grpelem" id="u129-4"><!-- content -->
      <p>Enviando formulario...</p>
@@ -47,6 +47,7 @@
     <div class="fld-grp clearfix grpelem" id="widgetu118" data-required="false"><!-- none box -->
      <span class="fld-textarea actAsDiv rounded-corners clearfix grpelem" id="u119-3"><!-- content -->
      <input class="wrapped-input" id="widgetu118_input" name="dni" tabindex="1"></input>
+     <input type="hidden" name="hospital_id" value={{$hospital_id}}>
      </span>
     </div>
     </form>

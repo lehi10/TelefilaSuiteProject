@@ -66,8 +66,8 @@
       </a>
       
        <div class="clearfix colelem" id="u895"><!-- group -->
-        <a class="nonblock nontext clearfix grpelem" id="u889-4" href="{{url('pedestal')}}"><!-- content --><p>Cancelar</p></a>
-        <a class="nonblock nontext rounded-corners grpelem" id="u892" href="{{url('pedestal')}}"><!-- simple frame --></a>
+        <a class="nonblock nontext clearfix grpelem" id="u889-4" href="{{url('pedestal/'.$codigo)}}"><!-- content --><p>Cancelar</p></a>
+        <a class="nonblock nontext rounded-corners grpelem" id="u892" href="{{url('pedestal/'.$codigo)}}"><!-- simple frame --></a>
        </div>
       </div>
      </div>

@@ -16,8 +16,6 @@ class AddHospitalUnique extends Migration
         Schema::table('hospitals',function(Blueprint $table){
             $table->unique('codigo');
         });
-
-
     }
 
     /**

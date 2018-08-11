@@ -30,13 +30,23 @@
     <div class="clearfix" id="u977-4"><!-- content -->
      <p>Hola! {{$nombres}}  {{$apellidos}}</p>
     </div>
-    <a class="nonblock nontext museBGSize" id="u978" href="index.html"><!-- simple frame --></a>
+    <a class="nonblock nontext museBGSize" id="u978" href="{{url()->previous()}}"><!-- simple frame --></a>
    </div>
    <div class="clearfix grpelem" id="pu231-4"><!-- column -->
     <div class="clearfix colelem" id="u231-4"><!-- content -->
      <p>¿Qué día necesitas atenderte?</p>
     </div>
 
+    <form action="/pedestal/{{$codigo}}/imprime" method="post" id="form">
+      {{csrf_field()}}
+      <input type="hidden" name="paciente_id" value='{{$paciente_id}}'>
+      <input type="hidden" name="especialidad_id" value='{{$especialidad_id}}'>
+      <input type="hidden" name="dia" value='' id="dia">
+      <!-- <input type="hidden" name="mes" value='{{$mes}}'>
+      <input type="hidden" name="year" value='{{$year}}'> -->
+
+
+    </form>
     
     <div class="browser_width colelem" id="u310-bw">
      <div id="u310"><!-- group -->
