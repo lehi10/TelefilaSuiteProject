@@ -165,6 +165,15 @@ Route::group(['prefix'=>'pedestal'],function()
     Route::post('/{codigo}/especialidad',  'PedestalController@especialidad' );
     Route::post('/{codigo}/fecha',  'PedestalController@fecha');
     Route::post('/{codigo}/imprime',  'PedestalController@imprime' );
+
+    /*Route::get('/','PedestalController@index');
+    Route::get('/especialidad',  'PedestalController@especialidad' );
+    Route::get('/fecha',  'PedestalController@fecha' );
+    Route::get('/{codigo}/imprimiendo',  'PedestalController@imprimiendo' );
+    
+    Route::post('/{codigo}/especialidad',  'PedestalController@especialidad' );
+    Route::post('/{codigo}/fecha',  'PedestalController@fecha');
+    Route::post('/{codigo}/imprime',  'PedestalController@imprime' );*/
 });
 
 //Rutas para admision

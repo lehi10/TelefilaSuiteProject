@@ -5,7 +5,9 @@ namespace telefilaSuite\Http\Controllers;
 use telefilaSuite\Paciente;
 use telefilaSuite\Hospital;
 use telefilaSuite\Cita;
+use telefilaSuite\Consultorio;
 use telefilaSuite\Especialidad;
+use telefilaSuite\Agenda;
 use Illuminate\Http\Request;
 use DateTime;
 use Illuminate\Support\Facades\DB;
@@ -32,23 +34,23 @@ class PedestalController extends Controller
 
     public function especialidad(Request $request)
     {
-        //return $request;
+        
         if(isset($request->dni))
         {
-            $hospital=Hospital::find($request->hospital_id);
-          //  return $hospital; 
+            $hospital=Hospital::find($request->hospital_id);          
 
             $paciente = Paciente::where('dni',$request->dni)->where('hospital_id',$hospital->id)->first();
             if($paciente)
             {
                 //$hospital=Hospital::find($paciente->hospital_id);
                 //$especialidades=Especialidad::all();
-                $especialidades = $hospital->consultorios()->where("pedestal",1)->has('medico')->pluck("especialidad_id");
-                $especialidades = Especialidad::find($especialidades);   //Especialidades con al menos un consultorio en pedestal
                 
+                $especialidades = $hospital->consultorios()->where("pedestal",1)->has('medico')->pluck("especialidad_id");                    
+                $especialidades = Especialidad::find($especialidades);   //Especialidades con al menos un consultorio en pedestal        
                 
-                // $especialidadesReferidas = DB::table('especialidad_paciente')->select('especialidads.*')->where('paciente_id',$paciente->id)
-                //     ->Join('especialidads','especialidads.id','=','especialidad_paciente.especialidad_id')->get()
+                $especialidadesReferidas = DB::table('especialidad_paciente as a')->select('a.*')->where('paciente_id',$paciente->id)
+                                ->Join('especialidads as b','b.id','=','a.especialidad_id')->get();
+                
 
                 $especialidadesReferidas=$paciente->especialidads
                     ->filter(function($item){
@@ -56,13 +58,9 @@ class PedestalController extends Controller
                         $i=Carbon::parse($item->pivot->inicio);
                         $f=Carbon::parse($item->pivot->final);
                         return $n->between($i,$f);
-                    });
-                
-                
-                //return $especialidadesReferidas;
-                
-                
-                
+                    });   
+                //dd($especialidadesReferidas);            
+                                                
                 return view('pedestal.especialidad',['paciente'=>$paciente,'especialidades'=>$especialidades,'especialidadesReferidas'=>$especialidadesReferidas,'codigo'=>$hospital->codigo]);    
             }
             else
@@ -77,11 +75,45 @@ class PedestalController extends Controller
 
     public function fecha(Request $request)
     {
+        
+        $paciente = Paciente::select('*')->where('dni',$request->dni)->first();
+        
+        $consultorios = DB::table('consultorios as c')                    
+                    ->where('hospital_id',$request->hospital_id)  
+                    ->where('especialidad_id',$request->especialidad_id)
+                    ->join('agendas as a','c.medico_id','=','a.medico_id')
+                    ->select('c.especialidad_id','c.medico_id','a.fecha','a.dia','a.turnos')
+                    ->orderBy('a.dia')
+                    ->get();
+                    
+        
+        $fechas = $consultorios->unique('dia');        
+        $days_dias = array(
+            'Monday'=>'Lunes','Tuesday'=>'Martes','Wednesday'=>'Miércoles','Thursday'=>'Jueves',
+            'Friday'=>'Viernes','Saturday'=>'Sábado','Sunday'=>'Domingo'
+        );
+        
+        $months_meses = array(
+            'January' => 'Enero','February' => 'Febrero','March' => 'Marzo','April' => 'Abril',
+            'May' => 'Mayo','June' => 'Junio','July' => 'Julio','August' => 'Agosto','September' => 'Septiembre',
+            'October' => 'Octubre','November' => 'Noviembre','December' => 'Diciembre'
+        );
+
+        $meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Setiembre','Octubre','Noviembre','Diciembre'];
+        $collection = collect();
+        //dd($fechas);
+        foreach($fechas as $key=>$f){            
+            $cupos = $consultorios->where('dia',$f->dia)->sum('turnos');
+            $dia = $days_dias[date('l', strtotime($f->fecha))];
+            $collection->push(['fecha'=>$f->dia,'dia'=>$dia ,'cupos'=>$cupos,]);
+        } 
+        $mes =$months_meses[date('F', strtotime($fechas[0]->fecha))];               
+        //dd($collection);
         $time=now();
         return view('pedestal.fecha',['nombres'=>$request->nombres,'apellidos'=>$request->apellidos,
                                     'paciente_id'=>$request->paciente_id,'especialidad_id'=>$request->especialidad_id,
                                     'mes'=>$time->format('m'),'year'=>$time->format('Y'),
-                                    'codigo'=>$request->codigo]);
+                                    'codigo'=>$request->codigo,'cuposXdia'=>$collection,'mes'=>$mes]);
     }
     
     

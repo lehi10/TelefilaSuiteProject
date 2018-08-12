@@ -43,7 +43,7 @@
       <img class="block" id="u560_img" src="/images/logo_alpha2.png?crc=4239319242" alt="" width="171" height="42"/>
      </div>
      <div class="clearfix" id="u983-4"><!-- content -->
-      <p>Hola! {{$paciente->nombres}} {{$paciente->apellidos}}</p>
+      <p>Hola! {{$paciente->nombres}} {{$paciente->apellidos}} </p>
      </div>
      <a class="nonblock nontext museBGSize" id="u984" href="{{url('pedestal/fecha')}}"><!-- simple frame --></a>
     </div>
@@ -52,23 +52,21 @@
     </div>
     <div class="browser_width colelem" id="u559-bw">
      <div id="u559"><!-- group -->
-
-
-    <form action="/pedestal/fecha" method="post" id="form">
+      
+    <form action="/pedestal/{{$codigo}}/fecha" method="post" id="form">
       {{csrf_field()}}
       <input type="hidden" name="especialidad_id" value="" id="especialidad">
       <input type="hidden" name="apellidos" value="{{$paciente->apellidos}}">
       <input type="hidden" name="nombres" value="{{$paciente->nombres}}">
       <input type="hidden" name="paciente_id" value="{{$paciente->id}}">
       <input type="hidden" name="codigo" value="{{$codigo}}">
+      <input type="hidden" name="hospital_id" value="{{$paciente->hospital_id}}">
     </form>
   
-
-
     <div class="padre">
     @if(isset($especialidades))
       @foreach ( $especialidades as $especialidad )
-        <div class="hijo">
+        <div class="hijo">            
             <a style='background:transparent url("/images/{{$especialidad->id}}.png?crc=3939622240")' class="nonblock nontext museBGSize colelem" id="u570" href="#" onclick="mandarForm({{$especialidad->id}})"><!-- simple frame --></a>
         </div>
         @endforeach
@@ -110,7 +108,6 @@
   <script>
     function mandarForm(value)
     {
-
       document.getElementById('especialidad').value = value;
       document.getElementById('form').submit();
     }

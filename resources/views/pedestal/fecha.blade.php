@@ -8,6 +8,7 @@
   
   <title>fecha</title>
   <!-- CSS -->
+  <link href="/assets/css/dashboard.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="/css/site_global.css?crc=443350757"/>
   <link rel="stylesheet" type="text/css" href="/css/fecha.css?crc=251659439" id="pagesheet"/>
 
@@ -50,100 +51,23 @@
     
     <div class="browser_width colelem" id="u310-bw">
      <div id="u310"><!-- group -->
-      <div class="clearfix" id="u310_align_to_page">
-       <div class="clearfix grpelem" id="pu291"><!-- column -->
-        <div class="museBGSize clearfix colelem" id="u291"><!-- column -->
+      <div class="col-xs-12 row" style="padding: 5px 10px 5px 10px; margin:5px 10% 5px 10%;">
+     
+      @foreach($cuposXdia as $cupoXdia)
+      
+        <div class="col-sm-2 museBGSize clearfix colelem" 
+        @if($cupoXdia['cupos']=== 0) id="u770" @elseif($cupoXdia['cupos']>10)id="u633" @else id="u291"@endif >
+         <a href="#" onclick="document.getElementById('form').submit()">
          <div class="clearfix colelem" id="u621-4"><!-- content -->
-          <p>HOY</p>
+          <p>{{$cupoXdia['fecha']}}</p>
          </div>
          <div class="clearfix colelem" id="u595-4"><!-- content -->
-          <p>Lunes 18</p>
+          <p>{{$cupoXdia['dia']}}</p>
          </div>
-        </div>
-        <div class="museBGSize clearfix colelem" id="u770"><!-- column -->
-         <div class="clearfix colelem" id="u776-4"><!-- content -->
-          <p>25</p>
-         </div>
-         <div class="clearfix colelem" id="u773-4"><!-- content -->
-          <p>Lunes</p>
-         </div>
-        </div>
-       </div>
-       <div class="clearfix grpelem" id="pu633"><!-- column -->
-        <div class="museBGSize clearfix colelem" id="u633"><!-- column -->
-         <div class="clearfix colelem" id="u636-4"><!-- content -->
-          <p>19</p>
-         </div>
-         <div class="clearfix colelem" id="u639-4"><!-- content -->
-          <p>Martes</p>
-         </div>
-        </div>
-        <div class="museBGSize clearfix colelem" id="u749"><!-- column -->
-         <div class="clearfix colelem" id="u764-4"><!-- content -->
-          <p>26</p>
-         </div>
-         <div class="clearfix colelem" id="u761-4"><!-- content -->
-          <p>Martes</p>
-         </div>
-        </div>
-       </div>
-       <div class="clearfix grpelem" id="pu659"><!-- column -->
-        <div class="museBGSize clearfix colelem" id="u659"><!-- column -->
-         <div class="clearfix colelem" id="u662-4"><!-- content -->
-          <p>20</p>
-         </div>
-         <div class="clearfix colelem" id="u665-4"><!-- content -->
-          <p>Miercoles</p>
-         </div>
-        </div>
-        <div class="museBGSize clearfix colelem" id="u767"><!-- column -->
-         <div class="clearfix colelem" id="u755-4"><!-- content -->
-          <p>27</p>
-         </div>
-         <div class="clearfix colelem" id="u758-4"><!-- content -->
-          <p>Miercoles</p>
-         </div>
-        </div>
-       </div>
-       <div class="clearfix grpelem" id="pu716"><!-- column -->
-        <div class="museBGSize clearfix colelem" id="u716"><!-- column -->
-         <div class="clearfix colelem" id="u731-4"><!-- content -->
-          <p>21</p>
-         </div>
-         <div class="clearfix colelem" id="u722-4"><!-- content -->
-          <p>Jueves</p>
-         </div>
-        </div>
-        <form action="/pedestal/imprime" method="post" id="form">
-          {{csrf_field()}}
-          <input type="hidden" name="paciente_id" value='{{$paciente_id}}'>
-          <input type="hidden" name="especialidad_id" value='{{$especialidad_id}}'>
-          <input type="hidden" name="dia" value='' id="dia">
-          <!-- <input type="hidden" name="mes" value='{{$mes}}'>
-          <input type="hidden" name="year" value='{{$year}}'> -->
-          <a class="nonblock nontext museBGSize clearfix colelem" id="u734" href="#" onclick="document.getElementById('form').submit()"><!-- column --><div class="clearfix colelem" id="u752-4"><!-- content --><p>28</p></div><div class="clearfix colelem" id="u737-4"><!-- content --><p>Jueves</p></div></a>
-        </form>
-        
-        
-       </div>
-       <div class="clearfix grpelem" id="pu725"><!-- column -->
-        <div class="museBGSize clearfix colelem" id="u725"><!-- column -->
-         <div class="clearfix colelem" id="u728-4"><!-- content -->
-          <p>22</p>
-         </div>
-         <div class="clearfix colelem" id="u719-4"><!-- content -->
-          <p>Viernes</p>
-         </div>
-        </div>
-        <div class="museBGSize clearfix colelem" id="u740"><!-- column -->
-         <div class="clearfix colelem" id="u746-4"><!-- content -->
-          <p>29</p>
-         </div>
-         <div class="clearfix colelem" id="u743-4"><!-- content -->
-          <p>Viernes</p>
-         </div>
-        </div>
-       </div>
+         </a>
+        </div>                  
+      
+      @endforeach                          
       </div>
      </div>
     </div>
@@ -163,7 +87,7 @@
    </div>
    <div class="verticalspacer" data-offset-top="537" data-content-above-spacer="537" data-content-below-spacer="62"></div>
    <div class="clearfix grpelem" id="u989-4"><!-- content -->
-    <p>JULIO</p>
+   <p>{{$mes}}</p>
    </div>
    <div class="rounded-corners grpelem" id="u787"><!-- simple frame --></div>
    <div class="clearfix grpelem" id="u796-4"><!-- content -->
