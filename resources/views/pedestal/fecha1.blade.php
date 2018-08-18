@@ -45,7 +45,7 @@
      <img class="block" id="u281_img" src="images/logo_alpha2.png?crc=4239319242" alt="" width="171" height="42"/>
     </div>
     <div class="clearfix" id="u977-4"><!-- content -->
-     <p>Hola! {{$nombres}}  {{$apellidos}}</p>
+     <p>Hola! </p>
     </div>
     <a class="nonblock nontext museBGSize" id="u978" href="javascript:history.back()"><!-- simple frame --></a>
    </div>
@@ -53,7 +53,7 @@
     <div class="clearfix colelem" id="u231-4"><!-- content -->
      <p>¿Qué día necesitas atenderte?</p>
     </div>
-
+    {{--
     <form action="/pedestal/{{$codigo}}/imprime" method="post" id="form">
       {{csrf_field()}}
       <input type="hidden" name="paciente_id" value='{{$paciente_id}}'>
@@ -64,46 +64,40 @@
 
 
     </form>
+    --}}
     
     <div class="browser_width colelem" id="u310-bw">
      <div id="u310"><!-- group -->
-      <div class="col-xs-12 row" style="padding: 5px 10px 5px 10px; margin:5px 10% 5px 10%;">
-     
-      @foreach($cuposXdia as $cupoXdia)
-      
-        <div class="col-sm-2 museBGSize clearfix colelem" 
-        @if($cupoXdia['cupos']=== 0) id="u770" @elseif($cupoXdia['cupos']>10)id="u633" @else id="u291"@endif >
-         <a href="#" onclick="document.getElementById('form').submit()">
-         <div class="clearfix colelem" id="u621-4"><!-- content -->
-          <p>{{$cupoXdia['fecha']}}</p>
-         </div>
-         <div class="clearfix colelem" id="u595-4"><!-- content -->
-          <p>{{$cupoXdia['dia']}}</p>
-         </div>
-         </a>
-        </div>                  
-      
-      @endforeach                          
+      <div class="col-xs-12 row" style="padding: 5px 10px 5px 10px; margin:5px 10% 5px 10%;"> 
+
+      <div class="padre">
+        @foreach($fechas as $fecha)
+            <div class="hijo" id="u633">
+            <a href="#" onclick="document.getElementById('form').submit()">
+                <div class="clearfix colelem" id="u621-4"><!-- content -->
+                <p>{{$fecha->formatLocalized('%d')}}</p>
+                </div>
+                <div class="clearfix colelem" id="u595-4"><!-- content -->
+                <p>{{$fecha->formatLocalized('%A')}}</p>
+                </div>
+            </a>
+            </div>
+        @endforeach
+      </div>
+
       </div>
      </div>
     </div>
 
     <script>
-      $('#u734').click(function(){
-        var dia=$("#u752-4").text();
-        //console.log(dia);
-        $('#dia').val('{{$year}}-{{$mes}}-'+dia);
-        $("#form").submit();
-        
-
-      });
+      
     </script>
 
     
    </div>
    <div class="verticalspacer" data-offset-top="537" data-content-above-spacer="537" data-content-below-spacer="62"></div>
    <div class="clearfix grpelem" id="u989-4"><!-- content -->
-   <p>{{$mes}}</p>
+   <p>Mes</p>
    </div>
    <div class="rounded-corners grpelem" id="u787"><!-- simple frame --></div>
    <div class="clearfix grpelem" id="u796-4"><!-- content -->

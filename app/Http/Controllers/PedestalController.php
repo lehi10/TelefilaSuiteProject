@@ -15,6 +15,7 @@ use Milon\Barcode\DNS1D;
 use Milon\Barcode\DNS2D;
 
 use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 
 class PedestalController extends Controller
 {
@@ -77,17 +78,22 @@ class PedestalController extends Controller
     {
         
         $paciente = Paciente::select('*')->where('dni',$request->dni)->first();
-        
         $consultorios = DB::table('consultorios as c')                    
-                    ->where('hospital_id',$request->hospital_id)  
-                    ->where('especialidad_id',$request->especialidad_id)
+        ->where('hospital_id',$request->hospital_id)  
+        ->where('especialidad_id',$request->especialidad_id)
+        
                     ->join('agendas as a','c.medico_id','=','a.medico_id')
                     ->select('c.especialidad_id','c.medico_id','a.fecha','a.dia','a.turnos')
                     ->orderBy('a.dia')
                     ->get();
                     
-        
+        $time=now();
         $fechas = $consultorios->unique('dia');        
+        $now=Carbon::create();
+        $after=$now->copy()->addDays(9);
+        $fechas=CarbonPeriod::create($now->format("Y-m-d"),$after)->toArray();
+
+        return view("pedestal.fecha1",["fechas"=>$fechas]);
         $days_dias = array(
             'Monday'=>'Lunes','Tuesday'=>'Martes','Wednesday'=>'Miércoles','Thursday'=>'Jueves',
             'Friday'=>'Viernes','Saturday'=>'Sábado','Sunday'=>'Domingo'
@@ -109,7 +115,6 @@ class PedestalController extends Controller
         } 
         $mes =$months_meses[date('F', strtotime($fechas[0]->fecha))];               
         //dd($collection);
-        $time=now();
         return view('pedestal.fecha',['nombres'=>$request->nombres,'apellidos'=>$request->apellidos,
                                     'paciente_id'=>$request->paciente_id,'especialidad_id'=>$request->especialidad_id,
                                     'mes'=>$time->format('m'),'year'=>$time->format('Y'),
@@ -119,7 +124,7 @@ class PedestalController extends Controller
     
     public function imprime(Request $request)
     {
-        //return $request;
+        return $request;
         $paciente=Paciente::find($request->paciente_id);
         $date=new DateTime($request->dia);
         $dia='2018-08-07';
