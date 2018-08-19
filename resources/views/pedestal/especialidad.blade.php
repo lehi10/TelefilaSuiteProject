@@ -45,7 +45,7 @@
      <div class="clearfix" id="u983-4"><!-- content -->
       <p>Hola! {{$paciente->nombres}} {{$paciente->apellidos}} </p>
      </div>
-     <a class="nonblock nontext museBGSize" id="u984" href="{{url('pedestal/fecha')}}"><!-- simple frame --></a>
+     <a class="nonblock nontext museBGSize" id="u984" href="javascript:history.back()"><!-- simple frame --></a>
     </div>
     <div class="clearfix colelem" id="u572-4"><!-- content -->
      <p>¿En que te vas a atender?</p>

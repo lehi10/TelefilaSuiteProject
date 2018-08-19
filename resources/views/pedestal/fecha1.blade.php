@@ -6,7 +6,7 @@
   
   
   
-  <title>fecha</title>
+  <title>Fecha</title>
   <!-- CSS -->
   <link href="/assets/css/dashboard.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="/css/site_global.css?crc=443350757"/>
