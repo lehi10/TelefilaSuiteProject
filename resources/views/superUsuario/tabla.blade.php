@@ -25,7 +25,7 @@
                                 <th class="w-1">Nro.</th>
                                 <th>NOMBRE</th>
                                 <th>CIUDAD</th>
-                                <th>TICKETS</th>
+                                <th>CODIGO</th>
                                 <th>ESTADO</th>
                                 <th style="text-align: center;">ACCCIONES</th>
                                 <th> EDITAR</th>
@@ -41,7 +41,7 @@
                                     </a>
                                 </td>
                                 <td>{{$hos->ciudad}}</td>
-                                <td>0</td>
+                                <td>{{$hos->codigo}}</td>
                                 <td>
                                     @if ($hos->estado===1) 
                                         <span class="status-icon bg-warning"></span> En implementación                                 
