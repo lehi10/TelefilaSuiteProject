@@ -36,4 +36,14 @@ class Medico extends Model
     }
     //Observar
     //Espacio para referenciar a citas o usar agendas
+
+
+    public function getTurnosByDate($fecha)
+    {
+        $agenda=$this->agendas()->where('fecha',$fecha)->first();
+        if ($agenda)
+            return $agenda->citas()->count();
+        else
+            return -1;
+    }
 }

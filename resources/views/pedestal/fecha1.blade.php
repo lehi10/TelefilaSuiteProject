@@ -45,7 +45,7 @@
      <img class="block" id="u281_img" src="images/logo_alpha2.png?crc=4239319242" alt="" width="171" height="42"/>
     </div>
     <div class="clearfix" id="u977-4"><!-- content -->
-     <p>Hola! </p>
+     <p>Hola! {{$nombres}} {{$apellidos}} </p>
     </div>
     <a class="nonblock nontext museBGSize" id="u978" href="javascript:history.back()"><!-- simple frame --></a>
    </div>
@@ -53,18 +53,12 @@
     <div class="clearfix colelem" id="u231-4"><!-- content -->
      <p>¿Qué día necesitas atenderte?</p>
     </div>
-    {{--
     <form action="/pedestal/{{$codigo}}/imprime" method="post" id="form">
       {{csrf_field()}}
       <input type="hidden" name="paciente_id" value='{{$paciente_id}}'>
       <input type="hidden" name="especialidad_id" value='{{$especialidad_id}}'>
       <input type="hidden" name="dia" value='' id="dia">
-      <!-- <input type="hidden" name="mes" value='{{$mes}}'>
-      <input type="hidden" name="year" value='{{$year}}'> -->
-
-
     </form>
-    --}}
     
     <div class="browser_width colelem" id="u310-bw">
      <div id="u310"><!-- group -->
@@ -72,13 +66,13 @@
 
       <div class="padre">
         @foreach($fechas as $fecha)
-            <div class="hijo" id="u633">
-            <a href="#" onclick="document.getElementById('form').submit()">
-                <div class="clearfix colelem" id="u621-4"><!-- content -->
-                <p>{{$fecha->formatLocalized('%d')}}</p>
+            <div class="hijo" id= @if($fecha['disp']<0) 'u770' @elseif ($fecha['disp']<=5 and $fecha['disp']>=0) 'u291' @else 'u633' @endif   >
+            <a href="#" onclick="mandarForm('{{$fecha['fecha']->format('Y-m-d')}}')">
+                <div class="clearfix colelem fecha" id="u621-4"><!-- content -->
+                <p>{{$fecha['fecha']->formatLocalized('%d')}}  </p>
                 </div>
                 <div class="clearfix colelem" id="u595-4"><!-- content -->
-                <p>{{$fecha->formatLocalized('%A')}}</p>
+                <p>{{ucfirst($fecha['fecha']->formatLocalized('%A'))}}</p>
                 </div>
             </a>
             </div>
@@ -97,7 +91,7 @@
    </div>
    <div class="verticalspacer" data-offset-top="537" data-content-above-spacer="537" data-content-below-spacer="62"></div>
    <div class="clearfix grpelem" id="u989-4"><!-- content -->
-   <p>Mes</p>
+   <p>{{ucfirst($Pmes)}}</p>
    </div>
    <div class="rounded-corners grpelem" id="u787"><!-- simple frame --></div>
    <div class="clearfix grpelem" id="u796-4"><!-- content -->
@@ -116,6 +110,17 @@
    <img class="preload" src="images/back.png?crc=107087755" alt=""/>
    <img class="preload" src="images/boton_blancob.png?crc=369233959" alt=""/>
   </div>
+
+      <script>
+          function mandarForm(value){
+            if(value)
+            {
+              $('#dia').val(value);
+              $('#form').submit();
+            }
+          }
+      </script>
+
   <!-- Other scripts -->
   <script type="text/javascript">
    window.Muse.assets.check=function(d){if(!window.Muse.assets.checked){window.Muse.assets.checked=!0;var b={},c=function(a,b){if(window.getComputedStyle){var c=window.getComputedStyle(a,null);return c&&c.getPropertyValue(b)||c&&c[b]||""}if(document.documentElement.currentStyle)return(c=a.currentStyle)&&c[b]||a.style&&a.style[b]||"";return""},a=function(a){if(a.match(/^rgb/))return a=a.replace(/\s+/g,"").match(/([\d\,]+)/gi)[0].split(","),(parseInt(a[0])<<16)+(parseInt(a[1])<<8)+parseInt(a[2]);if(a.match(/^\#/))return parseInt(a.substr(1),

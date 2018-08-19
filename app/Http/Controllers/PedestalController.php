@@ -91,9 +91,40 @@ class PedestalController extends Controller
         $fechas = $consultorios->unique('dia');        
         $now=Carbon::create();
         $after=$now->copy()->addDays(9);
-        $fechas=CarbonPeriod::create($now->format("Y-m-d"),$after)->toArray();
+        $Pfechas=CarbonPeriod::create($now->format("Y-m-d"),$after)->toArray();
+        $hospital=Hospital::find($request->hospital_id);
+        $consultorios=$hospital->consultorios()->where('especialidad_id',$request->especialidad_id)->get();
+        //$consultorios=Consultorio::where('hospital_id',$request->hospital_id)->where('especialidad_id',$request->especialidad_id)->get();
+        $fechas=collect();
+        foreach ($Pfechas as $fecha) {
+            $disp=0;
+            $turnos=0;
+            foreach ($consultorios as $consultorio) {
+                if($consultorio->medico)
+                {
+                    $disp = $disp + $consultorio->medico->getTurnosByDate($fecha);
+                    $agenda = $consultorio->medico->agendas()->where('fecha',$fecha)->first();
+                    if ($agenda)
+                        $turnos = $turnos + $agenda->turnos;
+                }
+            }
+            if ($disp>=0)
+                $fechas->push(['fecha'=>$fecha,'disp'=>$turnos-$disp]);
+            else
+                $fechas->push(['fecha'=>$fecha,'disp'=>-1]);
 
-        return view("pedestal.fecha1",["fechas"=>$fechas]);
+            
+        }
+        //return $fechas;
+
+
+
+
+        return view("pedestal.fecha1",["fechas"=>$fechas,'nombres'=>$request->nombres,'apellidos'=>$request->apellidos,
+        'paciente_id'=>$request->paciente_id,'especialidad_id'=>$request->especialidad_id,
+        'Pmes'=>$time->formatLocalized('%B'),'mes'=>$time->format('m'),'year'=>$time->format('Y'),
+        'codigo'=>$request->codigo]);
+
         $days_dias = array(
             'Monday'=>'Lunes','Tuesday'=>'Martes','Wednesday'=>'Miércoles','Thursday'=>'Jueves',
             'Friday'=>'Viernes','Saturday'=>'Sábado','Sunday'=>'Domingo'
@@ -124,10 +155,10 @@ class PedestalController extends Controller
     
     public function imprime(Request $request)
     {
-        return $request;
+        //return $request;
         $paciente=Paciente::find($request->paciente_id);
-        $date=new DateTime($request->dia);
-        $dia='2018-08-07';
+        //$date=new DateTime($request->dia);
+        $dia=$request->dia;
         $medicos=$paciente->hospital->consultorios()->where('pedestal',1)
                     ->where('especialidad_id',$request->especialidad_id)->has('medico')
                     ->with('medico')->get()->pluck('medico');
