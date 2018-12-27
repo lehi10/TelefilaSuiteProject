@@ -22,7 +22,7 @@ class CrearTablaAgenda extends Migration
             $table->tinyInteger('tiempoCita');
             $table->unsignedInteger('turnos');
             $table->unsignedInteger('medico_id');
-            $table->foreign('medico_id')->references('id')->on('medicos');
+            $table->foreign('medico_id')->references('id')->on('medicos')->onDelete('cascade');
         });
     }
 

@@ -220,7 +220,7 @@
                                                   </label>
                                               </div>
                                           <br>
-                                          <b>LICENSAMIENTO</b>
+                                          <b>LICENCIAMIENTO</b>
                                           <label class="custom-switch">
                                               <input name="licencia" class="custom-switch-input" type="checkbox">
                                               <span class="custom-switch-indicator"></span>

@@ -26,7 +26,7 @@ class CrearTablaCita extends Migration
             $table->boolean('pagado');
             
             $table->foreign('paciente_id')->references('id')->on("pacientes");
-            $table->foreign('hospital_id')->references('id')->on("hospitals");
+            $table->foreign('hospital_id')->references('id')->on("hospitals")->onDelete('cascade');
             $table->foreign('agenda_id')->references('id')->on("agendas");
 
             $table->timestamps();

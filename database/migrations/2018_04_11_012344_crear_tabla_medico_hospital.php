@@ -20,7 +20,7 @@ class CrearTablaMedicoHospital extends Migration
             $table->unsignedInteger('medico_id'); //Primero tienes que declarar el atributo sin foreign
             $table->unsignedInteger('hospital_id'); //Lo mismo
             $table->foreign('medico_id')->references('id')->on('medicos');
-            $table->foreign('hospital_id')->references('id')->on('hospitals');
+            $table->foreign('hospital_id')->references('id')->on('hospitals')->onDelete('cascade');
 
         });
     }

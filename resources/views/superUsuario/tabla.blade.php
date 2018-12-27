@@ -29,6 +29,7 @@
                                 <th>ESTADO</th>
                                 <th style="text-align: center;">ACCCIONES</th>
                                 <th> EDITAR</th>
+                                <th style="text-align: center;"> ELIMINAR </th>
                                 <th><br>
                                 </th>
                             </tr>
@@ -64,8 +65,13 @@
                                       <a href="{{url('superuser/editClient/'.$hos->id)}}" class="btn btn-lg ">  
                                       <span class="glyphicon glyphicon-edit"></span></a> 
                                 </td> 
+
+                                <td >  
+                                     <a href=#confirmacion class="btn btn-lg " data-toggle="modal" id="owner">  
+                                     <span class="glyphicon glyphicon-remove"></span></a>
+                                     <input  name="idUsera" type="hidden" value="{{$hos->id}}" id="idUsera">
+                                </td> 
                                 <td> <a class="icon" href="javascript:void(0)"> </a>
-                                    <br>
                                 </td>
                             </tr>
                             @endforeach
@@ -80,6 +86,26 @@
 
 
                   
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirmacion" role="dialog" >
+    <div class="modal-dialog" >
+        <div class="modal-content" >
+            <div class="modal-header" >
+                <h2 class="modal-title">Mensaje de Confirmacion</h2>
+            </div>
+            <div class="modal-body" style="text-align: center; ">
+                <p>Esta seguro que desea Eliminar este Usuario {{sprintf("%04d",$hos->id)}}  </p>
+            </div>
+            <div style="padding :5px 5px 5px 350px; " >
+                {{ Form::open(array('url' => 'superuser/eliminarUser','id'=>'eliminarUser','method' => 'post')) }}
+                <input  name="idUser" type="hidden" value="{{$hos->id}}" id="idUser">
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-default"  onclick="document.getElementById('eliminarUser').submit()" >Eliminar</button>
+                {{ Form::close() }}
             </div>
         </div>
     </div>
@@ -114,4 +140,13 @@
             $(this).children("a").addClass("page-link");
             $(this).children("span").addClass("page-link");
       });
+</script>
+<script>
+$(document).ready(function(){
+  $("#owner").click(function(){
+      $("#idUser").val("");
+      var data = $("#idUsera").val();
+      $("#idUser").val(data);
+  });
+});
 </script>

@@ -22,7 +22,7 @@ class CrearTablaTransacciones extends Migration
             $table->foreign('cita_id')->references('id')->on("citas");
             $table->foreign('agenda_id')->references('id')->on("agendas");
             $table->foreign('telefila_tarifa_id')->references('id')->on("telefila_tarifas");
-            $table->foreign('hospital_id')->references('id')->on("hospitals");
+            $table->foreign('hospital_id')->references('id')->on("hospitals")->onDelete('cascade');
             $table->timestamps();
             
         });

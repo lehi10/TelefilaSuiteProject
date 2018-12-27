@@ -19,7 +19,7 @@ class CrearTablaEspecialidadHospital extends Migration
             $table->unsignedInteger('especialidad_id');
             $table->unsignedInteger('hospital_id');
             $table->foreign('especialidad_id')->references('id')->on('especialidads');
-            $table->foreign('hospital_id')->references('id')->on('hospitals');
+            $table->foreign('hospital_id')->references('id')->on('hospitals')->onDelete('cascade');
         });
     }
 

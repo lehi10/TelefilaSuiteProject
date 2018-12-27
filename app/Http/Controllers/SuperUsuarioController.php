@@ -280,7 +280,11 @@ class SuperUsuarioController extends Controller
 
     }
     
-    
+    public function eliminarUsuario(Request $request)
+    {     
+        Hospital::destroy($request->idUser);        
+        return redirect("superuser/")->with(["message"=>"El usuario ha sido eliminado correctamente"]);
+    }
 
     
 }

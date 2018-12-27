@@ -19,7 +19,7 @@ class CrearTablaControlPago extends Migration
             $table->unsignedInteger('hospital_id');
             $table->unsignedInteger('telefila_tarifa_id');
             $table->foreign('telefila_tarifa_id')->references('id')->on('telefila_tarifas');
-            $table->foreign('hospital_id')->references('id')->on("hospitals");
+            $table->foreign('hospital_id')->references('id')->on("hospitals")->onDelete('cascade');
         });
     }
 

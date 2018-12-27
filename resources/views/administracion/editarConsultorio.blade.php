@@ -119,13 +119,12 @@
                     ¿Seguro que quiere eliminar el consultorio{{$consultorio->especialidad->nombre}} ?                                                        
                 </div>
                 <div  style="padding :5px 5px 5px 400px;  ">
-                    {{ Form::open(array('url' => 'administrador/eliminarConsul','id'=>'eliminarConsul','method' => 'post')) }}
+                      {{ Form::open(array('url' => 'administrador/eliminarConsul','id'=>'eliminarConsul','method' => 'post')) }}
                         <input  name="idConsul" type="hidden" value="{{$consultorio->id}}">
                         <td>
                         <a class="btn btn-default" data-dismiss="modal">No</a>                
                         <a class="btn btn-default" onclick="document.getElementById('eliminarConsul').submit()">Si</a>                            
-                      {{ Form::close() }}
-                 
+                      {{ Form::close() }}       
                 </div>
 
             </div>
