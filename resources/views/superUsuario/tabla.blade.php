@@ -67,16 +67,15 @@
                                 </td> 
 
                                 <td >  
-                                     <a href=#confirmacion class="btn btn-lg " data-toggle="modal" id="owner">  
+                                     <a onclick="eliminarCliente('{{$hos->id}}','{{$hos->nombre}}')" class="btn btn-lg " data-toggle="modal" id="owner">  
                                      <span class="glyphicon glyphicon-remove"></span></a>
-                                     <input  name="idUsera" type="hidden" value="{{$hos->id}}" id="idUsera">
+                                     <input name="idUsera" type="hidden" value="{{$hos->id}}" id="idUsera">
                                 </td> 
                                 <td> <a class="icon" href="javascript:void(0)"> </a>
                                 </td>
                             </tr>
                             @endforeach
-                            </php>
-                            </script>
+                            
                         </tbody>
                     </table>
                     @endif
@@ -98,7 +97,7 @@
                 <h2 class="modal-title">Mensaje de Confirmacion</h2>
             </div>
             <div class="modal-body" style="text-align: center; ">
-                <p>Esta seguro que desea Eliminar este Usuario {{sprintf("%04d",$hos->id)}}  </p>
+                <p id = "nombreHospital"> </p>
             </div>
             <div style="padding :5px 5px 5px 350px; " >
                 {{ Form::open(array('url' => 'superuser/eliminarUser','id'=>'eliminarUser','method' => 'post')) }}
@@ -132,7 +131,14 @@
                 console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
             }
         });
-        }
+    }
+
+    function eliminarCliente(hos_id, hos_nombre){
+        $("#nombreHospital").html("Esta seguro que desea eliminar el hospital: "+ hos_nombre);
+        $("#idUser").val(hos_id);
+
+        $("#confirmacion").modal("show");
+    }
 
 
       $(".pagination").children("li").each(function(){
