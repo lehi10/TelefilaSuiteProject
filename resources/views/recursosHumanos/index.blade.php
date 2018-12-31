@@ -3,6 +3,7 @@
 @section('title','Recursos Humanos')
 
 @section('buscar','medico')
+
 @section('auxiliar')
 <script>$('#msg').delay(8000).hide(600);</script>
 <div class="nav-item d-none d-md-flex"> <a href="{{url('/recursosHumanos/nuevoMedico')}}"
@@ -10,9 +11,10 @@
 </div>
 @endsection
 
+
 @section('more_options')
 <li class="nav-item"><a href="{{url('/'.Auth::user()->rolUrl())}}" class="nav-link"><i class="fe fe-home"></i>Inicio</a></li>
-<li class="nav-item"> <a href="{{url('superuser/usersClient/'.Auth::user()->checkRol("Super Usuario"))}}"  class="nav-link"><i class="fa fa-users"></i>Usuarios</a> </li>
+<li class="nav-item"> <a href="{{url('superuser/usersClient/'.Auth::user()->hospital_id)}}"  class="nav-link"><i class="fa fa-users"></i>Usuarios</a> </li>
 <li class="nav-item"> <a href="/administrador/consultorios" class="nav-link"><i class="fa fa-stethoscope"></i> Consultorios</a></li>                                     
 <li class="nav-item slc"> <a href="/recursosHumanos" class="nav-link"><i class="fa fa-user-md"></i> Recursos Humanos</a> </li>     
 <li class="nav-item"> <a href="/admision" class="nav-link"><i class="fa fa-file-text"></i> Admisión</a> </li>

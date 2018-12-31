@@ -1,5 +1,6 @@
 @extends('agenda.index_admi')
 
+
 @section('content')
         <h2 style="text-align: center;" type="button">- Agenda Médica -</h2>
         <table style="width: 100%" border="1">

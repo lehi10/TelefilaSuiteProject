@@ -65,12 +65,6 @@
                             Agregar Usuario
                           </a> 
                         </div>
-                        @elseif(Auth::user()->checkRol('Recursos Humanos'))
-                        <div class="nav-item d-none d-md-flex"> 
-                          <a href="{{url('/recursosHumanos/nuevoMedico')}}" class="btn btn-sm btn-outline-primary">
-                            Agregar Médico
-                          </a> 
-                        </div>
                         @endif
                         @yield('auxiliar')                                                
                         <div class="dropdown" >
@@ -141,11 +135,17 @@
                           </li>                          
                           @elseif (Auth::user()->checkRol('Recursos Humanos'))
                           <li class="nav-item"> 
+                            <a href="/recursosHumanos" class="nav-link">
+                              <i class="fe fe-home"></i>
+                                Medicos
+                            </a>
+                          </li>                   
+                          <li class="nav-item"> 
                             <a href="/recursosHumanos/consultorios" class="nav-link">
                               <i class="fe fe-calendar"></i>
                                 Consultorios
                             </a>
-                          </li>                        
+                          </li>     
                           @endif
                           <li class="nav-item dropdown">
                             <br>

@@ -1,8 +1,6 @@
 @extends('layouts.base')
 
 @section('title','Editar Cliente')
-
-
   
   @section('body')
 <div class="my-3 my-md-5">
