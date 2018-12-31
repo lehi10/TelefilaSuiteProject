@@ -274,7 +274,8 @@ class SuperUsuarioController extends Controller
         $cliente->save();
 
         $user = User::where('hospital_id','=',$idCliente)->where('rol_id','=',2)->first();        
-        $user->username = $request->usuario;
+        if ($request->password)
+            $user->password = bcrypt($request->password);
         $user->save();
         return redirect('superuser/')->with('message','Datos guardados satisfactoriamente');          
 

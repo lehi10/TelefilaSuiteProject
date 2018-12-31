@@ -27,11 +27,11 @@
                                                   <span class="input-group-prepend" id="basic-addon1">
                                                       <span class="input-group-text">@</span>
                                                   </span>
-                                                  <input id="user" class="form-control" required="" placeholder="Usuario" type="text" name="usuario" value = "{{$usuario->username}}">
+                                                  <input id="user" class="form-control" required="" placeholder="Usuario" type="text" name="usuario" value = "{{$usuario->username}}" readonly>
                                               </div>
                                               <div id="v_user" style="color:red;" ></div>
                                               <br>
-                                              <input id="psw" class="form-control" required="" name="password" disabled="disabled" placeholder="Clave" type="password" >
+                                              <input id="psw" class="form-control" name="password" placeholder="Clave" type="password" >
                                               <div id="v_psw" style="color:red;" ></div><br>
                                               <b>INFORMACIÓN DEL CLIENTE </b>
                                               <input  id="name_hosp" class="form-control" required="" name="nombre" placeholder="Nombre del Hospital / Clinica " type="text" value = "{{$hospital->nombre}}">                                            
@@ -101,7 +101,7 @@
                                             <b>FOTO / LOGOTIPO<br></b>
                                               <div class="form-group">
                                                   <div class="custom-file">
-                                                      <input class="custom-file-input" name="logo" type="file" value = "{{$hospital->logo}}">
+                                                      <input class="custom-file-input" name="logo" type="file" value  = "{{$hospital->logo}}">
                                                       <label class="custom-file-label">{{$hospital->logo}}</label>
                                                   </div>
                                               </div>

@@ -5,6 +5,11 @@
 
 @section('body')      
   <div class="my-3 my-md-5">
+  @if(session('message'))
+              <div class="alert alert-{{session('kindMessage') ? session('kindMessage') : 'success'  }} form-group text-center" id="msg" role="alert">
+                  {{session('message')}}
+                </div>
+  @endif
       <!--<div class="container">-->
       <!--<nav class="breadcrumb breadcrumb-content">-->
       <!--<a class="breadcrumb-item" href="javascript:void(0)">Library</a>-->
