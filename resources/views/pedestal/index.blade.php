@@ -1,96 +1,317 @@
 <!DOCTYPE html>
-<html class="html css_verticalspacer" lang="es-ES">
- <head>
-
-  <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
-  
-  
+<html lang="en">
+<head>
   <title>Inicio</title>
-  <!-- CSS -->
-  
-  <link rel="stylesheet" type="text/css" href="/css/site_global.css?crc=443350757"/>
-  <link rel="stylesheet" type="text/css" href="/css/index.css?crc=322861927" id="pagesheet"/>
-  <!-- Other scripts -->
-  <script type="text/javascript">
-   var __adobewebfontsappname__ = "muse";
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <style>
+
+	.center {
+		margin-top : 50px;
+	  text-align: center;
+
+	}
+	
+	.inputsize {
+		width: 350px;
+		text-align: center;
+		font-size:35px;
+	}
+	
+	.buttonstyle {
+	    width: 150px;
+		text-align: center;
+		font-size:30px;
+	}
+	
+	.dangerstyle {
+		text-align: center;
+		font-size:30px;
+	}
+
+	.buttonCloseStyle{
+		width: 100px;
+		text-align: center;
+		font-size:25px;
+	}
+		
+	body {
+		background-color: #f3f3f3;
+	}
+	
+	.buttonNumberStyle {
+		width: 	110px;
+		height: 110px;
+		text-align: center;
+		font-size:30px;
+	}
+	
+	/* ------- NUMERO 1 --------- */
+	.img1{
+		background: url("/images/numericKeyboard/1.png");
+    	background-size: 100% 100%;
+
+	}
+	
+	.img1:active {
+		background: url("/images/numericKeyboard/1_.png");
+    	background-size: 100% 100%;
+	}
+
+	/* ------- NUMERO 2 --------- */
+	.img2{
+		background: url("/images/numericKeyboard/2.png");
+    	background-size: 100% 100%;
+
+	}
+	
+	.img2:active {
+		background: url("/images/numericKeyboard/2_.png");
+    	background-size: 100% 100%;
+	}
+	
+	/* ------- NUMERO 3 --------- */
+	.img3{
+		background: url("/images/numericKeyboard/3.png");
+    	background-size: 100% 100%;
+
+	}
+	
+	.img3:active {
+		background: url("/images/numericKeyboard/3_.png");
+    	background-size: 100% 100%;
+	}
+	
+	/* ------- NUMERO 4 --------- */
+	.img4{
+		background: url("/images/numericKeyboard/4.png");
+    	background-size: 100% 100%;
+
+	}
+	
+	.img4:active {
+		background: url("/images/numericKeyboard/4_.png");
+    	background-size: 100% 100%;
+	}
+	
+	/* ------- NUMERO 5 --------- */
+	.img5{
+		background: url("/images/numericKeyboard/5.png");
+    	background-size: 100% 100%;
+	}
+	
+	.img5:active {
+		background: url("/images/numericKeyboard/5_.png");
+    	background-size: 100% 100%;
+	}
+	
+	
+	/* ------- NUMERO 6 --------- */
+	.img6{
+		background: url("/images/numericKeyboard/6.png");
+    	background-size: 100% 100%;
+	}
+	
+	.img6:active {
+		background: url("/images/numericKeyboard/6_.png");
+    	background-size: 100% 100%;
+	}
+	
+	
+	/* ------- NUMERO 7 --------- */
+	.img7{
+		background: url("/images/numericKeyboard/7.png");
+    	background-size: 100% 100%;
+	}
+	
+	.img7:active {
+		background: url("/images/numericKeyboard/7_.png");
+    	background-size: 100% 100%;
+	}
+	
+	
+	/* ------- NUMERO 8 --------- */
+	.img8{
+		background: url("/images/numericKeyboard/8.png");
+    	background-size: 100% 100%;
+	}
+	
+	.img8:active {
+		background: url("/images/numericKeyboard/8_.png");
+    	background-size: 100% 100%;
+	}
+	
+	
+	/* ------- NUMERO 9 --------- */
+	.img9{
+		background: url("/images/numericKeyboard/9.png");
+    	background-size: 100% 100%;
+	}
+	
+	.img9:active {
+		background: url("/images/numericKeyboard/9_.png");
+    	background-size: 100% 100%;
+	}
+	
+	
+	/* ------- NUMERO 0 --------- */
+	.img0{
+		background: url("/images/numericKeyboard/0.png");
+    	background-size: 100% 100%;
+	}
+	
+	.img0:active {
+		background: url("/images/numericKeyboard/0_.png");
+    	background-size: 100% 100%;
+	}
+	
+	
+	
+
+  </style>
+</head>
+<body>
+
+<div class="center">
+	<img id="u103_img" src="/images/logo_alpha.png?crc=4209966205" alt="" width="212" height="53"/>
+</div>
+			<br>
+	
+<hr>
+
+<div class="container">
+	<div class="col-lg-1"></div>
+	<div class="col-lg-6">
+		<div class="row">
+			<div class="col-sm-3" >
+				<input class="img1 buttonNumberStyle" type="submit" value="" onclick="setTextInput(1)" >
+			</div>
+		
+			<div class="col-sm-3" >
+				<input class="img2 buttonNumberStyle" type="submit" value="" onclick="setTextInput(2)">
+			</div>
+		
+			<div class="col-sm-3" >
+				<input class="img3 buttonNumberStyle" type="submit" value="" onclick="setTextInput(3)">
+			</div>
+		
+		</div>
+		<div class="row">
+			<div class="col-sm-3" >
+				<input class="img4 buttonNumberStyle" type="submit" value="" onclick="setTextInput(4)">
+			</div>
+		
+			<div class="col-sm-3" >
+				<input class="img5 buttonNumberStyle" type="submit" value="" onclick="setTextInput(5)">
+			</div>
+		
+			<div class="col-sm-3" >
+				<input class="img6 buttonNumberStyle" type="submit" value="" onclick="setTextInput(6)">
+			</div>
+		
+
+		</div>
+		<div class="row">
+			<div class="col-sm-3" >
+				<input class="img7 buttonNumberStyle" type="submit" value="" onclick="setTextInput(7)">
+			</div>
+		
+			<div class="col-sm-3" >
+				<input class="img8 buttonNumberStyle" type="submit" value="" onclick="setTextInput(8)">
+			</div>
+		
+			<div class="col-sm-3" >
+				<input class="img9 buttonNumberStyle" type="submit" value="" onclick="setTextInput(9)">
+			</div>
+		
+		</div>
+	
+		<div class="row">
+			<div class="col-sm-3" >
+				<input class="img buttonNumberStyle" type="submit" value="Del" onclick="delInput()">
+			</div>
+		
+			<div class="col-sm-3" >
+				<input class="img0 buttonNumberStyle" type="submit" value="" onclick="setTextInput(0)">
+			</div>
+		
+			<div class="col-sm-3" >
+				<input class="img buttonNumberStyle" type="submit" value="Clear" onclick="clearInput()">
+			</div>
+		
+		</div>
+
+	</div>
+
+	<div class="col-sm-4">
+		
+		<div class="center">
+			
+			<h1><strong>Ingrese su número de DNI</strong></h1>
+			<br>
+			<form action="/pedestal/{{$codigo}}/especialidad" method="post" enctype="multipart/form-data">
+			  {{csrf_field()}}
+				<div class="form-group">
+					<input  id="inputDNI" class="inputsize" name="dni" tabindex="1">	
+					<input  class="form-control" type="hidden" name="hospital_id" value={{$hospital_id}}>
+				</div>
+				<br>    
+				<button type="submit" class="buttonstyle">Entrar</button>
+			</form>
+	
+	
+			<div id="myModal" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header"></div>
+						<div class="modal-body">
+							<div class="dangerstyle" style="color:#ff5959;" id="u184-4">
+								<p>{{session('message')}}</p>
+						   	</div>
+						</div>
+						<div class="modal-footer">
+							<center><button type="button" class="buttonCloseStyle" data-dismiss="modal">Cerrar</button></center>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+	<div class="col-lg-1"></div>
+</div>
+
+	
+	@if(session('message'))
+		<script>
+       	$('#myModal').modal('show');
+   		</script>    
+	@endif
+
+</body>
+
+<script>
+function setTextInput(number) {
+	if(document.getElementById("inputDNI").value.length <= 8 )
+		document.getElementById("inputDNI").value += number;
+}
+
+function delInput() {
+	var number = document.getElementById("inputDNI").value;
+	if(number.length>0)
+	{
+		var newNumber = number.substr(0, number.length-1);
+		document.getElementById("inputDNI").value = newNumber;
+	}	
+}
+
+function clearInput() {
+	document.getElementById("inputDNI").value ="";
+}
 </script>
-  <!-- JS includes -->
-  <script type="text/javascript">
-   document.write('\x3Cscript src="' + (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//webfonts.creativecloud.com/basic:n4:default.js" type="text/javascript">\x3C/script>');
-</script>
-   </head>
- <body>
 
-  <div class="clearfix gradient" id="page"><!-- column -->
-   <div class="clip_frame colelem" id="u103"><!-- image -->
-    <img class="block" id="u103_img" src="/images/logo_alpha.png?crc=4209966205" alt="" width="212" height="53"/>
-   </div>
-   <div class="clearfix colelem" id="u184-4"><!-- content -->
-    <p>Ingresa tu numero de DNI</p>
-   </div>
-   <form action="/pedestal/{{$codigo}}/especialidad" class="form-DNIgrp clearfix colelem" id="widgetu113" method="post" enctype="multipart/form-data"><!-- none box -->
-   {{csrf_field()}}
-    <div class="clearfix grpelem" id="u129-4"><!-- content -->
-     <p>Enviando formulario...</p>
-    </div>
-    <div class="clearfix grpelem" id="u127-4"><!-- content -->
-     <p>El servidor ha detectado un error.</p>
-    </div>
-    <div class="clearfix grpelem" id="u126-3"><!-- content -->
-     <p>&nbsp;</p>
-    </div>
-    <button class="submit-btn NoWrap clearfix grpelem" id="u128-3" type="submit" value="&nbsp;" tabindex="2"><!-- content -->
-     <div style="margin-top:-19px;height:19px;">
-      <p>&nbsp;</p>
-     </div>
-    </button>
-    <div class="fld-grp clearfix grpelem" id="widgetu118" data-required="false"><!-- none box -->
-     <span class="fld-textarea actAsDiv rounded-corners clearfix grpelem" id="u119-3"><!-- content -->
-     <input class="wrapped-input" id="widgetu118_input" name="dni" tabindex="1"></input>
-     <input type="hidden" name="hospital_id" value={{$hospital_id}}>
-     </span>
-    </div>
-    </form>
-   
-    <a class="nonblock nontext museBGSize clearfix colelem" id="u218" href="javascript:document.getElementById('widgetu113').submit()">
-   <!-- group -->
-    <div class="clearfix grpelem" id="u199-4">
-    <!-- content -->
-    <p>ENTRAR</p>
-    </div>
-  </a>
-  @if(session('message'))
-  <div class="clearfix colelem" style="color:#ff5959;" id="u184-4"><!-- content -->
-    <p>{{session('message')}}</p>
-   </div>
-  @endif
-
-   <div class="verticalspacer" data-offset-top="393" data-content-above-spacer="392" data-content-below-spacer="108"></div>
-  </div>
-  <div class="preload_images">
-   <img class="preload" src="images/largo_b.png?crc=4172065039" alt=""/>
-
-   <div class="alert alert-success" role="alert">
-  This is a success alert—check it out!
-  </div>
-  <!-- Other scripts -->
-  <script type="text/javascript">
-   window.Muse.assets.check=function(d){if(!window.Muse.assets.checked){window.Muse.assets.checked=!0;var b={},c=function(a,b){if(window.getComputedStyle){var c=window.getComputedStyle(a,null);return c&&c.getPropertyValue(b)||c&&c[b]||""}if(document.documentElement.currentStyle)return(c=a.currentStyle)&&c[b]||a.style&&a.style[b]||"";return""},a=function(a){if(a.match(/^rgb/))return a=a.replace(/\s+/g,"").match(/([\d\,]+)/gi)[0].split(","),(parseInt(a[0])<<16)+(parseInt(a[1])<<8)+parseInt(a[2]);if(a.match(/^\#/))return parseInt(a.substr(1),
-16);return 0},g=function(g){for(var f=document.getElementsByTagName("link"),h=0;h<f.length;h++)if("text/css"==f[h].type){var i=(f[h].href||"").match(/\/?css\/([\w\-]+\.css)\?crc=(\d+)/);if(!i||!i[1]||!i[2])break;b[i[1]]=i[2]}f=document.createElement("div");f.className="version";f.style.cssText="display:none; width:1px; height:1px;";document.getElementsByTagName("body")[0].appendChild(f);for(h=0;h<Muse.assets.required.length;){var i=Muse.assets.required[h],l=i.match(/([\w\-\.]+)\.(\w+)$/),k=l&&l[1]?
-l[1]:null,l=l&&l[2]?l[2]:null;switch(l.toLowerCase()){case "css":k=k.replace(/\W/gi,"_").replace(/^([^a-z])/gi,"_$1");f.className+=" "+k;k=a(c(f,"color"));l=a(c(f,"backgroundColor"));k!=0||l!=0?(Muse.assets.required.splice(h,1),"undefined"!=typeof b[i]&&(k!=b[i]>>>24||l!=(b[i]&16777215))&&Muse.assets.outOfDate.push(i)):h++;f.className="version";break;case "js":h++;break;default:throw Error("Unsupported file type: "+l);}}d?d().jquery!="1.8.3"&&Muse.assets.outOfDate.push("jquery-1.8.3.min.js"):Muse.assets.required.push("jquery-1.8.3.min.js");
-f.parentNode.removeChild(f);if(Muse.assets.outOfDate.length||Muse.assets.required.length)f="Puede que determinados archivos falten en el servidor o sean incorrectos. Limpie la cache del navegador e inténtelo de nuevo. Si el problema persiste, póngase en contacto con el administrador del sitio web.",g&&Muse.assets.outOfDate.length&&(f+="\nOut of date: "+Muse.assets.outOfDate.join(",")),g&&Muse.assets.required.length&&(f+="\nMissing: "+Muse.assets.required.join(",")),alert(f)};location&&location.search&&location.search.match&&location.search.match(/muse_debug/gi)?setTimeout(function(){g(!0)},5E3):g()}};
-var muse_init=function(){require.config({baseUrl:""});require(["jquery","museutils","whatinput","webpro","jquery.musepolyfill.bgsize","jquery.watch"],function(d){var $ = d;$(document).ready(function(){try{
-window.Muse.assets.check($);/* body */
-Muse.Utils.transformMarkupToFixBrowserProblemsPreInit();/* body */
-Muse.Utils.prepHyperlinks(true);/* body */
-Muse.Utils.fullPage('#page');/* 100% height page */
-Muse.Utils.initWidget('#widgetu113', ['#bp_infinity'], function(elem) { return new WebPro.Widget.Form(elem, {validationEvent:'submit',errorStateSensitivity:'high',fieldWrapperClass:'fld-grp',formSubmittedClass:'frm-sub-st',formErrorClass:'frm-subm-err-st',formDeliveredClass:'frm-subm-ok-st',notEmptyClass:'non-empty-st',focusClass:'focus-st',invalidClass:'fld-err-st',requiredClass:'fld-err-st',ajaxSubmit:true}); });/* #widgetu113 */
-Muse.Utils.showWidgetsWhenReady();/* body */
-Muse.Utils.transformMarkupToFixBrowserProblems();/* body */
-}catch(b){if(b&&"function"==typeof b.notify?b.notify():Muse.Assert.fail("Error calling selector function: "+b),false)throw b;}})})};
-
-</script>
-  <!-- RequireJS script -->
-  <script src="/scripts/require.js?crc=244322403" type="text/javascript" async data-main="scripts/museconfig.js?crc=168988563" onload="if (requirejs) requirejs.onError = function(requireType, requireModule) { if (requireType && requireType.toString && requireType.toString().indexOf && 0 <= requireType.toString().indexOf('#scripterror')) window.Muse.assets.check(); }" onerror="window.Muse.assets.check();"></script>
-   </body>
 </html>
+
