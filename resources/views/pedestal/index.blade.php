@@ -34,7 +34,8 @@
 	}
 
 	.buttonCloseStyle{
-		width: 100px;
+		width: 130px;
+		height: 60px;
 		text-align: center;
 		font-size:25px;
 	}
@@ -275,7 +276,7 @@
 						   	</div>
 						</div>
 						<div class="modal-footer">
-							<center><button type="button" class="buttonCloseStyle" data-dismiss="modal">Cerrar</button></center>
+							<center><button type="button" class="buttonCloseStyle" data-dismiss="modal">CERRAR</button></center>
 						</div>
 					</div>
 				</div>
