@@ -257,6 +257,7 @@ class SuperUsuarioController extends Controller
     public function updateCliente(Request $request, $idCliente){
         
         $cliente = Hospital::find($idCliente);
+        
         $cliente->nombre = $request->nombre;
         $cliente->telefono = $request->telefono;
         $cliente->nombrePersona = $request->nombrePersona;
@@ -266,12 +267,23 @@ class SuperUsuarioController extends Controller
         $cliente->ciudad= $request->ciudad;
         $cliente->referencia= $request->referencia;
         $cliente->region= $request->region;
-        $cliente->logo= $request->logo;
-        $cliente->contratos= $request->contratos;
         $cliente->direccion = $request->direccion;
         $cliente->tarifa= $request->tarifa;
         $cliente->estado= $request->estado;
+        
+        if ($request->hasFile('logo'))
+        {
+            $cliente->logo= $request->logo->getClientOriginalName();
+            $request->logo->storeAs($cliente->codigo,'logo.jpg');
+        }
+        if ($request->hasFile('contratos'))
+        {
+            $cliente->contratos= $request->contratos->getClientOriginalName();
+            $request->contratos->storeAs($cliente->codigo,'contratos.'.$request->contratos->extension());
+        }
         $cliente->save();
+
+
 
         $user = User::where('hospital_id','=',$idCliente)->where('rol_id','=',2)->first();        
         if ($request->password)

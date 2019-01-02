@@ -69,7 +69,11 @@
                         @yield('auxiliar')                                                
                         <div class="dropdown" >
                           <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown"> 
-                          <span class="avatar" style="background-image:url( {{url('/demo/faces/female/25.jpg')}})"></span>
+                          @if (Auth::user()->hospital && Auth::user()->hospital->logo && !Auth::user()->checkRol('Super Usuario'))
+                            <span class="avatar" style="background-image:url( {{url('/storage/'.Auth::user()->hospital->codigo.'/logo.jpg')}})"></span>
+                          @else
+                            <span class="avatar" style="background-image:url( {{url('/demo/faces/female/25.jpg')}})"></span>
+                          @endif
                           @if (Auth::user()->checkRol("Administrador"))
                               <span class="ml-2 d-none d-lg-block"> 
                                 <span class="text-default">

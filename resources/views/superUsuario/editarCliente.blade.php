@@ -13,7 +13,7 @@
                       <div class="container">
                         <div class="row">
                           <div class="col-12">
-                          <form action="/superuser/updateClient/{{$hospital->id}}" method="post" class="card">
+                          <form action="/superuser/updateClient/{{$hospital->id}}" method="post" class="card" enctype="multipart/form-data">
                               {{csrf_field()}}
                               <div class="card-header">
                                     <h3 class="card-title">Editando Datos</h3>
@@ -101,8 +101,8 @@
                                             <b>FOTO / LOGOTIPO<br></b>
                                               <div class="form-group">
                                                   <div class="custom-file">
-                                                      <input class="custom-file-input" name="logo" type="file" value  = "{{$hospital->logo}}">
-                                                      <label class="custom-file-label">{{$hospital->logo}}</label>
+                                                      <input class="custom-file-input" name="logo" type="file" accept = ".jpg,.jpeg,.png">
+                                                      <label class="custom-file-label"></label>
                                                   </div>
                                               </div>
                                           </div>
@@ -111,8 +111,8 @@
                                         <b> CONTRATOS</b>
                                           <div class="form-group" >
                                               <div class="custom-file">
-                                                  <input class="custom-file-input" name="contratos" type="file" value = "{{$hospital->contratos}}">
-                                                  <label class="custom-file-label">{{$hospital->contratos}}
+                                                  <input class="custom-file-input" name="contratos" type="file" value = "">
+                                                  <label class="custom-file-label">
                                                   </label>
                                               </div>
                                               <br>
