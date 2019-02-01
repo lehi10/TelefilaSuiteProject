@@ -47,7 +47,8 @@ class CajaController extends Controller
             $citas = DB::table('pacientes')->select('*','pacientes.id as pacienteID')
             ->Join('citas', 'citas.paciente_id', '=', 'pacientes.id')
             ->where('citas.hospital_id',$hospitalID)
-            ->where('fecha',date("Y-m-d"))
+            ->orderBy('citas.created_at', 'desc')
+            ->limit(20)
             ->get();
             return view('caja.index',['citas'=>$citas]);
         }
