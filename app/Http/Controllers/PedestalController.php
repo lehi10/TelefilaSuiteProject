@@ -118,25 +118,29 @@ class PedestalController extends Controller
         //return $fechas;
 
 
-
-
-        return view("pedestal.fecha1",["fechas"=>$fechas,'nombres'=>$request->nombres,'apellidos'=>$request->apellidos,
-        'paciente_id'=>$request->paciente_id,'especialidad_id'=>$request->especialidad_id,
-        'Pmes'=>$time->formatLocalized('%B'),'mes'=>$time->format('m'),'year'=>$time->format('Y'),
-        'codigo'=>$request->codigo]);
-
         $days_dias = array(
             'Monday'=>'Lunes','Tuesday'=>'Martes','Wednesday'=>'Miércoles','Thursday'=>'Jueves',
             'Friday'=>'Viernes','Saturday'=>'Sábado','Sunday'=>'Domingo'
         );
         
+
         $months_meses = array(
             'January' => 'Enero','February' => 'Febrero','March' => 'Marzo','April' => 'Abril',
             'May' => 'Mayo','June' => 'Junio','July' => 'Julio','August' => 'Agosto','September' => 'Septiembre',
             'October' => 'Octubre','November' => 'Noviembre','December' => 'Diciembre'
         );
 
+        return view("pedestal.fecha1",["day_dias"=>$days_dias,"months_meses"=>$months_meses,"fechas"=>$fechas,'nombres'=>$request->nombres,'apellidos'=>$request->apellidos,
+        'paciente_id'=>$request->paciente_id,'especialidad_id'=>$request->especialidad_id,
+        'Pmes'=>$time->formatLocalized('%B'),'mes'=>$time->format('m'),'year'=>$time->format('Y'),
+        'codigo'=>$request->codigo]);
+        
+
+        
+        
+
         $meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Setiembre','Octubre','Noviembre','Diciembre'];
+        
         $collection = collect();
         //dd($fechas);
         foreach($fechas as $key=>$f){            

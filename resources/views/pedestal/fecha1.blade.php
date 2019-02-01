@@ -72,7 +72,7 @@
                 <p>{{$fecha['fecha']->formatLocalized('%d')}}  </p>
                 </div>
                 <div class="clearfix colelem" id="u595-4"><!-- content -->
-                <p>{{ucfirst($fecha['fecha']->formatLocalized('%A'))}}</p>
+                <p>{{ $day_dias[ucfirst($fecha['fecha']->formatLocalized('%A'))]}}</p>
                 </div>
             </a>
             </div>
@@ -91,7 +91,7 @@
    </div>
    <div class="verticalspacer" data-offset-top="537" data-content-above-spacer="537" data-content-below-spacer="62"></div>
    <div class="clearfix grpelem" id="u989-4"><!-- content -->
-   <p>{{ucfirst($Pmes)}}</p>
+   <p>{{$months_meses[ucfirst($Pmes)]}}</p>
    </div>
    <div class="rounded-corners grpelem" id="u787"><!-- simple frame --></div>
    <div class="clearfix grpelem" id="u796-4"><!-- content -->

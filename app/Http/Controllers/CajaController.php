@@ -36,7 +36,6 @@ class CajaController extends Controller
             ->Join('citas', 'citas.paciente_id', '=', 'pacientes.id')
             ->where('citas.id',$request->citaID)
             ->where('citas.hospital_id',$hospitalID)
-            ->where('fecha',date("Y-m-d"))
             ->get();
             
             return view('caja.index',['citas'=>$citas]);
