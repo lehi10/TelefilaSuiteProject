@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use telefilaSuite\Hospital;
 use telefilaSuite\Paciente;
 use telefilaSuite\Cita;
+use telefilaSuite\Agenda;
 use Illuminate\Support\Facades\DB;
 
 use Auth;
@@ -17,33 +18,33 @@ use Auth;
 class CajaController extends Controller
 {
     /**
-     * Funcion del index del modulo Caja.  
-     * Entradas:    Recibe por POST el codigo de un ticket ( citaID ).  
-     * 
-     * Salida:      El registro de la cita a partir de citaID , 
-     *              o los registros de las citas generadas el 
+     * Funcion del index del modulo Caja.
+     * Entradas:    Recibe por POST el codigo de un ticket ( citaID ).
+     *
+     * Salida:      El registro de la cita a partir de citaID ,
+     *              o los registros de las citas generadas el
      *              día actual. La salida es enviada a una vista
-     * 
+     *
      */
-    public function index(Request $request)    
+    public function index(Request $request)
     {
         //Si se ha enviado el dato por POST se busca el registro con citaID y se envia a una vista.
         if(isset($request->citaID))
         {
             //Obtenemos el id del hospital en el que nos encontramos (variable que fue guardada en Auth )
-            $hospitalID = Auth::user()->hospital_id; 
+            $hospitalID = Auth::user()->hospital_id;
             $citas = DB::table('pacientes')->select('*','pacientes.id as pacienteID')
             ->Join('citas', 'citas.paciente_id', '=', 'pacientes.id')
             ->where('citas.id',$request->citaID)
             ->where('citas.hospital_id',$hospitalID)
             ->get();
-            
+
             return view('caja.index',['citas'=>$citas]);
         }
         //Si no se ha enviado el citaID se muestran las citas generadas el día actual
         else
         {
-            $hospitalID = Auth::user()->hospital_id; 
+            $hospitalID = Auth::user()->hospital_id;
             $citas = DB::table('pacientes')->select('*','pacientes.id as pacienteID')
             ->Join('citas', 'citas.paciente_id', '=', 'pacientes.id')
             ->where('citas.hospital_id',$hospitalID)
@@ -52,13 +53,13 @@ class CajaController extends Controller
             ->get();
             return view('caja.index',['citas'=>$citas]);
         }
-        
+
     }
-    
+
     /**
      * Función para guardar un pago a una cita generada en el pedestal.
-     * Entradas:    Recibe por POST el codigo de un ticket ( citaID ).  
-     * 
+     * Entradas:    Recibe por POST el codigo de un ticket ( citaID ).
+     *
      * Salidas:     Mensaje de confirmación de pago.
      */
     public function guardarPago(Request $request)
@@ -66,7 +67,13 @@ class CajaController extends Controller
         //Se busca a partir de citaID el registro al que se actualizará el pago
         $cita=Cita::find($request->citaID);
         $cita->pagado=1;
+        $idAgenda=$cita->agenda_id;
         $cita->save();
+        //Actualiza los turnos o citas que fueron pagados en caja
+        $agendaSeleccionada=Agenda::find($idAgenda);
+        $agendaSeleccionada->turnosPagados++;
+        $agendaSeleccionada->save();
+
         return redirect('caja?citaID='.$request->citaID)->with(["message"=>"Se ha realizado el pago con exito."]);
     }
 
@@ -83,8 +90,8 @@ class CajaController extends Controller
         {
             return redirect('caja')->with(["message"=>"Hubo algún problema, no se ha podido eliminar el ticket.","kind"=>"danger"]);
         }
-            
-        
-        
+
+
+
     }
 }

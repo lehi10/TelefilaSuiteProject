@@ -19,17 +19,18 @@ class CrearTablaCita extends Migration
             $table->time('horaInicio');
             $table->time('horaFinal');
 
-
             $table->unsignedInteger('paciente_id');
             $table->unsignedInteger('hospital_id');
             $table->unsignedInteger('agenda_id');
             $table->boolean('pagado');
-            
+            $table->unsignedInteger('consultorio_id');
+            $table->timestamps();
+
             $table->foreign('paciente_id')->references('id')->on("pacientes");
             $table->foreign('hospital_id')->references('id')->on("hospitals")->onDelete('cascade');
             $table->foreign('agenda_id')->references('id')->on("agendas");
+            $table->foreign('consultorio_id')->references('id')->on("consultorios");
 
-            $table->timestamps();
 
         });
     }

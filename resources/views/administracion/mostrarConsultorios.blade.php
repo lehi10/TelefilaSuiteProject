@@ -3,7 +3,7 @@
 @section('buscar','consultorios')
 
 @section('auxiliar')
-<div class="nav-item d-none d-md-flex" > 
+<div class="nav-item d-none d-md-flex" >
       <a href="/administrador/nuevoConsultorio" class="btn btn-sm btn-outline-primary">
        Agregar consultorio
       </a>
@@ -13,11 +13,11 @@
 @section('more_options')
 <li class="nav-item"><a href="{{url('/'.Auth::user()->rolUrl())}}" class="nav-link"><i class="fe fe-home"></i>Inicio</a></li>
 <li class="nav-item"> <a href="{{url('superuser/usersClient/'.Auth::user()->hospital_id)}}"  class="nav-link"><i class="fa fa-users"></i>Usuarios</a> </li>
-<li class="nav-item slc"> <a href="/administrador/consultorios" class="nav-link"><i class="fa fa-stethoscope"></i> Consultorios</a></li>                                     
-<li class="nav-item"> <a href="/recursosHumanos" class="nav-link"><i class="fa fa-user-md"></i> Recursos Humanos</a> </li>     
+<li class="nav-item slc"> <a href="/administrador/consultorios" class="nav-link"><i class="fa fa-stethoscope"></i> Consultorios</a></li>
+<li class="nav-item"> <a href="/recursosHumanos" class="nav-link"><i class="fa fa-user-md"></i> Recursos Humanos</a> </li>
 <li class="nav-item"> <a href="/admision" class="nav-link"><i class="fa fa-file-text"></i> Admisión</a> </li>
-<li class="nav-item"> <a href="/caja" class="nav-link"><i class="fa fa-money"></i> Caja</a> </li>                                                                                                                         
-<li class="nav-item"> <a href="/historialMedico" class="nav-link" ><i class="fa fa-bar-chart"></i> Reportes</a></li>                                                                               
+<li class="nav-item"> <a href="/caja" class="nav-link"><i class="fa fa-money"></i> Caja</a> </li>
+<li class="nav-item"> <a href="/historialMedico" class="nav-link" ><i class="fa fa-bar-chart"></i> Reportes</a></li>
 @endsection
 
 
@@ -27,13 +27,13 @@
 <script>
 
 function cambiarEstado(id) {
-  
+
   $.ajax({
     method: 'GET', // Type of response and matches what we said in the route
     url: '/administrador/cambiarEstadoConsultorio', // This is the url we gave in the route
     data: {'idConsultorio' : id}, // a JSON object to send back
     success: function(response){ // What to do if we succeed
-        console.log(response); 
+        console.log(response);
     },
     error: function(jqXHR, textStatus, errorThrown) { // What to do if we fail
         console.log(JSON.stringify(jqXHR));
@@ -78,51 +78,73 @@ function cambiarEstado(id) {
                             <th class="w-1">ESPECIALIDAD</th>
                             <th class="w-1">USUARIO</th>
                             <th class="w-1">TURNOS </th>
+                            <th class="w-1">RESERVADOS</th>
+                            <th class="w-1">PAGADOS</th>
                             <th class="w-1">DISPONIBILIDAD</th>
                             <th class="w-1">PEDESTAL</th>
                           </tr>
                         </thead>
                         <tbody>
-                          
-                          @foreach($consultorios as $key=>$consultorio )  
+
+                          @foreach($consultorios as $key=>$consultorio )
                             <tr>
                               <td><span class="text-muted">{{$consultorio->id}}</span></td>
                               <td><a href="{{url('administrador/'.$consultorio->id.'/consultorio')}}" class="text-inherit">{{$consultorio->nombre}}<br>
-                                </a></td>                          
+                                </a></td>
                               <td>{{$consultorio->especialidad->nombre}}</td>
                               <td>{{$consultorio->user->username}}</td>
-                              @if ($agendas[$key])
-                                <td style="text-align: center;"><strong>{{$agendas[$key]}}</strong></td>
-                                <td style="padding-left: 23px"><span class="badge badge-success">100%</span> </td>
+
+                              @if ($consultorio->turnos)
+                                <td style="text-align: center;"><strong>{{$consultorio->turnos}}</strong></td>
+                                <td style="text-align: center;"><strong>{{$consultorio->reservados}}</strong></td>
+                                <td style="text-align: center;"><strong>{{$consultorio->pagados}}</strong></td>
+
+                                <td style="padding-left: 23px">
+                                  @if($consultorio->turnos===null)
+                                    <span class="badge badge-dark">
+                                  @elseif($consultorio->turnos - $consultorio->reservados < 5 )
+                                      <span class="badge badge-danger">
+                                  @elseif($consultorio->turnos - $consultorio->reservados <= 10 )
+                                    <span class="badge badge-warning">
+                                  @else
+                                    <span class="badge badge-success">
+                                  @endif
+
+                                @if($consultorio->turnos != 0)
+                                    {{ 100-($consultorio->reservados*100) / $consultorio->turnos }} %
+                                @endif
+                                </span> </td>
+
                               @else
                                 <td style="text-align: center;">
-                                  @if($consultorio->turno===1)
-                                      Mañana 
-                                  @elseif($consultorio->turno===2)
-                                      Tarde
-                                  @elseif($consultorio->turno===3)
-                                      Noche
-                                  @else 
-                                    Ninguno
-                                  @endif
+                                @if($consultorio->turno===1)
+                                    Mañana
+                                @elseif($consultorio->turno===2)
+                                    Tarde
+                                @elseif($consultorio->turno===3)
+                                    Noche
+                                @else
+                                  Ninguno
+                                @endif
                                 </td>
-                                <td style="padding-left: 23px">
-                                    @if($consultorio->turnos>10)
-                                    <span class="badge badge-success">  
+
+                              <td style="padding-left: 23px">
+                                @if(true)
+                                  <span class="badge badge-success">
                                 @elseif($consultorio->turnos>5 and $consultorio->turnos<11)
-                                    <span class="badge badge-warning">
+                                  <span class="badge badge-warning">
                                 @elseif($consultorio->turnos===null)
-                                        <span class="badge badge-dark">
-                                @else 
-                                    <span class="badge badge-danger">
+                                  <span class="badge badge-dark">
+                                @else
+                                  <span class="badge badge-danger">
                                 @endif
                                 {{$consultorio->turnos}} %
-                                </span> </td>
+                              </span> </td>
                               @endif
-                              <td> 
+                              <td>
                               <label class="custom-switch">
-                                <input   name="optRol" value="{{$consultorio->id}}" class="custom-switch-input" onchange="cambiarEstado(this.value)" {{ $consultorio->pedestal==1 ? 'checked' :''}} type="checkbox"> 
-                                <span class="custom-switch-indicator"></span> 
+                                <input   name="optRol" value="{{$consultorio->id}}" class="custom-switch-input" onchange="cambiarEstado(this.value)" {{ $consultorio->pedestal==1 ? 'checked' :''}} type="checkbox">
+                                <span class="custom-switch-indicator"></span>
                               </label>
                               </td>
                             </tr>
@@ -134,9 +156,9 @@ function cambiarEstado(id) {
                   </div>
                 </div>
               </div>
-            </div>           
+            </div>
           </div>
-    <script>        
+    <script>
        $('#msg').delay(8000).hide(600);
        $('#search').on('keyup',function(){
             $value=$(this).val();
@@ -151,5 +173,3 @@ function cambiarEstado(id) {
         })
     </script>
   @endsection
-  
-  

@@ -14,6 +14,7 @@ class CitasTableSeeder extends Seeder
     public function run()
     {
         //
+        /*
         $agenda= Agenda::find(1);
         $turnos=$agenda->turnos;
         $tiempoCita=$agenda->tiempoCita;
@@ -31,5 +32,6 @@ class CitasTableSeeder extends Seeder
             $cita->pagado=false;
             $cita->save();
         }
+        */
     }
 }

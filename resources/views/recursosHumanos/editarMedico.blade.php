@@ -9,15 +9,15 @@
 //document.getElementById("1horaSalida").addEventListener("change", updateTurnos);
 
 
-function updateTurnos(iTurno) {    
-    
+function updateTurnos(iTurno) {
+
     var hora1 = document.getElementById(iTurno+"horaSalida").value.split(":"),
         hora2 = document.getElementById(iTurno+"horaIngreso").value.split(":"),
         tiempoAt = document.getElementById(iTurno+"tiempoAtencion").value,
         t1 = new Date(),
         t2 = new Date();
-    
-    
+
+
     t1.setHours(hora1[0], hora1[1],"00");
     t2.setHours(hora2[0], hora2[1],"00");
 
@@ -31,7 +31,7 @@ function updateTurnos(iTurno) {
         $("#row"+iTurno).removeClass("va");
         return;
     }
-        
+
     t1.setHours( hours,mins ,secs );
     var minutos=t1.getHours()*60+t1.getMinutes();
     //console.log(minutos);
@@ -46,7 +46,7 @@ function updateTurnos(iTurno) {
         $("#turnos"+iTurno).val(parseInt(turnosGenerados));
     }
 
-    } 
+    }
 </script>
 @endsection
 
@@ -55,11 +55,11 @@ function updateTurnos(iTurno) {
 @section('more_options')
 <li class="nav-item"><a href="{{url('/'.Auth::user()->rolUrl())}}" class="nav-link"><i class="fe fe-home"></i>Inicio</a></li>
 <li class="nav-item"> <a href="{{url('superuser/usersClient/'.Auth::user()->hospital_id)}}"  class="nav-link"><i class="fa fa-users"></i>Usuarios</a> </li>
-<li class="nav-item"> <a href="/administrador/consultorios" class="nav-link"><i class="fa fa-stethoscope"></i> Consultorios</a></li>                                     
-<li class="nav-item slc"> <a href="/recursosHumanos" class="nav-link"><i class="fa fa-user-md"></i> Recursos Humanos</a> </li>     
+<li class="nav-item"> <a href="/administrador/consultorios" class="nav-link"><i class="fa fa-stethoscope"></i> Consultorios</a></li>
+<li class="nav-item slc"> <a href="/recursosHumanos" class="nav-link"><i class="fa fa-user-md"></i> Recursos Humanos</a> </li>
 <li class="nav-item"> <a href="/admision" class="nav-link"><i class="fa fa-file-text"></i> Admisión</a> </li>
-<li class="nav-item"> <a href="/caja" class="nav-link"><i class="fa fa-money"></i> Caja</a> </li>                                                                                                                         
-<li class="nav-item"> <a href="/historialMedico" class="nav-link" ><i class="fa fa-bar-chart"></i> Reportes</a></li>                                                                               
+<li class="nav-item"> <a href="/caja" class="nav-link"><i class="fa fa-money"></i> Caja</a> </li>
+<li class="nav-item"> <a href="/historialMedico" class="nav-link" ><i class="fa fa-bar-chart"></i> Reportes</a></li>
 @endsection
 
 
@@ -137,9 +137,9 @@ function updateTurnos(iTurno) {
                                         <br>
                                     </td>
                                 </tr>
-                                <tr>                                
+                                <tr>
                                     {{ Form::open(array('action' => array('RecursosHumanosController@mostrarAgenda', $medico->id),'method'=>'get')) }}
-                                        <td>                                                                            
+                                        <td>
                                             <br>
                                         </td>
                                         <td style="padding-right:10px;" >
@@ -160,8 +160,10 @@ function updateTurnos(iTurno) {
                                         </td>
                                         <td style="padding-right:10px;" >
                                             <select name="year" id="select-users" class="form-control custom-select">
-                                                <option value="2018" >2018</option>
                                                 <option value="2019" >2019</option>
+                                                <option value="2020" >2020</option>
+                                                <option value="2021" >2021</option>
+                                                <option value="2022" >2022</option>
                                             </select>
                                         </td>
                                         <td style="padding-right:10px;" >
@@ -186,8 +188,8 @@ function updateTurnos(iTurno) {
                     <div class="table-responsive"></div>
 
                     {{ Form::open(array('action' => array('RecursosHumanosController@crearAgenda',$medico->id),'id'=>"agendas")) }}
-                        <input type="number" name="year" value="{{$year}}" style="display:none"> 
-                        <input type="number" name="mes" value="{{$month}}" style="display:none"> 
+                        <input type="number" name="year" value="{{$year}}" style="display:none">
+                        <input type="number" name="mes" value="{{$month}}" style="display:none">
 
                         <table style="margin: 0px auto; width: 80%;" cellspacing="100" border="0">
                         <tbody id="ags">
@@ -200,7 +202,7 @@ function updateTurnos(iTurno) {
                             <td style="text-align: center;">Turnos generados<br>
                             </td>
                         </tr>
-                        
+
                         @for ($i = 1; $i <= $diasMes ; $i++)
 
                             @if ($agendas->has($i))
@@ -253,8 +255,8 @@ function updateTurnos(iTurno) {
                         <br>
                         <div class="table-responsive" style="text-align: center;">
                             <strong>
-                                <div class="card-footer text-right"> 
-                                    <button type="submit" class="btn btn-primary" id="guardar">Guardar</button> 
+                                <div class="card-footer text-right">
+                                    <button type="submit" class="btn btn-primary" id="guardar">Guardar</button>
                                 </div>
                                 <br>
                             </strong>
@@ -263,7 +265,7 @@ function updateTurnos(iTurno) {
 
 
                     <div class="table-responsive"><br></div>
-                    @endisset                    
+                    @endisset
                     <div class="table-responsive"><br>
                   </div>
 
@@ -298,7 +300,7 @@ $("#guardar1").click(function(){
         var obj={}
         var num= $($(this).children("td")[0]).html();
         //console.log(num);
-        
+
         obj["horaInicio"]=$($(this).children("td")[1]).find("input").val();
         obj["horaFinal"]=$($(this).children("td")[2]).find("input").val();
         obj["tiempoCita"]=$($(this).children("td")[3]).find("select").val();
@@ -306,7 +308,7 @@ $("#guardar1").click(function(){
         agendas[num]=obj;
     });
     console.log(agendas);
-    
+
     $.ajax({
         type: "POST",
         url: "",
@@ -337,7 +339,7 @@ $('.timepicker').timepicker({
     change: function(time) {
             $(this).trigger("change");
         }
-    
+
 });
 
 });

@@ -21,6 +21,8 @@ class CrearTablaAgenda extends Migration
             $table->time('horaFinal');
             $table->tinyInteger('tiempoCita');
             $table->unsignedInteger('turnos');
+            $table->tinyInteger('turnosReservados')->default(0);
+            $table->tinyInteger('turnosPagados')->default(0);
             $table->unsignedInteger('medico_id');
             $table->foreign('medico_id')->references('id')->on('medicos')->onDelete('cascade');
         });

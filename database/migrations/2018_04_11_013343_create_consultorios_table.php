@@ -26,7 +26,7 @@ class CreateConsultoriosTable extends Migration
             $table->foreign('medico_id')->references('id')->on('medicos');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('hospital_id')->references('id')->on('hospitals')->onDelete('cascade');
-            
+
             $table->timestamps();
         });
     }

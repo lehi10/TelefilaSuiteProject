@@ -3,13 +3,13 @@
  <head>
 
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
-  
-  
+
+
   <title>Especialidad</title>
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="/css/site_global.css?crc=443350757"/>
   <link rel="stylesheet" type="text/css" href="/css/especialidad.css?crc=4201154614" id="pagesheet"/>
-  
+
   <style>
 
 
@@ -21,7 +21,7 @@
 .hijo {
   padding: 10px;
   margin: 10px;
-  
+
   /* IMPORTANTE */
   display: inline-block;
 }
@@ -52,7 +52,7 @@
     </div>
     <div class="browser_width colelem" id="u559-bw">
      <div id="u559"><!-- group -->
-      
+
     <form action="/pedestal/{{$codigo}}/fecha" method="post" id="form">
       {{csrf_field()}}
       <input type="hidden" name="especialidad_id" value="" id="especialidad">
@@ -61,35 +61,38 @@
       <input type="hidden" name="paciente_id" value="{{$paciente->id}}">
       <input type="hidden" name="codigo" value="{{$codigo}}">
       <input type="hidden" name="hospital_id" value="{{$paciente->hospital_id}}">
+      <input type="hidden" name="idConsultorio" value="" id="idConsultorio">
     </form>
-  
+    
     <div class="padre">
     @if(isset($especialidades))
       @foreach ( $especialidades as $especialidad )
-        <div class="hijo">            
-            <a style='background:transparent url("/images/{{$especialidad->id}}.png?crc=3939622240")' class="nonblock nontext museBGSize colelem" id="u570" href="#" onclick="mandarForm({{$especialidad->id}})"><!-- simple frame --></a>
+        <div class="hijo">
+            <a style='background:transparent url("/images/{{$especialidad->id}}.png?crc=3939622240")' class="nonblock nontext museBGSize colelem" id="u570" href="#" onclick="mandarForm({{$especialidad->id}},{{$especialidad->idConsultorio}})"><!-- simple frame --></a>
         </div>
         @endforeach
     @endif
-    
+
     @if(isset($especialidadesReferidas))
-  
+
     <h2> <b> Especialidades referidas: </b> </h2>
       @foreach ( $especialidadesReferidas as $especialidad )
         @if(!$especialidades->contains('id',$especialidad->id))
         <div class="hijo">
-          <a style='background:transparent url("/images/{{$especialidad->id}}.png?crc=3939622240")' class="nonblock nontext museBGSize colelem" id="u570" href="#" onclick="mandarForm({{$especialidad->id}})"><!-- simple frame --></a>
+          <a style='background:transparent url("/images/{{$especialidad->id}}.png?crc=3939622240")' class="nonblock nontext museBGSize colelem" id="u570" href="#" onclick="mandarForm({{$especialidad->id}},{{$especialidad->idConsultorio}})"><!-- simple frame --></a>
         </div>
         @endif
       @endforeach
       @endif
     </div>
-    
+
      </div>
     </div>
     <div class="verticalspacer" data-offset-top="534" data-content-above-spacer="534" data-content-below-spacer="78"></div>
    </div>
   </div>
+
+
   <div class="preload_images">
    <img class="preload" src="/images/back.png?crc=107087755" alt=""/>
    <img class="preload" src="/images/medgen_b.png?crc=300562693" alt=""/>
@@ -104,11 +107,12 @@
    <img class="preload" src="/images/cardio_b.png?crc=4148589182" alt=""/>
   </div>
   <!-- Other scripts -->
-  
+
   <script>
-    function mandarForm(value)
+    function mandarForm(especialidad,idConsult)
     {
-      document.getElementById('especialidad').value = value;
+      document.getElementById('especialidad').value = especialidad;
+      document.getElementById('idConsultorio').value = idConsult;
       document.getElementById('form').submit();
     }
   </script>

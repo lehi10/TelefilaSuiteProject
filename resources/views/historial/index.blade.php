@@ -6,11 +6,11 @@
 @section('more_options')
 <li class="nav-item"><a href="{{url('/'.Auth::user()->rolUrl())}}" class="nav-link"><i class="fe fe-home"></i>Inicio</a></li>
 <li class="nav-item"> <a href="{{url('superuser/usersClient/'.Auth::user()->hospital_id)}}"  class="nav-link"><i class="fa fa-users"></i>Usuarios</a> </li>
-<li class="nav-item"> <a href="/administrador/consultorios" class="nav-link"><i class="fa fa-stethoscope"></i> Consultorios</a></li>                                     
-<li class="nav-itemlc"> <a href="/recursosHumanos" class="nav-link"><i class="fa fa-user-md"></i> Recursos Humanos</a> </li>     
+<li class="nav-item"> <a href="/administrador/consultorios" class="nav-link"><i class="fa fa-stethoscope"></i> Consultorios</a></li>
+<li class="nav-itemlc"> <a href="/recursosHumanos" class="nav-link"><i class="fa fa-user-md"></i> Recursos Humanos</a> </li>
 <li class="nav-item"> <a href="/admision" class="nav-link"><i class="fa fa-file-text"></i> Admisión</a> </li>
-<li class="nav-item"> <a href="/caja" class="nav-link"><i class="fa fa-money"></i> Caja</a> </li>                                                                                                                         
-<li class="nav-item slc"> <a href="/historialMedico" class="nav-link" ><i class="fa fa-bar-chart"></i> Reportes</a></li>                                                                               
+<li class="nav-item"> <a href="/caja" class="nav-link"><i class="fa fa-money"></i> Caja</a> </li>
+<li class="nav-item slc"> <a href="/historialMedico" class="nav-link" ><i class="fa fa-bar-chart"></i> Reportes</a></li>
 @endsection
 
 
@@ -22,7 +22,7 @@
           <!--<span class="breadcrumb-item active">Cards</span>-->
           <!--</nav>-->
           <!--</div>-->
-          
+
           <div class="container">
             <div class="row row-cards"><br>
               <div class="col-12">
@@ -88,16 +88,19 @@
                           </th>
                           <th>
                             <select name="anio" id="select-users" class="form-control custom-select">
+                              <option value="2018"  >2021</option>
+                              <option value="2018"  >2020</option>
+                              <option value="2018"  >2019</option>
                               <option value="2018"  >2018</option>
                               <option value="2017"  >2017</option>
                             </select>
                           </th>
 
                           <th>
-                          
+
                             <select name="especialidad" id="select-users" class="form-control custom-select">
 
-                              <option value="" >Buscar en todas las Especialidades</option>  
+                              <option value="" >Buscar en todas las Especialidades</option>
                               <option value="1" >Medicina General</option>
                               <option value="2" >Oftalmología</option>
                               <option value="3" >Cirugia</option>
@@ -105,10 +108,10 @@
                               <option value="5" >Obstetricia</option>
 
                             </select>
-                            
+
                           </th>
-                          <th> 
-                            <span class="col-auto"> 
+                          <th>
+                            <span class="col-auto">
                               <button class="btn btn-secondary"  type="submit">
                                 <i class="fe fe-search"></i>
                               </button>
@@ -120,7 +123,7 @@
 
 
                       </thead>
-                      
+
                       @if(isset($registros))
                       <tbody>
                         @foreach ($registros as $registro)
@@ -160,4 +163,3 @@
         </div>
 
 @endsection
-  

@@ -27,4 +27,8 @@ class Cita extends Model
     {
         return $this->belongsTo(Agenda::class);
     }
+    public function consultorio()
+    {
+        return $this->hasOne(Consultorio::class);
+    }
 }

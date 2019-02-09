@@ -2,7 +2,7 @@
 
 namespace telefilaSuite\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;   
+use Illuminate\Support\Facades\DB;
 
 use telefilaSuite\Hospital;
 use telefilaSuite\Persona;
@@ -56,7 +56,7 @@ class SuperUsuarioController extends Controller
         //$hos= DB::table('hospitals')->paginate(10);
         $hos = Hospital::paginate(10);
         return view('superUsuario.index',["hospitales"=>$hos]);
-        */ 
+        */
         //$hospitales=Hospital::paginate(10);
         if ($request->page)
         {
@@ -79,18 +79,18 @@ class SuperUsuarioController extends Controller
 
         return view('superUsuario.tabla',["hospitales"=>$hospitales]);
     }
-    
+
     public function obtenerTabla(Request $request)
     {
         //$hospitales = DB::table('Hospital')->select('')
         $hospitales = Hospital::where('nombre','LIKE','%'. $request->input('busqueda') . '%')->paginate(10);
-        
-        return response()->json(view('superUsuario.tabla',compact('hospitales'))->render());    
-        
+
+        return response()->json(view('superUsuario.tabla',compact('hospitales'))->render());
+
     }
 
     public function nuevoCliente(Request $request)
-    {   
+    {
         return view('superUsuario.nuevoCliente');
     }
 
@@ -105,14 +105,14 @@ class SuperUsuarioController extends Controller
             $user->save();
             //return "NUevo user hospital: ".$user->hospital_id;
         }
-        
-        
+
+
         return view('superUsuario.cliente',["usuarios"=>$users,"hospital_id"=>$cliente->id,"nombre"=>$cliente->nombre]);
     }
     public function clienteUser($idUser)
     {
         $user =User::find($idUser);
-        return view('superUsuario.editarUsuario',['usuario'=>$user]);                
+        return view('superUsuario.editarUsuario',['usuario'=>$user]);
     }
 
     public function editClientUser(Request $request)
@@ -124,7 +124,7 @@ class SuperUsuarioController extends Controller
             if($request->password)
             {
                 $user->password=bcrypt($request->password);
-                
+
             }
             $user->save();
             return redirect('superuser/usersClient/'.$request->idCliente);
@@ -151,7 +151,7 @@ class SuperUsuarioController extends Controller
         $user->save();
         return redirect('superuser/usersClient/'.$request->hospital_id)->with('message','El usuario ha sido registrado satisfactoriamente.');
     }
-    
+
     /**
      * Save a New Cliente (Hospital)
      * Store a newly created resource in storage.
@@ -183,7 +183,7 @@ class SuperUsuarioController extends Controller
             $hos->licenciaAnual=true;
         else
             $hos->licenciaAnual=false;
-        $hos->save();  
+        $hos->save();
         $codigo=mb_substr($hos->nombre,0,2,'UTF-8').$hos->id.substr($hos->ruc,-4);
         $hos->codigo= strtolower(limpiarCaracteresEspeciales($codigo));
         $hos->save();
@@ -210,7 +210,7 @@ class SuperUsuarioController extends Controller
         $per->edad=0;
         $per->direccion="-";
         $per->save();
-     
+
         $user= new User;
         $user->email=$request->usuario;
         $user->username=$request->usuario;
@@ -226,14 +226,14 @@ class SuperUsuarioController extends Controller
     }
 
 
-        
+
     public function cambiarEstadoUsuario(Request $request)
     {
         $user=User::find($request->idUsuario);
         $estado_actual=$user->estado;
         if($estado_actual==0)
             $user->estado=1;
-        else 
+        else
             $user->estado=0;
         $user->save();
         return "Estado cambiado";
@@ -255,9 +255,9 @@ class SuperUsuarioController extends Controller
     }
 
     public function updateCliente(Request $request, $idCliente){
-        
+
         $cliente = Hospital::find($idCliente);
-        
+
         $cliente->nombre = $request->nombre;
         $cliente->telefono = $request->telefono;
         $cliente->nombrePersona = $request->nombrePersona;
@@ -270,7 +270,7 @@ class SuperUsuarioController extends Controller
         $cliente->direccion = $request->direccion;
         $cliente->tarifa= $request->tarifa;
         $cliente->estado= $request->estado;
-        
+
         if ($request->hasFile('logo'))
         {
             $cliente->logo= $request->logo->getClientOriginalName();
@@ -285,19 +285,19 @@ class SuperUsuarioController extends Controller
 
 
 
-        $user = User::where('hospital_id','=',$idCliente)->where('rol_id','=',2)->first();        
+        $user = User::where('hospital_id','=',$idCliente)->where('rol_id','=',2)->first();
         if ($request->password)
             $user->password = bcrypt($request->password);
         $user->save();
-        return redirect('superuser/')->with('message','Datos guardados satisfactoriamente');          
+        return redirect('superuser/')->with('message','Datos guardados satisfactoriamente');
 
     }
-    
+
     public function eliminarUsuario(Request $request)
-    {     
-        Hospital::destroy($request->idUser);        
+    {
+        Hospital::destroy($request->idUser);
         return redirect("superuser/")->with(["message"=>"El usuario ha sido eliminado correctamente"]);
     }
 
-    
+
 }

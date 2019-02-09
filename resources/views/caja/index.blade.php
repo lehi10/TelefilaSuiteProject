@@ -5,26 +5,26 @@
 @section('more_options')
 <li class="nav-item"><a href="{{url('/'.Auth::user()->rolUrl())}}" class="nav-link"><i class="fe fe-home"></i>Inicio</a></li>
 <li class="nav-item"> <a href="{{url('superuser/usersClient/'.Auth::user()->hospital_id)}}"  class="nav-link"><i class="fa fa-users"></i>Usuarios</a> </li>
-<li class="nav-item"> <a href="/administrador/consultorios" class="nav-link"><i class="fa fa-stethoscope"></i> Consultorios</a></li>                                     
-<li class="nav-item"> <a href="/recursosHumanos" class="nav-link"><i class="fa fa-user-md"></i> Recursos Humanos</a> </li>     
+<li class="nav-item"> <a href="/administrador/consultorios" class="nav-link"><i class="fa fa-stethoscope"></i> Consultorios</a></li>
+<li class="nav-item"> <a href="/recursosHumanos" class="nav-link"><i class="fa fa-user-md"></i> Recursos Humanos</a> </li>
 <li class="nav-item"> <a href="/admision" class="nav-link"><i class="fa fa-file-text"></i> Admisión</a> </li>
-<li class="nav-item slc"> <a href="/caja" class="nav-link"><i class="fa fa-money"></i> Caja</a> </li>                                                                                                                         
-<li class="nav-item"> <a href="/historialMedico" class="nav-link" ><i class="fa fa-bar-chart"></i> Reportes</a></li>                                                                               
+<li class="nav-item slc"> <a href="/caja" class="nav-link"><i class="fa fa-money"></i> Caja</a> </li>
+<li class="nav-item"> <a href="/historialMedico" class="nav-link" ><i class="fa fa-bar-chart"></i> Reportes</a></li>
 @endsection
 
 
 <script>$('#msg').delay(8000).hide(600);</script>
 
 @section('body')
-        <div class="my-3 my-md-5">        
+        <div class="my-3 my-md-5">
           <div class="container form-group" style="width : 50%; margin: auto; ">
           {{ Form::open(array('url' => 'caja','method' => 'get','class'=>'input-icon my-3 my-lg-0')) }}
               {!! csrf_field() !!}
-              <div class="input-group"> 
-              <input name="citaID" class="form-control" placeholder="Código de Ticket" type="text">               
-                  <button style="margin-left:10px;" class="btn btn-primary" type="submit"><i class="fe fe-search"></i></button>                                  
+              <div class="input-group">
+              <input name="citaID" class="form-control" placeholder="Código de Ticket" type="text">
+                  <button style="margin-left:10px;" class="btn btn-primary" type="submit"><i class="fe fe-search"></i></button>
               </div>
-              
+
             {{ Form::close() }}
           </div>
         <br>
@@ -40,7 +40,7 @@
                   <div id="msg" class="alert alert-{{session('kind')}} form-group text-center" role="alert">
                       {{session('message')}}
                     </div>
-                  @endif          
+                  @endif
                     <table class="table card-table table-vcenter text-nowrap">
                       <thead>
                         <tr>
@@ -58,7 +58,7 @@
                       <tr>
                           <td><span class="text-muted">{{$cita->id}}</span></td>
                           <td>{{$cita->nombres}} {{$cita->apellidos}}<br></td>
-                          <td>-</td>
+                          <td>{{$cita->nombres}}</td>
                           <td>{{$cita->fecha}}</td>
                           <td style="width: 65px;">{{$cita->horaInicio}}<br>
                           </td>
@@ -93,7 +93,7 @@
                           @endif
                           {{ Form::open(array('url' => 'caja/eliminarTicket','id'=>'eliminarTicket','method' => 'post')) }}
                             <input id="prodId" name="citaID" type="hidden" value="{{$cita->id}}">
-                            <td><a href="#" onclick="document.getElementById('eliminarTicket').submit()" class="icon"><i class="fe fe-trash"></i></a>                            
+                            <td><a href="#" onclick="document.getElementById('eliminarTicket').submit()" class="icon"><i class="fe fe-trash"></i></a>
                           {{ Form::close() }}
                             <br>
                           </td>
@@ -108,4 +108,4 @@
           </div>
         </div>
 
-@endsection        
+@endsection

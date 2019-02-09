@@ -18,7 +18,7 @@ use Auth;
 
 class AdministracionController extends Controller
 {
-    
+
     public function __construct()
     {
         $this->middleware(['auth','rol:Administrador']);
@@ -64,7 +64,7 @@ class AdministracionController extends Controller
                             ['hospital_id',Auth::user()->hospital_id],
                             ['apellidos',$apell],
                         ]);
-                    }), 
+                    }),
                 ],
             'apellidos' => 'required',
             'password' => 'required',
@@ -78,13 +78,14 @@ class AdministracionController extends Controller
             $user->estado=false;
         $user->save();
 
-     
+
         return redirect('administrador')->with(["message"=>"El usuario ha sido creado con exito."]);
     }
 
     public function eliminarUsuario(Request $request)
-    {     
-        User::destroy($request->idUser);        
+    {
+
+        User::destroy($request->idUser);
         return redirect('administrador')->with(["message"=>"El usuario ha sido eliminado correctamente."]);
     }
 
@@ -118,20 +119,24 @@ class AdministracionController extends Controller
 
     public function mostrarConsultorios()
     {
+
         if (Auth::check())
         {
             if (Auth::user()->hospital_id)
             {
-                $consultorios=Consultorio::where("consultorios.hospital_id",Auth::user()->hospital_id)                        
+                $consultorios=Consultorio::where("consultorios.hospital_id",Auth::user()->hospital_id)
                         ->leftJoin('medicos', 'consultorios.medico_id', '=', 'medicos.id')
-                        ->leftJoin('agendas','agendas.medico_id','=','consultorios.medico_id')          
-                        ->select('consultorios.*', 'medicos.turno','agendas.turnos')
-                        ->get();                                                       
-                $agendas=collect();            
+                        ->leftJoin('agendas','agendas.medico_id','=','consultorios.medico_id')
+                        ->select('consultorios.*', 'medicos.turno','agendas.turnos','agendas.id as agenda_id','agendas.turnosReservados as reservados','agendas.turnosPagados as pagados')
+                        ->get();
+                $agendas=collect();
+
+                /*
                 foreach ($consultorios as $key=>$consultorio) {
                     $agendas->push(Agenda::where('medico_id',$consultorio->medico_id)->where("fecha",now()->format("Y-m-d"))->pluck("turnos")->first());
                 }
-                
+                */
+
                 return view('administracion.mostrarConsultorios',['consultorios'=>$consultorios,"agendas"=>$agendas]);
             }
         }
@@ -140,7 +145,7 @@ class AdministracionController extends Controller
     public function crearConsultorio(Request $request)
     {
         //return $request;
-        
+
         $validateData = $request->validate([
             'nombre' => [
                     'required',
@@ -148,7 +153,7 @@ class AdministracionController extends Controller
                         $query->where([
                             ['hospital_id',Auth::user()->hospital_id],
                         ]);
-                    }), 
+                    }),
                 ],
         ]);
         $consultorio= new Consultorio;
@@ -171,7 +176,7 @@ class AdministracionController extends Controller
         {
             $medicos=Medico::where('hospital_id',$hospital->id)->get();
             //$agenda=Agenda::where('medico_id',$)
-            
+
             return view('administracion.editarConsultorio',["consultorio"=>$consultorio,"medicos"=>$medicos]);
 
         }
@@ -184,19 +189,19 @@ class AdministracionController extends Controller
         $consultorio->medico_id=$request->medico_id;
         if ($request->nombre)
             $consultorio->nombre=$request->nombre;
-        
-        
+
+
         $consultorio->save();
         return redirect("administrador/consultorios")->with(["message"=>"El consultorio ha sido editado satisfactoriamente"]);
     }
-    
+
     public function cambiarEstadoUsuario(Request $request)
     {
         $user=User::find($request->idUsuario);
         $estado_actual=$user->estado;
         if($estado_actual==0)
             $user->estado=1;
-        else 
+        else
             $user->estado=0;
         $user->save();
         return "Estado cambiado";
@@ -207,18 +212,18 @@ class AdministracionController extends Controller
         $c=Consultorio::find($request->idConsultorio);
         if($c->pedestal)
             $c->pedestal=0;
-        else 
+        else
             $c->pedestal=1;
         $c->save();
         return "Estado cambiado";
     }
 
     public function eliminarConsultorio(Request $request)
-    {     
-        Consultorio::destroy($request->idConsul);        
+    {
+        Consultorio::destroy($request->idConsul);
         return redirect("administrador/consultorios")->with(["message"=>"El consultorio ha sido eliminado correctamente"]);
     }
-    
-    
-    
+
+
+
 }

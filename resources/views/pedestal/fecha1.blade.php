@@ -3,9 +3,7 @@
  <head>
 
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
-  
-  
-  
+
   <title>Fecha</title>
   <!-- CSS -->
   <link href="/assets/css/dashboard.css" rel="stylesheet">
@@ -23,18 +21,17 @@
       /* IMPORTANTE */
       text-align: center;
     }
-
     .hijo {
       padding: 10px;
       margin: 10px;
-      
       /* IMPORTANTE */
       display: inline-block;
     }
   </style>
-
    </head>
  <body>
+
+   {{$idConsultorio}}
 
   <div class="clearfix gradient" id="page"><!-- group -->
    <div class="clearfix grpelem" id="pu275"><!-- group -->
@@ -58,12 +55,12 @@
       <input type="hidden" name="paciente_id" value='{{$paciente_id}}'>
       <input type="hidden" name="especialidad_id" value='{{$especialidad_id}}'>
       <input type="hidden" name="dia" value='' id="dia">
+      <input type="hidden" name="idConsultorio" value='{{$idConsultorio}}'>
     </form>
-    
+
     <div class="browser_width colelem" id="u310-bw">
      <div id="u310"><!-- group -->
-      <div class="col-xs-12 row" style="padding: 5px 10px 5px 10px; margin:5px 10% 5px 10%;"> 
-
+      <div class="col-xs-12 row" style="padding: 5px 10px 5px 10px; margin:5px 10% 5px 10%;">
       <div class="padre">
         @foreach($fechas as $fecha)
             <div class="hijo" id= @if($fecha['disp']<0) 'u770' @elseif ($fecha['disp']<=5 and $fecha['disp']>=0) 'u291' @else 'u633' @endif   >
@@ -78,16 +75,12 @@
             </div>
         @endforeach
       </div>
-
       </div>
      </div>
     </div>
-
     <script>
-      
     </script>
 
-    
    </div>
    <div class="verticalspacer" data-offset-top="537" data-content-above-spacer="537" data-content-below-spacer="62"></div>
    <div class="clearfix grpelem" id="u989-4"><!-- content -->

@@ -6,7 +6,7 @@
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="/css/site_global.css?crc=443350757"/>
   <link rel="stylesheet" type="text/css" href="/css/imprime.css?crc=259043253" id="pagesheet"/>
-   
+
 
   <!-- Other scripts -->
   <script type="text/javascript">
@@ -18,6 +18,7 @@
 </script>
    </head>
  <body>
+
 
   <div class="clearfix gradient" id="page"><!-- column -->
    <div class="position_content" id="page_position_content">
@@ -39,14 +40,14 @@
     <div class="browser_width colelem" id="u853-bw">
      <div id="u853"><!-- column -->
       <div class="clearfix" id="u853_align_to_page">
-       
+
         <div class="clearfix colelem" id="pu841"><!-- group -->
-          
+
           <a class="nonblock nontext museBGSize clearfix grpelem" id="u841" href="fecha.html"><!-- group -->
             <div class="clip_frame grpelem" id="u948"><!-- image --><img class="block" id="u948_img" src="images/check.png?crc=501764073" alt="" width="116" height="114"/>
             </div>
           </a>
-            <div class="clearfix grpelem" id="u880-6"><!-- content -->    
+            <div class="clearfix grpelem" id="u880-6"><!-- content -->
               <p>Código : {{$cita->id}}</p>
               <p>Se ha reservado temporalmente tu turno con el Dr. {{$medico->nombres.' '.$medico->apellidos }} para la especialidad de {{$consultorio->especialidad->nombre}}  para el {{$cita->fecha}} a las {{$cita->horaInicio}}. Dale en IMPRIMIR y acércate a caja a <span id="u880-2">pagar S/.{{$consultorio->especialidad->tarifa}}</span> y así confirmar tu turno.</p>
             </div>
@@ -56,7 +57,7 @@
           <p>IMPRIMIR</p>
         </div>
       </a>
-      
+
        <div class="clearfix colelem" id="u895"><!-- group -->
         <a class="nonblock nontext clearfix grpelem" id="u889-4" href="{{url('pedestal/'.$codigo)}}"><!-- content --><p>Cancelar</p></a>
         <a class="nonblock nontext rounded-corners grpelem" id="u892" href="{{url('pedestal/'.$codigo)}}"><!-- simple frame --></a>
@@ -73,10 +74,10 @@
    <img class="preload" src="/images/largo_b.png?crc=4172065039" alt=""/>
   </div>
   <!-- Other scripts -->
-  
+
   <!-- RequireJS script -->
   <script src="scripts/require.js?crc=244322403" type="text/javascript" async data-main="scripts/museconfig.js?crc=168988563" onload="if (requirejs) requirejs.onError = function(requireType, requireModule) { if (requireType && requireType.toString && requireType.toString().indexOf && 0 <= requireType.toString().indexOf('#scripterror')) window.Muse.assets.check(); }" onerror="window.Muse.assets.check();"></script>
-   
+
 <div style="visibility: hidden; ">
   <div id="ticket">
 
