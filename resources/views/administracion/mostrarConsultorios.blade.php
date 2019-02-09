@@ -73,11 +73,13 @@ function cambiarEstado(id) {
                       <table class="table card-table table-vcenter text-nowrap">
                         <thead>
                           <tr>
-                            <th class="w-1">Nro.</th>
+                            <th class="w-1">Cod</th>
                             <th class="w-1">CONSULTORIO</th>
                             <th class="w-1">ESPECIALIDAD</th>
+                            <th class="w-1">FECHA</th>
+                            <th class="w-1">INICIO</th>
+                            <th class="w-1">FINAL</th>
                             <th class="w-1">USUARIO</th>
-                            <th class="w-1">TURNOS </th>
                             <th class="w-1">RESERVADOS</th>
                             <th class="w-1">PAGADOS</th>
                             <th class="w-1">DISPONIBILIDAD</th>
@@ -91,12 +93,15 @@ function cambiarEstado(id) {
                               <td><span class="text-muted">{{$consultorio->id}}</span></td>
                               <td><a href="{{url('administrador/'.$consultorio->id.'/consultorio')}}" class="text-inherit">{{$consultorio->nombre}}<br>
                                 </a></td>
-                              <td>{{$consultorio->especialidad->nombre}}</td>
-                              <td>{{$consultorio->user->username}}</td>
+                                <td>{{$consultorio->especialidad->nombre}}</td>
+                                <td>{{$consultorio->fecha}}</td>
+                                <td>{{date("g:i a", strtotime($consultorio->inicio)) }}</td>
+                                <td>{{date("g:i a", strtotime($consultorio->final)) }}</td>
+                                <td>{{$consultorio->user->username}}</td>
+
 
                               @if ($consultorio->turnos)
-                                <td style="text-align: center;"><strong>{{$consultorio->turnos}}</strong></td>
-                                <td style="text-align: center;"><strong>{{$consultorio->reservados}}</strong></td>
+                                <td style="text-align: center;"><strong>{{$consultorio->reservados}}/{{$consultorio->turnos}}</strong></td>
                                 <td style="text-align: center;"><strong>{{$consultorio->pagados}}</strong></td>
 
                                 <td style="padding-left: 23px">

@@ -127,7 +127,7 @@ class AdministracionController extends Controller
                 $consultorios=Consultorio::where("consultorios.hospital_id",Auth::user()->hospital_id)
                         ->leftJoin('medicos', 'consultorios.medico_id', '=', 'medicos.id')
                         ->leftJoin('agendas','agendas.medico_id','=','consultorios.medico_id')
-                        ->select('consultorios.*', 'medicos.turno','agendas.turnos','agendas.id as agenda_id','agendas.turnosReservados as reservados','agendas.turnosPagados as pagados')
+                        ->select('consultorios.*', 'medicos.turno','agendas.turnos','agendas.id as agenda_id','agendas.turnosReservados as reservados','agendas.turnosPagados as pagados', 'agendas.horaInicio as inicio', 'agendas.horaFinal as final','agendas.fecha as fecha')
                         ->get();
                 $agendas=collect();
 

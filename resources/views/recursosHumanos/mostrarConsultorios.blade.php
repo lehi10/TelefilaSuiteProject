@@ -39,53 +39,78 @@
                             <th class="w-1">Nro.</th>
                             <th class="w-1">CONSULTORIO</th>
                             <th class="w-1">ESPECIALIDAD</th>
+                            <th class="w-1">FECHA</th>
+                            <th class="w-1">INICIO</th>
+                            <th class="w-1">FINAL</th>
                             <th class="w-1">USUARIO</th>
-                            <th class="w-1">TURNOS </th>
+                            <th class="w-1">RESERVADOS</th>
+                            <th class="w-1">PAGADOS</th>
                             <th class="w-1">DISPONIBILIDAD</th>
                             <th class="w-1">PEDESTAL</th>
                           </tr>
                         </thead>
                         <tbody>
-                          
-                          @foreach($consultorios as $key=>$consultorio )  
+
+                          @foreach($consultorios as $key=>$consultorio )
                             <tr>
                               <td><span class="text-muted">{{$consultorio->id}}</span></td>
                               <td><a href="{{url('recursosHumanos/'.$consultorio->id.'/consultorio')}}" class="text-inherit">{{$consultorio->nombre}}<br>
-                                </a></td>                          
+                                </a></td>
                               <td>{{$consultorio->especialidad->nombre}}</td>
+                              <td>{{$consultorio->fecha}}</td>
+                              <td>{{date("g:i a", strtotime($consultorio->inicio)) }}</td>
+                              <td>{{date("g:i a", strtotime($consultorio->final)) }}</td>
+
                               <td>{{$consultorio->user->username}}</td>
-                              @if ($agendas[$key])
-                                <td style="text-align: center;"><strong>{{$agendas[$key]}}</strong></td>
-                                <td style="padding-left: 23px"><span class="badge badge-success">100%</span> </td>
+                              @if ($consultorio->turnos)
+                                <td style="text-align: center;"><strong>{{$consultorio->reservados}}/{{$consultorio->turnos}}</strong></td>
+                                <td style="text-align: center;"><strong>{{$consultorio->pagados}}</strong></td>
+
+                                <td style="padding-left: 23px">
+                                  @if($consultorio->turnos===null)
+                                    <span class="badge badge-dark">
+                                  @elseif($consultorio->turnos - $consultorio->reservados < 5 )
+                                      <span class="badge badge-danger">
+                                  @elseif($consultorio->turnos - $consultorio->reservados <= 10 )
+                                    <span class="badge badge-warning">
+                                  @else
+                                    <span class="badge badge-success">
+                                  @endif
+
+                                @if($consultorio->turnos != 0)
+                                    {{ 100-($consultorio->reservados*100) / $consultorio->turnos }} %
+                                @endif
+                                </span> </td>
+
                               @else
                                 <td style="text-align: center;">
                                   @if($consultorio->turno===1)
-                                      Mañana 
+                                      Mañana
                                   @elseif($consultorio->turno===2)
                                       Tarde
                                   @elseif($consultorio->turno===3)
                                       Noche
-                                  @else 
+                                  @else
                                     Ninguno
                                   @endif
                                 </td>
                                 <td style="padding-left: 23px">
                                     @if($consultorio->turnos>10)
-                                    <span class="badge badge-success">  
+                                    <span class="badge badge-success">
                                 @elseif($consultorio->turnos>5 and $consultorio->turnos<11)
                                     <span class="badge badge-warning">
                                 @elseif($consultorio->turnos===null)
                                         <span class="badge badge-dark">
-                                @else 
+                                @else
                                     <span class="badge badge-danger">
                                 @endif
                                 {{$consultorio->turnos}} %
                                 </span> </td>
                               @endif
-                              <td> 
+                              <td>
                               <label class="custom-switch">
-                                <input   name="optRol" value="{{$consultorio->id}}" class="custom-switch-input" onchange="cambiarEstado(this.value)" {{ $consultorio->pedestal==1 ? 'checked' :''}} type="checkbox"> 
-                                <span class="custom-switch-indicator"></span> 
+                                <input   name="optRol" value="{{$consultorio->id}}" class="custom-switch-input" onchange="cambiarEstado(this.value)" {{ $consultorio->pedestal==1 ? 'checked' :''}} type="checkbox">
+                                <span class="custom-switch-indicator"></span>
                               </label>
                               </td>
                             </tr>
@@ -97,9 +122,9 @@
                   </div>
                 </div>
               </div>
-            </div>           
+            </div>
           </div>
-    <script>        
+    <script>
        $('#msg').delay(8000).hide(600);
        $('#search').on('keyup',function(){
             $value=$(this).val();
@@ -114,5 +139,3 @@
         })
     </script>
   @endsection
-  
-  
