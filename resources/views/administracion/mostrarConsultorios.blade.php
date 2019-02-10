@@ -87,71 +87,54 @@ function cambiarEstado(id) {
                           </tr>
                         </thead>
                         <tbody>
-
                           @foreach($consultorios as $key=>$consultorio )
                             <tr>
-                              <td><span class="text-muted">{{$consultorio->id}}</span></td>
-                              <td><a href="{{url('administrador/'.$consultorio->id.'/consultorio')}}" class="text-inherit">{{$consultorio->nombre}}<br>
-                                </a></td>
-                                <td>{{$consultorio->especialidad->nombre}}</td>
-                                <td>{{$consultorio->fecha}}</td>
-                                <td>{{date("g:i a", strtotime($consultorio->inicio)) }}</td>
-                                <td>{{date("g:i a", strtotime($consultorio->final)) }}</td>
-                                <td>{{$consultorio->user->username}}</td>
+                              @if($consultorio->agenda_id)
+                                  <td><span class="text-muted">{{$consultorio->id}}</span></td>
+                                  <td>
+                                    <a href="{{url('administrador/'.$consultorio->id.'/consultorio')}}" class="text-inherit">{{$consultorio->nombre}}<br></a>
+                                  </td>
+                                  <td>{{$consultorio->especialidad->nombre}}</td>
+                                  <td>{{$consultorio->fecha}}</td>
+                                  <td>{{date("g:i a", strtotime($consultorio->inicio)) }}</td>
+                                  <td>{{date("g:i a", strtotime($consultorio->final)) }}</td>
+                                  <td>{{$consultorio->user->username}}</td>
 
+                                  <td style="text-align: center;"><strong>{{$consultorio->reservados}}/{{$consultorio->turnos}}</strong></td>
+                                  <td style="text-align: center;"><strong>{{$consultorio->pagados}}</strong></td>
+                                  <td style="padding-left: 23px">
+                                      @if($consultorio->turnos===null)
+                                        <span class="badge badge-dark">
+                                      @elseif($consultorio->turnos - $consultorio->reservados < 5 )
+                                        <span class="badge badge-danger">
+                                      @elseif($consultorio->turnos - $consultorio->reservados <= 10 )
+                                        <span class="badge badge-warning">
+                                      @else
+                                        <span class="badge badge-success">
+                                      @endif
 
-                              @if ($consultorio->turnos)
-                                <td style="text-align: center;"><strong>{{$consultorio->reservados}}/{{$consultorio->turnos}}</strong></td>
-                                <td style="text-align: center;"><strong>{{$consultorio->pagados}}</strong></td>
-
-                                <td style="padding-left: 23px">
-                                  @if($consultorio->turnos===null)
-                                    <span class="badge badge-dark">
-                                  @elseif($consultorio->turnos - $consultorio->reservados < 5 )
-                                      <span class="badge badge-danger">
-                                  @elseif($consultorio->turnos - $consultorio->reservados <= 10 )
-                                    <span class="badge badge-warning">
-                                  @else
-                                    <span class="badge badge-success">
-                                  @endif
-
-                                @if($consultorio->turnos != 0)
-                                    {{ 100-($consultorio->reservados*100) / $consultorio->turnos }} %
-                                @endif
-                                </span> </td>
-
+                                      @if($consultorio->turnos != 0)
+                                        {{ 100-($consultorio->reservados*100) / $consultorio->turnos }} %
+                                      @endif
+                                  </span> </td>
+                                  <td>
+                                  <label class="custom-switch">
+                                    <input   name="optRol" value="{{$consultorio->id}}" class="custom-switch-input" onchange="cambiarEstado(this.value)" {{ $consultorio->pedestal==1 ? 'checked' :''}} type="checkbox">
+                                    <span class="custom-switch-indicator"></span>
+                                  </label>
+                                  </td>
                               @else
-                                <td style="text-align: center;">
-                                @if($consultorio->turno===1)
-                                    Mañana
-                                @elseif($consultorio->turno===2)
-                                    Tarde
-                                @elseif($consultorio->turno===3)
-                                    Noche
-                                @else
-                                  Ninguno
-                                @endif
-                                </td>
 
-                              <td style="padding-left: 23px">
-                                @if(true)
-                                  <span class="badge badge-success">
-                                @elseif($consultorio->turnos>5 and $consultorio->turnos<11)
-                                  <span class="badge badge-warning">
-                                @elseif($consultorio->turnos===null)
-                                  <span class="badge badge-dark">
-                                @else
-                                  <span class="badge badge-danger">
-                                @endif
-                                {{$consultorio->turnos}} %
-                              </span> </td>
-                              @endif
+                              <td><span class="text-muted">{{$consultorio->id}}</span></td>
                               <td>
-                              <label class="custom-switch">
-                                <input   name="optRol" value="{{$consultorio->id}}" class="custom-switch-input" onchange="cambiarEstado(this.value)" {{ $consultorio->pedestal==1 ? 'checked' :''}} type="checkbox">
-                                <span class="custom-switch-indicator"></span>
-                              </label>
+                                <a href="{{url('administrador/'.$consultorio->id.'/consultorio')}}" class="text-inherit">{{$consultorio->nombre}}<br></a>
                               </td>
+                              <td>{{$consultorio->especialidad->nombre}}</td>
+                              <td colspan="3"> Consultorio sin medico asignado* </td>
+
+                              <td>{{$consultorio->user->username}}</td>
+                              <td colspan="4"></td>
+                              @endif
                             </tr>
                           @endforeach
                         </tbody>
