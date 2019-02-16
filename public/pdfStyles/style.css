@@ -14,12 +14,6 @@ a {
   text-decoration: none;
 }
 
-
-html, body
-{
-  display: block;
-}
-
 body {
   position: relative;
   width: 19cm;
