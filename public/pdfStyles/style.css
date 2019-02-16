@@ -14,15 +14,21 @@ a {
   text-decoration: none;
 }
 
+
+html, body
+{
+  display: block;
+}
+
 body {
   position: relative;
-  width: 19cm;  
-  height: 29.7cm; 
-  margin: 0 auto; 
+  width: 19cm;
+  height: 29.7cm;
+  margin: 0 auto;
   color: #555555;
-  background: #FFFFFF; 
-  font-family: Arial, sans-serif; 
-  font-size: 14px; 
+  background: #FFFFFF;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
   font-family: SourceSansPro;
 }
 
@@ -98,7 +104,7 @@ table td {
   border-bottom: 1px solid #FFFFFF;
 }
 table th {
-  white-space: nowrap;        
+  white-space: nowrap;
   font-weight: normal;
 }
 
@@ -150,18 +156,18 @@ table tfoot td {
   background: #FFFFFF;
   border-bottom: none;
   font-size: 1.2em;
-  white-space: nowrap; 
-  border-top: 1px solid #AAAAAA; 
+  white-space: nowrap;
+  border-top: 1px solid #AAAAAA;
 }
 
 table tfoot tr:first-child td {
-  border-top: none; 
+  border-top: none;
 }
 
 table tfoot tr:last-child td {
   color: #57B223;
   font-size: 1.4em;
-  border-top: 1px solid #57B223; 
+  border-top: 1px solid #57B223;
 
 }
 
@@ -176,7 +182,7 @@ table tfoot tr td:first-child {
 
 #notices{
   padding-left: 6px;
-  border-left: 6px solid #0087C3;  
+  border-left: 6px solid #0087C3;
 }
 
 #notices .notice {
@@ -193,4 +199,3 @@ footer {
   padding: 8px 0;
   text-align: center;
 }
-
