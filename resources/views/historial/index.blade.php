@@ -73,7 +73,7 @@
                           <th>
                             <select name="mes" id="select-users" class="form-control custom-select">
                               <option value="1"  >Enero</option>
-                              <option value="2"  >Febreo</option>
+                              <option value="2"  >Febrero</option>
                               <option value="3"  >Marzo</option>
                               <option value="4"  >Abril</option>
                               <option value="5"  >Mayo</option>
@@ -88,11 +88,9 @@
                           </th>
                           <th>
                             <select name="anio" id="select-users" class="form-control custom-select">
-                              <option value="2018"  >2021</option>
-                              <option value="2018"  >2020</option>
-                              <option value="2018"  >2019</option>
-                              <option value="2018"  >2018</option>
-                              <option value="2017"  >2017</option>
+                              <option value="2019"  >2019</option>
+                              <option value="2020"  >2020</option>
+                              <option value="2021"  >2021</option>
                             </select>
                           </th>
 

@@ -3,7 +3,7 @@
 @section('title','Super Usuario')
 @section('buscar','clientes')
 
-@section('body')      
+@section('body')
   <div class="my-3 my-md-5">
   @if(session('message'))
               <div class="alert alert-{{session('kindMessage') ? session('kindMessage') : 'success'  }} form-group text-center" id="msg" role="alert">
@@ -16,12 +16,12 @@
       <!--<span class="breadcrumb-item active">Cards</span>-->
       <!--</nav>-->
       <!--</div>-->
-      <div id ="tabla">                  
+      <div id ="tabla">
+      </div>
+
   </div>
-      
-  </div>
-  <script type="text/javascript">  
-    $("#tabla").load("{{asset('superuser/inicio?page='.$page)}}");    
+  <script type="text/javascript">
+    $("#tabla").load("{{asset('superuser/inicio?page='.$page)}}");
 
     // $("#form").submit(function(){
     //   $.post("{{asset('superUsuario')}}",$("#form").serialize()).done(function(){
@@ -45,10 +45,8 @@
         }
       });
     }
-    </script> 
+    </script>
    <script>
       $.ajaxSetup({headers:{'csrftoken' :'{{csrf_token()}}'}});
-  </script> 
+  </script>
 @endsection
-
-

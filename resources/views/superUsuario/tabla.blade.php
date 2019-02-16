@@ -44,47 +44,49 @@
                                 <td>{{$hos->ciudad}}</td>
                                 <td>{{$hos->codigo}}</td>
                                 <td>
-                                    @if ($hos->estado===1) 
-                                        <span class="status-icon bg-warning"></span> En implementación                                 
-                                    @elseif ($hos->estado===2) 
-                                        <span class="status-icon bg-success"></span> Operando 
-                                    @else 
-                                        <span class="status-icon bg-danger"></span> Suspención Temporal 
-                                    @endif 
+                                  
+                                    @if($hos->estado==1)
+                                        <span class="status-icon bg-warning"></span> En implementación
+                                    @elseif ($hos->estado==2)
+                                        <span class="status-icon bg-success"></span> Operando
+                                    @else
+                                        <span class="status-icon bg-danger"></span> Suspención Temporal
+                                    @endif
 
                                 </td>
-                                <td class="text-right">                                       
-                                    <select class="custom-select" id="select1" onchange="updateState(this.value,'{{$hos->id}}')" >                                             
-                                        <option value="1"  @if($hos->estado==1 ) selected="selected" @endif>En implementación</option> 
-                                        <option value="2"  @if($hos->estado==2 ) selected="selected" @endif>Operando</option> 
-                                        <option value="3"  @if($hos->estado==3 ) selected="selected" @endif>Suspensión temporal</option> 
+                                <td class="text-right">
+                                    <select class="custom-select" id="select1" onchange="updateState(this.value,'{{$hos->id}}')" >
+
+                                        <option value="1"  @if($hos->estado==1 ) selected="selected" @endif>En implementación</option>
+                                        <option value="2"  @if($hos->estado==2 ) selected="selected" @endif>Operando</option>
+                                        <option value="3"  @if($hos->estado==3 ) selected="selected" @endif>Suspensión temporal</option>
                                     </select>
                                 </td>
 
-                                <td>  
-                                      <a href="{{url('superuser/editClient/'.$hos->id)}}" class="btn btn-lg ">  
-                                      <span class="glyphicon glyphicon-edit"></span></a> 
-                                </td> 
+                                <td>
+                                      <a href="{{url('superuser/editClient/'.$hos->id)}}" class="btn btn-lg ">
+                                      <span class="glyphicon glyphicon-edit"></span></a>
+                                </td>
 
-                                <td >  
-                                     <a onclick="eliminarCliente('{{$hos->id}}','{{$hos->nombre}}')" class="btn btn-lg " data-toggle="modal" id="owner">  
+                                <td >
+                                     <a onclick="eliminarCliente('{{$hos->id}}','{{$hos->nombre}}')" class="btn btn-lg " data-toggle="modal" id="owner">
                                      <span class="glyphicon glyphicon-remove"></span></a>
                                      <input name="idUsera" type="hidden" value="{{$hos->id}}" id="idUsera">
-                                </td> 
+                                </td>
                                 <td> <a class="icon" href="javascript:void(0)"> </a>
                                 </td>
                             </tr>
                             @endforeach
-                            
+
                         </tbody>
                     </table>
                     @endif
-    
+
                     {{ $hospitales->links() }}
                   </div>
 
 
-                  
+
             </div>
         </div>
     </div>
@@ -123,8 +125,8 @@
                     alert("cargando");
                     setTimeout(function(){// wait for 5 secs(2)
                         location.reload(); // then reload the page.(3)
-                    }, 5000); 
-                }    
+                    }, 5000);
+                }
             },
             error: function(jqXHR, textStatus, errorThrown) { // What to do if we fail
                 console.log(JSON.stringify(jqXHR));

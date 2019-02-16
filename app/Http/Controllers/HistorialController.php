@@ -8,17 +8,17 @@ use Auth;
 
 class HistorialController extends Controller
 {
-    public function index(Request $request)    
+    public function index(Request $request)
     {
-        $hospitalID = Auth::user()->hospital_id; 
+        $hospitalID = Auth::user()->hospital_id;
         if(isset($request->dia) && isset($request->mes)&& isset($request->anio))
-            $fecha="".$request->anio."-".$request->mes."-".$request->dia;               
+            $fecha="".$request->anio."-".$request->mes."-".$request->dia;
         else
             $fecha = date("Y-m-d");
-        
-        if(isset($request->especialidad) && $request->especialidad != "" ) 
+
+        if(isset($request->especialidad) && $request->especialidad != "" )
         {
-            $registros =DB::table('agendas')->select('especialidads.id as espID','especialidads.nombre as nombre', 'citas.fecha' )
+            $registros =DB::table('agendas')->select('especialidads.id AS espID','especialidads.nombre AS nombre', 'citas.fecha' )
             ->Join('medicos','medicos.id','=','agendas.medico_id')
             ->Join('especialidads','especialidads.id','=','medicos.especialidad_id')
             ->Join('citas','citas.agenda_id','=','agendas.id')
@@ -26,12 +26,16 @@ class HistorialController extends Controller
             ->where('citas.fecha',$fecha)
             ->Where('especialidads.id',$request->especialidad)
             ->Where('citas.pagado',1)
-            ->groupBy('espID','nombre','citas.fecha')
+            ->groupBy('especialidads.id','especialidads.nombre','citas.fecha')
+            ->get();
 
-            ->get();    
+
             return view('historial.index',["registros"=> $registros]);
         }
-        
+
+
+
+
         $registros =DB::table('agendas')->select('especialidads.id as espID','especialidads.nombre as nombre', 'citas.fecha' )
         ->Join('medicos','medicos.id','=','agendas.medico_id')
         ->Join('especialidads','especialidads.id','=','medicos.especialidad_id')
@@ -39,11 +43,11 @@ class HistorialController extends Controller
         ->where('citas.hospital_id',$hospitalID)
         ->where('citas.fecha',$fecha)
         ->Where('citas.pagado',1)
-        ->groupBy('espID','nombre','citas.fecha')
+        ->groupBy('especialidads.id','especialidads.nombre','citas.fecha')
         ->get();
 
         return view('historial.index',["registros"=> $registros]);
     }
 
-    
+
 }
