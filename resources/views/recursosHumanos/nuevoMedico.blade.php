@@ -5,7 +5,7 @@
 <div class="page">
     <div class="page-single">
     <div class="container">
-       
+
         <div class="row">
         <div class="col col-login mx-auto">
             <div style="text-align: center;"><img src="/demo/photos/logo_alpha.png"
@@ -31,7 +31,6 @@
                     @foreach($especialidades as $especialidad)
                         <option value="{{$especialidad->id}}" data-data="{&quot;image&quot;: &quot;demo/faces/female/16.jpg&quot;}">{{$especialidad->nombre}}</option>
                     @endforeach
-                    
                 </select>
                 <br>
                 @if($errors->any())
@@ -46,7 +45,7 @@
             @endif
                 <b><br>
                     Tuno</b><br>
-                <div class="custom-switches-stacked"> 
+                <div class="custom-switches-stacked">
 
                     <label class="custom-switch">
                         <input name="turno" value="1" class="custom-switch-input" checked="checked" type="radio"> <span class="custom-switch-indicator"></span>
@@ -61,9 +60,9 @@
                 </div>
                 </div>
 
-                <div class="form-footer"> 
+                <div class="form-footer">
                 <button type="submit" class="btn btn-primary btn-block">CREAR MEDICO&nbsp;</button>
-                </div>            
+                </div>
             </div>
             </form>
             <div class="text-center text-muted"><br>

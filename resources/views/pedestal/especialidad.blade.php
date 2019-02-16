@@ -63,7 +63,7 @@
       <input type="hidden" name="hospital_id" value="{{$paciente->hospital_id}}">
       <input type="hidden" name="idConsultorio" value="" id="idConsultorio">
     </form>
-    
+
     <div class="padre">
     @if(isset($especialidades))
       @foreach ( $especialidades as $especialidad )
@@ -79,7 +79,7 @@
       @foreach ( $especialidadesReferidas as $especialidad )
         @if(!$especialidades->contains('id',$especialidad->id))
         <div class="hijo">
-          <a style='background:transparent url("/images/{{$especialidad->id}}.png?crc=3939622240")' class="nonblock nontext museBGSize colelem" id="u570" href="#" onclick="mandarForm({{$especialidad->id}},{{$especialidad->idConsultorio}})"><!-- simple frame --></a>
+          <a style='background:transparent url("/images/{{$especialidad->id}}.png?crc=3939622240")' class="nonblock nontext museBGSize colelem" id="u570" href="#" onclick="mandarForm({{$especialidad->id}},{{$especialidad->idConsultorio}})"><!-- simple frame --></a>z
         </div>
         @endif
       @endforeach
