@@ -3,9 +3,9 @@
  <head>
 
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
-  
-  
-  
+
+
+
   <title>fecha</title>
   <!-- CSS -->
   <link href="/assets/css/dashboard.css" rel="stylesheet">
@@ -27,7 +27,7 @@
     .hijo {
       padding: 10px;
       margin: 10px;
-      
+
       /* IMPORTANTE */
       display: inline-block;
     }
@@ -64,14 +64,14 @@
 
 
     </form>
-    
+
     <div class="browser_width colelem" id="u310-bw">
      <div id="u310"><!-- group -->
       <div class="col-xs-12 row" style="padding: 5px 10px 5px 10px; margin:5px 10% 5px 10%;">
      
       @foreach($cuposXdia as $cupoXdia)
-      
-        <div class="col-sm-2 museBGSize clearfix colelem" 
+
+        <div class="col-sm-2 museBGSize clearfix colelem"
         @if($cupoXdia['cupos']=== 0) id="u770" @elseif($cupoXdia['cupos']>10)id="u633" @else id="u291"@endif >
          <a href="#" onclick="document.getElementById('form').submit()">
          <div class="clearfix colelem" id="u621-4"><!-- content -->
@@ -81,9 +81,9 @@
           <p>{{$cupoXdia['dia']}}</p>
          </div>
          </a>
-        </div>                  
-      
-      @endforeach                          
+        </div>
+
+      @endforeach
       </div>
      </div>
     </div>
@@ -94,12 +94,12 @@
         //console.log(dia);
         $('#dia').val('{{$year}}-{{$mes}}-'+dia);
         $("#form").submit();
-        
+
 
       });
     </script>
 
-    
+
    </div>
    <div class="verticalspacer" data-offset-top="537" data-content-above-spacer="537" data-content-below-spacer="62"></div>
    <div class="clearfix grpelem" id="u989-4"><!-- content -->
