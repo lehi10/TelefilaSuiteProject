@@ -1,15 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="utf-8">
-    <title>Hospital {{$hospital->nombre}} {{$fecha}}  | Reporte</title>
-  </head>
   <body>
     <header class="clearfix">
       <div>
         <img width='150'  src="images/logo_alpha1.png">
       </div>
-
       <div id="company">
         <h2 class="name">Hospital {{$hospital->nombre}}</h2>
         <div>RUC: {{$hospital->ruc}}</div>
@@ -30,7 +25,6 @@
       <div style='display: none;'>
           {{$i=1}}
       </div>
-
       <table >
         <thead>
           <tr>
@@ -38,12 +32,9 @@
             <th class="desc">Codigo</th>
             <th class="unit">Paciente</th>
             <th class="qty">Hora de Cita</th>
-
           </tr>
         </thead>
         <tbody>
-
-
           @foreach ($registros as $registro)
             <tr>
               <td class="no" >{{$i++}}</td>
@@ -54,11 +45,8 @@
           @endforeach
         </tbody>
       </table>
-
-
       <div id="notices">
         <div class="notice"> El día <strong>{{$fecha}}</strong> se han generado <strong>{{$i}}</strong> los cuales han sido pagados para la especialidad de {{$especialidad->nombre}}. </div>
-
       </div>
     </main>
     <footer>
