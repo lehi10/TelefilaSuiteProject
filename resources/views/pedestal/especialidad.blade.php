@@ -79,7 +79,7 @@
       @foreach ( $especialidadesReferidas as $especialidad )
         @if(!$especialidades->contains('id',$especialidad->id))
         <div class="hijo">
-          <a style='background:transparent url("/images/{{$especialidad->id}}.png?crc=3939622240")' class="nonblock nontext museBGSize colelem" id="u570" href="#" onclick="mandarForm({{$especialidad->id}},{{$especialidad->idConsultorio}})"><!-- simple frame --></a>z
+          <a style='background:transparent url("/images/{{$especialidad->id}}.png?crc=3939622240")' class="nonblock nontext museBGSize colelem" id="u570" href="#" onclick="mandarForm({{$especialidad->id}},{{$especialidad->idConsultorio}})"><!-- simple frame --></a>
         </div>
         @endif
       @endforeach

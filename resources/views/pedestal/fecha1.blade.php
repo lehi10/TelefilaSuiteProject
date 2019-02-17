@@ -66,7 +66,7 @@
             <div class="hijo" id= @if($fecha['disp']<=0) 'u770' @elseif ($fecha['disp']<=5 and $fecha['disp']>=0) 'u291' @else 'u633' @endif   >
             <a href="#" onclick="mandarForm('{{$fecha['fecha']->format('Y-m-d')}}')">
                 <div class="clearfix colelem fecha" id="u621-4"><!-- content -->
-                <p>{{$fecha['fecha']->formatLocalized('%d')}}  </p>
+                  <p>{{$fecha['fecha']->formatLocalized('%d')}}  </p>
                 </div>
                 <div class="clearfix colelem" id="u595-4"><!-- content -->
                 <p>{{ $day_dias[ucfirst($fecha['fecha']->formatLocalized('%A'))]}}</p>
