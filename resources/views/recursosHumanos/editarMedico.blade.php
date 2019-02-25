@@ -207,12 +207,19 @@ function updateTurnos(iTurno) {
 
                             @if ($agendas->has($i))
                                 <tr id="row{{$i}}">
-                                    <td>{{$i}}</td>
                                     <td>
-                                        <input name="{{$i}}[horaInicio]" id="{{$i}}horaIngreso" type="text"  class="form-control usado"  value="{{$agendas[$i]->horaInicio}}" disabled>
+                                      <strong>
+                                        <?php
+                                          setlocale(LC_ALL,"es_ES");
+                                          echo ucfirst(strftime("%A",DateTime::createFromFormat("d/m/Y", "$i/$month/$year")->getTimestamp())) ," ",$i;
+                                        ?>
+                                      </strong>
                                     </td>
                                     <td>
-                                        <input name="{{$i}}[horaFinal]" id="{{$i}}horaSalida" class="form-control usado" value="{{$agendas[$i]->horaFinal}}" disabled>
+                                        <input name="{{$i}}[horaInicio]" id="{{$i}}horaIngreso" type="text"  class="form-control usado"  value=" {{ date("G:i a",strtotime($agendas[$i]->horaInicio)) }}" disabled>
+                                    </td>
+                                    <td>
+                                        <input name="{{$i}}[horaFinal]" id="{{$i}}horaSalida" class="form-control usado" value=" {{ date("G:i a",strtotime($agendas[$i]->horaFinal)) }}" disabled>
                                     </td>
                                     <td>
                                         <select name="{{$i}}[tiempoCita]" id="{{$i}}tiempoAtencion" class="form-control custom-select"  disabled>
@@ -228,7 +235,14 @@ function updateTurnos(iTurno) {
                             @else
 
                             <tr id="row{{$i}}">
-                                <td>{{$i}}</td>
+                                <td>
+                                  <strong>
+                                    <?php
+                                      setlocale(LC_ALL,"es_ES");
+                                      echo ucfirst(strftime("%A",DateTime::createFromFormat("d/m/Y", "$i/$month/$year")->getTimestamp())) ," ",$i;
+                                    ?>
+                                  </strong>
+                                </td>
                                 <td>
                                     <input name="{{$i}}[horaInicio]" id="{{$i}}horaIngreso" type="text"  class="form-control timepicker " jt-timepicker="" time="model.time" time-string="model.timeString" default-time="model.options.defaultTime" time-format="model.options.timeFormat" start-time="model.options.startTime" min-time="model.options.minTime" max-time="model.options.maxTime" interval="model.options.interval" dynamic="model.options.dynamic" scrollbar="model.options.scrollbar" dropdown="model.options.dropdown" onchange="updateTurnos({{$i}})">
                                 </td>

@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('title','Editar Cliente')
-  
+
   @section('body')
 <div class="my-3 my-md-5">
           <div class="container" >
@@ -16,7 +16,7 @@
                           <form action="/superuser/updateClient/{{$hospital->id}}" method="post" class="card" enctype="multipart/form-data">
                               {{csrf_field()}}
                               <div class="card-header">
-                                    <h3 class="card-title">Editando Datos</h3>
+                                  <h3 class="card-title">Editando Datos</h3>
                               </div>
                               <div class="card-body" >
                                   <div class="row" >
@@ -34,7 +34,7 @@
                                               <input id="psw" class="form-control" name="password" placeholder="Clave" type="password" >
                                               <div id="v_psw" style="color:red;" ></div><br>
                                               <b>INFORMACIÓN DEL CLIENTE </b>
-                                              <input  id="name_hosp" class="form-control" required="" name="nombre" placeholder="Nombre del Hospital / Clinica " type="text" value = "{{$hospital->nombre}}">                                            
+                                              <input  id="name_hosp" class="form-control" required="" name="nombre" placeholder="Nombre del Hospital / Clinica " type="text" value = "{{$hospital->nombre}}">
                                               <div id="v_name_hosp" style="color:red;" ></div>
                                               <br>
                                               <input id="ruc" class="form-control " required="" name="ruc" placeholder="RUC" type="text" value = "{{$hospital->ruc}}">
@@ -101,26 +101,42 @@
                                             <b>FOTO / LOGOTIPO<br></b>
                                               <div class="form-group">
                                                   <div class="custom-file">
-                                                      <input class="custom-file-input" name="logo" type="file" accept = ".jpg,.jpeg,.png">
-                                                      <label class="custom-file-label"></label>
+                                                      <input class="custom-file-input" name="logo" type="file" accept = ".jpg,.jpeg,.png" id="logo-upload">
+                                                      <label class="custom-file-label" for="logo-upload" id="logo-upload">{{$hospital->logo}}</label>
                                                   </div>
+                                                  @if(isset($hospital->logo))
+                                                  <div style="padding-top:10px">
+                                                    <input type="button" class="btn btn-primary btn-sm" value="Ver" onclick="window.open('/archivos/{{$hospital->codigo}}/{{$hospital->logo}}')" >
+                                                    <input type="button" class="btn btn-danger btn-sm" value="Eliminar" id="btnEliminarLogo" >
+                                                  </div>
+
+                                                  @endif
+
+
                                               </div>
+                                              <b> CONTRATOS</b>
+                                              <div class="custom-file">
+                                                  <input class="custom-file-input" name="contratos" type="file" value = "" accept=".pdf ,.docx, .odt" id="contratos-upload">
+                                                  <label class="custom-file-label" for="contros-upload" id="contratos-label">{{$hospital->contratos}} </label>
+                                              </div>
+
+                                              @if(isset($hospital->contratos))
+                                              <div style="padding-top:10px">
+                                                <input type="button" class="btn btn-primary btn-sm" value="Ver" onclick="window.open('/archivos/{{$hospital->codigo}}/{{$hospital->contratos}}')" >
+                                                <input type="button" class="btn btn-danger btn-sm" value="Eliminar" id="btnEliminarContratos" >
+                                              </div>
+
+                                              @endif
                                           </div>
                                       </div>
                                       <div class="col-md-6 col-lg-4" >
-                                        <b> CONTRATOS</b>
+
                                           <div class="form-group" >
-                                              <div class="custom-file">
-                                                  <input class="custom-file-input" name="contratos" type="file" value = "">
-                                                  <label class="custom-file-label">
-                                                  </label>
-                                              </div>
-                                              <br>
-                                              <b>FECHA DE INICIO DE OPERACIÓN</b>  
-                                                                                                                          
+                                              <b>FECHA DE INICIO DE OPERACIÓN</b>
+
                                               <div class="row gutters-xs">
-                                                  <div class="col-5">                                                 
-                                                  <select name="mes" class="form-control custom-select" disabled="disabled" value = "{{$hospital->mes}}">                                                          
+                                                  <div class="col-5">
+                                                  <select name="mes" class="form-control custom-select" disabled="disabled" value = "{{$hospital->mes}}">
                                                           <option value="1">Enero</option>
                                                           <option value="2">Febrero</option>
                                                           <option value="3">Marzo</option>
@@ -135,9 +151,9 @@
                                                           <option value="12">Diciembre</option>
                                                       </select>
                                                   </div>
-                                                  <div class="col-3">                                                  
+                                                  <div class="col-3">
                                                   <select name="dia" class="form-control custom-select" disabled="disabled" value = "{{$hospital->dia}}">
-                                                          
+
                                                           <option value="1">1</option>
                                                           <option value="2">2</option>
                                                           <option value="3">3</option>
@@ -156,7 +172,7 @@
                                                           <option value="16">16</option>
                                                           <option value="17">17</option>
                                                           <option value="18">18</option>
-                                                          <option value="19">19</option>
+                                                        Function  <option value="19">19</option>
                                                           <option  value="20">20</option>
                                                           <option value="21">21</option>
                                                           <option value="22">22</option>
@@ -172,9 +188,9 @@
                                                       </select>
                                                   </div>
                                                   <div class="col-4">
-                                                
+
                                                   <select name="year" class="form-control custom-select" disabled="disabled" value = "{{$hospital->year}}">
-                                                          
+
                                                           <option value="2019">2019</option>
                                                           <option value="2018">2018</option>
                                                           <option value="2017">2017</option>
@@ -187,7 +203,7 @@
                                                   <span class="input-group-prepend">
                                                         <span class="input-group-text">S/.</span>
                                                   </span>
-                                                  <input id="tari" class="form-control text-right" required="" aria-label="Amount (to the nearest dollar)" name="tarifa" value = "{{$hospital->tarifa}}" type="text">
+                                                  <input id="tari" class="form-control text-right" type="number" step="0.01" aria-label="" name="tarifa" value = "{{$hospital->tarifa-0}}" type="text">
                                                   <span class="input-group-append">
                                                         <span class="input-group-text">PE</span>
                                                   </span>
@@ -224,7 +240,7 @@
                                   <div class="d-flex" style="text-align: center;">
                                       <dl>
                                           <dt> <a href="{{url('superuser/')}}" class="btn btn-primary">Cancelar</a>
-                                              <button id="guardar" type="submit" class="btn btn-primary ml-auto">Guardar cambios</button>                                        
+                                              <button id="guardar" type="submit" class="btn btn-primary ml-auto">Guardar cambios</button>
                                           </dt>
                                       </dl>
                                   </div>
@@ -245,5 +261,67 @@
         </div>
       </div>
     </div>
+
+@endsection
+
+@section('scriptsOnFooter')
+<script type="application/javascript">
+$('#logo-upload').change(function(event){
+    var fileName = event.target.files[0].name;
+    if (event.target.nextElementSibling!=null){
+        event.target.nextElementSibling.innerText=fileName;
+    }
+});
+$('#contratos-upload').change(function(event){
+    var fileName = event.target.files[0].name;
+    if (event.target.nextElementSibling!=null){
+        event.target.nextElementSibling.innerText=fileName;
+    }
+});
+</script>
+
+<script>
+
+  document.getElementById("btnEliminarContratos").addEventListener("click", deleteContrat);
+
+  document.getElementById("btnEliminarLogo").addEventListener("click", deleteLogo);
+
+   function deleteLogo () {
+    $.ajax({
+               type:'GET',
+               url:'/superuser/archivos/eliminar',
+               data: {
+                  "_token": "{{ csrf_token() }}",
+                  'clientCode': '{{$hospital->codigo}}',
+                  'fileName': '{{$hospital->logo}}' ,
+                  'clientId': '{{$hospital->id}}',
+                  'typeDoc': 'logo'
+                },
+                dataType: 'json',
+               success: function(d){
+                  alert(d.status); //will alert ok
+                }
+            });
+  }
+
+   function deleteContrat () {
+    $.ajax({
+              type:'GET',
+              url:'/superuser/archivos/eliminar',
+              data: {
+                  "_token": "{{ csrf_token() }}",
+                  'clientCode': '{{$hospital->codigo}}',
+                  'fileName': '{{$hospital->contratos}}' ,
+                  'clientId': '{{$hospital->id}}',
+                  'typeDoc': 'contrato'
+               },
+               dataType: 'json',
+              success: function(d){
+                 alert(d.status); //will alert ok
+               }
+            });
+  }
+</script>
+
 
 @endsection

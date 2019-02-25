@@ -21,7 +21,7 @@ class CrearTablaHospital extends Migration
             $table->string('nombrePersona');
             $table->string('emailPersona');
             $table->string('celularPersona');
-            
+
             $table->string('direccion');
             $table->string('ciudad');
             $table->string('referencia')->nullable();
@@ -29,7 +29,7 @@ class CrearTablaHospital extends Migration
             $table->string('logo')->nullable();
             $table->string('contratos')->nullable();
             $table->date('fechaInicio');
-            $table->unsignedInteger('tarifa');
+            $table->unsignedDecimal('tarifa',8,2); //Decimal sin signo , 8 digitos, 2 de ellos son decimales
             $table->tinyInteger('estado');
             $table->boolean('licenciaAnual');
             $table->timestamps();

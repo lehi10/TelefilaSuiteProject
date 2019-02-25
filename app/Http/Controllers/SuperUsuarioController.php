@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Pagination\Paginator;
 
+use Illuminate\Support\Facades\File;
+
 use Session;
 use Redirect;
 
@@ -243,6 +245,8 @@ class SuperUsuarioController extends Controller
     {
         $cliente = Hospital::find($idCliente);
         $user=$cliente->users->where('rol_id','==',2)->first();
+
+
         return view('superUsuario.editarCliente',["hospital"=>$cliente,"usuario"=>$user]);
     }
 
@@ -273,17 +277,17 @@ class SuperUsuarioController extends Controller
 
         if ($request->hasFile('logo'))
         {
-            $cliente->logo= $request->logo->getClientOriginalName();
-            $request->logo->storeAs($cliente->codigo,'logo.jpg');
+            //$cliente->logo= $request->logo->getClientOriginalName();
+            $cliente->logo= 'logo.'.$request->logo->extension();
+            $request->logo->storeAs($cliente->codigo,'logo.'.$request->logo->extension());
         }
         if ($request->hasFile('contratos'))
         {
-            $cliente->contratos= $request->contratos->getClientOriginalName();
+            //$cliente->contratos= $request->contratos->getClientOriginalName();
+            $cliente->contratos= 'contratos.'.$request->contratos->extension();
             $request->contratos->storeAs($cliente->codigo,'contratos.'.$request->contratos->extension());
         }
         $cliente->save();
-
-
 
         $user = User::where('hospital_id','=',$idCliente)->where('rol_id','=',2)->first();
         if ($request->password)
@@ -299,5 +303,34 @@ class SuperUsuarioController extends Controller
         return redirect("superuser/")->with(["message"=>"El usuario ha sido eliminado correctamente"]);
     }
 
+    public function eliminarArchivo(Request $request)
+    {
+      $filename=$request['fileName'];
+      $clientCode =$request['clientCode'];
+      $clientId=$request['clientId'];
+      $typeDoc=$request['typeDoc'];
+
+      $path = storage_path('app/'.$clientCode.'/' . $filename);
+      if (!File::exists($path)) {
+        abort(404);
+      }
+      if($typeDoc=='logo')
+      {
+        $cliente = Hospital::find($clientId);
+        $cliente->logo= null;
+        $cliente->save();
+      }
+      else
+      if($typeDoc=='contrato')
+      {
+        $cliente = Hospital::find($clientId);
+        $cliente->contratos= null;
+        $cliente->save();
+      }
+
+      return File::delete($path)?"Elimno":"nel";
+
+
+    }
 
 }

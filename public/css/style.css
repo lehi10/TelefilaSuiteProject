@@ -241,14 +241,6 @@ transition: all 0.3s ease 0s;
   text-decoration: none;
 }
 
-#especialidad {
-  font-size: 15px;
-  color: #009ddf;
-  font-family: "RobotoDraft", "Roboto", sans-serif;
-  width: 200px;
-  height: 30px;
-}
-
 #color_but {
   color: white;
   background-color: #009ddf;
@@ -274,5 +266,3 @@ transition: all 0.3s ease 0s;
 .pad{
   padding: 8px;
 }
-
-

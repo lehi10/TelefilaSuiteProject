@@ -40,7 +40,7 @@ Route::group(['prefix'=>'superuser','middleware' => 'rol:Super Usuario'],functio
     Route::post('store','SuperUsuarioController@storeNuevoCliente');
     Route::post('updateClient/{idCliente}','SuperUsuarioController@updateCliente');
 
-    
+
     Route::get('/', 'SuperUsuarioController@index');
     Route::get('/inicio', 'SuperUsuarioController@inicio');
     Route::get('/tabla', 'SuperUsuarioController@obtenerTabla');
@@ -54,7 +54,9 @@ Route::group(['prefix'=>'superuser','middleware' => 'rol:Super Usuario'],functio
     Route::post('nuevoUser','SuperUsuarioController@nuevoClientUser');
     Route::post('editUser', 'SuperUsuarioController@editClientUser' );
     Route::post( '/eliminarUser','SuperUsuarioController@eliminarUsuario');
-    
+
+    Route::get('archivos/eliminar','SuperUsuarioController@eliminarArchivo');
+
     //Route::get('{idCliente}/nuevoUsuario', 'SuperUsuarioController@nuevoUsuario' );
     // Route::post('storeUsuario','SuperUsuarioController@guardarUsuario');
     // Route::get('listaClientes', 'SuperUsuarioController@listarClientes' );
@@ -68,11 +70,11 @@ Route::group(['prefix'=>'administrador','middleware' => 'rol:Administrador'],fun
     Route::get('/',function()
     {
         $usuarios = Usuarios::paginate(4);
-        $usuarios->withPath('custom/url');   
+        $usuarios->withPath('custom/url');
     });
     Route::get('/',  'AdministracionController@index' );
     Route::get('/base',  'AdministracionController@index1' );
-    Route::get('editar','AdministracionController@editarPerfilHospital');   
+    Route::get('editar','AdministracionController@editarPerfilHospital');
     Route::get('nuevoUsuario','AdministracionController@nuevoUsuario');
     Route::get('/{idUser}/user','AdministracionController@showUser');
 
@@ -98,7 +100,7 @@ Route::group(['prefix'=>'administrador','middleware' => 'rol:Administrador'],fun
 //Rutas para caja
 Route::group(['prefix'=>'caja','middleware' => 'rol:Caja'],function()
 {
-   
+
     Route::get('/', 'CajaController@index' );
     Route::post('/guardarPago',  'CajaController@guardarPago' );
     Route::post('/eliminarTicket',  'CajaController@eliminarTicket' );
@@ -112,7 +114,7 @@ Route::group(['prefix'=>'caja','middleware' => 'rol:Caja'],function()
 //Rutas para recursos humanos
 Route::group(['prefix'=>'recursosHumanos','middleware' => 'rol:Recursos Humanos'],function()
 {
-   
+
     Route::get('/',  'RecursosHumanosController@index');
     Route::get('nuevoMedico','RecursosHumanosController@nuevoMedico');
     Route::get('{idMedico}/editarMedico','RecursosHumanosController@editarMedico');
@@ -120,17 +122,19 @@ Route::group(['prefix'=>'recursosHumanos','middleware' => 'rol:Recursos Humanos'
 
     Route::get('consultorios','RecursosHumanosController@mostrarConsultorios');
     Route::get('{idConsultorio}/consultorio','RecursosHumanosController@editarConsultorio');
-    
+
     Route::post('crearMedico','RecursosHumanosController@crearMedico');
     Route::post('{idMedico}/crearAgenda','RecursosHumanosController@crearAgenda');
 
     Route::post('editarConsultorio/{idConsultorio}','RecursosHumanosController@updateConsultorio');
+
+
 });
 
 
 Route::get('/search','SearchController@search');
 Route::get('/searchConsultorio','SearchController@searchConsultorio');
-/** 
+/**
  * Rutas para Modulo Super Usuario
  */
 
@@ -161,7 +165,7 @@ Route::group(['prefix'=>'pedestal'],function()
     //Route::get('/especialidad',  'PedestalController@especialidad' );
     //Route::get('/fecha',  'PedestalController@fecha' );
     Route::get('/{codigo}/imprimiendo',  'PedestalController@imprimiendo' );
-    
+
     Route::post('/{codigo}/especialidad',  'PedestalController@especialidad' );
     Route::post('/{codigo}/fecha',  'PedestalController@fecha');
     Route::post('/{codigo}/imprime',  'PedestalController@imprime' );
@@ -170,7 +174,7 @@ Route::group(['prefix'=>'pedestal'],function()
     Route::get('/especialidad',  'PedestalController@especialidad' );
     Route::get('/fecha',  'PedestalController@fecha' );
     Route::get('/{codigo}/imprimiendo',  'PedestalController@imprimiendo' );
-    
+
     Route::post('/{codigo}/especialidad',  'PedestalController@especialidad' );
     Route::post('/{codigo}/fecha',  'PedestalController@fecha');
     Route::post('/{codigo}/imprime',  'PedestalController@imprime' );*/
@@ -181,8 +185,8 @@ Route::group(['prefix'=>'admision','middleware' => 'rol:Admision'],function()
 {
     Route::get('/',  'AdmisionController@buscarPaciente' );
     Route::get('/agregarPaciente',  function() {return view('admision.agregarPaciente');} );
-    
-    
+
+
     Route::post('/buscarPaciente',  'AdmisionController@buscarPaciente' );
     Route::post('/agregarPaciente/crearRegistro',  'AdmisionController@crearPaciente' );
     Route::post('/referir','AdmisionController@referir');
@@ -196,3 +200,18 @@ Route::group(['prefix'=>'historialMedico','middleware' => 'rol:Historial Medico'
 
 Route::get('pdf', 'PdfController@invoice');
 
+
+Route::get('archivos/{clientCode}/{filename}', function ($clientCode,$filename)
+{
+    $path = storage_path('app/'.$clientCode.'/' . $filename);
+    if (!File::exists($path)) {
+        abort(404);
+    }
+
+    $file = File::get($path);
+    $type = File::mimeType($path);
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+
+    return $response;
+});

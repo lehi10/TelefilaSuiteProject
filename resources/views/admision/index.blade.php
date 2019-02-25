@@ -3,7 +3,7 @@
 @section('title','Admisión')
 
 @section('auxiliar')
-  <div class="nav-item d-none d-md-flex"> 
+  <div class="nav-item d-none d-md-flex">
     <a href="{{ url('admision/agregarPaciente') }}" class="btn btn-sm btn-outline-primary">
       Agregar  Paciente
     </a>
@@ -13,11 +13,11 @@
 @section('more_options')
 <li class="nav-item"><a href="{{url('/'.Auth::user()->rolUrl())}}" class="nav-link"><i class="fe fe-home"></i>Inicio</a></li>
 <li class="nav-item"> <a href="{{url('superuser/usersClient/'.Auth::user()->hospital_id)}}"  class="nav-link"><i class="fa fa-users"></i>Usuarios</a> </li>
-<li class="nav-item"> <a href="/administrador/consultorios" class="nav-link"><i class="fa fa-stethoscope"></i> Consultorios</a></li>                                     
-<li class="nav-item"> <a href="/recursosHumanos" class="nav-link"><i class="fa fa-user-md"></i> Recursos Humanos</a> </li>     
+<li class="nav-item"> <a href="/administrador/consultorios" class="nav-link"><i class="fa fa-stethoscope"></i> Consultorios</a></li>
+<li class="nav-item"> <a href="/recursosHumanos" class="nav-link"><i class="fa fa-user-md"></i> Recursos Humanos</a> </li>
 <li class="nav-item slc"> <a href="/admision" class="nav-link"><i class="fa fa-file-text"></i> Admisión</a> </li>
-<li class="nav-item"> <a href="/caja" class="nav-link"><i class="fa fa-money"></i> Caja</a> </li>                                                                                                                         
-<li class="nav-item"> <a href="/historialMedico" class="nav-link" ><i class="fa fa-bar-chart"></i> Reportes</a></li>                                                                               
+<li class="nav-item"> <a href="/caja" class="nav-link"><i class="fa fa-money"></i> Caja</a> </li>
+<li class="nav-item"> <a href="/historialMedico" class="nav-link" ><i class="fa fa-bar-chart"></i> Reportes</a></li>
 @endsection
 
 @section('body')
@@ -90,16 +90,17 @@
                             </div>
                           </td>
                           <td> <br>  </td>
-                        </tr>                                             
+                        </tr>
                         <form action="/admision/referir" method="post" id="referir">
                           <input type="hidden" name="paciente_id" value="{{$paciente->id}}">
                         {{csrf_field()}}
                         <tr>
-                          <td><br> </td>
-                          <td>Referir a
-                            <select name="especialidad" id="especialidad" class="form-control custom-select">
+                          <td><br></td>
+                          <td>
+                            Referir a :
+                            <select  class="custom-select" name="especialidad" id="especialidad" >
                               @foreach ($especialidades as $especialidad)
-                                <option value="{{$especialidad->id}}" data-data="{&quot;image&quot;: &quot;demo/faces/female/16.jpg&quot;}">{{$especialidad->nombre}}</option>
+                                <option value="{{$especialidad->id}}">{{$especialidad->nombre}}</option>
                               @endforeach
                             </select>
                           </td>
@@ -109,18 +110,18 @@
                           <td><br></td>
                           <td>Mes
                             <select class="form-control custom-select" id="mes">
-                              <option value="1" data-data="{&quot;image&quot;: &quot;demo/faces/female/16.jpg&quot;}">Enero</option>
-                              <option value="2" data-data="{&quot;image&quot;: &quot;demo/faces/male/41.jpg&quot;}">Febrero</option>
-                              <option value="3" data-data="{&quot;image&quot;: &quot;demo/faces/female/1.jpg&quot;}">Marzo</option>
-                              <option value="4" data-data="{&quot;image&quot;: &quot;demo/faces/female/18.jpg&quot;}">Abril</option>
-                              <option value="5" data-data="{&quot;image&quot;: &quot;demo/faces/male/16.jpg&quot;}">Mayo</option>
-                              <option value="6" data-data="{&quot;image&quot;: &quot;demo/faces/male/26.jpg&quot;}">Junio</option>
-                              <option value="7" data-data="{&quot;image&quot;: &quot;demo/faces/female/7.jpg&quot;}">Julio</option>
-                              <option value="8" data-data="{&quot;image&quot;: &quot;demo/faces/female/17.jpg&quot;}">Agosto</option>
-                              <option value="9" data-data="{&quot;image&quot;: &quot;demo/faces/male/30.jpg&quot;}">Setiembre</option>
-                              <option value="10" data-data="{&quot;image&quot;: &quot;demo/faces/male/32.jpg&quot;}">Octubre</option>
-                              <option value="11" data-data="{&quot;image&quot;: &quot;demo/faces/male/9.jpg&quot;}">Noviembre</option>
-                              <option value="12" data-data="{&quot;image&quot;: &quot;demo/faces/male/9.jpg&quot;}">Diciembre</option>
+                              <option value="1" >Enero</option>
+                              <option value="2" >Febrero</option>
+                              <option value="3" >Marzo</option>
+                              <option value="4" >Abril</option>
+                              <option value="5" >Mayo</option>
+                              <option value="6" >Junio</option>
+                              <option value="7" >Julio</option>
+                              <option value="8" >Agosto</option>
+                              <option value="9" >Setiembre</option>
+                              <option value="10">Octubre</option>
+                              <option value="11">Noviembre</option>
+                              <option value="12">Diciembre</option>
                             </select>
                           </td>
                           <td><br></td>
@@ -141,7 +142,7 @@
                         <tr>
                           <td><br></td>
                           <td> <br>
-                            <span class="input-group-append"> 
+                            <span class="input-group-append">
                               <button class="btn btn-primary"type="submit">Generar Referencia</button>
                             </span>
                           </td>
@@ -171,17 +172,17 @@
     $('#msg').delay(8000).hide(600);
 
     function weeksOfMonth( y, m ) {
-        var first = new Date(y, m,1).getDay();      
-        var last = 32 - new Date(y, m, 32).getDate(); 
-        return Math.ceil( (first + last)/7 );   
+        var first = new Date(y, m,1).getDay();
+        var last = 32 - new Date(y, m, 32).getDate();
+        return Math.ceil( (first + last)/7 );
     }
 
     function getWeeksInMonth(month, year){
       var weeks=[],
           firstDate=new Date(year, month, 1),
-          lastDate=new Date(year, month+1, 0), 
+          lastDate=new Date(year, month+1, 0),
           numDays= lastDate.getDate();
-      
+
       var start=1;
       var end=7-firstDate.getDay();
       while(start<=numDays){
@@ -189,8 +190,8 @@
           start = end + 1;
           end = end + 7;
           if(end>numDays)
-              end=numDays;    
-      }        
+              end=numDays;
+      }
         return weeks;
     }
 
@@ -224,6 +225,7 @@
         let final=new Date(year,mes-1,intervalo["end"]);
         console.log(inicio);
         console.log(final);
+
         $('<input />').attr('type', 'hidden')
           .attr('name', "especialidad")
           .attr('value', $("#especialidad").val()).appendTo(this);
@@ -247,12 +249,9 @@
     });
 
 
-   
+
 
 
   </script>
 
 @endsection
-
-
-        

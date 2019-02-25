@@ -6,6 +6,7 @@
 
 @section('body')
 
+
 <div class="my-3 my-md-5">
           <!--<div class="container">-->
           <!--<nav class="breadcrumb breadcrumb-content">-->
@@ -44,15 +45,15 @@
                               <tr>
                                 <td style="padding-right:10px;" >
                                   <select id="medico" name="medico_id" class="form-control custom-select">
-                                    
+
                                     <option value=" " data-data="{&quot;image&quot;: &quot;demo/faces/female/16.jpg&quot;}" data-especialidad="Ninguno" {{ $consultorio->medico_id ? 'selected' : ''}} >Ninguno</option>
-                                    
+
                                     @foreach($medicos as $medico)
                                       <option value="{{$medico->id}}" data-turnos="{{$medico->getTurnos()}}" data-especialidad="{{$medico->especialidad->nombre}}" {{$consultorio->medico_id==$medico->id ? 'selected' : ''}}  >{{$medico->nombres}} {{$medico->apellidos}}</option>
                                     @endforeach
                                   </select>
                                 </td>
-                                
+
                                 <td style="padding-right:10px;" >
                                 <input class="form-control" disabled="disabled" id="med_especialidad"
                                     placeholder="" value=""
@@ -82,10 +83,10 @@
                       <div class="card-footer text-right">
                         <div class="d-flex" style="text-align: center;">
                           <dl>
-                            <dt> 
+                            <dt>
                             <br>
                             <a href="javascript:void(0)" class="btn btn-link">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            Eliminar</a>                                          
+                            Eliminar</a>
                             <button type="submit" class="btn btn-primary ml-auto">Guardar cambios</button> </dt>
                           </dl>
                         </div>
@@ -102,7 +103,7 @@
           </div>
         </div>
         <script>
-        
+
           $("#medico").ready(function(){
             $("#med_especialidad").attr('value',$(this).find(":selected").data('especialidad'));
             $("#med_especialidad").text($(this).find(":selected").data('especialidad'));

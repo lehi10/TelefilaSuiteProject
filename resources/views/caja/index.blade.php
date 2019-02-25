@@ -58,9 +58,9 @@
                       <tr>
                           <td><span class="text-muted">{{$cita->id}}</span></td>
                           <td>{{$cita->nombres}} {{$cita->apellidos}}<br></td>
-                          <td>{{$cita->nombres}}</td>
+                          <td>{{$cita->consultorio_nombre}}</td>
                           <td>{{$cita->fecha}}</td>
-                          <td style="width: 65px;">{{$cita->horaInicio}}<br>
+                          <td style="width: 65px;">{{  date("g:i a",strtotime($cita->horaInicio))  }}<br>
                           </td>
                           @if($cita->pagado==0)
                           <!-- Trigger the modal with a button -->

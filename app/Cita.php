@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cita extends Model
 {
     //
-    protected $fillable = ['id', 'fecha','horaInicio','horaFinal','paciente_id','hospital_id','agenda_id','pagado','create_at','update_at'];
+    protected $fillable = ['id', 'fecha','horaInicio','horaFinal','paciente_id','hospital_id','agenda_id','pagado','consultorio_id','create_at','update_at'];
     public function paciente()
     {
         return $this->belongsTo(Paciente::class);

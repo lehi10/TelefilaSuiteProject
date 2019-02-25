@@ -33,20 +33,21 @@ class CajaController extends Controller
         {
             //Obtenemos el id del hospital en el que nos encontramos (variable que fue guardada en Auth )
             $hospitalID = Auth::user()->hospital_id;
-            $citas = DB::table('pacientes')->select('*','pacientes.id as pacienteID')
+            $citas = DB::table('pacientes')->select('pacientes.*','citas.*','pacientes.id as pacienteID','consultorios.nombre as consultorio_nombre')
             ->Join('citas', 'citas.paciente_id', '=', 'pacientes.id')
+            ->Join('consultorios', 'consultorios.id', '=', 'citas.consultorio_id')
             ->where('citas.id',$request->citaID)
             ->where('citas.hospital_id',$hospitalID)
             ->get();
-
             return view('caja.index',['citas'=>$citas]);
         }
         //Si no se ha enviado el citaID se muestran las citas generadas el día actual
         else
         {
             $hospitalID = Auth::user()->hospital_id;
-            $citas = DB::table('pacientes')->select('*','pacientes.id as pacienteID')
+            $citas = DB::table('pacientes')->select('pacientes.*','citas.*','pacientes.id as pacienteID','consultorios.nombre as consultorio_nombre')
             ->Join('citas', 'citas.paciente_id', '=', 'pacientes.id')
+            ->Join('consultorios', 'consultorios.id', '=', 'citas.consultorio_id')
             ->where('citas.hospital_id',$hospitalID)
             ->orderBy('citas.created_at', 'desc')
             ->limit(20)
