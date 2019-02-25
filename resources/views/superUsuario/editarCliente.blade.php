@@ -282,7 +282,7 @@ $('#contratos-upload').change(function(event){
 
 <script>
 
-  document.getElementById("btnEliminarContratos").addEventListener("click", deleteContrat);
+
 
   document.getElementById("btnEliminarLogo").addEventListener("click", deleteLogo);
 
@@ -304,6 +304,12 @@ $('#contratos-upload').change(function(event){
             });
   }
 
+</script>
+
+<script>
+document.getElementById("btnEliminarContratos").addEventListener("click", deleteContrat);
+
+
    function deleteContrat () {
     $.ajax({
               type:'GET',
@@ -322,6 +328,7 @@ $('#contratos-upload').change(function(event){
             });
   }
 </script>
+
 
 
 @endsection
