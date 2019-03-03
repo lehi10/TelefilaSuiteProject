@@ -86,6 +86,7 @@ Route::group(['prefix'=>'administrador','middleware' => 'rol:Administrador'],fun
     Route::get( 'consultorios','AdministracionController@mostrarConsultorios');
     Route::get( 'nuevoConsultorio','AdministracionController@nuevoConsultorio');
     Route::get( '{idConsultorio}/consultorio','AdministracionController@editarConsultorio');
+    Route::get( '{idConsultorio}/consultorio/turnos','AdministracionController@turnosConsultorio');
 
 
 

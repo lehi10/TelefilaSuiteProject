@@ -124,23 +124,43 @@ class AdministracionController extends Controller
         {
             if (Auth::user()->hospital_id)
             {
+                /*
                 $consultorios=Consultorio::where("consultorios.hospital_id",Auth::user()->hospital_id)
                         ->leftJoin('medicos', 'consultorios.medico_id', '=', 'medicos.id')
                         ->leftJoin('agendas','agendas.medico_id','=','consultorios.medico_id')
                         ->select('consultorios.*', 'medicos.turno','agendas.turnos','agendas.id as agenda_id','agendas.turnosReservados as reservados','agendas.turnosPagados as pagados', 'agendas.horaInicio as inicio', 'agendas.horaFinal as final','agendas.fecha as fecha')
                         ->get();
-                $agendas=collect();
-
-                /*
-                foreach ($consultorios as $key=>$consultorio) {
-                    $agendas->push(Agenda::where('medico_id',$consultorio->medico_id)->where("fecha",now()->format("Y-m-d"))->pluck("turnos")->first());
-                }
                 */
-
-                return view('administracion.mostrarConsultorios',['consultorios'=>$consultorios,"agendas"=>$agendas]);
+                $consultorios=Consultorio::where("consultorios.hospital_id",Auth::user()->hospital_id)
+                        ->get();
+                return view('administracion.mostrarConsultorios',['consultorios'=>$consultorios]);
             }
         }
     }
+
+    public function turnosConsultorio(Request $request)
+    {
+
+        if (Auth::check())
+        {
+            if (Auth::user()->hospital_id)
+            {
+                $idConsultorio=$request['idConsultorio'];
+
+
+                $consultorio = Consultorio::where("consultorios.id",$idConsultorio)->where("consultorios.hospital_id",Auth::user()->hospital_id);
+                $datosConsultorio=Consultorio::where("consultorios.id",$idConsultorio)->where("consultorios.hospital_id",Auth::user()->hospital_id)->first();
+                $turnos=$consultorio->leftJoin('medicos', 'consultorios.medico_id', '=', 'medicos.id')
+                                    ->leftJoin('agendas','agendas.medico_id','=','consultorios.medico_id')
+                                    ->select('consultorios.*', 'medicos.turno','agendas.turnos','agendas.id as agenda_id','agendas.turnosReservados as reservados','agendas.turnosPagados as pagados', 'agendas.horaInicio as inicio', 'agendas.horaFinal as final','agendas.fecha as fecha')
+                                    ->get();
+
+                return view('administracion.mostrarConsultoriosTurnos',['consultorioTurnos'=>$turnos,'datosConsultorio'=>$datosConsultorio]);
+            }
+        }
+    }
+
+
 
     public function crearConsultorio(Request $request)
     {
