@@ -238,7 +238,7 @@ function updateTurnos(iTurno) {
                                 <td>
                                   <strong>
                                     <?php
-                                      setlocale(LC_TIME,"es_PE");
+                                    setlocale(LC_TIME, 'es_ES.UTF-8');
                                       echo ucfirst(strftime("%A",DateTime::createFromFormat("d/m/Y", "$i/$month/$year")->getTimestamp())) ," ",$i;
                                     ?>
                                   </strong>
