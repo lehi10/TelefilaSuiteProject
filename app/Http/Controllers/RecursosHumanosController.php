@@ -90,9 +90,9 @@ class RecursosHumanosController extends Controller
         $medico=Medico::find($idMedico);
         if (Auth::user()->hospital_id==$medico->hospital_id)
         {
+
             return view('recursosHumanos.editarMedico',['medico'=>$medico]);
         }
-
 
         return "Editar Medico";
     }
@@ -109,7 +109,8 @@ class RecursosHumanosController extends Controller
             $agendas= Agenda::where("medico_id",$idMedico)->whereMonth('fecha',$request->month)->get()->keyBy("dia");
             //$dias=$agendas->pluck('id');
             //return $agendas;
-            return view('recursosHumanos.editarMedico',[ 'crearFlag'=>True,'medico'=>$medico ,'diasMes'=>$diasMes ,'month' =>$request->month , 'year' =>$request['year'] ,'agendas'=>$agendas,'mes'=>$nombreMes]);
+            $dias=array('Mon'=>'Lunes','Tue'=>'Martes','Wed'=>'Miercoles','Thu'=>'Jueves','Fri'=>'Viernes','Sat'=>'Sabado','Sun'=>'Domingo');
+            return view('recursosHumanos.editarMedico',[ 'dias'=>$dias,'crearFlag'=>True,'medico'=>$medico ,'diasMes'=>$diasMes ,'month' =>$request->month , 'year' =>$request['year'] ,'agendas'=>$agendas,'mes'=>$nombreMes]);
         }
         return "Crear Agenda";
     }
