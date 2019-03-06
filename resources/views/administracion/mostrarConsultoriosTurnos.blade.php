@@ -113,9 +113,8 @@ function cambiarEstado(id) {
                                 <a href="{{url('administrador/'.$consultorio->id.'/consultorio')}}" class="text-inherit">{{$consultorio->nombre}}<br></a>
                               </td>
                               <td>{{$consultorio->especialidad->nombre}}</td>
-                              <td colspan="3"> Consultorio sin medico asignado* </td>
+                              <td colspan="3"> <i>Consultorio sin medico asignado* <i></td>
 
-                              <td>{{$consultorio->user->username}}</td>
                               <td colspan="4"></td>
                               @endif
                             </tr>

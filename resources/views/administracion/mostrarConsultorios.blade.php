@@ -101,7 +101,9 @@ function cambiarEstado(id) {
                                   </label>
                                   </td>
                                   <td>
-                                    <a href="{{url('administrador/'.$consultorio->id.'/consultorio/turnos')}}" class="text-inherit">Ver<br></a>
+                                    <a href="{{url('administrador/'.$consultorio->id.'/consultorio/turnos')}}" class="text-inherit">
+                                      <button type="button" class="btn btn-primary btn-sm">Ver</button>
+                                    </a>
                                   </td>
 
 
