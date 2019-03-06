@@ -106,11 +106,27 @@ class RecursosHumanosController extends Controller
             setlocale(LC_TIME, 'es_ES.UTF-8');
             $nombreMes=strftime("%B",mktime(0, 0, 0, $request['month'], 1, 2000));
             //sprintf("%s-%s-%s",$request->year,$request->mes,$dia)
+
             $agendas= Agenda::where("medico_id",$idMedico)->whereMonth('fecha',$request->month)->get()->keyBy("dia");
             //$dias=$agendas->pluck('id');
             //return $agendas;
             $dias=array('Mon'=>'Lunes','Tue'=>'Martes','Wed'=>'Miercoles','Thu'=>'Jueves','Fri'=>'Viernes','Sat'=>'Sabado','Sun'=>'Domingo');
-            return view('recursosHumanos.editarMedico',[ 'dias'=>$dias,'crearFlag'=>True,'medico'=>$medico ,'diasMes'=>$diasMes ,'month' =>$request->month , 'year' =>$request['year'] ,'agendas'=>$agendas,'mes'=>$nombreMes]);
+
+            $meses=array(
+                      '1' => 'Enero',
+                      '2' => 'Febrero',
+                        '3' => 'Marzo',
+                        '4' => 'Abril',
+                        '5' => 'Mayo',
+                        '6' => 'Junio',
+                        '7' => 'Julio',
+                        '8' => 'Agosto',
+                        '9' => 'Septiembre',
+                        '10' => 'Octubre',
+                        '11' => 'Noviembre',
+                        '12' => 'Diciembre',
+                        );
+            return view('recursosHumanos.editarMedico',[ 'dias'=>$dias,'crearFlag'=>True,'medico'=>$medico ,'diasMes'=>$diasMes ,'month' =>$request->month , 'year' =>$request['year'] ,'agendas'=>$agendas,'mes'=>$meses[$request['month']]]);
         }
         return "Crear Agenda";
     }
