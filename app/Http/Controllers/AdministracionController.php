@@ -133,6 +133,7 @@ class AdministracionController extends Controller
                 */
                 $consultorios=Consultorio::where("consultorios.hospital_id",Auth::user()->hospital_id)
                         ->get();
+                
                 return view('administracion.mostrarConsultorios',['consultorios'=>$consultorios]);
             }
         }

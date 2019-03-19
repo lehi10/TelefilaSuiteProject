@@ -91,7 +91,13 @@ function cambiarEstado(id) {
                                     <a href="{{url('administrador/'.$consultorio->id.'/consultorio')}}" class="text-inherit">{{$consultorio->nombre}}<br></a>
                                   </td>
                                   <td>{{$consultorio->especialidad->nombre}} </td>
-                                  <td>{{$consultorio->medico->apellidos}} ,{{$consultorio->medico->nombres}}</td>
+                                  @if(isset($consultorio->medico))
+                                    <td>{{$consultorio->medico->apellidos}} ,{{$consultorio->medico->nombres}}</td>
+                                  @else
+                                    <td><i>No se asignó a un medico</i></td>
+                                  @endif
+
+
                                   <td>{{$consultorio->user->username}}</td>
 
                                   <td>
@@ -101,9 +107,14 @@ function cambiarEstado(id) {
                                   </label>
                                   </td>
                                   <td>
+                                    @if(isset($consultorio->medico))
                                     <a href="{{url('administrador/'.$consultorio->id.'/consultorio/turnos')}}" class="text-inherit">
                                       <button type="button" class="btn btn-primary btn-sm">Ver</button>
                                     </a>
+                                    @else
+                                      No se puede ver
+                                    @endif
+
                                   </td>
 
 
