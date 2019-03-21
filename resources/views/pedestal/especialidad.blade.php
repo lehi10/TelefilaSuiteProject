@@ -81,14 +81,19 @@
       <table div="" style="width: 40%;" ;="" cellspacing="5" border="0">
         <tbody>
           @if(isset($especialidades))
-            @for ($i = 0; $i < count($especialidades)/5 ; $i++)
+
+            @for ($i = 0; $i < floor(count($especialidades)/5) ; $i++)
         			<tr>
               @for ($j = 0; $j < 5; $j++)
-        				<td id="especialidad">
-        					<img src="/botones/{{$especialidades[$i*4+$j]->id}}.png" id="boton" alt="{{$especialidades[$i*4+$j]->nombre}}" title="{{$especialidades[$i*4+$j]->nombre}}" style="width: 194px; height: 194px;" onclick="mandarForm({{$especialidades[$i*4+$j]->id}},{{$especialidades[$i*4+$j]->idConsultorio}})"><br>
-                      {{$especialidades[$i*4+$j]->nombre}}
-                      </td>
+                @if(isset($especialidades[$i*5+$j]))
+
+          				<td id="especialidad">
+          					<img src="/botones/{{$especialidades[$i*4+$j]->id}}.png" id="boton" alt="{{$especialidades[$i*4+$j]->nombre}}" title="{{$especialidades[$i*4+$j]->nombre}}" style="width: 194px; height: 194px;" onclick="mandarForm({{$especialidades[$i*5+$j]->id}},{{$especialidades[$i*5+$j]->idConsultorio}})"><br>
+                        {{$especialidades[$i*5+$j]->nombre}}
+                        </td>
+                @endif
         			@endfor
+
             </tr>
         		@endfor
           @endif

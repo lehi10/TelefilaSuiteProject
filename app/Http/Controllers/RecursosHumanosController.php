@@ -80,6 +80,7 @@ class RecursosHumanosController extends Controller
             $medico->fill($request->except('_token'));
             $medico->hospital_id=Auth::user()->hospital_id;
             $medico->save();
+            return redirect("/recursosHumanos");
             return redirect(Auth::user()->rolUrl())->with(["message"=>"El médico ha sido registrado satisfactoriamente."]);
         }
         return "Debug Message";
@@ -90,10 +91,8 @@ class RecursosHumanosController extends Controller
         $medico=Medico::find($idMedico);
         if (Auth::user()->hospital_id==$medico->hospital_id)
         {
-
-            return view('recursosHumanos.editarMedico',['medico'=>$medico]);
+          return view('recursosHumanos.editarMedico',['medico'=>$medico]);
         }
-
         return "Editar Medico";
     }
 
@@ -159,17 +158,44 @@ class RecursosHumanosController extends Controller
 
     public function mostrarConsultorios()
     {
-        if (Auth::user()->hospital_id)
+        if (Auth::check())
+        {
+            if (Auth::user()->hospital_id)
             {
+                /*
                 $consultorios=Consultorio::where("consultorios.hospital_id",Auth::user()->hospital_id)
                         ->leftJoin('medicos', 'consultorios.medico_id', '=', 'medicos.id')
                         ->leftJoin('agendas','agendas.medico_id','=','consultorios.medico_id')
                         ->select('consultorios.*', 'medicos.turno','agendas.turnos','agendas.id as agenda_id','agendas.turnosReservados as reservados','agendas.turnosPagados as pagados', 'agendas.horaInicio as inicio', 'agendas.horaFinal as final','agendas.fecha as fecha')
                         ->get();
-                $agendas=collect();
-
+                */
+                $consultorios=Consultorio::where("consultorios.hospital_id",Auth::user()->hospital_id)
+                        ->get();
 
                 return view('recursosHumanos.mostrarConsultorios',['consultorios'=>$consultorios]);
+            }
+        }
+    }
+
+    public function turnosConsultorio(Request $request)
+    {
+
+        if (Auth::check())
+        {
+            if (Auth::user()->hospital_id)
+            {
+                $idConsultorio=$request['idConsultorio'];
+
+
+                $consultorio = Consultorio::where("consultorios.id",$idConsultorio)->where("consultorios.hospital_id",Auth::user()->hospital_id);
+                $datosConsultorio=Consultorio::where("consultorios.id",$idConsultorio)->where("consultorios.hospital_id",Auth::user()->hospital_id)->first();
+                $turnos=$consultorio->leftJoin('medicos', 'consultorios.medico_id', '=', 'medicos.id')
+                                    ->leftJoin('agendas','agendas.medico_id','=','consultorios.medico_id')
+                                    ->select('consultorios.*', 'medicos.turno','agendas.turnos','agendas.id as agenda_id','agendas.turnosReservados as reservados','agendas.turnosPagados as pagados', 'agendas.horaInicio as inicio', 'agendas.horaFinal as final','agendas.fecha as fecha')
+                                    ->get();
+
+                return view('recursosHumanos.mostrarConsultoriosTurnos',['consultorioTurnos'=>$turnos,'datosConsultorio'=>$datosConsultorio]);
+            }
         }
     }
 
@@ -183,9 +209,7 @@ class RecursosHumanosController extends Controller
             $medicos=Medico::where('hospital_id',$hospital->id)->doesntHave('consultorio')->get();
             if($consultorio->medico)
                 $medicos->push($consultorio->medico);
-
             //$agenda=Agenda::where('medico_id',$)
-
             return view('recursosHumanos.editarConsultorio',["medicos"=>$medicos,"consultorio"=>$consultorio]);
         }
         return "Consultorio: ".$idConsultorio;

@@ -13,9 +13,9 @@
    var __adobewebfontsappname__ = "muse";
 </script>
   <!-- JS includes -->
-  <script type="text/javascript">
-   document.write('\x3Cscript src="' + (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//webfonts.creativecloud.com/basic:n4:default.js" type="text/javascript">\x3C/script>');
-</script>
+    <script type="text/javascript">
+      document.write('\x3Cscript src="' + (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//webfonts.creativecloud.com/basic:n4:default.js" type="text/javascript">\x3C/script>');
+    </script>
    </head>
  <body>
 
@@ -107,8 +107,6 @@ function imprimir(elemento){
     ventana.document.write('S/.{{$consultorio->especialidad->tarifa}}');
   ventana.document.write('<hr>');
   ventana.document.write(ticketHTML.innerHTML);
-
-
   ventana.document.write('</body></html>');
 
 

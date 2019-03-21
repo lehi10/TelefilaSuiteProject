@@ -129,7 +129,7 @@ Route::group(['prefix'=>'recursosHumanos','middleware' => 'rol:Recursos Humanos'
 
     Route::post('editarConsultorio/{idConsultorio}','RecursosHumanosController@updateConsultorio');
 
-
+    Route::get( '{idConsultorio}/consultorio/turnos','RecursosHumanosController@turnosConsultorio');
 });
 
 
@@ -152,8 +152,6 @@ Route::get('cliente/search','buscadorUsuario@search');
 //Envio de Formulario
 Route::post('admin/guardarUsuario','AdministracionController@guardarUsuario');
 Route::post('admin/editarUsuario','AdministracionController@eliminarUsuario');
-
-
 
 /**
  * Rutas para Modulo de Pedestal

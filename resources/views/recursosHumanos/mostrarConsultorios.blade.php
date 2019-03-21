@@ -35,69 +35,48 @@
                       <table class="table card-table table-vcenter text-nowrap">
                         <thead>
                           <tr>
-                            <th class="w-1">Nro.</th>
+                            <th class="w-1">Cod</th>
                             <th class="w-1">CONSULTORIO</th>
                             <th class="w-1">ESPECIALIDAD</th>
-                            <th class="w-1">FECHA</th>
-                            <th class="w-1">INICIO</th>
-                            <th class="w-1">FINAL</th>
-                            <th class="w-1">USUARIO</th>
-                            <th class="w-1">RESERVADOS</th>
-                            <th class="w-1">PAGADOS</th>
-                            <th class="w-1">DISPONIBILIDAD</th>
+                            <th class="w-1">MEDICO</th>
                             <th class="w-1">PEDESTAL</th>
+                            <th class="w-1">VER</th>
                           </tr>
                         </thead>
                         <tbody>
-
                           @foreach($consultorios as $key=>$consultorio )
                             <tr>
-                              @if($consultorio->agenda_id)
+
                                   <td><span class="text-muted">{{$consultorio->id}}</span></td>
                                   <td>
-                                    <a href="{{url('administrador/'.$consultorio->id.'/consultorio')}}" class="text-inherit">{{$consultorio->nombre}}<br></a>
+                                    <a href="{{url('recursosHumanos/'.$consultorio->id.'/consultorio')}}" class="text-inherit">{{$consultorio->nombre}}<br></a>
                                   </td>
-                                  <td>{{$consultorio->especialidad->nombre}}</td>
-                                  <td>{{$consultorio->fecha}}</td>
-                                  <td>{{date("g:i a", strtotime($consultorio->inicio)) }}</td>
-                                  <td>{{date("g:i a", strtotime($consultorio->final)) }}</td>
-                                  <td>{{$consultorio->user->username}}</td>
+                                  <td>{{$consultorio->especialidad->nombre}} </td>
+                                  @if(isset($consultorio->medico))
+                                    <td>{{$consultorio->medico->apellidos}} ,{{$consultorio->medico->nombres}}</td>
+                                  @else
+                                    <td><i>No se asignó a un medico</i></td>
+                                  @endif
 
-                                  <td style="text-align: center;"><strong>{{$consultorio->reservados}}/{{$consultorio->turnos}}</strong></td>
-                                  <td style="text-align: center;"><strong>{{$consultorio->pagados}}</strong></td>
-                                  <td style="padding-left: 23px">
-                                      @if($consultorio->turnos===null)
-                                        <span class="badge badge-dark">
-                                      @elseif($consultorio->turnos - $consultorio->reservados < 5 )
-                                        <span class="badge badge-danger">
-                                      @elseif($consultorio->turnos - $consultorio->reservados <= 10 )
-                                        <span class="badge badge-warning">
-                                      @else
-                                        <span class="badge badge-success">
-                                      @endif
 
-                                      @if($consultorio->turnos != 0)
-                                        {{ 100-($consultorio->reservados*100) / $consultorio->turnos }} %
-                                      @endif
-                                  </span> </td>
                                   <td>
                                   <label class="custom-switch">
                                     <input   name="optRol" value="{{$consultorio->id}}" class="custom-switch-input" onchange="cambiarEstado(this.value)" {{ $consultorio->pedestal==1 ? 'checked' :''}} type="checkbox">
                                     <span class="custom-switch-indicator"></span>
                                   </label>
                                   </td>
-                              @else
+                                  <td>
+                                    @if(isset($consultorio->medico))
+                                    <a href="{{url('recursosHumanos/'.$consultorio->id.'/consultorio/turnos')}}" class="text-inherit">
+                                      <button type="button" class="btn btn-primary btn-sm">Ver</button>
+                                    </a>
+                                    @else
+                                      No se puede ver
+                                    @endif
 
-                              <td><span class="text-muted">{{$consultorio->id}}</span></td>
-                              <td>
-                                <a href="{{url('administrador/'.$consultorio->id.'/consultorio')}}" class="text-inherit">{{$consultorio->nombre}}<br></a>
-                              </td>
-                              <td>{{$consultorio->especialidad->nombre}}</td>
-                              <td colspan="3"> Consultorio sin medico asignado* </td>
+                                  </td>
 
-                              <td>{{$consultorio->user->username}}</td>
-                              <td colspan="4"></td>
-                              @endif
+
                             </tr>
                           @endforeach
                         </tbody>
