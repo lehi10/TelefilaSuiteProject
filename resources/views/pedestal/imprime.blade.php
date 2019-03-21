@@ -91,10 +91,27 @@ function imprimir(elemento){
   var ticketHTML=document.getElementById(elemento);
   var ventana = window.open('', 'PRINT', 'height=10,width=1');
   ventana.document.write('<html><head><title>' + document.title + '</title>');
-  ventana.document.write(' <h1>Ticket de cita</h1>');
-  ventana.document.write(' <p>Medico: {{$medico->nombres.' '.$medico->apellidos }} <br> Especialidad : {{$consultorio->especialidad->nombre}}<br>  Fecha: {{$cita->fecha}} <br> Hora: {{$cita->horaInicio}}<br> Acércate a caja a <span id="u880-2">pagar S/.{{$consultorio->especialidad->tarifa}}</span> y así confirmar tu turno. </p>');
+    ventana.document.write(' <h2>{{$hospital->nombre}}</h2>');
+    ventana.document.write(' {{$hospital->direccion}}<br>');
+  ventana.document.write('<hr>');
+    ventana.document.write('<strong>Código de Ticket: </strong>{{$cita->id}}<br>');
+    ventana.document.write('<strong>Paciente : </strong>{{$paciente->apellidos}},{{$paciente->nombres}} <br>');
+    ventana.document.write('<strong>DNI:</strong> {{$paciente->dni }}');
+  ventana.document.write('<hr>');
+    ventana.document.write(' <p>Medico: {{$medico->nombres.' '.$medico->apellidos }} <br>');
+    ventana.document.write(' <stron>Especialidad:</strong> {{$consultorio->especialidad->nombre}}  <br>  ');
+    ventana.document.write(' <strong>Fecha:</strong> {{$cita->fecha}} <br> ');
+    ventana.document.write(' <strong>Hora:</strong> {{$cita->horaInicio}}<br>')
+  ventana.document.write('<hr>');
+    ventana.document.write('ACERCATE A CAJA PARA <br> VALIDAR SU TICKET ');
+    ventana.document.write('S/.{{$consultorio->especialidad->tarifa}}');
+  ventana.document.write('<hr>');
   ventana.document.write(ticketHTML.innerHTML);
+
+
   ventana.document.write('</body></html>');
+
+
   ventana.document.close();
   ventana.focus();
   ventana.print();

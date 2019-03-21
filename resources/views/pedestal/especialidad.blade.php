@@ -110,14 +110,14 @@
         </tbody>
       </table>
 
-        <script>
-    function mandarForm(especialidad,idConsult)
-    {
-      document.getElementById('especialidad').value = especialidad;
-      document.getElementById('idConsultorio').value = idConsult;
-      document.getElementById('form').submit();
-    }
-  </script>
+      <script>
+        function mandarForm(especialidad,idConsult)
+        {
+          document.getElementById('especialidad').value = especialidad;
+          document.getElementById('idConsultorio').value = idConsult;
+          document.getElementById('form').submit();
+        }
+      </script>
     </div>
   </body>
 </html>

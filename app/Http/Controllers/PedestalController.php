@@ -183,7 +183,7 @@ class PedestalController extends Controller
     {
         //return $request;
 
-
+        $hospital=Hospital::where('codigo',$request->codigo)->first();
         $paciente=Paciente::find($request->paciente_id);
         //$date=new DateTime($request->dia);
         $dia=$request->dia;
@@ -225,7 +225,6 @@ class PedestalController extends Controller
         $medico=$consultorio->medico;
         $idConsultorio = $request->idConsultorio; // Id del consultorio seleccionado
 
-
         $cita=new Cita;
         $cita->fecha=$dia;
         $hora=new DateTime($hora);
@@ -239,7 +238,7 @@ class PedestalController extends Controller
         $cita->consultorio_id=$idConsultorio;
         $cita->save();
 
-        // Actualiza el valor de citasReservadas 
+        // Actualiza el valor de citasReservadas
         $agendaSeleccionada=Agenda::find($agendaEscogida->id);
         $agendaSeleccionada->turnosReservados++;
         $agendaSeleccionada->save();
@@ -247,7 +246,7 @@ class PedestalController extends Controller
 
 
 
-        return view('pedestal.imprime',['idConsultorio'=>$idConsultorio,'cita'=>$cita,'paciente'=>$paciente,'consultorio'=>$consultorio,'medico'=>$medico,'codigo'=>$request->codigo]);
+        return view('pedestal.imprime',['idConsultorio'=>$idConsultorio,'cita'=>$cita,'paciente'=>$paciente,'consultorio'=>$consultorio,'medico'=>$medico,'codigo'=>$request->codigo,'hospital'=>$hospital]);
     }
 
     public function imprimiendo(Request $request)
