@@ -222,4 +222,37 @@ class RecursosHumanosController extends Controller
         $consultorio->save();
         return redirect("recursosHumanos/consultorios")->with(["message"=>"El médico ha sido asignado correctamente"]);
     }
+
+    public function editarDatosMedico(Request $request)
+    {
+      $especialidades=Especialidad::all();
+      $medico=Medico::find($request->idMedico);
+
+      if(Auth::user()->hospital_id == $medico->hospital_id)
+        return view('recursosHumanos.editarDatosMedico',["especialidades"=>$especialidades,'medico'=>$medico]);
+      else
+        abort(404);
+    }
+
+    public function grabarCambiosDatosMedico(Request $request)
+    {
+      $medico=Medico::find($request->idMedico);
+      if(Auth::user()->hospital_id == $medico->hospital_id)
+      {
+        $medico->nombres      =$request->nombres;
+        $medico->apellidos    =$request->apellidos;
+        $medico->turno        =$request->turno;
+        $medico->cmp          =$request->cmp;
+        $medico->celular      =$request->celular;
+        $medico->save();
+
+      }
+
+      else
+        abort(404);
+
+
+
+    }
+
 }

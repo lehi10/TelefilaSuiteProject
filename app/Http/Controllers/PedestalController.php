@@ -35,7 +35,6 @@ class PedestalController extends Controller
 
     public function especialidad(Request $request)
     {
-
         if(isset($request->dni))
         {
             $hospital=Hospital::find($request->hospital_id);

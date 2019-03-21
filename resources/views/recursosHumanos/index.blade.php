@@ -7,7 +7,7 @@
 @section('auxiliar')
 <script>$('#msg').delay(8000).hide(600);</script>
 <div class="nav-item d-none d-md-flex"> <a href="{{url('/recursosHumanos/nuevoMedico')}}"
-    class="btn btn-sm btn-outline-primary">Agregar medico</a> 
+    class="btn btn-sm btn-outline-primary">Agregar medico</a>
 </div>
 @endsection
 
@@ -15,11 +15,11 @@
 @section('more_options')
 <li class="nav-item"><a href="{{url('/'.Auth::user()->rolUrl())}}" class="nav-link"><i class="fe fe-home"></i>Inicio</a></li>
 <li class="nav-item"> <a href="{{url('superuser/usersClient/'.Auth::user()->hospital_id)}}"  class="nav-link"><i class="fa fa-users"></i>Usuarios</a> </li>
-<li class="nav-item"> <a href="/administrador/consultorios" class="nav-link"><i class="fa fa-stethoscope"></i> Consultorios</a></li>                                     
-<li class="nav-item slc"> <a href="/recursosHumanos" class="nav-link"><i class="fa fa-user-md"></i> Recursos Humanos</a> </li>     
+<li class="nav-item"> <a href="/administrador/consultorios" class="nav-link"><i class="fa fa-stethoscope"></i> Consultorios</a></li>
+<li class="nav-item slc"> <a href="/recursosHumanos" class="nav-link"><i class="fa fa-user-md"></i> Recursos Humanos</a> </li>
 <li class="nav-item"> <a href="/admision" class="nav-link"><i class="fa fa-file-text"></i> Admisión</a> </li>
-<li class="nav-item"> <a href="/caja" class="nav-link"><i class="fa fa-money"></i> Caja</a> </li>                                                                                                                         
-<li class="nav-item"> <a href="/historialMedico" class="nav-link" ><i class="fa fa-bar-chart"></i> Reportes</a></li>                                                                               
+<li class="nav-item"> <a href="/caja" class="nav-link"><i class="fa fa-money"></i> Caja</a> </li>
+<li class="nav-item"> <a href="/historialMedico" class="nav-link" ><i class="fa fa-bar-chart"></i> Reportes</a></li>
 @endsection
 
 @section('body')
@@ -57,9 +57,10 @@
                         <th class="w-1">CONSULTORIO</th>
                         <th class="w-1">TICKETS POR DÍA</th>
                         <th class="w-1">HABILITADO</th>
+                        <th class="w-1">EDITAR</th>
                     </tr>
                     </thead>
-                    <tbody>                        
+                    <tbody>
                         @foreach($medicos as $medico)
                             <tr>
                                 <td><span class="text-muted">{{$medico->id}}</span></td>
@@ -77,10 +78,16 @@
                                 <strong >{{$medico->turnos}}</strong></td>
                                 <td>
                                 <label class="custom-switch">
-                                    <input   name="optRol" value="{{$medico->id}}" class="custom-switch-input" {{ $medico->nombres ? 'checked' :''}} type="checkbox"> 
-                                    <span class="custom-switch-indicator"></span> 
+                                    <input   name="optRol" value="{{$medico->id}}" class="custom-switch-input" {{ $medico->nombres ? 'checked' :''}} type="checkbox">
+                                    <span class="custom-switch-indicator"></span>
                                 </label>
+
                                 </td>
+                                <td>
+                                  <a href="recursosHumanos/{{$medico->id}}/editarDatosMedico" class="text-inherit">
+                                  <button type="button" class="btn btn-primary btn-sm">Editar</button>
+                                </a>
+                              </td>
                             </tr>
                         @endforeach
                     </tbody>

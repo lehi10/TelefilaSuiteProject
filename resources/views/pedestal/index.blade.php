@@ -8,7 +8,7 @@
     <style type="text/css">
 .inputsize {
 	background-color: black;
-	
+
   display: block;
   width: 100%;
   box-sizing(border-box);
@@ -96,7 +96,7 @@ background-color: black;
 
 </style></head>
   <body id="cliente">
-    
+
     <form action="/pedestal/{{$codigo}}/especialidad" method="post" enctype="multipart/form-data">
     <table style="width: 100%;" border="0">
       <tbody>
@@ -108,7 +108,7 @@ background-color: black;
       </tbody>
     </table>
     <br>
-	
+
 		{{csrf_field()}}
 		<input  class="form-control" type="hidden" name="hospital_id" value={{$hospital_id}}>
 		<div width="40%" align="center">
@@ -146,7 +146,7 @@ background-color: black;
 		  </table>
 		</div>
 	</form>
-	
+
 	<div id="myModal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
@@ -157,24 +157,21 @@ background-color: black;
 						<p>{{session('message')}}</p>
 				   	</div>
 				</div>
-				<div class="modal-footer">
-					<center><button type="button" class="buttonCloseStyle" data-dismiss="modal">CERRAR</button></center>
-				</div>
 			</div>
 		</div>
 	</div>
-	
-    HOSPITAL CENTRAL DE AYACUCHO<br>
-  
-  
+
+    <br>
+
+
 	@if(session('message'))
 		<script>
        	$('#myModal').modal('show');
    		</script>
 	@endif
-	
+
   </body>
-  
+
 	<script>
 		function setTextInput(number) {
 			if(document.getElementById("inputDNI").value.length <= 8 )
