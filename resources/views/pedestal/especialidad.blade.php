@@ -1,57 +1,70 @@
 <!DOCTYPE html>
-<html class=" html css_verticalspacer" lang="es-ES">
- <head>
-
-  <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
-
-
-  <title>Especialidad</title>
-  <!-- CSS -->
-  <link rel="stylesheet" type="text/css" href="/css/site_global.css?crc=443350757"/>
-  <link rel="stylesheet" type="text/css" href="/css/especialidad.css?crc=4201154614" id="pagesheet"/>
-
-  <style>
-
-
-.padre {
-  /* IMPORTANTE */
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>pedestal</title>
+    <style type="text/css">
+#fondo {
+  background-color: black;
+  font-size: 26px;
+  font-family: "Arial";
+  font-weight: bold;
+  color: #ffcc00;
   text-align: center;
 }
 
-.hijo {
-  padding: 10px;
-  margin: 10px;
-
-  /* IMPORTANTE */
-  display: inline-block;
+#boton2 {
+  font-size: 40px;
+  text-align: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  transform-style: preserve-3d;
+  perspective: 10px;
+  width: 220px;
+  height: 140px;
+  background-color: #009900;
+  font-family: "Calibri";
+  font-weight: bold;
+  color: white;
 }
 
+#backgound {
+  font-family: "Calibri";
+  font-size: 18px;
+  text-align: center;
+  color: white;
+  background-color: #424242;
+}
 
-  </style>
+#especialidad {
+  text-align: center;
+  font-family: "Calibri";
+  font-weight: bold;
+  font-size: 25px;
+  color: white;
+}
 
-  <!-- Other scripts -->
-  <!-- JS includes -->
-   </head>
- <body>
-  <div class="clearfix gradient" id="page"><!-- column -->
-   <div class="position_content" id="page_position_content">
-    <div class="clearfix colelem" id="pu563"><!-- group -->
-     <div class="browser_width" id="u563-bw">
-      <div id="u563"><!-- simple frame --></div>
-     </div>
-     <div class="clip_frame" id="u560"><!-- image -->
-      <img class="block" id="u560_img" src="/images/logo_alpha2.png?crc=4239319242" alt="" width="171" height="42"/>
-     </div>
-     <div class="clearfix" id="u983-4"><!-- content -->
-      <p>Hola! {{$paciente->nombres}} {{$paciente->apellidos}} </p>
-     </div>
-     <a class="nonblock nontext museBGSize" id="u984" href="javascript:history.back()"><!-- simple frame --></a>
-    </div>
-    <div class="clearfix colelem" id="u572-4"><!-- content -->
-     <p>¿En que te vas a atender?</p>
-    </div>
-    <div class="browser_width colelem" id="u559-bw">
-     <div id="u559"><!-- group -->
+#cliente {
+  font-family: "Arial";
+  font-size: 15px;
+  text-align: center;
+  background-color: #303030;
+  color: #999999;
+  font-weight: bold;
+}
+
+</style></head>
+  <body id="cliente">
+    <table style="width: 100%;" border="0">
+      <tbody>
+        <tr>
+          <td id="fondo">Hola, {{$paciente->nombres}} {{$paciente->apellidos}} ¿En que deseas atenderte?</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
 
     <form action="/pedestal/{{$codigo}}/fecha" method="post" id="form">
       {{csrf_field()}}
@@ -64,51 +77,40 @@
       <input type="hidden" name="idConsultorio" value="" id="idConsultorio">
     </form>
 
-    <div class="padre">
-    @if(isset($especialidades))
-      @foreach ( $especialidades as $especialidad )
-        <div class="hijo">
-            <a style='background:transparent url("/images/{{$especialidad->id}}.png?crc=3939622240")' class="nonblock nontext museBGSize colelem" id="u570" href="#" onclick="mandarForm({{$especialidad->id}},{{$especialidad->idConsultorio}})"><!-- simple frame --></a>
-        </div>
-        @endforeach
-    @endif
+    <div width="40%" align="center">
+      <table div="" style="width: 40%;" ;="" cellspacing="5" border="0">
+        <tbody>
+          @if(isset($especialidades))
+            @for ($i = 0; $i < count($especialidades)/5 ; $i++)
+        			<tr>
+              @for ($j = 0; $j < 5; $j++)
+        				<td id="especialidad">
+        					<img src="/botones/{{$especialidades[$i*4+$j]->id}}.png" id="boton" alt="{{$especialidades[$i*4+$j]->nombre}}" title="{{$especialidades[$i*4+$j]->nombre}}" style="width: 194px; height: 194px;" onclick="mandarForm({{$especialidades[$i*4+$j]->id}},{{$especialidades[$i*4+$j]->idConsultorio}})"><br>
+                      {{$especialidades[$i*4+$j]->nombre}}
+                      </td>
+        			@endfor
+            </tr>
+        		@endfor
+          @endif
 
-    @if(isset($especialidadesReferidas))
-
-    <h2> <b> Especialidades referidas: </b> </h2>
-      @foreach ( $especialidadesReferidas as $especialidad )
-        @if(!$especialidades->contains('id',$especialidad->id))
-        <div class="hijo">
-          <a style='background:transparent url("/images/{{$especialidad->id}}.png?crc=3939622240")' class="nonblock nontext museBGSize colelem" id="u570" href="#" onclick="mandarForm({{$especialidad->id}},{{$especialidad->idConsultorio}})"><!-- simple frame --></a>
-        </div>
-        @endif
-      @endforeach
-      @endif
-    </div>
-
-     </div>
-    </div>
-    <div class="verticalspacer" data-offset-top="534" data-content-above-spacer="534" data-content-below-spacer="78"></div>
-   </div>
-  </div>
+          @if(isset($especialidadesReferidas))
+            @for ($i = 0; $i < count($especialidadesReferidas)/5 ; $i++)
+              <tr>
+              @for ($j = 0; $j < 5; $j++)
+                <td id="especialidad">
+                  <img src="/botones/{{$especialidadesReferidas[$i*4+$j]->id}}.png" id="boton" alt="{{$especialidadesReferidas[$i*4+$j]->nombre}}" title="{{$especialidades[$i*4+$j]->nombre}}" style="width: 194px; height: 194px;" onclick="mandarForm({{$especialidades[$i*4+$j]->id}},{{$especialidadesReferidas[$i*4+$j]->idConsultorio}})"><br>
+                      {{$especialidadesReferidas[$i*4+$j]->nombre}}
+                      </td>
+              @endfor
+            </tr>
+            @endfor
+          @endif
 
 
-  <div class="preload_images">
-   <img class="preload" src="/images/back.png?crc=107087755" alt=""/>
-   <img class="preload" src="/images/medgen_b.png?crc=300562693" alt=""/>
-   <img class="preload" src="/images/gine_b.png?crc=26139113" alt=""/>
-   <img class="preload" src="/images/dental_b.png?crc=463551447" alt=""/>
-   <img class="preload" src="/images/obstetricia_b.png?crc=494308813" alt=""/>
-   <img class="preload" src="/images/pedia_b.png?crc=259735835" alt=""/>
-   <img class="preload" src="/images/medint_b.png?crc=48247206" alt=""/>
-   <img class="preload" src="/images/oftal_b.png?crc=102071850" alt=""/>
-   <img class="preload" src="/images/cirujia_b.png?crc=4228318749" alt=""/>
-   <img class="preload" src="/images/nutri_b.png?crc=8563566" alt=""/>
-   <img class="preload" src="/images/cardio_b.png?crc=4148589182" alt=""/>
-  </div>
-  <!-- Other scripts -->
+        </tbody>
+      </table>
 
-  <script>
+        <script>
     function mandarForm(especialidad,idConsult)
     {
       document.getElementById('especialidad').value = especialidad;
@@ -116,9 +118,6 @@
       document.getElementById('form').submit();
     }
   </script>
-
-
-  <!-- RequireJS script -->
-  <script src="/scripts/require.js?crc=244322403" type="text/javascript" async data-main="/scripts/museconfig.js?crc=168988563" onload="if (requirejs) requirejs.onError = function(requireType, requireModule) { if (requireType && requireType.toString && requireType.toString().indexOf && 0 <= requireType.toString().indexOf('#scripterror')) window.Muse.assets.check(); }" onerror="window.Muse.assets.check();"></script>
-   </body>
+    </div>
+  </body>
 </html>

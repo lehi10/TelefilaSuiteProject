@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
     <script src="/assets/js/require.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.7.1.min.js"></script>
+
     <script>
       requirejs.config({
           baseUrl: '.'
@@ -60,7 +62,7 @@
               </div>
               {{ Form::open(array('url' => 'admision/agregarPaciente/crearRegistro', 'method' => 'post', 'class' =>'card')) }}
               {!! csrf_field() !!}
-              
+
                 <div class="card-body p-6">
                   <div class="card-title">Agregar Paciente</div>
                   <div class="form-group">
@@ -69,10 +71,20 @@
                   <div class="form-group">
                     <input name="apellidos" class="form-control" name="apellido" placeholder="Apellidos" type="text" required>
                   </div>
-                  <div class="form-group">
-                    <input name="dni"  maxlength="8" class="form-control" name="dni" placeholder="N° DNI" type="text" required>
+
+                  <div class="input-group mb-3">
+                    <input id="dniText" type="text" class="form-control" maxlength="8" name="dni" placeholder="N° DNI" aria-label="Recipient's username" aria-describedby="basic-addon2" required>
+                    <div class="input-group-append">
+                      <button class="btn " type="button" onclick="sendRequestInsert()">Validar SIS</button>
+                    </div>
                   </div>
-                  <div class="form-group">Departamento </div>
+
+                  <div class="form-group">
+                    <input id="responseSis" type="text" class="form-control" id="sisValue" placeholder=" No se encuentra Registros ..." disabled>
+                  </div>
+
+
+                  <div class="form-group"><strong>Departamento </strong></div>
                   <div class="form-group">
                     <select name="departamento" class="form-control custom-select" required>
                       &nbsp;
@@ -108,34 +120,26 @@
                     </select>
                   </div>
                   <div class="form-group">
-                    <input name="ciudad" class="form-control" name="ciudad" placeholder="Ciudad" type="text" required>
+                    <input name="ciudad" class="form-control" name="ciudad" placeholder="Ciudad" type="text" required >
                   </div>
-                  <div class="form-group">
-                    <label class="custom-control custom-checkbox">
-                      <input name="sis" type="checkbox"  class="custom-control-input" > 
-                      <span class="custom-control-label">Paciente SIS<br></span>
-                    </label>
-                  </div>
-                  
+
                   <div class="form-group"><b>Sexo</b><br>
-                    <div class="custom-switches-stacked"> 
+                    <div class="custom-switches-stacked">
                       <label class="custom-switch">
-                        <input name="sexo" value="0"  class="custom-switch-input"  type="radio" required> 
+                        <input name="sexo" value="0"  class="custom-switch-input"  type="radio" required>
                         <span class="custom-switch-indicator"></span>
                         <span class="custom-switch-description">Femenino</span>
-                      </label> <label class="custom-switch"> 
-                        <input name="sexo" value="1" class="custom-switch-input" type="radio" required> 
-                        <span class="custom-switch-indicator"></span> 
+                      </label> <label class="custom-switch">
+                        <input name="sexo" value="1" class="custom-switch-input" type="radio" required>
+                        <span class="custom-switch-indicator"></span>
                         <span class="custom-switch-description">Masculino</span></label></div>
                   </div>
                   <div class="form-footer"><button type="submit" class="btn btn-primary btn-block">AGREGAR
                       PACIENTE&nbsp;</button> </div>
                 </div>
-              
-              
+
               {{ Form::close() }}
 
-              
               <div class="text-center text-muted"><br>
               </div>
             </div>
@@ -144,4 +148,28 @@
       </div>
     </div>
   </body>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+        function update(){
+          var dniText = document.getElementById("dniText").value;
+          $.getJSON("https://test-consumer-susalud.herokuapp.com/getByDni/"+dniText+"/", function(data) {
+            document.getElementById("responseSis").value=data['dni'];
+            console.log(data)
+          });
+        }
+        setInterval(update, 1000);
+    });
+  </script>
+
+  <script>
+  function sendRequestInsert(){
+    var dniText = document.getElementById("dniText").value;
+    $.getJSON("https://test-consumer-susalud.herokuapp.com/insertDni/"+dniText+"/", function(data) {
+      console.log(data)
+    });
+  }
+  </script>
+
+
 </html>
