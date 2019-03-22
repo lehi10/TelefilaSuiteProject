@@ -62,7 +62,6 @@
               </div>
               {{ Form::open(array('url' => 'admision/agregarPaciente/crearRegistro', 'method' => 'post', 'class' =>'card')) }}
               {!! csrf_field() !!}
-
                 <div class="card-body p-6">
                   <div class="card-title">Agregar Paciente</div>
                   <div class="form-group">
@@ -80,8 +79,9 @@
                   </div>
 
                   <div class="form-group">
-                    <input id="responseSis" type="text" class="form-control" id="sisValue" placeholder=" No se encuentra Registros ..." disabled>
+                    <input id="responseSis" type="text" class="form-control"  placeholder=" No se encuentra Registros ..." disabled>
                   </div>
+                  <input id="hidenSisValue" type="hidden" name="sisValue" value=0 class="form-control" >
 
 
                   <div class="form-group"><strong>Departamento </strong></div>
@@ -153,10 +153,28 @@
     $(document).ready(function() {
         function update(){
           var dniText = document.getElementById("dniText").value;
-          $.getJSON("https://test-consumer-susalud.herokuapp.com/getByDni/"+dniText+"/", function(data) {
-            document.getElementById("responseSis").value=data['dni'];
-            console.log(data)
-          });
+          if(dniText.length >= 8)
+          {
+            $.getJSON("https://test-consumer-susalud.herokuapp.com/getByDni/"+dniText+"/", function(data) {
+
+              if(data['name']=="SIS" )
+              {
+                if(data['state']=="ACTIVO")
+                  document.getElementById("hidenSisValue").value=1;
+                if(data['state']=="CANCELADO")
+                  document.getElementById("hidenSisValue").value=0;
+                document.getElementById("responseSis").value="Estado de SIS : "+data['state'];
+              }
+              else
+              {
+                document.getElementById("responseSis").value="Estado de SIS : No se encontraron Registros";
+                document.getElementById("hidenSisValue").value=0;
+              }
+              console.log(data)
+            });
+          }
+
+
         }
         setInterval(update, 1000);
     });
