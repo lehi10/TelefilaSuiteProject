@@ -49,7 +49,7 @@
                   </div>
 
                   <div class="form-footer">
-                  <button type="submit" class="btn btn-primary btn-block">CREAR MEDICO&nbsp;</button>
+                  <button type="submit" class="btn btn-primary btn-block">ACEPTAR CAMBIOS&nbsp;</button>
                   </div>
               </div>
             </form>
