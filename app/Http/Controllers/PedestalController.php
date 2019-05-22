@@ -35,6 +35,7 @@ class PedestalController extends Controller
 
     public function especialidad(Request $request)
     {
+        
         if(isset($request->dni))
         {
             $hospital=Hospital::find($request->hospital_id);
@@ -47,7 +48,7 @@ class PedestalController extends Controller
 
                 $especialidades = $hospital->consultorios()->where("pedestal",1)->has('medico')->pluck("especialidad_id");
                 $consultorios = $hospital->consultorios()->where("pedestal",1)->has('medico');
-
+                
                 //$especialidades = Especialidad::find($especialidades);   //Especialidades con al menos un consultorio en pedestal
 
                 //$test1= $especialidades;
@@ -79,7 +80,7 @@ class PedestalController extends Controller
                         return $n->between($i,$f);
                     });
                 //dd($especialidadesReferidas);
-
+                
                 return view('pedestal.especialidad',['paciente'=>$paciente,'especialidades'=>$especialidades,'especialidadesReferidas'=>$especialidadesReferidas,'codigo'=>$hospital->codigo]);
             }
             else

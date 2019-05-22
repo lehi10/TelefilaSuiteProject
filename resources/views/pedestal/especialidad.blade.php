@@ -82,8 +82,9 @@
         <tbody>
           @if(isset($especialidades))
 
-            @for ($i = 0; $i < floor(count($especialidades)/5) ; $i++)
+            @for ($i = 0; $i <= floor(count($especialidades)/5) ; $i++)
         			<tr>
+              
               @for ($j = 0; $j < 5; $j++)
                 @if(isset($especialidades[$i*5+$j]))
 
