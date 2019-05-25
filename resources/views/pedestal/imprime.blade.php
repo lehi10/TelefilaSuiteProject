@@ -36,7 +36,7 @@
         <a class="nonblock nontext museBGSize" id="u852" href="fecha.html"><!-- simple frame --></a>
         </div>
         <div class="clearfix colelem" id="u846-4"><!-- content -->
-        <p>Gracias por usar nuestros servicios</p>
+        <p>{{$hospital->nombre}}</p>
         </div>
         <div class="browser_width colelem" id="u853-bw">
         <div id="u853"><!-- column -->
@@ -48,11 +48,15 @@
                 <div class="clip_frame grpelem" id="u948"><!-- image --><img class="block" id="u948_img" src="images/check.png?crc=501764073" alt="" width="116" height="114"/>
                 </div>
               </a>
-                <div class="clearfix grpelem" id="u880-6"><!-- content -->
-                  <p>
+                <div class=""  id="u880-6"><!-- content -->                  
+                  Ticket N° {{$nroTicket}}<br>
+                  Monto pagado: {{$tarifa}}<br>
+                  Servicio: {{$tipoServicio}}<br>
+                  Fecha y Hora :{{$fecha}}<br>
+
+
                   
-                  S/.{{$tarifa}}
-                  Dale en IMPRIMIR </span> .</p>
+                  </span> .
                 </div>
             </div>
           <a class="nonblock nontext museBGSize clearfix colelem" id="u883" onclick="imprimir('ticket')" ><!-- group -->
@@ -86,32 +90,6 @@
 
       </div>
     </div>
-
-
-
-Real Hotel Monterrey 
- 
-HOLA, <Nombre y apellido>
-Bienvenido a los baños termales
-
-Ticket N° <Codigo de ticket>  
-Monto pagado: <Precio>
-Servicio: <consultorio>
-<Lunes, 20 de mayo 2019>
-<11:00 am>
-
-PUEDE CANJEAR ESTE TICKET
-POR UNA BOLETA DE VENTA 
-
-POR SU SEGURIDAD:
-- No corra en los bordes de la piscina
-- Abstengase de sobreexponerse al agua caliente
-- SI sufre alguna enfermedad que le pueda afectar el vapor, abstengase.
-
-******QUE TENGA UNA GRATA ESTADIA ****
-
-
-
     <script>
     function imprimir(elemento){
       var ticketHTML=document.getElementById(elemento);
@@ -119,12 +97,21 @@ POR SU SEGURIDAD:
 
       ventana.document.write('<html><head><title>' + document.title + '</title>');
         ventana.document.write(' <h2>{{$hospital->nombre}}</h2>');
-        ventana.document.write(' {{$hospital->direccion}}<br>');
-      
+        ventana.document.write('HOLA, <Nombre y apellido><br>');
+        ventana.document.write('Bienvenido a los baños termales<br>');
+        ventana.document.write('<hr>');
+        ventana.document.write('Ticket Nro {{$nroTicket}}<br>');
+        ventana.document.write('Monto : {{$tarifa}}<br>');
+        ventana.document.write('Servicio : {{$tipoServicio}}<br>');
+        ventana.document.write('{{$fecha}}<br>');
+        ventana.document.write('PUEDE CANJEAR ESTE TICKET<br>');
+        ventana.document.write('POR UNA BOLETA DE VENTA<br>');
+        ventana.document.write('POR SU SEGURIDAD:<br>');
+        ventana.document.write('- No corra en los bordes de la piscina<br>');
+        ventana.document.write('- Abstengase de sobreexponerse al agua caliente<br>');
+        ventana.document.write('- Si sufre alguna enfermedad que le pueda afectar el vapor, abstengase.<br>');
       ventana.document.write('<hr>');
-        ventana.document.write('ACERCATE A CAJA PARA <br> VALIDAR SU TICKET ');
-        ventana.document.write('S/.{{$tarifa}}');
-      ventana.document.write('<hr>');
+      ventana.document.write('******QUE TENGA UNA GRATA ESTADIA ****<br>')
       ventana.document.write(ticketHTML.innerHTML);
       ventana.document.write('</body></html>');
 

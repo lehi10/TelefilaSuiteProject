@@ -201,7 +201,11 @@ class PedestalController extends Controller
         if($hospital->tipo_negocio=="otro")
         {
             $tarifa=10;
-            return view('pedestal.imprime',['paciente'=>$request->paciente_id,'codigo'=>$request->codigo,'hospital'=>$hospital,'tipo'=>$request->tipo,"tarifa"=>$tarifa]);
+            $nroTicket=1;
+            $fecha="1-1-1";
+            $tipoServicio="Pozas";
+            return view('pedestal.imprime',['paciente'=>$request->paciente_id,'codigo'=>$request->codigo,'hospital'=>$hospital,'tipo'=>$request->tipo,"tarifa"=>$tarifa,'nroTicket'=>$nroTicket,"fecha"=>$fecha,"tipoServicio"=>$tipoServicio]);
+
         }
         
 
