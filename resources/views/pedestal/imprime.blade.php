@@ -52,11 +52,8 @@
                   Ticket N° {{$nroTicket}}<br>
                   Monto pagado: {{$tarifa}}<br>
                   Servicio: {{$tipoServicio}}<br>
-                  Fecha y Hora :{{$fecha}}<br>
-
-
-                  
-                  </span> .
+                  Fecha y Hora :{{$fecha}}<br>                  
+                  </span> 
                 </div>
             </div>
           <a class="nonblock nontext museBGSize clearfix colelem" id="u883" onclick="imprimir('ticket')" ><!-- group -->
@@ -64,7 +61,6 @@
               <p>IMPRIMIR</p>
             </div>
           </a>
-
           <div class="clearfix colelem" id="u895"><!-- group -->
             <a class="nonblock nontext clearfix grpelem" id="u889-4" href="{{url('pedestal/'.$codigo)}}"><!-- content --><p>No imprimir</p></a>
             <a class="nonblock nontext rounded-corners grpelem" id="u892" href="{{url('pedestal/'.$codigo)}}"><!-- simple frame --></a>
@@ -114,7 +110,6 @@
       ventana.document.write('******QUE TENGA UNA GRATA ESTADIA ****<br>')
       ventana.document.write(ticketHTML.innerHTML);
       ventana.document.write('</body></html>');
-
 
       ventana.document.close();
       ventana.focus();
