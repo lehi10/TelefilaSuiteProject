@@ -202,13 +202,19 @@ class AdministracionController extends Controller
     public function updateConsultorio(Request $request)
     {
         
-        //return $request;
-        
+        $hospital=Auth::user()->hospital;
+        $especialidad=Medico::find($request->medico);
+        $especialidad = Especialidad::find($especialidad);
+            
         $consultorio = Consultorio::find($request->id);
         $consultorio->medico_id=$request->medico_id;
         if ($request->nombre)
             $consultorio->nombre=$request->nombre;
-
+        
+        if($hospital->tipo_negocio=="otro")
+        {
+            $especialidad = Especialidad::find($request->medico->especialidad->id);
+        }            
 
         $consultorio->save();
         return redirect("administrador/consultorios")->with(["message"=>"El consultorio ha sido editado satisfactoriamente"]);

@@ -96,7 +96,7 @@ background-color: black;
 
 </style></head>
   <body id="cliente">
-
+  
     <form action="/pedestal/{{$codigo}}/especialidad" method="post" enctype="multipart/form-data">
     <table style="width: 100%;" border="0">
       <tbody>

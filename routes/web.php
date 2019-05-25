@@ -170,6 +170,7 @@ Route::group(['prefix'=>'pedestal'],function()
     Route::post('/{codigo}/especialidad',  'PedestalController@especialidad' );
     Route::post('/{codigo}/fecha',  'PedestalController@fecha');
     Route::post('/{codigo}/imprime',  'PedestalController@imprime' );
+    Route::get('/{codigo}/imprimeOtroServicio',  'PedestalController@imprime' );
 
     /*Route::get('/','PedestalController@index');
     Route::get('/especialidad',  'PedestalController@especialidad' );

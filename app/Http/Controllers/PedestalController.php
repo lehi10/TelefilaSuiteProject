@@ -25,10 +25,12 @@ class PedestalController extends Controller
     }
     public function index(Request $request)
     {
+        
         $hospital=Hospital::where('codigo',$request->codigo)->first();
+
         if ($hospital)
         {
-            return view('pedestal.index',['hospital_id'=>$hospital->id,'codigo'=>$hospital->codigo]);
+            return view('pedestal.index',['hospital_id'=>$hospital->id,'codigo'=>$hospital->codigo,"tipo"=>$hospital->tipo]);
         }
         return redirect('/pedestal')->with(['message'=>'El hospital requerido no existe']);
     }
@@ -38,11 +40,20 @@ class PedestalController extends Controller
         
         if(isset($request->dni))
         {
-            $hospital=Hospital::find($request->hospital_id);
+
+            $hospital=Hospital::find($request->hospital_id);            
             
 
+
+            if($hospital->tipo_negocio =="otro")
+            {
+                $especialidades = especialidad::select('*')->where('tipo',"otro")->get();
+                
+                return view('pedestal.especialidad',['dni'=>$request->dni,'especialidades'=>$especialidades,'codigo'=>$hospital->codigo,'tipo'=>$hospital->tipo_negocio,'hospital_id'=>$hospital->id]);
+            }
+
             $paciente = Paciente::where('dni',$request->dni)->where('hospital_id',$hospital->id)->first();
-            if($paciente)
+            if($paciente)            
             {
                 //$hospital=Hospital::find($paciente->hospital_id);
                 //$especialidades=Especialidad::all();
@@ -82,7 +93,7 @@ class PedestalController extends Controller
                     });
                 //dd($especialidadesReferidas);
                 
-                return view('pedestal.especialidad',['paciente'=>$paciente,'especialidades'=>$especialidades,'especialidadesReferidas'=>$especialidadesReferidas,'codigo'=>$hospital->codigo,'tipoNegocio'=>$hospital->tipo]);
+                return view('pedestal.especialidad',['paciente'=>$paciente,'especialidades'=>$especialidades,'especialidadesReferidas'=>$especialidadesReferidas,'codigo'=>$hospital->codigo,'tipo'=>$hospital->tipo]);
             }
             else
             {
@@ -182,7 +193,17 @@ class PedestalController extends Controller
 
     public function imprime(Request $request)
     {
+        
         //return $request;
+        $hospital=Hospital::where('codigo',$request->codigo)->first();
+
+        
+        if($hospital->tipo_negocio=="otro")
+        {
+            $tarifa=10;
+            return view('pedestal.imprime',['paciente'=>$request->paciente_id,'codigo'=>$request->codigo,'hospital'=>$hospital,'tipo'=>$request->tipo,"tarifa"=>$tarifa]);
+        }
+        
 
         $hospital=Hospital::where('codigo',$request->codigo)->first();
         $paciente=Paciente::find($request->paciente_id);
