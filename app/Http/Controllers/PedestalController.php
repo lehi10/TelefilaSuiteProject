@@ -200,15 +200,12 @@ class PedestalController extends Controller
         
         if($hospital->tipo_negocio=="otro")
         {
-            $especialidad=Especialidad::find($request->especialidad_id);
-            $tarifa=$especialidad->tarifa;
+            $tarifa=10;
             $nroTicket=1;
-            
-            $dateTime = new DateTime('now', new \DateTimeZone('America/Lima')); 
-            $fecha= $dateTime->format(" d/m/y  H:i A"); 
-
-            $tipoServicio=$especialidad->nombre;
+            $fecha="1-1-1";
+            $tipoServicio="Pozas";
             return view('pedestal.imprime',['paciente'=>$request->paciente_id,'codigo'=>$request->codigo,'hospital'=>$hospital,'tipo'=>$request->tipo,"tarifa"=>$tarifa,'nroTicket'=>$nroTicket,"fecha"=>$fecha,"tipoServicio"=>$tipoServicio]);
+
         }
         
 
