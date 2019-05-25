@@ -36,7 +36,6 @@ class User extends Authenticatable
     }
 
 
-
     public function consultorios()
     {
         return $this->hasMany(Consultorio::class);

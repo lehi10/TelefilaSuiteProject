@@ -80,18 +80,22 @@
     <div width="40%" align="center">
       <table div="" style="width: 40%;" ;="" cellspacing="5" border="0">
         <tbody>
-          @if(isset($especialidades))
+          @if(isset($especialidades)) 
 
             @for ($i = 0; $i <= floor(count($especialidades)/5) ; $i++)
         			<tr>
               
               @for ($j = 0; $j < 5; $j++)
                 @if(isset($especialidades[$i*5+$j]))
-
-          				<td id="especialidad">
+                  <td id="especialidad">
+                  @if($tipoNegocio="otro")
+          					<img src="/botones/otroTipoCliente/{{$especialidades[$i*4+$j]->id}}.png" id="boton" alt="{{$especialidades[$i*4+$j]->nombre}}" title="{{$especialidades[$i*4+$j]->nombre}}" style="width: 194px; height: 194px;" onclick="mandarForm({{$especialidades[$i*5+$j]->id}},{{$especialidades[$i*5+$j]->idConsultorio}})"><br>
+                        {{$especialidades[$i*5+$j]->nombre}}
+                  @else 
           					<img src="/botones/{{$especialidades[$i*4+$j]->id}}.png" id="boton" alt="{{$especialidades[$i*4+$j]->nombre}}" title="{{$especialidades[$i*4+$j]->nombre}}" style="width: 194px; height: 194px;" onclick="mandarForm({{$especialidades[$i*5+$j]->id}},{{$especialidades[$i*5+$j]->idConsultorio}})"><br>
                         {{$especialidades[$i*5+$j]->nombre}}
-                        </td>
+                  @endif
+          				</td>
                 @endif
         			@endfor
 
@@ -104,9 +108,15 @@
               <tr>
               @for ($j = 0; $j < 5; $j++)
                 <td id="especialidad">
+                @if($tipoNegocio="otro")
+                  <img src="/botones/otroTipoCliente/{{$especialidadesReferidas[$i*4+$j]->id}}.png" id="boton" alt="{{$especialidadesReferidas[$i*4+$j]->nombre}}" title="{{$especialidades[$i*4+$j]->nombre}}" style="width: 194px; height: 194px;" onclick="mandarForm({{$especialidades[$i*4+$j]->id}},{{$especialidadesReferidas[$i*4+$j]->idConsultorio}})"><br>
+                      {{$especialidadesReferidas[$i*4+$j]->nombre}}
+                      </td>
+                @else
                   <img src="/botones/{{$especialidadesReferidas[$i*4+$j]->id}}.png" id="boton" alt="{{$especialidadesReferidas[$i*4+$j]->nombre}}" title="{{$especialidades[$i*4+$j]->nombre}}" style="width: 194px; height: 194px;" onclick="mandarForm({{$especialidades[$i*4+$j]->id}},{{$especialidadesReferidas[$i*4+$j]->idConsultorio}})"><br>
                       {{$especialidadesReferidas[$i*4+$j]->nombre}}
                       </td>
+                @endif
               @endfor
             </tr>
             @endfor

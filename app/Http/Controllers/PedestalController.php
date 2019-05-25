@@ -39,6 +39,7 @@ class PedestalController extends Controller
         if(isset($request->dni))
         {
             $hospital=Hospital::find($request->hospital_id);
+            
 
             $paciente = Paciente::where('dni',$request->dni)->where('hospital_id',$hospital->id)->first();
             if($paciente)
@@ -81,7 +82,7 @@ class PedestalController extends Controller
                     });
                 //dd($especialidadesReferidas);
                 
-                return view('pedestal.especialidad',['paciente'=>$paciente,'especialidades'=>$especialidades,'especialidadesReferidas'=>$especialidadesReferidas,'codigo'=>$hospital->codigo]);
+                return view('pedestal.especialidad',['paciente'=>$paciente,'especialidades'=>$especialidades,'especialidadesReferidas'=>$especialidadesReferidas,'codigo'=>$hospital->codigo,'tipoNegocio'=>$hospital->tipo]);
             }
             else
             {
