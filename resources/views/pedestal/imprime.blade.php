@@ -48,15 +48,11 @@
                 <div class="clip_frame grpelem" id="u948"><!-- image --><img class="block" id="u948_img" src="images/check.png?crc=501764073" alt="" width="116" height="114"/>
                 </div>
               </a>
-                <div class=""  id="u880-6"><!-- content -->                  
+                <div class=""  id="u880-6"><!-- content -->
                   Ticket N° {{$nroTicket}}<br>
                   Monto pagado: {{$tarifa}}<br>
                   Servicio: {{$tipoServicio}}<br>
                   Fecha y Hora :{{$fecha}}<br>
-
-
-                  
-                  </span> .
                 </div>
             </div>
           <a class="nonblock nontext museBGSize clearfix colelem" id="u883" onclick="imprimir('ticket')" ><!-- group -->
