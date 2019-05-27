@@ -61,7 +61,7 @@
       <tbody>
         <tr>
         @if($tipo="otro")
-          <td id="fondo">Cliente con DNI, {{$dni}} ¿Que servicio necesitas?</td>
+          <td id="fondo">Cliente con {{$persona[2]}} {{$persona[0]}} ¿Que servicio necesitas?</td>
         @else
           <td id="fondo">Hola, {{$paciente->nombres}} {{$paciente->apellidos}} ¿En que deseas atenderte?</td>
         @endif
@@ -74,10 +74,14 @@
     @if($tipo="otro")
       <form action="/pedestal/{{$codigo}}/imprimeOtroServicio" method="get" id="form">
         <input type="hidden" name="especialidad_id" value="" id="especialidad">
+        <input type="hidden" name="personaApellidoP" value="{{$persona[0]}}">
+        <input type="hidden" name="personaApellidoM" value="{{$persona[1]}}">
+        <input type="hidden" name="personaNombre" value="{{$persona[2]}}">
         <input type="hidden" name="paciente_id" value="{{$dni}}">
         <input type="hidden" name="codigo" value="{{$codigo}}">
         <input type="hidden" name="hospital_id" value="{{$hospital_id}}">
         <input type="hidden" name="tipo" value="{{$tipo}}" id="idConsultorio">
+
       </form>
     @else
       <form action="/pedestal/{{$codigo}}/fecha" method="post" id="form">

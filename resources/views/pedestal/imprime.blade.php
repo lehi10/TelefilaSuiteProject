@@ -8,10 +8,6 @@
   <link rel="stylesheet" type="text/css" href="/css/imprime.css?crc=259043253" id="pagesheet"/>
 
 
-  <!-- Other scripts -->
-  <script type="text/javascript">
-   var __adobewebfontsappname__ = "muse";
-</script>
   <!-- JS includes -->
     <script type="text/javascript">
       document.write('\x3Cscript src="' + (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//webfonts.creativecloud.com/basic:n4:default.js" type="text/javascript">\x3C/script>');
@@ -20,16 +16,16 @@
  <body>
 
 @if($tipo="otro")
-
     <div class="clearfix gradient" id="page"><!-- column -->
       <div class="position_content" id="page_position_content">
         <div class="clearfix colelem" id="pu839"><!-- group -->
-        <div class="browser_width" id="u839-bw">
-          <div id="u839"><!-- simple frame --></div>
-        </div>
+          <div class="browser_width" id="u839-bw">
+            <div id="u839"><!-- simple frame --></div>
+          </div>
         <div class="clearfix" id="u847-4"><!-- content -->
-          <p>Cliente {{$paciente}} </p>
+          <p>Cliente : {{$persona[2]}} {{$persona[0]}} </p>
         </div>
+        
         <div class="clip_frame" id="u844"><!-- image -->
           <img class="block" id="u844_img" src="/images/logo_alpha2.png?crc=4239319242" alt="" width="171" height="42"/>
         </div>
@@ -38,44 +34,42 @@
         <div class="clearfix colelem" id="u846-4"><!-- content -->
         <p>{{$hospital->nombre}}</p>
         </div>
+        
         <div class="browser_width colelem" id="u853-bw">
         <div id="u853"><!-- column -->
           <div class="clearfix" id="u853_align_to_page">
 
-            <div class="clearfix colelem" id="pu841"><!-- group -->
+              
 
-              <a class="nonblock nontext museBGSize clearfix grpelem" id="u841" href="fecha.html"><!-- group -->
-                <div class="clip_frame grpelem" id="u948"><!-- image --><img class="block" id="u948_img" src="images/check.png?crc=501764073" alt="" width="116" height="114"/>
-                </div>
-              </a>
-                <div class=""  id="u880-6"><!-- content -->
-                  Ticket N° {{$nroTicket}}<br>
-                  Monto pagado: {{$tarifa}}<br>
-                  Servicio: {{$tipoServicio}}<br>
-                  Fecha y Hora :{{$fecha}}<br>
-                </div>
-            </div>
-          <a class="nonblock nontext museBGSize clearfix colelem" id="u883" onclick="imprimir('ticket')" ><!-- group -->
-            <div class="clearfix grpelem" id="u884-4"><!-- content -->
-              <p>IMPRIMIR</p>
-            </div>
-          </a>
+                <a class="nonblock nontext museBGSize clearfix grpelem" id="u841" href="fecha.html"><!-- group -->
+                  <div class="clip_frame grpelem" id="u948"><!-- image --><img class="block" id="u948_img" src="images/check.png?crc=501764073" alt="" width="116" height="114"/>
+                  </div>
+                </a>
+                  <div class=""  id="u880-6"><!-- content -->
+                    Ticket N° {{$nroTicket}}<br>
+                    Monto pagado: {{$tarifa}}<br>
+                    Servicio: {{$tipoServicio}}<br>
+                    Fecha y Hora :{{$fecha}}<br>
+                  </div>
+              
+            <a class="nonblock nontext museBGSize clearfix " id="u883" onclick="imprimir('ticket')" ><!-- group -->
+              <div class="clearfix grpelem" id="u884-4"><!-- content -->
+                <p>IMPRIMIR</p>
+              </div>
+            </a>
 
-          <div class="clearfix colelem" id="u895"><!-- group -->
-            <a class="nonblock nontext clearfix grpelem" id="u889-4" href="{{url('pedestal/'.$codigo)}}"><!-- content --><p>No imprimir</p></a>
-            <a class="nonblock nontext rounded-corners grpelem" id="u892" href="{{url('pedestal/'.$codigo)}}"><!-- simple frame --></a>
-          </div>
+            <div class="clearfix colelem" id="u895"><!-- group -->
+              <a class="nonblock nontext clearfix grpelem" id="u889-4" href="{{url('pedestal/'.$codigo)}}"><!-- content --><p>No imprimir</p></a>
+              <a class="nonblock nontext rounded-corners grpelem" id="u892" href="{{url('pedestal/'.$codigo)}}"><!-- simple frame --></a>
+            </div>
+            
           </div>
         </div>
         </div>
         <div class="verticalspacer" data-offset-top="542" data-content-above-spacer="541" data-content-below-spacer="71"></div>
       </div>
       </div>
-      <div class="preload_images">
-      <img class="preload" src="/images/back.png?crc=107087755" alt=""/>
-      <img class="preload" src="/images/medgen_a.png?crc=3923899377" alt=""/>
-      <img class="preload" src="/images/largo_b.png?crc=4172065039" alt=""/>
-      </div>
+      
       <!-- Other scripts -->
 
       <!-- RequireJS script -->
@@ -93,7 +87,7 @@
 
       ventana.document.write('<html><head><title>' + document.title + '</title>');
         ventana.document.write(' <h2>{{$hospital->nombre}}</h2>');
-        ventana.document.write('HOLA, <Nombre y apellido><br>');
+        ventana.document.write('Hola, {{$persona[2]}} {{$persona[0]}}<br>');
         ventana.document.write('Bienvenido a los baños termales<br>');
         ventana.document.write('<hr>');
         ventana.document.write('Ticket Nro {{$nroTicket}}<br>');

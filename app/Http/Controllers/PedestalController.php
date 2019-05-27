@@ -13,9 +13,10 @@ use DateTime;
 use Illuminate\Support\Facades\DB;
 use Milon\Barcode\DNS1D;
 use Milon\Barcode\DNS2D;
-
+use SoapClient; 
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
+use Exception;
 
 class PedestalController extends Controller
 {
@@ -47,9 +48,15 @@ class PedestalController extends Controller
 
             if($hospital->tipo_negocio =="otro")
             {
-                $especialidades = especialidad::select('*')->where('tipo',"otro")->get();
                 
-                return view('pedestal.especialidad',['dni'=>$request->dni,'especialidades'=>$especialidades,'codigo'=>$hospital->codigo,'tipo'=>$hospital->tipo_negocio,'hospital_id'=>$hospital->id]);
+                $consulta = @file_get_contents('http://aplicaciones007.jne.gob.pe/srop_publico/Consulta/Afiliado/GetNombresCiudadano?DNI='.$request->dni);
+                $persona =explode('|',$consulta);
+                if($persona[0]!="")
+                {
+                    $especialidades = especialidad::select('*')->where('tipo',"otro")->get();                
+                    return view('pedestal.especialidad',['dni'=>$request->dni,'especialidades'=>$especialidades,'codigo'=>$hospital->codigo,'tipo'=>$hospital->tipo_negocio,'hospital_id'=>$hospital->id,'persona'=>$persona]);
+                }
+                return redirect('pedestal/'.$hospital->codigo)->with(['message'=> 'El DNI no es valido, o el paciente aun no tiene un registro. Puede acercarse a Admisión para solucionar el problema.']);
             }
 
             $paciente = Paciente::where('dni',$request->dni)->where('hospital_id',$hospital->id)->first();
@@ -71,8 +78,7 @@ class PedestalController extends Controller
                                             "especialidads.tarifa as tarifa",
                                             "consultorios.id as idConsultorio" )
                                     ->get();
-
-
+                
 
                 /*
                 $test = Especialidad::find($especialidades)->joinSub($consultorios,'consultorios',function($join){
@@ -81,9 +87,8 @@ class PedestalController extends Controller
                 */
 
                 $especialidadesReferidas = DB::table('especialidad_paciente as a')->select('a.*')->where('paciente_id',$paciente->id)
-                                ->Join('especialidads as b','b.id','=','a.especialidad_id')->get();
-
-
+                    ->Join('especialidads as b','b.id','=','a.especialidad_id')->get();
+                
                 $especialidadesReferidas=$paciente->especialidads
                     ->filter(function($item){
                         $n=Carbon::now();
@@ -194,18 +199,24 @@ class PedestalController extends Controller
     public function imprime(Request $request)
     {
         
-        //return $request;
+
         $hospital=Hospital::where('codigo',$request->codigo)->first();
 
         
         if($hospital->tipo_negocio=="otro")
         {
-            $tarifa=10;
+            
+            $especialidad=Especialidad::find($request->especialidad_id);
+            $tarifa=$especialidad->tarifa;
             $nroTicket=1;
-            $fecha="1-1-1";
-            $tipoServicio="Pozas";
-            return view('pedestal.imprime',['paciente'=>$request->paciente_id,'codigo'=>$request->codigo,'hospital'=>$hospital,'tipo'=>$request->tipo,"tarifa"=>$tarifa,'nroTicket'=>$nroTicket,"fecha"=>$fecha,"tipoServicio"=>$tipoServicio]);
+            
+            $persona=[$request->personaApellidoP,$request->personaApellidoM,$request->personaNombre];
 
+            $dateTime = new DateTime('now', new \DateTimeZone('America/Lima')); 
+            $fecha= $dateTime->format(" d/m/y  H:i A"); 
+            
+            $tipoServicio=$especialidad->nombre;
+            return view('pedestal.imprime',['paciente'=>$request->paciente_id,'codigo'=>$request->codigo,'hospital'=>$hospital,'tipo'=>$request->tipo,"tarifa"=>$tarifa,'nroTicket'=>$nroTicket,"fecha"=>$fecha,"tipoServicio"=>$tipoServicio,"persona"=>$persona]);
         }
         
 
