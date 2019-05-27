@@ -204,11 +204,7 @@
       ventana.document.write('<hr>');
         ventana.document.write('ACERCATE A CAJA PARA <br> VALIDAR SU TICKET ');
         ventana.document.write('S/.{{$consultorio->especialidad->tarifa}}');
-      ventana.document.write('<hr>');
-      ventana.document.write(ticketHTML.innerHTML);
       ventana.document.write('</body></html>');
-
-
       ventana.document.close();
       ventana.focus();
       ventana.print();
