@@ -51,9 +51,7 @@ class PdfController extends Controller
             return abort(404);
 
         $hospitalID = Auth::user()->hospital_id; 
-
         $hospital= Hospital::find($hospitalID);
-        
         $especialidad=DB::table('especialidads')->find($request->especialidad);        
         
         $registros=DB::table('citas')
@@ -70,6 +68,8 @@ class PdfController extends Controller
         ->Where('medicos.especialidad_id',$request->especialidad)
         ->Where('citas.pagado',1)->get();
         
+
+
         if(count($registros)==0)
             return abort(404);
 
