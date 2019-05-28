@@ -104,7 +104,7 @@
                           <div class="col-sm-12 col-md-12">
                             <div class="col-sm-3 col-md-3">
                             <strong>Precio</strong>
-                              <input class="form-control" name="precio" placeholder="Precio"  type="number" step="0.01" > 
+                              <input class="form-control" name="precio" placeholder="Precio"  type="number" step="0.01" value="{{$tarifa}}"> 
                             </div>
                           </div>
                           <hr>

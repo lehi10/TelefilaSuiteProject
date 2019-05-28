@@ -52,7 +52,7 @@
                     Fecha y Hora :{{$fecha}}<br>
                   </div>
               
-            <a class="nonblock nontext museBGSize clearfix " id="u883" onclick='imprimir()' ><!-- group -->
+            <a class="nonblock nontext museBGSize clearfix " id="u883" onclick="imprimir('ticket')" ><!-- group -->
               <div class="clearfix grpelem" id="u884-4"><!-- content -->
                 <p>IMPRIMIR</p>
               </div>
@@ -76,16 +76,19 @@
       <script src="scripts/require.js?crc=244322403" type="text/javascript" async data-main="scripts/museconfig.js?crc=168988563" onload="if (requirejs) requirejs.onError = function(requireType, requireModule) { if (requireType && requireType.toString && requireType.toString().indexOf && 0 <= requireType.toString().indexOf('#scripterror')) window.Muse.assets.check(); }" onerror="window.Muse.assets.check();"></script>
 
     <div style="visibility: hidden; ">
-      <div id="ticket">
+  <div id="ticket">
+ 
+    {!! '<img src="data:image/png;base64,' . DNS1D::getBarcodePNG("$cita ", "C39+",2,30,array(1,1,1), true) . '" alt="barcode"   />' !!}
+  </div>
+</div>
 
-      </div>
-    </div>
     <script type="text/javascript">
-    function imprimir(){
+    function imprimir(elemento){
       
+      var ticketHTML=document.getElementById(elemento);
       var ventana = window.open('', 'PRINT', 'height=10,width=1');
-
       ventana.document.write('<html><head><title> Imprime </title></head><body>');
+        ventana.document.write('<html><head><title> Imprime </title></head><body>');
         ventana.document.write(' <h2>{{$hospital->nombre}}</h2>');
         ventana.document.write('Hola, {{$persona[2]}} {{$persona[0]}}<br>');
         ventana.document.write('Bienvenido a los baños termales<br>');
@@ -99,18 +102,19 @@
         ventana.document.write('POR SU SEGURIDAD:<br>');
         ventana.document.write('- No corra en los bordes de la piscina<br>');
         ventana.document.write('- Abstengase de sobreexponerse al agua caliente<br>');
-        ventana.document.write('- Si sufre alguna enfermedad que le pueda afectar el vapor, abstengase.<br>');
+        ventana.document.write('- Si sufre alguna enfermedad que le <br>');
+        ventana.document.write('pueda afectar el vapor, abstengase.<br>');
       ventana.document.write('<hr>');
       ventana.document.write('******QUE TENGA UNA GRATA ESTADIA ****<br>')
+        ventana.document.write(ticketHTML.innerHTML);
+  ventana.document.write('</body></html>');
+ 
+  ventana.document.close();
+  ventana.focus();
+  ventana.print();
+  ventana.close();
+  window.location.replace("/pedestal/{{$codigo}}/imprimiendo");
       
-      ventana.document.write('</body></html>');
-
-
-      ventana.document.close();
-      ventana.focus();
-      ventana.print();
-      ventana.close();
-      window.location.replace("/pedestal/{{$codigo}}/imprimiendo");
     }
 
     </script>
@@ -213,6 +217,7 @@
       ventana.close();
       window.location.replace("/pedestal/{{$codigo}}/imprimiendo");
     }
+
 
     </script>
 

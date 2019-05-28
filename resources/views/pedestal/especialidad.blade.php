@@ -111,13 +111,9 @@
                   @for ($j = 0; $j < 5; $j++)
                     @if(isset($especialidades[$i*5+$j]))
                       <td id="especialidad">
-                      @if($tipoNegocio="otro")
+                      
                         <img src="/botones/otroTipoCliente/{{$especialidades[$i*4+$j]->id}}.png" id="boton" alt="{{$especialidades[$i*4+$j]->nombre}}" title="{{$especialidades[$i*4+$j]->nombre}}" style="width: 194px; height: 194px;" onclick="mandarForm({{$especialidades[$i*5+$j]->id}},{{$especialidades[$i*5+$j]->idConsultorio}})"><br>
                             {{$especialidades[$i*5+$j]->nombre}}
-                      @else 
-                        <img src="/botones/{{$especialidades[$i*4+$j]->id}}.png" id="boton" alt="{{$especialidades[$i*4+$j]->nombre}}" title="{{$especialidades[$i*4+$j]->nombre}}" style="width: 194px; height: 194px;" onclick="mandarForm({{$especialidades[$i*5+$j]->id}},{{$especialidades[$i*5+$j]->idConsultorio}})"><br>
-                            {{$especialidades[$i*5+$j]->nombre}}
-                      @endif
                       </td>
                     @endif
                   @endfor

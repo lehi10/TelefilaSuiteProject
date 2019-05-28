@@ -192,30 +192,29 @@ class AdministracionController extends Controller
     {
         $hospital=Auth::user()->hospital;
         $consultorio=Consultorio::find($idConsultorio);
+        $tarifa = $consultorio->tarifa;
+        
+
         if ($consultorio->hospital_id==$hospital->id)
         {
             $medicos=Medico::where('hospital_id',$hospital->id)->get();
-            return view('administracion.editarConsultorio',["consultorio"=>$consultorio,"medicos"=>$medicos]);
+            return view('administracion.editarConsultorio',["consultorio"=>$consultorio,"medicos"=>$medicos,"tarifa"=>$tarifa]);
         }
     }
 
     public function updateConsultorio(Request $request)
     {
         
-        $hospital=Auth::user()->hospital;
-        $especialidad=Medico::find($request->medico);
-        $especialidad = Especialidad::find($especialidad);
-            
+        
+        
         $consultorio = Consultorio::find($request->id);
         $consultorio->medico_id=$request->medico_id;
+
+        
         if ($request->nombre)
             $consultorio->nombre=$request->nombre;
         
-        if($hospital->tipo_negocio=="otro")
-        {
-            $especialidad = Especialidad::find($request->medico->especialidad->id);
-        }            
-
+        $consultorio->tarifa= $request->precio;
         $consultorio->save();
         return redirect("administrador/consultorios")->with(["message"=>"El consultorio ha sido editado satisfactoriamente"]);
     }

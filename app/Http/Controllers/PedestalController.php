@@ -49,11 +49,20 @@ class PedestalController extends Controller
             if($hospital->tipo_negocio =="otro")
             {
                 
+                
+                
                 $consulta = @file_get_contents('http://aplicaciones007.jne.gob.pe/srop_publico/Consulta/Afiliado/GetNombresCiudadano?DNI='.$request->dni);
                 $persona =explode('|',$consulta);
                 if($persona[0]!="")
                 {
-                    $especialidades = especialidad::select('*')->where('tipo',"otro")->get();                
+                    $consultorios = $hospital->consultorios()->where("pedestal",1)->has('medico');
+                    
+                    $especialidades=$consultorios->join("especialidads","especialidad_id","=","especialidads.id")
+                                    ->select("especialidads.id as id",
+                                            "especialidads.nombre as nombre",
+                                            "consultorios.id as idConsultorio" )
+                                    ->get();
+
                     return view('pedestal.especialidad',['dni'=>$request->dni,'especialidades'=>$especialidades,'codigo'=>$hospital->codigo,'tipo'=>$hospital->tipo_negocio,'hospital_id'=>$hospital->id,'paciente'=>$persona]);
                 }
                 return redirect('pedestal/'.$hospital->codigo)->with(['message'=> 'El DNI no es valido, o el paciente aun no tiene un registro. Puede acercarse a Admisión para solucionar el problema.']);
@@ -75,7 +84,6 @@ class PedestalController extends Controller
                 $especialidades=$consultorios->join("especialidads","especialidad_id","=","especialidads.id")
                                     ->select("especialidads.id as id",
                                             "especialidads.nombre as nombre",
-                                            "especialidads.tarifa as tarifa",
                                             "consultorios.id as idConsultorio" )
                                     ->get();
                 
@@ -199,15 +207,17 @@ class PedestalController extends Controller
     public function imprime(Request $request)
     {
         
-
+        
         $hospital=Hospital::where('codigo',$request->codigo)->first();
 
         
         if($hospital->tipo_negocio=="otro")
         {
             
-            $especialidad=Especialidad::find($request->especialidad_id);
-            $tarifa=$especialidad->tarifa;
+            $consultorio = Consultorio::find($request->idConsultorio);
+            $especialidad=Especialidad::find($consultorio->especialidad_id);
+            $tarifa=$consultorio->tarifa;
+            
             $nroTicket=1;
             
             $persona=[$request->personaApellidoP,$request->personaApellidoM,$request->personaNombre];
@@ -216,7 +226,7 @@ class PedestalController extends Controller
             $fecha= $dateTime->format(" d/m/y  H:i A"); 
             
             $tipoServicio=$especialidad->nombre;
-            return view('pedestal.imprime',['paciente'=>$request->paciente_id,'codigo'=>$request->codigo,'hospital'=>$hospital,'tipo'=>$request->tipo,"tarifa"=>$tarifa,'nroTicket'=>$nroTicket,"fecha"=>$fecha,"tipoServicio"=>$tipoServicio,"persona"=>$persona,'tipo'=>$hospital->tipo_negocio]);
+            return view('pedestal.imprime',['paciente'=>$request->paciente_id,'codigo'=>$request->codigo,'hospital'=>$hospital,'tipo'=>$request->tipo,"tarifa"=>$tarifa,'nroTicket'=>$nroTicket,"fecha"=>$fecha,"tipoServicio"=>$tipoServicio,"persona"=>$persona,'tipo'=>$hospital->tipo_negocio,"cita"=>$nroTicket]);
         }
         
 
