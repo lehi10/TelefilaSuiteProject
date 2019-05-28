@@ -29,7 +29,7 @@ class HistorialController extends Controller
             ->groupBy('especialidads.id','especialidads.nombre','citas.fecha')
             ->get();
 
-
+            return $registros;
             return view('historial.index',["registros"=> $registros]);
         }
 
@@ -45,7 +45,7 @@ class HistorialController extends Controller
         ->Where('citas.pagado',1)
         ->groupBy('especialidads.id','especialidads.nombre','citas.fecha')
         ->get();
-
+        
         return view('historial.index',["registros"=> $registros]);
     }
 

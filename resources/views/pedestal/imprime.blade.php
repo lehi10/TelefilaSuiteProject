@@ -86,7 +86,8 @@
     function imprimir(elemento){
       
       var ticketHTML=document.getElementById(elemento);
-      var ventana = window.open('', 'PRINT', 'height=10,width=1');
+
+      var ventana = window.open('','_blank','PRINT', 'height=10,width=1');
       ventana.document.write('<html><head><title> Imprime </title></head><body>');
         ventana.document.write('<html><head><title> Imprime </title></head><body>');
         ventana.document.write(' <h2>{{$hospital->nombre}}</h2>');
@@ -106,17 +107,20 @@
         ventana.document.write('pueda afectar el vapor, abstengase.<br>');
       ventana.document.write('<hr>');
       ventana.document.write('******QUE TENGA UNA GRATA ESTADIA ****<br>')
-        ventana.document.write(ticketHTML.innerHTML);
   ventana.document.write('</body></html>');
  
   ventana.document.close();
-  ventana.print()
-  var delayInMilliseconds = 5000; //5seconds
+  window.focus();
+  
+  ventana.print();
+  
+    var delayInMilliseconds = 6000; //5seconds
       setTimeout(function() {
+  window.location.replace("/pedestal/{{$codigo}}/imprimiendo");
         ventana.close();
-        window.location.replace("/pedestal/{{$codigo}}/imprimiendo");
       }, delayInMilliseconds);
     }
+    
 
     </script>
 
@@ -199,7 +203,7 @@
     function imprimir(elemento){
       var ticketHTML=document.getElementById(elemento);
       var ventana = window.open('', 'PRINT', 'height=10,width=1');
-      ventana.document.write('<html><head><title>' + document.title + '</title><body>');
+      ventana.document.write('<html><head><title>' + document.title + '</title><body >');
         ventana.document.write(' <h2>{{$hospital->nombre}}</h2>');
         ventana.document.write(' {{$hospital->direccion}}<br>');
       ventana.document.write('<hr>');
@@ -224,6 +228,7 @@
       ventana.close();
       window.location.replace("/pedestal/{{$codigo}}/imprimiendo");
     }
+
 
 
     </script>

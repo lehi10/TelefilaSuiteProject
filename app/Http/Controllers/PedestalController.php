@@ -184,8 +184,6 @@ class PedestalController extends Controller
 
 
 
-
-
         $meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Setiembre','Octubre','Noviembre','Diciembre'];
 
         $collection = collect();
@@ -214,12 +212,63 @@ class PedestalController extends Controller
         if($hospital->tipo_negocio=="otro")
         {
             
+            
+            $dni=$request->paciente_id;
+            $paciente_db=Paciente::where('dni', $dni)->get();
+            
+            $paciente_id = 0;
+            if(count($paciente_db)==0) // No existe dni en la DB
+            {
+                
+                $new_paciente= new Paciente;
+                $new_paciente->nombres= $request->personaNombre;
+                $new_paciente->apellidos=$request->personaApellidoP;
+                $new_paciente->dni=$dni;
+                $new_paciente->departamento="nan";
+                $new_paciente->ciudad="nan";
+                $new_paciente->sis=0;
+                $new_paciente->sexo=0;
+                $new_paciente->edad=0;
+                $new_paciente->hospital_id=$request->hospital_id;
+                $new_paciente->save();
+
+                $paciente_id=$new_paciente->id;
+            }
+            else
+            {
+                $paciente_id =$paciente_db[0]->id;
+            }
+            
+            
+
+            $dateTime = new DateTime('now', new \DateTimeZone('America/Lima')); 
+            $fecha= $dateTime->format(" d/m/y  H:i A"); 
+
+            $cita=new Cita;
+            $cita->fecha=$dateTime;
+            $cita->horaInicio=$dateTime->format('H:i');
+            $cita->horaFinal="09:00";
+            $cita->paciente_id=$paciente_id;
+            $cita->hospital_id=$request->hospital_id;
+            $cita->agenda_id=156; //Todo se carga en una sola agenda
+            $cita->pagado=false;
+            $cita->consultorio_id=$request->idConsultorio;
+            
+            $cita->save();
+
+
+            
+
+            
+            
+
             $consultorio = Consultorio::find($request->idConsultorio);
             $especialidad=Especialidad::find($consultorio->especialidad_id);
             $tarifa=$consultorio->tarifa;
             
-            $nroTicket=1;
+            $nroTicket=$cita->id;
             
+
             $persona=[$request->personaApellidoP,$request->personaApellidoM,$request->personaNombre];
 
             $dateTime = new DateTime('now', new \DateTimeZone('America/Lima')); 
