@@ -110,11 +110,12 @@
   ventana.document.write('</body></html>');
  
   ventana.document.close();
-  ventana.focus();
-  ventana.print();
-  ventana.close();
-  window.location.replace("/pedestal/{{$codigo}}/imprimiendo");
-      
+  ventana.print()
+  var delayInMilliseconds = 5000; //5seconds
+      setTimeout(function() {
+        ventana.close();
+        window.location.replace("/pedestal/{{$codigo}}/imprimiendo");
+      }, delayInMilliseconds);
     }
 
     </script>
@@ -176,16 +177,22 @@
       <img class="preload" src="/images/largo_b.png?crc=4172065039" alt=""/>
       </div>
       <!-- Other scripts -->
-
+ <div class="preload_images"> 
+   <img class="preload" src="/images/back.png?crc=107087755" alt=""/> 
+   <img class="preload" src="/images/medgen_a.png?crc=3923899377" alt=""/> 
+   <img class="preload" src="/images/largo_b.png?crc=4172065039" alt=""/> 
+  </div> 
       <!-- RequireJS script -->
-      <script src="scripts/require.js?crc=244322403" type="text/javascript" async data-main="scripts/museconfig.js?crc=168988563" onload="if (requirejs) requirejs.onError = function(requireType, requireModule) { if (requireType && requireType.toString && requireType.toString().indexOf && 0 <= requireType.toString().indexOf('#scripterror')) window.Muse.assets.check(); }" onerror="window.Muse.assets.check();"></script>
-
-    <div style="visibility: hidden; ">
-      <div id="ticket">
-
-        {!! '<img src="data:image/png;base64,' . DNS1D::getBarcodePNG("$cita->id ", "C39+",2,30,array(1,1,1), true) . '" alt="barcode"   />' !!}
-      </div>
-    </div>
+     <!-- RequireJS script --> 
+ 
+  <script src="scripts/require.js?crc=244322403" type="text/javascript" async data-main="scripts/museconfig.js?crc=168988563" onload="if (requirejs) requirejs.onError = function(requireType, requireModule) { if (requireType && requireType.toString && requireType.toString().indexOf && 0 <= requireType.toString().indexOf('#scripterror')) window.Muse.assets.check(); }" onerror="window.Muse.assets.check();"></script> 
+ 
+<div style="visibility: hidden; "> 
+  <div id="ticket"> 
+ 
+    {!! '<img src="data:image/png;base64,' . DNS1D::getBarcodePNG("$cita ", "C39+",2,30,array(1,1,1), true) . '" alt="barcode"   />' !!} 
+  </div> 
+</div> 
 
 
     <script type="text/javascript"  >
