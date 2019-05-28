@@ -256,19 +256,12 @@ class PedestalController extends Controller
             
             $cita->save();
 
-
-            
-
-            
-            
-
             $consultorio = Consultorio::find($request->idConsultorio);
             $especialidad=Especialidad::find($consultorio->especialidad_id);
-            $tarifa=$consultorio->tarifa;
+            $tarifa=round($consultorio->tarifa,2);
             
             $nroTicket=$cita->id;
             
-
             $persona=[$request->personaApellidoP,$request->personaApellidoM,$request->personaNombre];
 
             $dateTime = new DateTime('now', new \DateTimeZone('America/Lima')); 

@@ -192,9 +192,9 @@ class AdministracionController extends Controller
     {
         $hospital=Auth::user()->hospital;
         $consultorio=Consultorio::find($idConsultorio);
-        $tarifa = $consultorio->tarifa;
+        $tarifa = round($consultorio->tarifa,2);
         
-
+        
         if ($consultorio->hospital_id==$hospital->id)
         {
             $medicos=Medico::where('hospital_id',$hospital->id)->get();
