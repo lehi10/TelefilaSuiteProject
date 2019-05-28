@@ -88,8 +88,8 @@
       var ticketHTML=document.getElementById(elemento);
 
       var ventana = window.open('','_blank','PRINT', 'height=10,width=1');
-      ventana.document.write('<html><head><title> Imprime </title></head><body>');
         ventana.document.write('<html><head><title> Imprime </title></head><body>');
+        ventana.document.write('<FONT FACE="Arial" SIZE="2">');
         ventana.document.write(' <h2>{{$hospital->nombre}}</h2>');
         ventana.document.write('Hola, {{$persona[2]}} {{$persona[0]}}<br>');
         ventana.document.write('Bienvenido a los baños termales<br>');
@@ -107,7 +107,7 @@
         ventana.document.write('pueda afectar el vapor, abstengase.<br>');
       ventana.document.write('<hr>');
       ventana.document.write('******QUE TENGA UNA GRATA ESTADIA ****<br>')
-  ventana.document.write('</body></html>');
+  ventana.document.write('</FONT></body></html>');
  
   ventana.document.close();
   window.focus();
