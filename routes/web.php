@@ -99,7 +99,8 @@ Route::group(['prefix'=>'administrador','middleware' => 'rol:Administrador'],fun
 
 
 //Rutas para caja
-Route::group(['prefix'=>'caja','middleware' => 'rol:Caja'],function()
+//Route::group(['prefix'=>'caja','middleware' => 'rol:Caja'],function()
+Route::group(['prefix'=>'caja','middleware' => 'rolPlusAdmin:Caja,Administrador'],function()
 {
 
     Route::get('/', 'CajaController@index' );
@@ -113,7 +114,8 @@ Route::group(['prefix'=>'caja','middleware' => 'rol:Caja'],function()
 
 
 //Rutas para recursos humanos
-Route::group(['prefix'=>'recursosHumanos','middleware' => 'rol:Recursos Humanos'],function()
+//Route::group(['prefix'=>'recursosHumanos','middleware' => 'rol:Recursos Humanos'],function()
+Route::group(['prefix'=>'recursosHumanos','middleware' => 'rolPlusAdmin:Recursos Humanos,Administrador'],function()
 {
 
     Route::get('/',  'RecursosHumanosController@index');
@@ -183,19 +185,17 @@ Route::group(['prefix'=>'pedestal'],function()
 });
 
 //Rutas para admision
-Route::group(['prefix'=>'admision','middleware' => 'rol:Admision'],function()
+Route::group(['prefix'=>'admision','middleware' => 'rolPlusAdmin:Admision,Administrador'],function()
 {
     Route::get('/',  'AdmisionController@buscarPaciente' );
     Route::get('/agregarPaciente',  function() {return view('admision.agregarPaciente');} );
-
-
     Route::post('/buscarPaciente',  'AdmisionController@buscarPaciente' );
     Route::post('/agregarPaciente/crearRegistro',  'AdmisionController@crearPaciente' );
     Route::post('/referir','AdmisionController@referir');
 });
 
 //Ruta Historial
-Route::group(['prefix'=>'historialMedico','middleware' => 'rol:Historial Medico'],function()
+Route::group(['prefix'=>'historialMedico','middleware' => 'rolPlusAdmin:Historial Medico,Administrador'],function()
 {
     Route::get('/',  'HistorialController@index' );
 });

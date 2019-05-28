@@ -59,6 +59,7 @@ class Kernel extends HttpKernel
         'guest' => \telefilaSuite\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'rol'=> \telefilaSuite\Http\Middleware\superUsuario::class,
+        'rolPlusAdmin' => \telefilaSuite\Http\Middleware\AdministradorMiddleware::class,
     
     ];
 }

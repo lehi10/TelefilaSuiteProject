@@ -54,7 +54,7 @@ class PedestalController extends Controller
                 if($persona[0]!="")
                 {
                     $especialidades = especialidad::select('*')->where('tipo',"otro")->get();                
-                    return view('pedestal.especialidad',['dni'=>$request->dni,'especialidades'=>$especialidades,'codigo'=>$hospital->codigo,'tipo'=>$hospital->tipo_negocio,'hospital_id'=>$hospital->id,'persona'=>$persona]);
+                    return view('pedestal.especialidad',['dni'=>$request->dni,'especialidades'=>$especialidades,'codigo'=>$hospital->codigo,'tipo'=>$hospital->tipo_negocio,'hospital_id'=>$hospital->id,'paciente'=>$persona]);
                 }
                 return redirect('pedestal/'.$hospital->codigo)->with(['message'=> 'El DNI no es valido, o el paciente aun no tiene un registro. Puede acercarse a Admisión para solucionar el problema.']);
             }
@@ -98,7 +98,7 @@ class PedestalController extends Controller
                     });
                 //dd($especialidadesReferidas);
                 
-                return view('pedestal.especialidad',['paciente'=>$paciente,'especialidades'=>$especialidades,'especialidadesReferidas'=>$especialidadesReferidas,'codigo'=>$hospital->codigo,'tipo'=>$hospital->tipo]);
+                return view('pedestal.especialidad',['hospital_id'=>$hospital->id,'dni'=>'','paciente'=>$paciente,'especialidades'=>$especialidades,'especialidadesReferidas'=>$especialidadesReferidas,'codigo'=>$hospital->codigo,'tipo'=>$hospital->tipo]);
             }
             else
             {
@@ -216,7 +216,7 @@ class PedestalController extends Controller
             $fecha= $dateTime->format(" d/m/y  H:i A"); 
             
             $tipoServicio=$especialidad->nombre;
-            return view('pedestal.imprime',['paciente'=>$request->paciente_id,'codigo'=>$request->codigo,'hospital'=>$hospital,'tipo'=>$request->tipo,"tarifa"=>$tarifa,'nroTicket'=>$nroTicket,"fecha"=>$fecha,"tipoServicio"=>$tipoServicio,"persona"=>$persona]);
+            return view('pedestal.imprime',['paciente'=>$request->paciente_id,'codigo'=>$request->codigo,'hospital'=>$hospital,'tipo'=>$request->tipo,"tarifa"=>$tarifa,'nroTicket'=>$nroTicket,"fecha"=>$fecha,"tipoServicio"=>$tipoServicio,"persona"=>$persona,'tipo'=>$hospital->tipo_negocio]);
         }
         
 
@@ -283,7 +283,7 @@ class PedestalController extends Controller
 
 
 
-        return view('pedestal.imprime',['idConsultorio'=>$idConsultorio,'cita'=>$cita,'paciente'=>$paciente,'consultorio'=>$consultorio,'medico'=>$medico,'codigo'=>$request->codigo,'hospital'=>$hospital]);
+        return view('pedestal.imprime',['idConsultorio'=>$idConsultorio,'cita'=>$cita,'paciente'=>$paciente,'consultorio'=>$consultorio,'medico'=>$medico,'codigo'=>$request->codigo,'hospital'=>$hospital,'tipo'=>$hospital->tipo_negocio]);
     }
 
     public function imprimiendo(Request $request)

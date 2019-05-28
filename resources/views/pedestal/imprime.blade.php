@@ -6,7 +6,7 @@
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="/css/site_global.css?crc=443350757"/>
   <link rel="stylesheet" type="text/css" href="/css/imprime.css?crc=259043253" id="pagesheet"/>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
   <!-- JS includes -->
     <script type="text/javascript">
@@ -15,7 +15,7 @@
    </head>
  <body>
 
-@if($tipo="otro")
+@if($tipo==="otro")
     <div class="clearfix gradient" id="page"><!-- column -->
       <div class="position_content" id="page_position_content">
         <div class="clearfix colelem" id="pu839"><!-- group -->
@@ -52,7 +52,7 @@
                     Fecha y Hora :{{$fecha}}<br>
                   </div>
               
-            <a class="nonblock nontext museBGSize clearfix " id="u883" onclick="imprimir('ticket')" ><!-- group -->
+            <a class="nonblock nontext museBGSize clearfix " id="u883" onclick='imprimir()' ><!-- group -->
               <div class="clearfix grpelem" id="u884-4"><!-- content -->
                 <p>IMPRIMIR</p>
               </div>
@@ -80,12 +80,12 @@
 
       </div>
     </div>
-    <script>
-    function imprimir(elemento){
-      var ticketHTML=document.getElementById(elemento);
+    <script type="text/javascript">
+    function imprimir(){
+      
       var ventana = window.open('', 'PRINT', 'height=10,width=1');
 
-      ventana.document.write('<html><head><title>' + document.title + '</title>');
+      ventana.document.write('<html><head><title> Imprime </title></head><body>');
         ventana.document.write(' <h2>{{$hospital->nombre}}</h2>');
         ventana.document.write('Hola, {{$persona[2]}} {{$persona[0]}}<br>');
         ventana.document.write('Bienvenido a los baños termales<br>');
@@ -102,7 +102,7 @@
         ventana.document.write('- Si sufre alguna enfermedad que le pueda afectar el vapor, abstengase.<br>');
       ventana.document.write('<hr>');
       ventana.document.write('******QUE TENGA UNA GRATA ESTADIA ****<br>')
-      ventana.document.write(ticketHTML.innerHTML);
+      
       ventana.document.write('</body></html>');
 
 
@@ -114,7 +114,6 @@
     }
 
     </script>
-
 
 @else
 
@@ -185,11 +184,11 @@
     </div>
 
 
-    <script>
+    <script type="text/javascript"  >
     function imprimir(elemento){
       var ticketHTML=document.getElementById(elemento);
       var ventana = window.open('', 'PRINT', 'height=10,width=1');
-      ventana.document.write('<html><head><title>' + document.title + '</title>');
+      ventana.document.write('<html><head><title>' + document.title + '</title><body>');
         ventana.document.write(' <h2>{{$hospital->nombre}}</h2>');
         ventana.document.write(' {{$hospital->direccion}}<br>');
       ventana.document.write('<hr>');
@@ -204,7 +203,10 @@
       ventana.document.write('<hr>');
         ventana.document.write('ACERCATE A CAJA PARA <br> VALIDAR SU TICKET ');
         ventana.document.write('S/.{{$consultorio->especialidad->tarifa}}');
+      ventana.document.write('<hr>');
+      ventana.document.write(ticketHTML.innerHTML);
       ventana.document.write('</body></html>');
+
       ventana.document.close();
       ventana.focus();
       ventana.print();

@@ -21,10 +21,6 @@ class RecursosHumanosController extends Controller
     //
 
 
-    public function __construct()
-    {
-        $this->middleware(['auth','rol:Recursos Humanos']);
-    }
     public function index()
     {
         $medicos=Medico::where('hospital_id',Auth::user()->hospital_id)->get();

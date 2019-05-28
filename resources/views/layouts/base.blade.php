@@ -52,28 +52,34 @@
                       <a class="header-brand" href="/">
                         <img src="{{url('images/logo_alpha.png')}}" alt="logo" title="logo" style="width: 144px; height: 36px;">
                       </a>
+
                       <div class="d-flex order-lg-2 ml-auto">
+                        
                         @if(Auth::user()->checkRol("Super Usuario"))
-                        <div class="nav-item d-none d-md-flex">
-                          <a href="{{url('/superuser/nuevoCliente')}}" class="btn btn-sm btn-outline-primary">
-                            Agregar Cliente
-                          </a>
-                        </div>
+                          <div class="nav-item d-none d-md-flex">
+                            <a href="{{url('/superuser/nuevoCliente')}}" class="btn btn-sm btn-outline-primary">
+                              Agregar Cliente
+                            </a>
+                          </div>
                         @elseif(Auth::user()->checkRol("Administrador"))
-                        <div class="nav-item d-none d-md-flex">
-                          <a href="{{url('/administrador/nuevoUsuario')}}" class="btn btn-sm btn-outline-primary">
-                            Agregar Usuario
-                          </a>
-                        </div>
+                          <div class="nav-item d-none d-md-flex">
+                            <a href="{{url('/administrador/nuevoUsuario')}}" class="btn btn-sm btn-outline-primary">
+                              Agregar Usuario
+                            </a>
+                          </div>
                         @endif
+
                         @yield('auxiliar')
+                        
                         <div class="dropdown" >
                           <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
+                          
                           @if (Auth::user()->hospital && Auth::user()->hospital->logo && !Auth::user()->checkRol('Super Usuario'))
                             <span class="avatar" style="background-image:url( {{url('/storage/'.Auth::user()->hospital->codigo.'/logo.jpg')}})"></span>
                           @else
                             <span class="avatar" style="background-image:url( {{url('/demo/faces/female/25.jpg')}})"></span>
                           @endif
+                          
                           @if (Auth::user()->checkRol("Administrador"))
                               <span class="ml-2 d-none d-lg-block">
                                 <span class="text-default">
@@ -122,21 +128,44 @@
                       </div>
                       <div class="col-lg order-lg-first">
                         <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
+                          
                           @if (Auth::user()->checkRol('Super Usuario'))
                             @yield('more_options')
+                          
                           @elseif (Auth::user()->checkRol('Administrador'))
                           <li class="nav-item">
-                            <a href="/historialMedico" class="nav-link" >
-                              <i class="fe fe-box"></i>
-                                Reportes
+                            <a href="/" class="nav-link" >
+                              <i class="fa fa-users"></i>
+                                Usuarios
                             </a>
                           </li>
+
                           <li class="nav-item">
                             <a href="/administrador/consultorios" class="nav-link">
-                              <i class="fe fe-calendar"></i>
+                              <i class="fa fa-stethoscope"></i>
                                 Consultorios
                             </a>
                           </li>
+                          <li class="nav-item">
+                            <a href="/caja" class="nav-link">
+                              <i class="fa fa-money"></i>
+                                Caja
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/recursosHumanos" class="nav-link">
+                              <i class="fa fa-user-md"></i>
+                                Recursos Humanos
+                            </a>
+                          </li>
+                          
+                          <li class="nav-item">
+                            <a href="/historialMedico" class="nav-link" >
+                              <i class="fa fa-bar-chart"></i>
+                                Reportes
+                            </a>
+                          </li>
+
                           @elseif (Auth::user()->checkRol('Recursos Humanos'))
                           <li class="nav-item">
                             <a href="/recursosHumanos" class="nav-link">
@@ -150,6 +179,13 @@
                                 Consultorios
                             </a>
                           </li>
+                          <li class="nav-item">
+                            <a href="/admision" class="nav-link">
+                              <i class="fa fa-file-text"></i>
+                                Admisión
+                            </a>
+                          </li>
+                          
                           @endif
                           <li class="nav-item dropdown">
                             <br>

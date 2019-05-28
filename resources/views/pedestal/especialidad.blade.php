@@ -60,8 +60,8 @@
     <table style="width: 100%;" border="0">
       <tbody>
         <tr>
-        @if($tipo="otro")
-          <td id="fondo">Cliente con {{$persona[2]}} {{$persona[0]}} ¿Que servicio necesitas?</td>
+        @if($tipo==="otro")
+          <td id="fondo">Cliente con {{$paciente[2]}} {{$paciente[0]}} ¿Que servicio necesitas?</td>
         @else
           <td id="fondo">Hola, {{$paciente->nombres}} {{$paciente->apellidos}} ¿En que deseas atenderte?</td>
         @endif
@@ -71,16 +71,19 @@
     </table>
     <br>
 
-    @if($tipo="otro")
+    @if($tipo==="otro")
       <form action="/pedestal/{{$codigo}}/imprimeOtroServicio" method="get" id="form">
         <input type="hidden" name="especialidad_id" value="" id="especialidad">
-        <input type="hidden" name="personaApellidoP" value="{{$persona[0]}}">
-        <input type="hidden" name="personaApellidoM" value="{{$persona[1]}}">
-        <input type="hidden" name="personaNombre" value="{{$persona[2]}}">
+        <input type="hidden" name="personaApellidoP" value="{{$paciente[0]}}">
+        <input type="hidden" name="personaApellidoM" value="{{$paciente[1]}}">
+        <input type="hidden" name="personaNombre" value="{{$paciente[2]}}">
         <input type="hidden" name="paciente_id" value="{{$dni}}">
         <input type="hidden" name="codigo" value="{{$codigo}}">
         <input type="hidden" name="hospital_id" value="{{$hospital_id}}">
-        <input type="hidden" name="tipo" value="{{$tipo}}" id="idConsultorio">
+        <input type="hidden" name="tipo" value="{{$tipo}}" >
+        <input type="hidden" name="idConsultorio" value="" id="idConsultorio" >
+        
+
 
       </form>
     @else
@@ -93,11 +96,11 @@
         <input type="hidden" name="codigo" value="{{$codigo}}">
         <input type="hidden" name="hospital_id" value="{{$paciente->hospital_id}}">
         <input type="hidden" name="idConsultorio" value="" id="idConsultorio">
-        <input type="hidden" name="tipo" value="{{$tipo}}" id="idConsultorio">
+        <input type="hidden" name="tipo" value="{{$tipo}}" >
       </form>
     @endif
     
-    @if($tipo ="otro")
+    @if($tipo==="otro")
       
         <div width="40%" align="center">
           <table div="" style="width: 40%;" ;="" cellspacing="5" border="0">
