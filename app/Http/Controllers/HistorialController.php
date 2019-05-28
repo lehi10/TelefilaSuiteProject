@@ -16,6 +16,7 @@ class HistorialController extends Controller
         else
             $fecha = date("Y-m-d");
 
+        
         if(isset($request->especialidad) && $request->especialidad != "" )
         {
             $registros =DB::table('agendas')->select('especialidads.id AS espID','especialidads.nombre AS nombre', 'citas.fecha' )
@@ -28,13 +29,8 @@ class HistorialController extends Controller
             ->Where('citas.pagado',1)
             ->groupBy('especialidads.id','especialidads.nombre','citas.fecha')
             ->get();
-
-            return $registros;
             return view('historial.index',["registros"=> $registros]);
         }
-
-
-
 
         $registros =DB::table('agendas')->select('especialidads.id as espID','especialidads.nombre as nombre', 'citas.fecha' )
         ->Join('medicos','medicos.id','=','agendas.medico_id')
@@ -46,6 +42,7 @@ class HistorialController extends Controller
         ->groupBy('especialidads.id','especialidads.nombre','citas.fecha')
         ->get();
         
+
         return view('historial.index',["registros"=> $registros]);
     }
 

@@ -95,16 +95,23 @@
         ventana.document.write('Bienvenido a los baños termales<br>');
         ventana.document.write('<hr>');
         ventana.document.write('Ticket Nro {{$nroTicket}}<br>');
-        ventana.document.write('Monto : {{$tarifa}}<br>');
+        ventana.document.write('Monto : S/. {{$tarifa}}<br>');
         ventana.document.write('Servicio : {{$tipoServicio}}<br>');
         ventana.document.write('{{$fecha}}<br>');
-        ventana.document.write('PUEDE CANJEAR ESTE TICKET<br>');
-        ventana.document.write('POR UNA BOLETA DE VENTA<br>');
-        ventana.document.write('POR SU SEGURIDAD:<br>');
-        ventana.document.write('- No corra en los bordes de la piscina<br>');
-        ventana.document.write('- Abstengase de sobreexponerse al agua caliente<br>');
-        ventana.document.write('- Si sufre alguna enfermedad que le <br>');
-        ventana.document.write('pueda afectar el vapor, abstengase.<br>');
+        
+
+        ventana.document.write('PUEDE CANJEAR ESTE TICKET POR UNA BOLETA DE VENTA');
+        ventana.document.write('*POR SU SEGURIDAD*');
+        ventana.document.write('No corra en los bordes de la piscina.');
+        ventana.document.write('Abstanerse de sobreexponerse al agua caliente si sufre de alguna enfermedad.');
+        ventana.document.write('-------------------');
+        ventana.document.write('"QUE TENGA UNA GRATA ESTADIA"');
+        ventana.document.write('-------------------');
+        ventana.document.write('www.realhotelmonterrey.com');
+        ventana.document.write('Baños termales | Restaurant | Hotel');
+        ventana.document.write('Reservas: +43349069 | +51.989061967');
+
+
       ventana.document.write('<hr>');
       ventana.document.write('******QUE TENGA UNA GRATA ESTADIA ****<br>')
   ventana.document.write('</FONT></body></html>');
@@ -228,6 +235,7 @@
       ventana.close();
       window.location.replace("/pedestal/{{$codigo}}/imprimiendo");
     }
+
 
 
 
