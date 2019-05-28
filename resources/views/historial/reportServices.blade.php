@@ -28,13 +28,14 @@
       </div>
       <h2>Tickets generados</h2>
       <div style='display: none;'>
-          {{$i=1}}
+          {{$i=0}}
+          {{$sum=0}}
       </div>
       <table >
         <thead>
           <tr>
             <th class="no">#</th>
-            <th class="desc">Categoría</th>
+            <th class="unit">Categoría</th>
             <th class="qty">Tarifa</th>
             <th class="unit">N° Tickets</th>
             <th class="qty">Total</th>
@@ -43,14 +44,26 @@
         <tbody>
         
           @foreach ($reporte as $registro)
+            <div style='display: none;'>
+                {{$sum+=round($registro->cant*$registro->tarifa,2)}}
+                {{$i++}}
+            </div>
             <tr>
-              <td class="no" >{{$i++}}</td>
-              <td class="desc">{{$registro->nombre}}</td>
-              <td class="qty">{{round($registro->tarifa,2)}}</td>
+              <td class="no" >{{$i}}</td>
+              <td class="unit"> {{$registro->nombre}}</td>
+              <td class="qty">S/. {{round($registro->tarifa,2)}}</td>
               <td class="unit">{{$registro->cant}}</td>
-              <td class="qty">{{round($registro->cant*$registro->tarifa,2)}}</td>
+              <td class="qty">S/. {{round($registro->cant*$registro->tarifa,2)}}</td>
+                
             </tr>
           @endforeach
+            <tr>
+              <td class="" ></td>
+              <td class=""></td>
+              <td class=""></td>
+              <td class=""><strong>TOTAL</strong></td>
+              <td class=""><strong>S/. {{$sum}}</strong></td>
+            </tr>
         </tbody>
       </table>
       <div id="notices">

@@ -26,7 +26,7 @@
       </div>
       <h2>Tickets generados</h2>
       <div style='display: none;'>
-          {{$i=1}}
+          {{$i=0}}
       </div>
       <table >
         <thead>
@@ -39,8 +39,11 @@
         </thead>
         <tbody>
           @foreach ($registros as $registro)
+              <div style='display: none;'>
+                {{$i++}}
+              </div>
             <tr>
-              <td class="no" >{{$i++}}</td>
+              <td class="no" >{{$i}}</td>
               <td class="desc">{{$registro->pacienteID}}</td>
               <td class="unit">{{$registro->pacienteNombres}} {{$registro->pacienteApellidos}}</td>
               <td class="qty">{{$registro->horaCita}}</td>
