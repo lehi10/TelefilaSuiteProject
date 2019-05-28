@@ -202,6 +202,8 @@ Route::group(['prefix'=>'historialMedico','middleware' => 'rolPlusAdmin:Historia
 
 Route::get('pdf', 'PdfController@invoice');
 
+Route::get('pdfServices', 'PdfController@invoiceServices');
+
 
 Route::get('archivos/{clientCode}/{filename}', function ($clientCode,$filename)
 {

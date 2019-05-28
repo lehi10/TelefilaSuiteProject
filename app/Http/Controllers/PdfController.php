@@ -5,6 +5,7 @@ namespace telefilaSuite\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use telefilaSuite\Paciente;
 use telefilaSuite\Hospital;
+use telefilaSuite\Especialidades;
 
 use Illuminate\Http\Request;
 use Auth;
@@ -45,14 +46,26 @@ class PdfController extends Controller
     }
 
     
-    public function invoice_for_other_Service(Request $request) 
+    public function invoiceServices(Request $request) 
     {
-        if(!isset($request->especialidad)&& !isset($request->fecha))
+        
+        if(!isset($request->fecha))
             return abort(404);
 
         $hospitalID = Auth::user()->hospital_id; 
         $hospital= Hospital::find($hospitalID);
-        $especialidad=DB::table('especialidads')->find($request->especialidad);        
+        $reporte = DB::table('consultorios')->select('*')
+        ->leftJoin('citas','citas.consultorio_id','=','consultorios.id')
+        ->where('consultorios.hospital_id',$hospitalID)
+        ->Where('citas.fecha',$request->fecha);
+        
+        $reporte=$reporte->select(DB::raw(' count(consultorios.id) as con, consultorios.id, nombre, tarifa'))
+        ->groupBy('consultorios.id')
+        ->groupBy('consultorios.nombre')
+        ->groupBy('tarifa');
+        
+        return $reporte;
+        
         
         $registros=DB::table('citas')
         ->select('medicos.especialidad_id',
