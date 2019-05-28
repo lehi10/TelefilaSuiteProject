@@ -251,7 +251,7 @@ class PedestalController extends Controller
             $cita->paciente_id=$paciente_id;
             $cita->hospital_id=$request->hospital_id;
             $cita->agenda_id=156; //Todo se carga en una sola agenda
-            $cita->pagado=false;
+            $cita->pagado=true;
             $cita->consultorio_id=$request->idConsultorio;
             
             $cita->save();

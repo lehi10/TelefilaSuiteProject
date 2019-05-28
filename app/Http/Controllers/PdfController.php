@@ -59,37 +59,22 @@ class PdfController extends Controller
         ->where('consultorios.hospital_id',$hospitalID)
         ->Where('citas.fecha',$request->fecha);
         
-        $reporte=$reporte->select(DB::raw(' count(consultorios.id) as con, consultorios.id, nombre, tarifa'))
+        $reporte=$reporte->select(DB::raw(' count(consultorios.id) as cant, consultorios.id, nombre, tarifa'))
         ->groupBy('consultorios.id')
         ->groupBy('consultorios.nombre')
-        ->groupBy('tarifa');
+        ->groupBy('tarifa')->get();
         
-        return $reporte;
+        date_default_timezone_set('America/Lima');
+        $hora = date("H:m A");
         
-        
-        $registros=DB::table('citas')
-        ->select('medicos.especialidad_id',
-                'pacientes.id               as pacienteID',
-                'pacientes.nombres          as pacienteNombres',
-                'pacientes.apellidos        as pacienteApellidos',
-                'citas.horaInicio           as horaCita')
-        ->Join('pacientes','pacientes.id','=','citas.paciente_id')
-        ->Join('agendas','agendas.id','=','citas.agenda_id')
-        ->Join('medicos','medicos.id','=','agendas.medico_id')
-        ->Where('citas.hospital_id',$hospitalID)
-        ->Where('citas.fecha',$request->fecha)
-        ->Where('medicos.especialidad_id',$request->especialidad)
-        ->Where('citas.pagado',1)->get();
-        
-
-
-        if(count($registros)==0)
+        if(count($reporte)==0)
             return abort(404);
-
-        $view =  \View::make('historial.invoice',['especialidad'=>$especialidad,'hospital'=>$hospital,'registros'=>$registros,'fecha'=>$request->fecha])->render();
+        
+            
+        $view =  \View::make('historial.reportServices',['reporte'=>$reporte,'hospital'=>$hospital,'fecha'=>$request->fecha,"hora"=>$hora])->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
-        return $pdf->stream('Hospital '.$hospital->nombre.'_'.$especialidad->nombre.'_'.$request->fecha.'.pdf');
+        return $pdf->stream('Reporte '.$hospital->nombre.'_'.$request->fecha.'.pdf');
     }
 
 }
