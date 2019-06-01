@@ -72,7 +72,7 @@
     <br>
 
     @if($tipo==="otro")
-      <form action="/pedestal/{{$codigo}}/imprimeOtroServicio" method="get" id="form">
+      <form action="/pedestal/{{$codigo}}/numTickets" method="get" id="form">
         <input type="hidden" name="especialidad_id" value="" id="especialidad">
         <input type="hidden" name="personaApellidoP" value="{{$paciente[0]}}">
         <input type="hidden" name="personaApellidoM" value="{{$paciente[1]}}">

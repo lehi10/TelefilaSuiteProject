@@ -36,6 +36,19 @@ class PedestalController extends Controller
         return redirect('/pedestal')->with(['message'=>'El hospital requerido no existe']);
     }
 
+    public function numTickets(Request $request)
+    {
+
+        $hospital=Hospital::find($request['hospital_id']);
+        $datosTicket=$request;
+        
+        if ($hospital)
+        {
+            return view('pedestal.numTickets',['datosTicket'=>$datosTicket,'hospital_id'=>$hospital->id,'codigo'=>$hospital->codigo,"tipo"=>$hospital->tipo]);
+        }
+        return redirect('/pedestal')->with(['message'=>'El hospital requerido no existe']);
+    }
+
     public function especialidad(Request $request)
     {
         
@@ -205,7 +218,6 @@ class PedestalController extends Controller
     public function imprime(Request $request)
     {
         
-        
         $hospital=Hospital::where('codigo',$request->codigo)->first();
 
         
@@ -244,31 +256,44 @@ class PedestalController extends Controller
             $dateTime = new DateTime('now', new \DateTimeZone('America/Lima')); 
             $fecha= $dateTime->format(" d/m/y  H:i A"); 
 
-            $cita=new Cita;
-            $cita->fecha=$dateTime;
-            $cita->horaInicio=$dateTime->format('H:i');
-            $cita->horaFinal="09:00";
-            $cita->paciente_id=$paciente_id;
-            $cita->hospital_id=$request->hospital_id;
-            $cita->agenda_id=156; //Todo se carga en una sola agenda
-            $cita->pagado=true;
-            $cita->consultorio_id=$request->idConsultorio;
+            $idsTickets=array();
+
+            for($count=0;$count<$request['numTickets'];$count++)
+            {
+                $cita=new Cita;
+                $cita->fecha=$dateTime;
+                $cita->horaInicio=$dateTime->format('H:i');
+                $cita->horaFinal="09:00";
+                $cita->paciente_id=$paciente_id;
+                $cita->hospital_id=$request->hospital_id;
+                $cita->agenda_id=156; //Todo se carga en una sola agenda
+                $cita->pagado=true;
+                $cita->consultorio_id=$request->idConsultorio;
+                $cita->save();
+                array_push($idsTickets,$cita->id);
+                
+            }
             
-            $cita->save();
 
             $consultorio = Consultorio::find($request->idConsultorio);
             $especialidad=Especialidad::find($consultorio->especialidad_id);
             $tarifa=round($consultorio->tarifa,2);
+            $precioTotal = $tarifa*sizeof($idsTickets);
             
-            $nroTicket=$cita->id;
             
             $persona=[$request->personaApellidoP,$request->personaApellidoM,$request->personaNombre];
-
+            
             $dateTime = new DateTime('now', new \DateTimeZone('America/Lima')); 
             $fecha= $dateTime->format(" d/m/y  H:i A"); 
             
             $tipoServicio=$especialidad->nombre;
-            return view('pedestal.imprime',['paciente'=>$request->paciente_id,'codigo'=>$request->codigo,'hospital'=>$hospital,'tipo'=>$request->tipo,"tarifa"=>$tarifa,'nroTicket'=>$nroTicket,"fecha"=>$fecha,"tipoServicio"=>$tipoServicio,"persona"=>$persona,'tipo'=>$hospital->tipo_negocio,"cita"=>$nroTicket]);
+            return view('pedestal.imprime',['paciente'=>$request->paciente_id,  'codigo'=>$request->codigo,
+                                            'hospital'=>$hospital,              'tipo'=>$request->tipo,
+                                            "tarifa"=>$tarifa,                  "citas"=>$idsTickets,
+                                            "fecha"=>$fecha,                    "tipoServicio"=>$tipoServicio,
+                                            "persona"=>$persona,                'tipo'=>$hospital->tipo_negocio,
+                                            "precioTotal"=>$precioTotal
+                                            ]);
         }
         
 

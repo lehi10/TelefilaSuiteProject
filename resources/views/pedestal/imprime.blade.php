@@ -1,88 +1,103 @@
 <!DOCTYPE html>
-<html class=" html css_verticalspacer" lang="es-ES">
- <head>
-  <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
-  <title>imprime</title>
-  <!-- CSS -->
-  <link rel="stylesheet" type="text/css" href="/css/site_global.css?crc=443350757"/>
-  <link rel="stylesheet" type="text/css" href="/css/imprime.css?crc=259043253" id="pagesheet"/>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Imprimir</title>
+    <style type="text/css">
+#fondo {
+  background-color: black;
+  font-size: 160px;
+  font-family: "Arial";
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
 
-  <!-- JS includes -->
-    <script type="text/javascript">
-      document.write('\x3Cscript src="' + (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//webfonts.creativecloud.com/basic:n4:default.js" type="text/javascript">\x3C/script>');
-    </script>
-   </head>
- <body>
+#boton {
+  font-size: 100px;
+  text-align: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  transform-style: preserve-3d;
+  perspective: 10px;
+  width: 140px;
+  height: 140px;
+  font-family: "Arial";
+  font-weight: bold;
+  image-orientation: from-image;
+  background-color: white;
+}
+
+#boton2 {
+  font-size: 40px;
+  text-align: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  transform-style: preserve-3d;
+  perspective: 10px;
+  width: 220px;
+  height: 140px;
+  background-color: #009900;
+  font-family: "Arial";
+  font-weight: bold;
+  color: white;
+}
+
+#boton3 {
+  font-size: 100px;
+  text-align: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  transform-style: preserve-3d;
+  perspective: 10px;
+  width: 140px;
+  height: 140px;
+  background-color: #ffcc33;
+  font-family: "Arial";
+  font-weight: bold;
+}
+
+#cliente {
+  font-family: "Calibri";
+  font-size: 18px;
+  text-align: center;
+  color: white;
+  background-color: #303030;
+}
+
+#nombre {
+  color: #ffcc00;
+  font-weight: bold;
+}
+
+</style></head>
 
 @if($tipo==="otro")
-    <div class="clearfix gradient" id="page"><!-- column -->
-      <div class="position_content" id="page_position_content">
-        <div class="clearfix colelem" id="pu839"><!-- group -->
-          <div class="browser_width" id="u839-bw">
-            <div id="u839"><!-- simple frame --></div>
-          </div>
-        <div class="clearfix" id="u847-4"><!-- content -->
-          <p>Cliente : {{$persona[2]}} {{$persona[0]}} </p>
-        </div>
-        
-        <div class="clip_frame" id="u844"><!-- image -->
-          <img class="block" id="u844_img" src="/images/logo_alpha2.png?crc=4239319242" alt="" width="171" height="42"/>
-        </div>
-        <a class="nonblock nontext museBGSize" id="u852" href="fecha.html"><!-- simple frame --></a>
-        </div>
-        <div class="clearfix colelem" id="u846-4"><!-- content -->
-        <p>{{$hospital->nombre}}</p>
-        </div>
-        
-        <div class="browser_width colelem" id="u853-bw">
-        <div id="u853"><!-- column -->
-          <div class="clearfix" id="u853_align_to_page">
 
-              
-
-                <a class="nonblock nontext museBGSize clearfix grpelem" id="u841" href="fecha.html"><!-- group -->
-                  <div class="clip_frame grpelem" id="u948"><!-- image --><img class="block" id="u948_img" src="images/check.png?crc=501764073" alt="" width="116" height="114"/>
-                  </div>
-                </a>
-                  <div class=""  id="u880-6"><!-- content -->
-                    Ticket N° {{$nroTicket}}<br>
-                    Monto pagado: {{$tarifa}}<br>
-                    Servicio: {{$tipoServicio}}<br>
-                    Fecha y Hora :{{$fecha}}<br>
-                  </div>
-              
-            <a class="nonblock nontext museBGSize clearfix " id="u883" onclick="imprimir('ticket')" ><!-- group -->
-              <div class="clearfix grpelem" id="u884-4"><!-- content -->
-                <p>IMPRIMIR</p>
-              </div>
-            </a>
-
-            <div class="clearfix colelem" id="u895"><!-- group -->
-              <a class="nonblock nontext clearfix grpelem" id="u889-4" href="{{url('pedestal/'.$codigo)}}"><!-- content --><p>No imprimir</p></a>
-              <a class="nonblock nontext rounded-corners grpelem" id="u892" href="{{url('pedestal/'.$codigo)}}"><!-- simple frame --></a>
-            </div>
-            
-          </div>
-        </div>
-        </div>
-        <div class="verticalspacer" data-offset-top="542" data-content-above-spacer="541" data-content-below-spacer="71"></div>
-      </div>
-      </div>
-      
-      <!-- Other scripts -->
-
-      <!-- RequireJS script -->
-      <script src="scripts/require.js?crc=244322403" type="text/javascript" async data-main="scripts/museconfig.js?crc=168988563" onload="if (requirejs) requirejs.onError = function(requireType, requireModule) { if (requireType && requireType.toString && requireType.toString().indexOf && 0 <= requireType.toString().indexOf('#scripterror')) window.Muse.assets.check(); }" onerror="window.Muse.assets.check();"></script>
-
-    <div style="visibility: hidden; ">
-  <div id="ticket">
- 
-    {!! '<img src="data:image/png;base64,' . DNS1D::getBarcodePNG("$cita ", "C39+",2,30,array(1,1,1), true) . '" alt="barcode"   />' !!}
-  </div>
-</div>
-
-    <script type="text/javascript">
+  <body id="cliente">
+    <h1>BIENVENIDO  {{$persona[2]}} {{$persona[0]}}</h1>
+    <h2>SERVICIO: {{$tipoServicio}} </h2>
+    <h3>CANTIDAD DE TICKETS:  {{count($citas)}}</h3>
+    
+    
+    @foreach ($citas as $idTicket )
+        <h3>Nro:  {{$idTicket}}  ..... S/. {{$tarifa}}</h3>
+    @endforeach
+    <h2><strong>Total : S/. {{$precioTotal}}</strong></h2>
+    
+    <p><button name="IMPRIMIR" value="IMPRIMIR" type="button" id="boton2" onclick="imprimir('ticket')" >IMPRIMIR</button>
+    </p>
+    <div width="40%" align="center"><br>
+    </div>
+    CANCELAR<br>
+  </body>
+      <script type="text/javascript">
     function imprimir(elemento){
       
       var ticketHTML=document.getElementById(elemento);
@@ -94,7 +109,13 @@
         ventana.document.write('Hola, {{$persona[2]}} {{$persona[0]}}<br>');
         ventana.document.write('Bienvenido a los baños termales<br>');
         ventana.document.write('<hr>');
-        ventana.document.write('Ticket Nro {{$nroTicket}}<br>');
+        ventana.document.write('Tickets : <br>');
+        @foreach ($citas as $idTicket )
+          ventana.document.write('Nro {{$idTicket}} .... S/. {{$precioTotal}}<br>');
+        @endforeach
+        ventana.document.write('Total : S/. {{$precioTotal}}');
+        ventana.document.write('<hr>');
+        
         ventana.document.write('Monto : S/. {{$tarifa}}<br>');
         ventana.document.write('Servicio : {{$tipoServicio}}<br>');
         ventana.document.write('Fecha : {{$fecha}}<br>');
@@ -124,77 +145,26 @@
         ventana.close();
       }, delayInMilliseconds);
     }
-    
-
     </script>
-
 @else
 
 
-    <div class="clearfix gradient" id="page"><!-- column -->
-      <div class="position_content" id="page_position_content">
-        <div class="clearfix colelem" id="pu839"><!-- group -->
-        <div class="browser_width" id="u839-bw">
-          <div id="u839"><!-- simple frame --></div>
-        </div>
-        <div class="clearfix" id="u847-4"><!-- content -->
-          <p>Hola! {{$paciente->nombres}} {{$paciente->apellidos}}</p>
-        </div>
-        <div class="clip_frame" id="u844"><!-- image -->
-          <img class="block" id="u844_img" src="/images/logo_alpha2.png?crc=4239319242" alt="" width="171" height="42"/>
-        </div>
-        <a class="nonblock nontext museBGSize" id="u852" href="fecha.html"><!-- simple frame --></a>
-        </div>
-        <div class="clearfix colelem" id="u846-4"><!-- content -->
-        <p>Gracias por reservar su cita</p>
-        </div>
-        <div class="browser_width colelem" id="u853-bw">
-        <div id="u853"><!-- column -->
-          <div class="clearfix" id="u853_align_to_page">
-
-            <div class="clearfix colelem" id="pu841"><!-- group -->
-
-              <a class="nonblock nontext museBGSize clearfix grpelem" id="u841" href="fecha.html"><!-- group -->
-                <div class="clip_frame grpelem" id="u948"><!-- image --><img class="block" id="u948_img" src="images/check.png?crc=501764073" alt="" width="116" height="114"/>
-                </div>
-              </a>
-                <div class="clearfix grpelem" id="u880-6"><!-- content -->
-                  <p>Código : {{$cita->id}}</p>
-                  <p>Se ha reservado temporalmente tu turno con el Dr. {{$medico->nombres.' '.$medico->apellidos }} para la especialidad de {{$consultorio->especialidad->nombre}}  para el {{$cita->fecha}} a las {{$cita->horaInicio}}. Dale en IMPRIMIR y acércate a caja a <span id="u880-2">pagar S/.{{$consultorio->especialidad->tarifa}}</span> y así confirmar tu turno.</p>
-                </div>
-            </div>
-          <a class="nonblock nontext museBGSize clearfix colelem" id="u883" onclick="imprimir('ticket')" ><!-- group -->
-            <div class="clearfix grpelem" id="u884-4"><!-- content -->
-              <p>IMPRIMIR</p>
-            </div>
-          </a>
-
-          <div class="clearfix colelem" id="u895"><!-- group -->
-            <a class="nonblock nontext clearfix grpelem" id="u889-4" href="{{url('pedestal/'.$codigo)}}"><!-- content --><p>Cancelar</p></a>
-            <a class="nonblock nontext rounded-corners grpelem" id="u892" href="{{url('pedestal/'.$codigo)}}"><!-- simple frame --></a>
-          </div>
-          </div>
-        </div>
-        </div>
-        <div class="verticalspacer" data-offset-top="542" data-content-above-spacer="541" data-content-below-spacer="71"></div>
-      </div>
-      </div>
-      <div class="preload_images">
-      <img class="preload" src="/images/back.png?crc=107087755" alt=""/>
-      <img class="preload" src="/images/medgen_a.png?crc=3923899377" alt=""/>
-      <img class="preload" src="/images/largo_b.png?crc=4172065039" alt=""/>
-      </div>
-      <!-- Other scripts -->
- <div class="preload_images"> 
-   <img class="preload" src="/images/back.png?crc=107087755" alt=""/> 
-   <img class="preload" src="/images/medgen_a.png?crc=3923899377" alt=""/> 
-   <img class="preload" src="/images/largo_b.png?crc=4172065039" alt=""/> 
-  </div> 
-      <!-- RequireJS script -->
-     <!-- RequireJS script --> 
- 
-  <script src="scripts/require.js?crc=244322403" type="text/javascript" async data-main="scripts/museconfig.js?crc=168988563" onload="if (requirejs) requirejs.onError = function(requireType, requireModule) { if (requireType && requireType.toString && requireType.toString().indexOf && 0 <= requireType.toString().indexOf('#scripterror')) window.Muse.assets.check(); }" onerror="window.Muse.assets.check();"></script> 
- 
+<body id="cliente">
+    <h1>BIENVENIDO   {{$paciente->nombres}} {{$paciente->apellidos}}</h1>
+    <h2>Código : {{$cita->id}}</h2>
+    <h3>
+      Se ha reservado temporalmente tu turno con el Dr. {{$medico->nombres.' '.$medico->apellidos }} 
+      para la especialidad de {{$consultorio->especialidad->nombre}}  
+      para el {{$cita->fecha}} a las {{$cita->horaInicio}}. 
+      Dale en IMPRIMIR y acércate a caja a pagar S/.{{$consultorio->especialidad->tarifa}}
+      y así confirmar tu turno.
+    </h3>
+    <p><button name="IMPRIMIR" value="IMPRIMIR" type="button" id="boton2" onclick="imprimir('ticket')" >IMPRIMIR</button>
+    </p>
+    <div width="40%" align="center"><br>
+    </div>
+    CANCELAR<br>
+  
 <div style="visibility: hidden; "> 
   <div id="ticket"> 
  
@@ -202,8 +172,9 @@
   </div> 
 </div> 
 
-
-    <script type="text/javascript"  >
+  </body>
+  
+  <script type="text/javascript"  >
     function imprimir(elemento){
       var ticketHTML=document.getElementById(elemento);
       var ventana = window.open('', 'PRINT', 'height=10,width=1');
@@ -226,6 +197,7 @@
       ventana.document.write(ticketHTML.innerHTML);
       ventana.document.write('</body></html>');
 
+
       ventana.document.close();
       ventana.focus();
       ventana.print();
@@ -239,8 +211,10 @@
     </script>
 
 
+
 @endif
-  
-   </body>
+
 
 </html>
+
+
